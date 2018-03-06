@@ -1,0 +1,135 @@
+rockstar ate my hamster
+Musician-Devoured-Your-Gerbil
+
+1989 game was published
+
+MUSCIAN
+-name
+-Reputation
+-Instrament
+-Happiness
+-Skill
+-Signing fee
+-Wages
+
+
+BAND
+-Reputation
+-
+
+
+-the more nights you gig the more you might get unhappy / sell less tickets
+-musicans can die in publicity!! +reputation
+
+====================================================
+-While gigging, Musician ask for gifts
+-threats to quit bad if not get a gift (chance they might)
+-Musician thinks a psychedelic firework show would really improve the show. £80,000
+-WAGES TIME PER WEEK - Friday?
+-After release ALBUM / SINGLE TOP 10
+====================================================
+ 
+Init
+====
+£50k
+Mon 1st Jan
+
+Band config / screening room
+===========
+1.Choose Musician (1-4)
+-Signing fee & wages
+-gifts they prefer (only find out hat they prefer once gifted said item)?
+2.Name Band
+3.Choose Equipment
+	£1800 Spanking new
+	£1200 Second hand
+	£600 Dodgy gear / Off the back of a lorry
+
+=========================================================
+
+4.What shall we do now, Chief?
+	Practice
+	Gig
+	Publicity
+	Gifts
+	Record (only if signed & not recorded an album / single yet)
+	Release (only if recorded an album)
+
+
+Practice
+========
+Room costs £100 per day
+1-7 days
+
+Gig
+===
+1.Choose venue
+Pubs (200 seats, £10 to hire PER NIGHT)
+Clubs (500 seats, 1000 to hire PER NIGHT)
+Universities (1500 seats, 2800 to hire PER NIGHT)
+Concert Halls (4000 seats, 7000 to hire PER NIGHT)
+Stadiums (10k seats, 16500 to hire PER NIGHT)
+*Charge £2,5,10,15,20
+*2,3,4,5,6,7 nights
+2.How much to charge? 2,5,10,15,20
+3.How long? 2,3,4,5,6,7 nights
+
+Publicity
+=========
+Good / Bad
+
+
+Gifts
+=====
+Cars 20,000
+Jewels 10,000
+Clothes 5,000
+Drinks 100
+Food 50
+Comics 1
+
+
+1.Record album
+======
+SONGS
+2 track at 2000k
+4 - 5000
+8 - 10k
+16 - 16k
+24 - 20k
+48 - 50k
+2.Record songs
+==============
+-Create a song - Name it?
+
+
+Release
+=======
+1.Choose release album or single
+-if single: choose single
+2.make video?
+	-if yes: choose director
+Steven Cheeseburger: 3 million
+Cecil Bidet-Mills: 1 mill
+Busby Berserkely: 50k
+Wrigley Scott: 10k
+Julian Temple-Meads: 5k
+Clive(you?): £5
+	-choose location for music video
+Bahamas: 50k
+Hollywood: 20k
+Pinewood: 10k
+Cricklewood: £50
+	-what do you want to feature in this musical extravaganza?
+Lusty girlies mud wrestling
+Totally tacky puppets
+Greasy toy boys pumping iron
+Sick car chase
+Vampire spiders and rates
+Mind-numbing guitar poses
+
+=========================================================
+
+PHONE RINGS - Chance of getting signed
+===========
+Guy from ? records who want to sign ? for £10,000 and 5% royalties
