@@ -2,6 +2,6 @@
 var JSONband = [{
   "name"        : ""
   ,"reputation" : 0
-  ,"musician"   : {} //musicians in the band
+  ,"musician"   : [] //musicians in the band
   ,"equipment"  : 0
 }];

@@ -7,27 +7,27 @@ var JSONgift = [
   }
   ,{
     "name"        : "Jewels"
-    ,"happiness"  : 0
+    ,"happiness"  : 1
     ,"money"      : 10000
   }
   ,{
     "name"        : "Clothes"
-    ,"happiness"  : 0
+    ,"happiness"  : 2
     ,"money"      : 5000
   }
   ,{
     "name"        : "Drinks"
-    ,"happiness"  : 0
+    ,"happiness"  : 3
     ,"money"      : 100
   }
   ,{
     "name"        : "Food"
-    ,"happiness"  : 0
+    ,"happiness"  : 4
     ,"money"      : 50
   }
   ,{
     "name"        : "Comics"
-    ,"happiness"  : 0
+    ,"happiness"  : 5
     ,"money"      : 1
   }
 ];

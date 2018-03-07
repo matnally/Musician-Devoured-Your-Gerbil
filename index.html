@@ -29,7 +29,15 @@
 
   <!-- LOGIC -->
   <script src="_js/band.js"></script>
+  <script src="_js/calc.js"></script>
+  <script src="_js/gift.js"></script>
+  <script src="_js/gig.js"></script>
+  <script src="_js/practice.js"></script>
+  <script src="_js/publicity.js"></script>
+  <script src="_js/record.js"></script>
+  <script src="_js/release.js"></script>
   <script src="_js/turn.js"></script>
+
   <!--
     <script src="_js/album.js"></script>
     <script src="_js/config.js"></script>
@@ -49,70 +57,129 @@
 </head>
 <body>
 
-  <section id="secCreateBand">
-    <!--
-      1.Choose Musicians (1-4)
-      2.Name Band
-      3.Choose Equipment
-    -->
-  </section><!-- secCreateBand -->
-
-  <section id="secMain">
-
-    <!--
-      Practice
-    	Gig
-    	Publicity
-    	Gifts
-    	Record (only if signed & not recorded an album / single yet)
-    	Release (only if recorded an album)
-    -->
-
-    <select>
-      <option value="practice" selected>Practice</option>
-      <option value="gig">Gig</option>
-      <option value="publicity">Publicity</option>
-      <option value="gifts">Gifts</option>
-      <option value="record">Record</option>
-      <option value="release">Release</option>
-    </select>
-
-  </section><!-- secMain -->
-
-  <section id="secPractice">
-  </section><!-- secPractice -->
-
-  <section id="secGig">
-  </section><!-- secGig -->
-
-  <section id="secPublicity">
-  </section><!-- secPublicity -->
-
-  <section id="secGifts">
-  </section><!-- secGifts -->
-
-  <section id="secRecord">
-  </section><!-- secRecord -->
-
-  <section id="secRelease">
-  </section><!-- secRelease -->
-
-<script>
-  document.write(createComboBoxfromJSON(JSONlocation));
-</script>
 
   <div class="divTable">
     <div class="divRow">
-      <div class="divCell divRight">SOME</div><!-- divCell -->
-      <div class="divCell">DATA</div><!-- divCell -->
-    </div><!-- divRow -->
-    <div class="divRow">
-      <div class="divCell divRight">SOME</div><!-- divCell -->
-      <div class="divCell">DATA</div><!-- divCell -->
-    </div><!-- divRow -->
-    <div class="divRow">
-      <div class="divCell divRight">SOME</div><!-- divCell -->
-      <div class="divCell">DATA</div><!-- divCell -->
+      <div class="divCell">
+
+
+        <section id="secCreateBand">
+          <h2>Create a band</h2>
+          <input type="text" value="Band Name"></input>
+          <h3>Band musicians</h3>
+          <div id="divBandComboBox"></div>
+          <h3>Musicians</h3>
+          <div id="divMusicianComboBox"></div>
+          <button onClick="musicianAdd(0)">Add musician</button>
+          <!-- <div id="divInstrumentComboBox"></div> -->
+          <h3>Equipment</h3>
+          <div id="divEquipmentComboBox"></div>
+          <button onClick="bandCreate()">Create Band</button>
+        </section><!-- secCreateBand -->
+
+
+      </div><!-- divCell -->
+      <div class="divCell">
+
+
+        <section id="secMain">
+          <h2>Main</h2>
+          <!-- <div id="divSponsorComboBox"></div> -->
+          <select id="">
+            <option value="practice" selected>Practice</option>
+            <option value="gig">Gig</option>
+            <option value="publicity">Publicity</option>
+            <option value="gifts">Gifts</option>
+            <option value="record">Record</option>
+            <option value="release">Release</option>
+          </select>
+        </section><!-- secMain -->
+
+
+      </div><!-- divCell -->
+      <div class="divCell">
+
+
+        <section id="secPractice">
+          <h2>Practice</h2>
+          <select id="">
+            <!-- <option value="">Please choose</option> -->
+            <option value="2">2 days</option>
+            <option value="3">3 days</option>
+            <option value="4">4 days</option>
+            <option value="5">5 days</option>
+            <option value="6">6 days</option>
+            <option value="7">7 days</option>
+          </select>
+          <button onClick="practice()">Practice</button>
+        </section><!-- secPractice -->
+
+
+      </div><!-- divCell -->
+      <div class="divCell">
+
+
+        <section id="secGig">
+          <h2>Gig</h2>
+          <div id="divVenueComboBox"></div>
+          <select id="" onChange="alert(this.value)">
+            <!-- <option value="">Choose an option</option> -->
+            <option value="2">2 nights</option>
+            <option value="3">3 nights</option>
+            <option value="4">4 nights</option>
+            <option value="5">5 nights</option>
+            <option value="6">6 nights</option>
+            <option value="7">7 nights</option>
+          </select>
+          <button onClick="gig()">Gig</button>
+        </section><!-- secGig -->
+
+
+      </div><!-- divCell -->
+      <div class="divCell">
+
+
+        <section id="secPublicity">
+          <h2>Publicity</h2>
+          <button onClick="publicity()">Publicity</button>
+        </section><!-- secPublicity -->
+
+
+      </div><!-- divCell -->
+      <div class="divCell">
+
+
+        <section id="secGifts">
+          <h2>Gifts</h2>
+          <div id="divGiftComboBox"></div>
+          <button onClick="gift()">Gift</button>
+        </section><!-- secGifts -->
+
+
+      </div><!-- divCell -->
+      <div class="divCell">
+
+
+        <section id="secRecord">
+          <h2>Record</h2>
+          <button onClick="record()">Record</button>
+        </section><!-- secRecord -->
+
+
+      </div><!-- divCell -->
+      <div class="divCell">
+
+
+        <section id="secRelease">
+          <h2>Release</h2>
+          <div id="divDirectorComboBox"></div>
+          <div id="divLocationComboBox"></div>
+          <div id="divFeatureComboBox"></div>
+          <button onClick="release()">Release</button>
+        </section><!-- secRelease -->
+
+
+      </div><!-- divCell -->
     </div><!-- divRow -->
   </div><!-- divTable -->
 
