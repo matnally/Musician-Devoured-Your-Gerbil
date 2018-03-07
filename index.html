@@ -5,10 +5,10 @@
   <title>Musician Devoured Your Gerbil</title>
   <meta charset="utf-8">
 
-  <!-- defaults -->
+  <!-- DEFAULTS -->
   <link rel="stylesheet" href="_css/default.css">
   <script src="_js/default.js"></script>
-  <script src="_js/jquery.js"></script>
+  <script src="_js/jquery.min.js"></script>
 
   <!-- JSON -->
   <script src="_json/album.js"></script>
@@ -24,27 +24,82 @@
   <script src="_json/musician.js"></script>
   <script src="_json/player.js"></script>
   <script src="_json/single.js"></script>
+  <script src="_json/sponsor.js"></script>
   <script src="_json/venue.js"></script>
 
   <!-- LOGIC -->
-  <script src="_js/album.js"></script>
   <script src="_js/band.js"></script>
-  <script src="_js/config.js"></script>
-  <script src="_js/director.js"></script>
-  <script src="_js/equipment.js"></script>
-  <script src="_js/feature.js"></script>
-  <script src="_js/gift.js"></script>
-  <script src="_js/gig.js"></script>
-  <script src="_js/instrument.js"></script>
-  <script src="_js/location.js"></script>
-  <script src="_js/musician.js"></script>
-  <script src="_js/player.js"></script>
-  <script src="_js/single.js"></script>
-  <script src="_js/venue.js"></script>
+  <script src="_js/turn.js"></script>
+  <!--
+    <script src="_js/album.js"></script>
+    <script src="_js/config.js"></script>
+    <script src="_js/director.js"></script>
+    <script src="_js/equipment.js"></script>
+    <script src="_js/feature.js"></script>
+    <script src="_js/gift.js"></script>
+    <script src="_js/gig.js"></script>
+    <script src="_js/instrument.js"></script>
+    <script src="_js/location.js"></script>
+    <script src="_js/musician.js"></script>
+    <script src="_js/player.js"></script>
+    <script src="_js/single.js"></script>
+    <script src="_js/venue.js"></script>
+  -->
 
 </head>
 <body>
 
+  <section id="secCreateBand">
+    <!--
+      1.Choose Musicians (1-4)
+      2.Name Band
+      3.Choose Equipment
+    -->
+  </section><!-- secCreateBand -->
+
+  <section id="secMain">
+
+    <!--
+      Practice
+    	Gig
+    	Publicity
+    	Gifts
+    	Record (only if signed & not recorded an album / single yet)
+    	Release (only if recorded an album)
+    -->
+
+    <select>
+      <option value="practice" selected>Practice</option>
+      <option value="gig">Gig</option>
+      <option value="publicity">Publicity</option>
+      <option value="gifts">Gifts</option>
+      <option value="record">Record</option>
+      <option value="release">Release</option>
+    </select>
+
+  </section><!-- secMain -->
+
+  <section id="secPractice">
+  </section><!-- secPractice -->
+
+  <section id="secGig">
+  </section><!-- secGig -->
+
+  <section id="secPublicity">
+  </section><!-- secPublicity -->
+
+  <section id="secGifts">
+  </section><!-- secGifts -->
+
+  <section id="secRecord">
+  </section><!-- secRecord -->
+
+  <section id="secRelease">
+  </section><!-- secRelease -->
+
+<script>
+  document.write(createComboBoxfromJSON(JSONlocation));
+</script>
 
   <div class="divTable">
     <div class="divRow">

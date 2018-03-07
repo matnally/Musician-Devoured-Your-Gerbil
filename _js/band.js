@@ -11,7 +11,7 @@ function musicianSelect(index) {
 function musicianDisplay(index) {
   //Display musician's details
 
-  canAfford();
+  canAfford(); //works out if you can afford musician
 
 }
 
@@ -29,5 +29,5 @@ function setBandName() {
 }
 
 function setBandEquipment() {
-  
+
 }
