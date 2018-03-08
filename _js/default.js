@@ -29,3 +29,15 @@ function createComboBoxfromJSONband(JSONtoConvert) {
   strTemp += "</select>";
   return strTemp;
 } //function
+
+function createComboBoxfromJSONTEMP(JSONtoConvert) {
+  //create and string return complete html combo box
+  var strTemp = "";
+  strTemp += "<select>";
+  // strTemp += "<option value=''>Choose an option</option>";
+  for (i in JSONtoConvert) {
+    strTemp += "<option value='" + i + "'>" + JSONtoConvert[i].name + " - " + JSONtoConvert[i].musician.length + " musicians</option>";
+  }
+  strTemp += "</select>";
+  return strTemp;
+} //function

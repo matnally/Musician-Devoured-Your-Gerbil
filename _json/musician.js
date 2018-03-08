@@ -2,7 +2,7 @@
 var JSONmusician = [
   {
     "name"        : "Jason Donner-Kebab"
-    ,"reputation" : 0
+    ,"reputation" : 80
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -12,7 +12,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "By George"
-    ,"reputation" : 0
+    ,"reputation" : 5
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -22,7 +22,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Tina Turnoff"
-    ,"reputation" : 0
+    ,"reputation" : 150
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -32,7 +32,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Iggy Carrust"
-    ,"reputation" : 0
+    ,"reputation" : 150
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -42,7 +42,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Dorrissey"
-    ,"reputation" : 0
+    ,"reputation" : 9
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -52,7 +52,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Bill Collins"
-    ,"reputation" : 0
+    ,"reputation" : 300
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -62,7 +62,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Scratch N Sniff"
-    ,"reputation" : 0
+    ,"reputation" : 10
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -72,7 +72,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Sidney Sparkle NOOOO"
-    ,"reputation" : 0
+    ,"reputation" : 1
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -82,7 +82,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Wacky Jacko"
-    ,"reputation" : 0
+    ,"reputation" : 180
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -92,7 +92,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Elvin Dwight"
-    ,"reputation" : 0
+    ,"reputation" : 200
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -102,7 +102,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Bimbo Baggins"
-    ,"reputation" : 0
+    ,"reputation" : 80
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -112,7 +112,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Maradonna"
-    ,"reputation" : 0
+    ,"reputation" : 170
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -122,7 +122,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Lumme"
-    ,"reputation" : 0
+    ,"reputation" : 4
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -132,7 +132,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Mince"
-    ,"reputation" : 0
+    ,"reputation" : 180
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -142,7 +142,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Rick Ghastley"
-    ,"reputation" : 0
+    ,"reputation" : 7
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -152,7 +152,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Dick Knackered"
-    ,"reputation" : 0
+    ,"reputation" : 210
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -162,7 +162,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Gracey Chapperson"
-    ,"reputation" : 0
+    ,"reputation" : 9
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -172,7 +172,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Eddy Quicksilver"
-    ,"reputation" : 0
+    ,"reputation" : 90
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -182,7 +182,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "John Michael"
-    ,"reputation" : 0
+    ,"reputation" : 250
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -192,7 +192,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Kate Bushed"
-    ,"reputation" : 0
+    ,"reputation" : 85
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -202,7 +202,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Snoozy Sue"
-    ,"reputation" : 0
+    ,"reputation" : 9
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -212,7 +212,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Peter Gobsmacked"
-    ,"reputation" : 0
+    ,"reputation" : 95
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -222,7 +222,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Frank Zipper"
-    ,"reputation" : 0
+    ,"reputation" : 3
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -232,7 +232,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Rotton Johnny"
-    ,"reputation" : 0
+    ,"reputation" : 50
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -242,7 +242,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Bonehead"
-    ,"reputation" : 0
+    ,"reputation" : 90
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -252,7 +252,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Rupert Beetle"
-    ,"reputation" : 0
+    ,"reputation" : 260
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -262,7 +262,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Meathead"
-    ,"reputation" : 0
+    ,"reputation" : 75
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -272,7 +272,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Annie Smallpox"
-    ,"reputation" : 0
+    ,"reputation" : 20
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -282,7 +282,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Bryan Nylon"
-    ,"reputation" : 0
+    ,"reputation" : 134
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -292,7 +292,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Sneezy Wonderful"
-    ,"reputation" : 0
+    ,"reputation" : 80
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -302,7 +302,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Dingo Strapp"
-    ,"reputation" : 0
+    ,"reputation" : 4
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -312,7 +312,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Sadd"
-    ,"reputation" : 0
+    ,"reputation" : 110
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -322,7 +322,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Freddy Grunt"
-    ,"reputation" : 0
+    ,"reputation" : 70
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -332,7 +332,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Derek Claptout"
-    ,"reputation" : 0
+    ,"reputation" : 265
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -342,7 +342,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Bruce Stringbean"
-    ,"reputation" : 0
+    ,"reputation" : 90
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -352,7 +352,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Stiff Pilchards"
-    ,"reputation" : 0
+    ,"reputation" : 9
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -362,7 +362,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Alison Nightmare"
-    ,"reputation" : 0
+    ,"reputation" : 2
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -372,7 +372,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Crispy Rind"
-    ,"reputation" : 0
+    ,"reputation" : 9
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -382,7 +382,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Michael Gorge"
-    ,"reputation" : 0
+    ,"reputation" : 150
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -392,7 +392,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Izzy Azbeen"
-    ,"reputation" : 0
+    ,"reputation" : 30
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -402,7 +402,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Witless Houston"
-    ,"reputation" : 0
+    ,"reputation" : 127
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -412,7 +412,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Titchy Blackhead"
-    ,"reputation" : 0
+    ,"reputation" : 7
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -422,7 +422,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "String"
-    ,"reputation" : 0
+    ,"reputation" : 9
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -432,7 +432,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Harry Human"
-    ,"reputation" : 0
+    ,"reputation" : 6
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -442,7 +442,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Rodney Holder"
-    ,"reputation" : 0
+    ,"reputation" : 5
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -452,7 +452,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Ted Newsagent"
-    ,"reputation" : 0
+    ,"reputation" : 6
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
@@ -462,7 +462,7 @@ var JSONmusician = [
   }
   ,{
     "name"        : "Midge Sewer"
-    ,"reputation" : 0
+    ,"reputation" : 1
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
