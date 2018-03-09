@@ -3,17 +3,16 @@
 function turnInit() {
   //Initialisation of turn / Start of game!
 
-  updateElement("divDirectorComboBox", createComboBoxfromJSON(JSONdirector));
-  updateElement("divEquipmentComboBox", createComboBoxfromJSON(JSONequipment));
-  updateElement("divFeatureComboBox", createComboBoxfromJSON(JSONfeature));
-  updateElement("divGiftComboBox", createComboBoxfromJSON(JSONgift));
+  updateElement("divDirectorComboBox", createComboBoxfromJSON(JSONdirector, "selDirectorComboBox"));
+  updateElement("divEquipmentComboBox", createComboBoxfromJSON(JSONequipment, "selEquipmentComboBox"));
+  updateElement("divFeatureComboBox", createComboBoxfromJSON(JSONfeature, "selFeatureComboBox"));
+  updateElement("divGiftComboBox", createComboBoxfromJSON(JSONgift, "selGiftComboBox"));
   // updateElement("divInstrumentComboBox", createComboBoxfromJSON(JSONinstrument));
-  updateElement("divLocationComboBox", createComboBoxfromJSON(JSONlocation));
-  updateElement("divMusicianComboBox", createComboBoxfromJSON(JSONmusician));
+  updateElement("divLocationComboBox", createComboBoxfromJSON(JSONlocation, "selLocationComboBox"));
+  updateElement("divMusicianComboBox", createComboBoxfromJSON(JSONmusician, "selMusicianComboBox"));
   // updateElement("divSponsorComboBox", createComboBoxfromJSON(JSONsponsor));
-  updateElement("divVenueComboBox", createComboBoxfromJSON(JSONvenue));
-
-  updateElement("divBandComboBox", createComboBoxfromJSON(JSONband));
+  updateElement("divVenueComboBox", createComboBoxfromJSON(JSONvenue, "selVenueComboBox"));
+  updateElement("divBandComboBox", createComboBoxfromJSON(JSONband, "selBandComboBox"));
 
 } //function
 

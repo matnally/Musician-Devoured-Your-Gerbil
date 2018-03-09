@@ -32,14 +32,69 @@ function bandSetEquipment() {
 } //function
 
 function bandCreate(JSONtoUse) {
-
+  bandCreatePlayer(JSONtoUse); //create band from player's chosen musicians
+  bandCreateOther(); //creates bands from the remaining musicians
+  bandOtherChooseAction();
+  console.log(JSONband);
+} //function
+function bandCreatePlayer(JSONtoUse) {
   JSONtoUse.name = "Band name";
   JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
   JSONtoUse.equipment = 1;
+} //function
 
-  bandCreateOther(); //creates bands from the remaining musicians
+
+function bandOtherChooseAction() {
+
+  var intAction = 0;
+  var intDays = 0;
+  var intGifts = 0;
+
+  for (i in JSONband) {
+    //looping through all the bands
+
+    intAction = Math.floor(Math.random() * 5); //randomise action
+
+    switch(JSONband[i].action) {
+      case 0:
+        //practice
+       intDays = getDays();
+      break;
+      case 1:
+        //gig
+        intDays = getDays();
+      break;
+      case 2:
+        //publicity
+      break;
+      case 3:
+        //gifts
+        intGifts = Math.floor(Math.random() * JSONgift.length);
+      break;
+      case 4:
+        //record
+      break;
+      case 5:
+        //release
+      break;
+    } //switch
+
+    //action chosen so update band object
+    JSONband[i].action = intAction;
+    JSONband[i].days = intDays;
+    JSONband[i].gifts = intGifts;
+
+  } //for
 
 } //function
+
+
+function getDays() {
+  return Math.floor(Math.random() * 7) + 1;
+}
+
+
+
 
 function bandCreateOther() {
   //player has created their band so create bands from remaining musicians
@@ -73,9 +128,7 @@ function bandCreateOther() {
 
   } while (arrMusiciansRemaining.length > 1); //do
 
-
-document.write(createComboBoxfromJSONTEMP(JSONband));
-
+updateElement("divOtherBandsComboBox", createComboBoxfromJSONTEMP(JSONband));
 
 } //function
 
@@ -83,23 +136,43 @@ document.write(createComboBoxfromJSONTEMP(JSONband));
 function getBandEquipment() {
   return Math.floor(Math.random() * JSONequipment.length);
 } //function
+
 function getBandName(arrTemp) {
   var strTemp = "";
-//  alert(arrTemp);
-  if (arrTemp.length < 2) {
-    strTemp = JSONmusician[arrTemp].name;
-  } else {
-    strTemp = Math.random().toString(36).substring(7);
-  }
-//  alert(strTemp);
+
+  switch (arrTemp.length) {
+    case 1:
+      strTemp = arrTemp[0];
+    break;
+    case 2:
+      //choose either make up band name using surnames or just band name
+      strTemp = Math.random().toString(36).substring(7);
+    break;
+    default:
+      strTemp = Math.random().toString(36).substring(7);
+  } //switch
   return strTemp;
 } //function
+
 function getMusiciansRemaining() {
+  //creates and returns an array of musician IDs that are not in the player's band
   var arrTemp = [];
-  for (var i=0; i<=JSONmusician.length; i++) {
-    if (JSONband[0].musician.includes(i) == false) {
-      //not in player's band so add to add array
-      arrTemp.push(i);
+  var boolFound = false;
+
+  for (a in JSONmusician) {
+    //looping through all musicians
+    for (b in JSONband[0].musician) {
+      //looping through musicians in player's band
+      if (JSONmusician[a].name == JSONmusician[JSONband[0].musician[b]].name) {
+        boolFound = true;
+      } //if
+    } //for
+    if (boolFound == false) {
+      //musician not found in player's band
+      arrTemp.push(JSONmusician[a].name);
+    } else {
+      //musician found in player's band so do nothing but reset flag
+      boolFound = false; //reset
     } //if
   } //for
   return arrTemp;

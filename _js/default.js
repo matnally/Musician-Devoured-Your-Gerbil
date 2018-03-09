@@ -5,10 +5,10 @@ function updateElement(elemName, strTemp) {
   document.getElementById(elemName).innerHTML = strTemp;
 } //function
 
-function createComboBoxfromJSON(JSONtoConvert) {
+function createComboBoxfromJSON(JSONtoConvert, strID) {
   //create and string return complete html combo box
   var strTemp = "";
-  strTemp += "<select>";
+  strTemp += "<select id='" + strID + "'>";
   // strTemp += "<option value=''>Choose an option</option>";
   for (i in JSONtoConvert) {
     strTemp += "<option value='" + i + "'>" + JSONtoConvert[i].name + "</option>";

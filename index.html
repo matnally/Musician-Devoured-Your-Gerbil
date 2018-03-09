@@ -70,12 +70,14 @@
           <div id="divBandComboBox"></div>
           <h3>Musicians</h3>
           <div id="divMusicianComboBox"></div>
-          <button onClick="musicianAdd(0)">Add musician</button>
+          <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
           <!-- <div id="divInstrumentComboBox"></div> -->
           <h3>Equipment</h3>
           <div id="divEquipmentComboBox"></div>
           <button onClick="bandCreate(JSONband[0])">Create Band</button>
         </section><!-- secCreateBand -->
+
+        <div id="divOtherBandsComboBox"></div>
 
 
       </div><!-- divCell -->
