@@ -2,12 +2,12 @@
 var JSONsponsor = [
   {
     "name"        : "sponsor one"
-    ,"reputation" : 0
-    ,"money"      : 0
+    ,"reputation" : 10
+    ,"money"      : 100
   }
   ,{
     "name"        : "sponsor two"
-    ,"reputation" : 0
-    ,"money"      : 0
+    ,"reputation" : 20
+    ,"money"      : 200
   }
 ];

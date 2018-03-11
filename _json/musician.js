@@ -2,12 +2,12 @@
 var JSONmusician = [
   {
     "name"        : "Jason Donner-Kebab"
-    ,"reputation" : 80
+    ,"reputation" : 50 //per week
     // ,"instrument" : 0
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 10000
-    ,"wages"      : 8000 //per week
+    ,"wage"      : 8000 //per week
     ,"gift"       : 3 //preferred gift
   }
   ,{
@@ -17,7 +17,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 1000
-    ,"wages"      : 500 //per week
+    ,"wage"      : 500 //per week
     ,"gift"       : 2 //preferred gift
   }
   ,{
@@ -27,7 +27,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 20000
-    ,"wages"      : 15000 //per week
+    ,"wage"      : 15000 //per week
     ,"gift"       : 2 //preferred gift
   }
   ,{
@@ -37,7 +37,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 15000
-    ,"wages"      : 10000 //per week
+    ,"wage"      : 10000 //per week
     ,"gift"       : 2 //preferred gift
   }
   ,{
@@ -47,7 +47,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 1500
-    ,"wages"      : 900 //per week
+    ,"wage"      : 900 //per week
     ,"gift"       : 4 //preferred gift
   }
   ,{
@@ -57,7 +57,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 50000
-    ,"wages"      : 30000 //per week
+    ,"wage"      : 30000 //per week
     ,"gift"       : 0 //preferred gift
   }
   ,{
@@ -67,7 +67,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 1500
-    ,"wages"      : 1000 //per week
+    ,"wage"      : 1000 //per week
     ,"gift"       : 2 //preferred gift
   }
   ,{
@@ -77,7 +77,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 1000
-    ,"wages"      : 50 //per week
+    ,"wage"      : 50 //per week
     ,"gift"       : 5 //preferred gift
   }
   ,{
@@ -87,7 +87,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 25000
-    ,"wages"      : 18000 //per week
+    ,"wage"      : 18000 //per week
     ,"gift"       : 1 //preferred gift
   }
   ,{
@@ -97,7 +97,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 25000
-    ,"wages"      : 20000 //per week
+    ,"wage"      : 20000 //per week
     ,"gift"       : 0 //preferred gift
   }
   ,{
@@ -107,7 +107,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 15000
-    ,"wages"      : 8000 //per week
+    ,"wage"      : 8000 //per week
     ,"gift"       : 2 //preferred gift
   }
   ,{
@@ -117,7 +117,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 25000
-    ,"wages"      : 17000 //per week
+    ,"wage"      : 17000 //per week
     ,"gift"       : 1 //preferred gift
   }
   ,{
@@ -127,7 +127,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 1500
-    ,"wages"      : 400 //per week
+    ,"wage"      : 400 //per week
     ,"gift"       : 3 //preferred gift
   }
   ,{
@@ -137,7 +137,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 25000
-    ,"wages"      : 18000 //per week
+    ,"wage"      : 18000 //per week
     ,"gift"       : 1 //preferred gift
   }
   ,{
@@ -147,7 +147,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 2000
-    ,"wages"      : 700 //per week
+    ,"wage"      : 700 //per week
     ,"gift"       : 4 //preferred gift
   }
   ,{
@@ -157,7 +157,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 30000
-    ,"wages"      : 21000 //per week
+    ,"wage"      : 21000 //per week
     ,"gift"       : 3 //preferred gift
   }
   ,{
@@ -167,7 +167,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 1500
-    ,"wages"      : 870 //per week
+    ,"wage"      : 870 //per week
     ,"gift"       : 0 //preferred gift
   }
   ,{
@@ -177,7 +177,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 15000
-    ,"wages"      : 9000 //per week
+    ,"wage"      : 9000 //per week
     ,"gift"       : 4 //preferred gift
   }
   ,{
@@ -187,7 +187,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 30000
-    ,"wages"      : 25000 //per week
+    ,"wage"      : 25000 //per week
     ,"gift"       : 2 //preferred gift
   }
   ,{
@@ -197,7 +197,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 15000
-    ,"wages"      : 8500 //per week
+    ,"wage"      : 8500 //per week
     ,"gift"       : 2 //preferred gift
   }
   ,{
@@ -207,7 +207,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 2000
-    ,"wages"      : 870 //per week
+    ,"wage"      : 870 //per week
     ,"gift"       : 2 //preferred gift
   }
   ,{
@@ -217,7 +217,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 15000
-    ,"wages"      : 9500 //per week
+    ,"wage"      : 9500 //per week
     ,"gift"       : 0 //preferred gift
   }
   ,{
@@ -227,7 +227,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 1500
-    ,"wages"      : 250 //per week
+    ,"wage"      : 250 //per week
     ,"gift"       : 2 //preferred gift
   }
   ,{
@@ -237,7 +237,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 10000
-    ,"wages"      : 5000 //per week
+    ,"wage"      : 5000 //per week
     ,"gift"       : 3 //preferred gift
   }
   ,{
@@ -247,7 +247,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 15000
-    ,"wages"      : 9000 //per week
+    ,"wage"      : 9000 //per week
     ,"gift"       : 4 //preferred gift
   }
   ,{
@@ -257,7 +257,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 35000
-    ,"wages"      : 26000 //per week
+    ,"wage"      : 26000 //per week
     ,"gift"       : 0 //preferred gift
   }
   ,{
@@ -267,7 +267,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 15000
-    ,"wages"      : 7500 //per week
+    ,"wage"      : 7500 //per week
     ,"gift"       : 4 //preferred gift
   }
   ,{
@@ -277,7 +277,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 5000
-    ,"wages"      : 2000 //per week
+    ,"wage"      : 2000 //per week
     ,"gift"       : 2 //preferred gift
   }
   ,{
@@ -287,7 +287,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 20000
-    ,"wages"      : 13400 //per week
+    ,"wage"      : 13400 //per week
     ,"gift"       : 0 //preferred gift
   }
   ,{
@@ -297,7 +297,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 15000
-    ,"wages"      : 8000 //per week
+    ,"wage"      : 8000 //per week
     ,"gift"       : 3 //preferred gift
   }
   ,{
@@ -307,7 +307,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 2000
-    ,"wages"      : 400 //per week
+    ,"wage"      : 400 //per week
     ,"gift"       : 5 //preferred gift
   }
   ,{
@@ -317,7 +317,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 15000
-    ,"wages"      : 11000 //per week
+    ,"wage"      : 11000 //per week
     ,"gift"       : 1 //preferred gift
   }
   ,{
@@ -327,7 +327,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 15000
-    ,"wages"      : 7000 //per week
+    ,"wage"      : 7000 //per week
     ,"gift"       : 5 //preferred gift
   }
   ,{
@@ -337,7 +337,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 30000
-    ,"wages"      : 26500 //per week
+    ,"wage"      : 26500 //per week
     ,"gift"       : 3 //preferred gift
   }
   ,{
@@ -347,7 +347,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 15000
-    ,"wages"      : 9000 //per week
+    ,"wage"      : 9000 //per week
     ,"gift"       : 3 //preferred gift
   }
   ,{
@@ -357,7 +357,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 3000
-    ,"wages"      : 920 //per week
+    ,"wage"      : 920 //per week
     ,"gift"       : 0 //preferred gift
   }
   ,{
@@ -367,7 +367,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 2000
-    ,"wages"      : 200 //per week
+    ,"wage"      : 200 //per week
     ,"gift"       : 4 //preferred gift
   }
   ,{
@@ -377,7 +377,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 2000
-    ,"wages"      : 950 //per week
+    ,"wage"      : 950 //per week
     ,"gift"       : 5 //preferred gift
   }
   ,{
@@ -387,7 +387,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 25000
-    ,"wages"      : 15000 //per week
+    ,"wage"      : 15000 //per week
     ,"gift"       : 0 //preferred gift
   }
   ,{
@@ -397,7 +397,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 10000
-    ,"wages"      : 3000 //per week
+    ,"wage"      : 3000 //per week
     ,"gift"       : 3 //preferred gift
   }
   ,{
@@ -407,7 +407,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 20000
-    ,"wages"      : 12750 //per week
+    ,"wage"      : 12750 //per week
     ,"gift"       : 3 //preferred gift
   }
   ,{
@@ -417,7 +417,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 5000
-    ,"wages"      : 700 //per week
+    ,"wage"      : 700 //per week
     ,"gift"       : 5 //preferred gift
   }
   ,{
@@ -427,7 +427,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 1500
-    ,"wages"      : 900 //per week
+    ,"wage"      : 900 //per week
     ,"gift"       : 3 //preferred gift
   }
   ,{
@@ -437,7 +437,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 1500
-    ,"wages"      : 600 //per week
+    ,"wage"      : 600 //per week
     ,"gift"       : 4 //preferred gift
   }
   ,{
@@ -447,7 +447,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 1500
-    ,"wages"      : 450 //per week
+    ,"wage"      : 450 //per week
     ,"gift"       : 2 //preferred gift
   }
   ,{
@@ -457,7 +457,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 2000
-    ,"wages"      : 600 //per week
+    ,"wage"      : 600 //per week
     ,"gift"       : 3 //preferred gift
   }
   ,{
@@ -467,7 +467,7 @@ var JSONmusician = [
     ,"happiness"  : 0
     ,"skill"      : 0
     ,"fee"        : 1500
-    ,"wages"      : 80 //per week
+    ,"wage"      : 80 //per week
     ,"gift"       : 1 //preferred gift
   }
 ];

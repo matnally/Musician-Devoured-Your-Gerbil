@@ -9,13 +9,27 @@
 
 /************ END OF DEFAULT STYLES ************/
 
+#secBands {
+  font-size: 8pt;
+}
+
+
+
 .divTable {
   display: table;
   width: 100%;
 
 }
+
+
+
+
+
 .divRow {
   display: table-row;
+}
+.divRight:nth-child(odd) { /*zebra stripes*/
+   background-color: #ccc;
 }
 .divCell {
   vertical-align: top;

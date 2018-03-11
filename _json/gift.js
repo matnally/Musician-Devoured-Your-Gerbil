@@ -2,27 +2,27 @@
 var JSONgift = [
   {
     "name"        : "Cars"
-    ,"happiness"  : 0
+    ,"happiness"  : 50
     ,"money"      : 20000
   }
   ,{
     "name"        : "Jewels"
-    ,"happiness"  : 1
+    ,"happiness"  : 40
     ,"money"      : 10000
   }
   ,{
     "name"        : "Clothes"
-    ,"happiness"  : 2
+    ,"happiness"  : 30
     ,"money"      : 5000
   }
   ,{
     "name"        : "Drinks"
-    ,"happiness"  : 3
+    ,"happiness"  : 20
     ,"money"      : 100
   }
   ,{
     "name"        : "Food"
-    ,"happiness"  : 4
+    ,"happiness"  : 10
     ,"money"      : 50
   }
   ,{
