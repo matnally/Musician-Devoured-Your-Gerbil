@@ -36,7 +36,7 @@ function bandCreatePlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;
   //musicians already added
   JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
-  JSONtoUse.equipment = getBandEquipment();
+  JSONtoUse.equipment = document.getElementById("selEquipmentComboBox").value;
   JSONtoUse.money = JSONconfig[0].moneyMedium;
 } //function
 function bandCreateOther() {
@@ -47,14 +47,14 @@ function bandCreateOther() {
       arrMusiciansRemaining = getMusiciansRemaining();
   do {
     arrTemp = []; //clear array for new band
-    intMusiciansToAdd =  Math.floor(Math.random() * 4) + 1; //create random number between 1-4
+    intMusiciansToAdd =  Math.floor(Math.random() * 4); //create random number between 1-4
     if (intMusiciansToAdd <= arrMusiciansRemaining.length) { //check if have enough musicians to add
       //Good! Musicians to add SHOULD be less than the length of arrMusiciansRemaining
     } else {
       //Not a lot of musicians left (less than 4) so just create a band from the rest
       intMusiciansToAdd = arrMusiciansRemaining.length
     } //if
-    for (var i=1; i<=intMusiciansToAdd; i++) {
+    for (var i=1; i<=intMusiciansToAdd; i++) {  // WHY 1 ?!?!?!?!?!
       var intRandomMusicianIndex = Math.floor(Math.random() * arrMusiciansRemaining.length);
       var intRandomMusician = arrMusiciansRemaining[intRandomMusicianIndex]; //get a random musician from the remaining
       arrTemp.push(intRandomMusician); //add chosen musician to temp array
@@ -66,7 +66,7 @@ function bandCreateOther() {
     var intRandomEquipment = getBandEquipment(); //get random equipment
     //CREATES band - GLOBALdatDateCurrent used for dateActionFinish so triggers actionChoose
     JSONband.push({'name':strName, 'money':JSONconfig[0].moneyMedium, 'contract':false, 'reputation':intReputation, 'musician':arrTemp, 'equipment':intRandomEquipment, 'days':0, 'dateActionFinish':GLOBALdatDateCurrent, 'album':false, 'tracks':0}); //add band JSON
-  } while (arrMusiciansRemaining.length > 1); //do
+  } while (arrMusiciansRemaining.length > 0); //do  // SHOULD BE 1??????????? ABOVE IN THE DO WHILE
 
 //updateElement("divOtherBandsComboBox", createComboBoxfromJSONTEMP(JSONband)); // SHOWS COMBO BOX OF BANDS
 
@@ -279,6 +279,8 @@ function getBandName(arrTemp) {
   } //switch
   return strTemp;
 } //function
+
+
 function getMusiciansRemaining() {
   //creates and returns an array of musician IDs that are not in the player's band
   var arrTemp = [];
@@ -288,13 +290,13 @@ function getMusiciansRemaining() {
     //looping through all musicians
     for (b in JSONband[0].musician) {
       //looping through musicians in player's band
-      if (JSONmusician[a].name == JSONmusician[b].name) {
+      if (JSONmusician[a] == JSONmusician[JSONband[0].musician[b]]) {
         boolFound = true;
       } //if
     } //for
     if (boolFound == false) {
       //musician not found in player's band
-      arrTemp.push(JSONmusician[a].name);
+      arrTemp.push(a);
     } else {
       //musician found in player's band so do nothing but reset flag
       boolFound = false; //reset

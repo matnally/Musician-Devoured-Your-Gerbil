@@ -58,7 +58,7 @@ function createComboBoxfromJSONband(JSONtoConvert) {
   for (i in JSONtoConvert) {
 
     strName = JSONtoConvert[i]; //get musician name
-    intIndex = parseInt(getBandMusicianJSONindex(strName)); //get JSONmusician index from name
+    intIndex = parseInt((strName)); //get JSONmusician index from name
 
     strTemp += "<option value='" + JSONmusician[intIndex].name + "'>" + JSONmusician[intIndex].name + "</option>";
   }
@@ -90,9 +90,64 @@ function formatDate(value) {
 
 
 
+ function showPlayer() {
+
+   var strTemp = "";
+
+
+   strTemp += '<div class="divTable">';
+
+   strTemp += '<div class="divRow">';
+   strTemp += '<div class="divCell">';
+   // BAND CELL
+
+   strTemp += JSONband[0].name;
+   strTemp += '<br>';
+   strTemp += "MON: " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[0].money);
+   strTemp += '<br>';
+   strTemp += "REP: " + displayNumbersWithCommas(JSONband[0].reputation);
+   strTemp += '<br>';
+   strTemp += "EQP: " + JSONequipment[JSONband[0].equipment].name;
+   strTemp += '<br>';
+   strTemp += "ACT: " + getActionName(JSONband[0].action) + " for " + JSONband[0].days + " day(s). Completes on " + formatDate(JSONband[0].dateActionFinish);
+   strTemp += '<br>';
+   strTemp += "RECORDCONTRACT: " + JSONband[0].contract;
+   strTemp += '<br>';
+   strTemp += "ALBUM: " + JSONband[0].album;
+
+   strTemp += '</div>'; // BAND divCell
+
+   // MUSICIAN CELL
+   for (v in JSONband[0].musician) {
+     strTemp += '<div class="divCell">';
+
+     strTemp += JSONmusician[(JSONband[0].musician[v])].name;
+     strTemp += '<br>';
+     strTemp += "REP: " + JSONmusician[(JSONband[0].musician[v])].reputation;
+     strTemp += '<br>';
+     strTemp += "HAP: " + JSONmusician[(JSONband[0].musician[v])].happiness;
+     strTemp += '<br>';
+     strTemp += "SKI: " + JSONmusician[(JSONband[0].musician[v])].skill;
+     strTemp += '<br>';
+     strTemp += "WAG: " + JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[(JSONband[0].musician[v])].wage);
+     strTemp += '<br>';
+     strTemp += "FAV GIFT: " + JSONgift[JSONmusician[(JSONband[0].musician[v])].gift].name;
+
+     strTemp += '</div>'; // MUSICIAN cell
+   } //for
+
+
+   strTemp += '</div>'; //divRow
+   strTemp += '</div>'; // divTable
+
+   updateElement("divPlayerBand", strTemp);
+
+} //function
 
 
 function showMusicians() {
+
+showPlayer();
 
   var strTemp = "";
 
@@ -127,27 +182,28 @@ function showMusicians() {
   for (v in JSONband[0].musician) {
     strTemp += '<div class="divCell">';
 
-    strTemp += JSONmusician[getBandMusicianJSONindex(JSONband[0].musician[v])].name;
+    strTemp += JSONmusician[(JSONband[0].musician[v])].name;
     strTemp += '<br>';
-    strTemp += "REP: " + JSONmusician[getBandMusicianJSONindex(JSONband[0].musician[v])].reputation;
+    strTemp += "REP: " + JSONmusician[(JSONband[0].musician[v])].reputation;
     strTemp += '<br>';
-    strTemp += "HAP: " + JSONmusician[getBandMusicianJSONindex(JSONband[0].musician[v])].happiness;
+    strTemp += "HAP: " + JSONmusician[(JSONband[0].musician[v])].happiness;
     strTemp += '<br>';
-    strTemp += "SKI: " + JSONmusician[getBandMusicianJSONindex(JSONband[0].musician[v])].skill;
+    strTemp += "SKI: " + JSONmusician[(JSONband[0].musician[v])].skill;
     strTemp += '<br>';
-    strTemp += "WAG: " + JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[getBandMusicianJSONindex(JSONband[0].musician[v])].wage);
+    strTemp += "WAG: " + JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[(JSONband[0].musician[v])].wage);
     strTemp += '<br>';
-    strTemp += "FAV GIFT: " + JSONgift[JSONmusician[getBandMusicianJSONindex(JSONband[0].musician[v])].gift].name;
+    strTemp += "FAV GIFT: " + JSONgift[JSONmusician[(JSONband[0].musician[v])].gift].name;
 
     strTemp += '</div>'; // MUSICIAN cell
   } //for
 
 
-
-
-
   strTemp += '</div>'; //row
   strTemp += '</div>'; //table
+
+
+
+
 
 
   strTemp += '<section id="secBands">';
@@ -205,7 +261,7 @@ function showMusicians() {
     for (b in JSONband[a].musician) {
       strTemp += '<div class="divCell">';
       // strTemp += JSONband[a].musician[b]; //name
-      var object = JSONmusician[getBandMusicianJSONindex(JSONband[a].musician[b])];//put your object here
+      var object = JSONmusician[(JSONband[a].musician[b])];//put your object here
       strTemp += '<div class="divTable">';
       for(var key in object) {
           if(object.hasOwnProperty(key)) {
@@ -219,9 +275,9 @@ function showMusicians() {
 
 
       // strTemp += '<br>';
-      // strTemp += 'Rep: ' + JSONmusician[getBandMusicianJSONindex(JSONband[a].musician[b])].reputation;
+      // strTemp += 'Rep: ' + JSONmusician[(JSONband[a].musician[b])].reputation;
       // strTemp += '<br>';
-      // strTemp += 'Skill: ' + JSONmusician[getBandMusicianJSONindex(JSONband[a].musician[b])].skill;
+      // strTemp += 'Skill: ' + JSONmusician[(JSONband[a].musician[b])].skill;
       // strTemp += '<br>';
 
 

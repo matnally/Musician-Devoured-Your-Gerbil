@@ -18,18 +18,15 @@ function practice(i) {
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
 
-    strTemp = JSONband[i].musician[a]; //get musician name
-    intIndex = parseInt(getBandMusicianJSONindex(strTemp)); //get JSONmusician index from name
-
     //update skill
-    intTemp = parseInt(JSONmusician[intIndex].skill) + JSONconfig[0].valuePracticeSkill;
-      JSONmusician[intIndex].skill = intTemp;
+    intTemp = parseInt(JSONmusician[a].skill) + JSONconfig[0].valuePracticeSkill;
+      JSONmusician[a].skill = intTemp;
     //update happiness
-    intTemp = parseInt(JSONmusician[intIndex].happiness) - JSONconfig[0].valuePracticeHappiness;
-      JSONmusician[intIndex].happiness = intTemp;
+    intTemp = parseInt(JSONmusician[a].happiness) - JSONconfig[0].valuePracticeHappiness;
+      JSONmusician[a].happiness = intTemp;
     //update reputation
-    intTemp = parseInt(JSONmusician[intIndex].reputation) - JSONconfig[0].valuePracticeReputation;
-      JSONmusician[intIndex].reputation = intTemp;
+    intTemp = parseInt(JSONmusician[a].reputation) - JSONconfig[0].valuePracticeReputation;
+      JSONmusician[a].reputation = intTemp;
 
   }//for
 

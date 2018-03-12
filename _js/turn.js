@@ -10,7 +10,7 @@ function turnInit() {
 
   updateElement("divGiftComboBox", createComboBoxfromJSONiAndName(JSONgift, "selGiftComboBox"));
 
-  updateElement("divMusicianComboBox", createComboBoxfromJSON(JSONmusician, "selMusicianComboBox"));
+  updateElement("divMusicianComboBox", createComboBoxfromJSONiAndName(JSONmusician, "selMusicianComboBox"));
   updateElement("divBandComboBox", createComboBoxfromJSONiAndName(JSONband, "selBandComboBox"));
 
   updateElement("divVenueComboBox", createComboBoxfromJSONiAndName(JSONvenue, "selVenueComboBox"));
@@ -33,6 +33,7 @@ function turnStart() {
   eventContract(); //see if they are eligible for a record contract, if not already
   checkDOWaction(); //choose action corressponding to day of week
 
+//showPlayer();
 showMusicians();
 
 } //function
@@ -47,7 +48,7 @@ switch(GLOBALdatDateCurrent.getDay()) {
   case 5:
     //friday
     takewageAway();
-//    console.log("**** WAGE TIME ****");
+    console.log("**** WAGE TIME ****");
   break;
   default:
 } //switch
@@ -74,13 +75,13 @@ function takewageAway() {
   for (i in JSONband) {
     intTemp=0; //reset
     for (a in JSONband[i].musician) {
-      //for every musician in the passed in band
-      //add up musician wage
-      intTemp += parseInt(JSONmusician[i].wage);
+      //for every musician band
+//      console.log(JSONmusician[JSONband[i].musician[a]].name + " has wages of " + JSONmusician[JSONband[i].musician[a]].wage);
+      intTemp += parseInt(JSONmusician[JSONband[i].musician[a]].wage);
     }//for
-
+    console.log("'" + JSONband[i].name + "' total wages are: " + JSONconfig[0].currency + displayNumbersWithCommas(intTemp));
     //update money
-    intTemp = parseInt(JSONband[i].money) - intTemp;
+    intTemp = parseInt(JSONband[i].money) - parseInt(intTemp);
       JSONband[i].money = intTemp;
 
   }//for

@@ -16,12 +16,9 @@ function publicity(i) {
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
 
-    strTemp = JSONband[i].musician[a]; //get musician name
-    intIndex = parseInt(getBandMusicianJSONindex(strTemp)); //get JSONmusician index from name
-
     //update reputation
-    intTemp = parseInt(JSONmusician[intIndex].reputation) + getPublicity();
-      JSONmusician[intIndex].reputation = intTemp;
+    intTemp = parseInt(JSONmusician[a].reputation) + getPublicity();
+      JSONmusician[a].reputation = intTemp;
 
   }//for
 

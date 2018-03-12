@@ -20,14 +20,11 @@ function gift(i) {
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
 
-    strTemp = JSONband[i].musician[a]; //get musician name
-    intIndex = parseInt(getBandMusicianJSONindex(strTemp)); //get JSONmusician index from name
-
-    if (parseInt(JSONmusician[intIndex].gift) == intGift) {
+    if (parseInt(JSONmusician[a].gift) == intGift) {
       //gift for band is musician's favourite
-      intTemp = JSONgift[intGift].happiness * 2; //times two bonus!!!
+      intTemp = JSONgift[a].happiness * 2; //times two bonus!!!
     } else {
-      intTemp = JSONgift[intGift].happiness;
+      intTemp = JSONgift[a].happiness;
     } //if
 
     //update reputation

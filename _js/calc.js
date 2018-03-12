@@ -6,8 +6,8 @@ function calcBandReputation(JSONtoUse) {
   var intReputation = 0;
 //  console.log("calcBandReputation!");
   for (i in JSONtoUse) {
-    intIndex = getBandMusicianJSONindex(JSONtoUse[i]);
-    intReputation = JSONmusician[intIndex].reputation;
+//    intIndex = (JSONtoUse[i]);
+    intReputation = JSONmusician[i].reputation;
 //    console.log("JSONmusician[intIndex].name: " + JSONmusician[intIndex].name);
     intTemp += parseInt(intReputation);
   } //for
