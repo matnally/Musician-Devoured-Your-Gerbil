@@ -13,25 +13,34 @@ function musicianDisplay(index) {
 
 
 function musicianAdd(index) {
+//  alert(index);
   //Add musician index to band musician array
   var strTemp = "";
+
+
   JSONband[0].musician.push(index);
-  for (i in JSONband[0].musician) {
-    strTemp = createComboBoxfromJSONband(JSONband[0].musician);
-  } //for
+//  for (i in JSONband[0].musician) {
+  strTemp = createComboBoxfromJSONband(JSONband[0].musician);
+  //} //for
   updateElement("divBandComboBox", strTemp);
 } //function
 
 
 
 
-function bandCreate(JSONtoUse) {
-  bandCreatePlayer(JSONtoUse); //create band from player's chosen musicians
+function bandCreatePlayerStart() {
+  bandCreatePlayer(JSONband[0]); //create band from player's chosen musicians
+  bandOtherActionChoose(); // init FOR PLAYER ONLY
   bandCreateOther(); //creates bands from the remaining musicians
   bandOtherActionChoose(); //sets an action to each band CALLED !!!ONLY ONCE!!!
-//  bandOtherActionExecute(); //start the other band's turn!   ????????????????????????
+  //  bandOtherActionExecute(); //start the other band's turn!   ????????????????????????
   showMusicians();
 } //function
+
+
+function bandCreateOtherStart() {
+} //function
+
 function bandCreatePlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;
   //musicians already added
@@ -47,7 +56,7 @@ function bandCreateOther() {
       arrMusiciansRemaining = getMusiciansRemaining();
   do {
     arrTemp = []; //clear array for new band
-    intMusiciansToAdd =  Math.floor(Math.random() * 4); //create random number between 1-4
+    intMusiciansToAdd =  Math.floor(Math.random() * 4) + 1; //create random number between 1-4 for no. of musicians to add
     if (intMusiciansToAdd <= arrMusiciansRemaining.length) { //check if have enough musicians to add
       //Good! Musicians to add SHOULD be less than the length of arrMusiciansRemaining
     } else {
@@ -75,9 +84,9 @@ function bandOtherActionChoose() {
   //set each band's action attribute
     for (i in JSONband) {
       //looping through all the bands
-      if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
+//      if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
         actionChoose(i);
-      } //if
+  //    } //if
     } //for
 
 } //function
@@ -268,7 +277,7 @@ function getBandName(arrTemp) {
   var strTemp = "";
   switch (arrTemp.length) {
     case 1:
-      strTemp = arrTemp[0]; //only one member of band so just call band their name
+      strTemp = JSONmusician[arrTemp[0]].name; //only one member of band so just call band their name
     break;
     // case 2:
     //   //choose either make up band name using surnames or just band name

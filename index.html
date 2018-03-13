@@ -69,7 +69,7 @@
           <!-- <div id="divInstrumentComboBox"></div> -->
           <h3>Equipment</h3>
           <div id="divEquipmentComboBox"></div>
-          <button onClick="bandCreate(JSONband[0])">LAST Create Band</button>
+          <button onClick="bandCreatePlayerStart()">Create Player Band</button>
         </section><!-- secCreateBand -->
 
         <div id="divOtherBandsComboBox"></div>
@@ -142,7 +142,8 @@
 
         <section id="secRecord">
           <h2>Record</h2>
-          <button onClick="setRecord(4)">SET Record</button>
+          <div id="divTracksComboBox"></div>
+          <button onClick="setRecord(document.getElementById('selTracksComboBox').value)">SET Record</button>
         </section><!-- secRecord -->
 
 
@@ -160,12 +161,19 @@
 
 
       </div><!-- divCell -->
+      <div class="divCell">
+
+        <button onClick="turnStartInterval()">Execute Turn</button>
+
+      </div><!-- divCell -->
+
+
     </div><!-- divRow -->
   </div><!-- divTable -->
 
-<button onClick="turnStartInterval()">Execute Turn</button>
 
 <div id="divData"></div>
+
 
 
   <script>

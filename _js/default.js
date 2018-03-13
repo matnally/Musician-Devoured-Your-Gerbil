@@ -56,11 +56,10 @@ function createComboBoxfromJSONband(JSONtoConvert) {
   strTemp = "<select>";
   // strTemp += "<option value=''>Choose an option</option>";
   for (i in JSONtoConvert) {
+//    strName = JSONtoConvert[i]; //get musician
+    intIndex = parseInt(JSONtoConvert[i]); //get JSONmusician index from name
 
-    strName = JSONtoConvert[i]; //get musician name
-    intIndex = parseInt((strName)); //get JSONmusician index from name
-
-    strTemp += "<option value='" + JSONmusician[intIndex].name + "'>" + JSONmusician[intIndex].name + "</option>";
+    strTemp += "<option value='" + intIndex + "'>" + JSONmusician[intIndex].name + "</option>";
   }
   strTemp += "</select>";
   return strTemp;
@@ -90,17 +89,39 @@ function formatDate(value) {
 
 
 
+
+
+   function displayContainer(strDivID) {
+     //Loop through all containers: remove Show class, add Hide class
+     var i;
+     var x = document.getElementsByClassName("divMusicianContainer");
+     for (i=0; i<x.length; i++) {
+       x[i].classList.remove("divContainerShow");
+       x[i].classList.add("divContainerHide");
+     } //for
+     if (strDivID != "")
+      document.getElementById(strDivID).classList.add("divContainerShow"); //Show passed in container
+   } //function
+
+
+   function createMusicianContainer(i, strClass) {
+     return '<div id=\'mus' + i + '\' class=\'' + strClass + '\'>'; // NO ENDING DIV
+   } //function
+   function createMusicianButton(i, strName) {
+     return '<button id=\'but' + i + '\' onClick="displayContainer(\'mus' + i + '\')">'+ strName +'</button>';
+   } //function
+
+
  function showPlayer() {
 
    var strTemp = "";
-
 
    strTemp += '<div class="divTable">';
 
    strTemp += '<div class="divRow">';
    strTemp += '<div class="divCell">';
-   // BAND CELL
 
+   // BAND CELL
    strTemp += JSONband[0].name;
    strTemp += '<br>';
    strTemp += "MON: " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[0].money);
@@ -109,35 +130,38 @@ function formatDate(value) {
    strTemp += '<br>';
    strTemp += "EQP: " + JSONequipment[JSONband[0].equipment].name;
    strTemp += '<br>';
-   strTemp += "ACT: " + getActionName(JSONband[0].action) + " for " + JSONband[0].days + " day(s). Completes on " + formatDate(JSONband[0].dateActionFinish);
-   strTemp += '<br>';
    strTemp += "RECORDCONTRACT: " + JSONband[0].contract;
    strTemp += '<br>';
    strTemp += "ALBUM: " + JSONband[0].album;
-
-   strTemp += '</div>'; // BAND divCell
-
+   strTemp += '<br>';
+   strTemp += '<br>';
+   strTemp += getActionName(JSONband[0].action).toUpperCase() + " for " + JSONband[0].days + " day(s). Completes on " + formatDate(JSONband[0].dateActionFinish);
+   strTemp += '<br>';
+   // MUSICIAN BUTTONS
+   for (k in JSONband[0].musician) {
+     strTemp += createMusicianButton(JSONband[0].musician[k], JSONmusician[(JSONband[0].musician[k])].name);
+   } //for
    // MUSICIAN CELL
    for (v in JSONband[0].musician) {
-     strTemp += '<div class="divCell">';
-
-     strTemp += JSONmusician[(JSONband[0].musician[v])].name;
-     strTemp += '<br>';
-     strTemp += "REP: " + JSONmusician[(JSONband[0].musician[v])].reputation;
-     strTemp += '<br>';
-     strTemp += "HAP: " + JSONmusician[(JSONband[0].musician[v])].happiness;
-     strTemp += '<br>';
-     strTemp += "SKI: " + JSONmusician[(JSONband[0].musician[v])].skill;
-     strTemp += '<br>';
-     strTemp += "WAG: " + JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[(JSONband[0].musician[v])].wage);
-     strTemp += '<br>';
-     strTemp += "FAV GIFT: " + JSONgift[JSONmusician[(JSONband[0].musician[v])].gift].name;
-
-     strTemp += '</div>'; // MUSICIAN cell
+     strTemp += createMusicianContainer(JSONband[0].musician[v], "divMusicianContainer divContainerHide");
+       strTemp += JSONmusician[(JSONband[0].musician[v])].name;
+       strTemp += '<br>';
+       strTemp += "REP: " + JSONmusician[(JSONband[0].musician[v])].reputation;
+       strTemp += '<br>';
+       strTemp += "HAP: " + JSONmusician[(JSONband[0].musician[v])].happiness;
+       strTemp += '<br>';
+       strTemp += "SKI: " + JSONmusician[(JSONband[0].musician[v])].skill;
+       strTemp += '<br>';
+       strTemp += "WAG: " + JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[(JSONband[0].musician[v])].wage);
+       strTemp += '<br>';
+       strTemp += "FAV GIFT: " + JSONgift[JSONmusician[(JSONband[0].musician[v])].gift].name;
+     strTemp += '</div>'; // to end the DIV created in createMusicianContainer
    } //for
 
-
+   // BAND divCell
+   strTemp += '</div>'; //divCell
    strTemp += '</div>'; //divRow
+
    strTemp += '</div>'; // divTable
 
    updateElement("divPlayerBand", strTemp);
@@ -150,59 +174,6 @@ function showMusicians() {
 showPlayer();
 
   var strTemp = "";
-
-
-  strTemp += '<div class="divTable">';
-
-  strTemp += '<div class="divRow">';
-  strTemp += '<div class="divCell">';
-  // BAND CELL
-
-  strTemp += JSONband[0].name;
-  strTemp += '<br>';
-  strTemp += "MON: " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[0].money);
-  strTemp += '<br>';
-  strTemp += "REP: " + displayNumbersWithCommas(JSONband[0].reputation);
-  strTemp += '<br>';
-  strTemp += "EQP: " + JSONequipment[JSONband[0].equipment].name;
-  strTemp += '<br>';
-  strTemp += "ACT: " + getActionName(JSONband[0].action) + " for " + JSONband[0].days + " day(s). Completes on " + formatDate(JSONband[0].dateActionFinish);
-  strTemp += '<br>';
-  strTemp += "RECORDCONTRACT: " + JSONband[0].contract;
-  strTemp += '<br>';
-  strTemp += "ALBUM: " + JSONband[0].album;
-
-//  strTemp += "ALBUM: " + JSONalbum[JSONband[0].album].name;
-
-  strTemp += '</div>'; // BAND cell
-
-
-
-  // MUSICIAN CELL
-  for (v in JSONband[0].musician) {
-    strTemp += '<div class="divCell">';
-
-    strTemp += JSONmusician[(JSONband[0].musician[v])].name;
-    strTemp += '<br>';
-    strTemp += "REP: " + JSONmusician[(JSONband[0].musician[v])].reputation;
-    strTemp += '<br>';
-    strTemp += "HAP: " + JSONmusician[(JSONband[0].musician[v])].happiness;
-    strTemp += '<br>';
-    strTemp += "SKI: " + JSONmusician[(JSONband[0].musician[v])].skill;
-    strTemp += '<br>';
-    strTemp += "WAG: " + JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[(JSONband[0].musician[v])].wage);
-    strTemp += '<br>';
-    strTemp += "FAV GIFT: " + JSONgift[JSONmusician[(JSONband[0].musician[v])].gift].name;
-
-    strTemp += '</div>'; // MUSICIAN cell
-  } //for
-
-
-  strTemp += '</div>'; //row
-  strTemp += '</div>'; //table
-
-
-
 
 
 

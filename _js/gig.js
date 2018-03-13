@@ -49,14 +49,14 @@ function gig(i) {
     //for every musician in the passed in band
 
     //update skill
-    intTemp = parseInt(JSONmusician[a].skill) + JSONconfig[0].valueGigSkill;
-      JSONmusician[a].skill = intTemp;
+    intTemp = parseInt(JSONmusician[JSONband[i].musician[a]].skill) + JSONconfig[0].valueGigSkill;
+      JSONmusician[JSONband[i].musician[a]].skill = intTemp;
     //update happiness
-    intTemp = parseInt(JSONmusician[a].happiness) + JSONconfig[0].valueGigHappiness;
-      JSONmusician[a].happiness = intTemp;
+    intTemp = parseInt(JSONmusician[JSONband[i].musician[a]].happiness) + JSONconfig[0].valueGigHappiness;
+      JSONmusician[JSONband[i].musician[a]].happiness = intTemp;
     //update reputation
-    intTemp = parseInt(JSONmusician[a].reputation) + JSONconfig[0].valueGigReputation;
-      JSONmusician[a].reputation = intTemp;
+    intTemp = parseInt(JSONmusician[JSONband[i].musician[a]].reputation) + JSONconfig[0].valueGigReputation;
+      JSONmusician[JSONband[i].musician[a]].reputation = intTemp;
 
 //UPDATE band reputation???
 

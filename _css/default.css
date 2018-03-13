@@ -13,6 +13,14 @@
   font-size: 8pt;
 }
 
+.divContainerHide {
+  display: none;
+}
+.divContainerShow {
+  display: block;
+  background-color: #ccc;
+}
+
 
 
 .divTable {
