@@ -37,7 +37,7 @@
   display: table-row;
 }
 .divRight:nth-child(odd) { /*zebra stripes*/
-   background-color: #ccc;
+   /* background-color: #ccc; */
 }
 .divCell {
   vertical-align: top;

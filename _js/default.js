@@ -8,7 +8,7 @@ function updateElement(elemName, strTemp) {
 function createComboBoxfromJSON(JSONtoConvert, strID) {
   //create and string return complete html combo box
   var strTemp = "";
-  strTemp += "<select id='" + strID + "'>";
+  strTemp += "<select class='rpgui-dropdown' id='" + strID + "'>";
   // strTemp += "<option value=''>Choose an option</option>";
   for (i in JSONtoConvert) {
     strTemp += "<option value='" + JSONtoConvert[i].name + "'>" + JSONtoConvert[i].name + "</option>";
@@ -19,7 +19,10 @@ function createComboBoxfromJSON(JSONtoConvert, strID) {
 function createComboBoxfromJSONiAndName(JSONtoConvert, strID) {
   //create and string return complete html combo box
   var strTemp = "";
-  strTemp += "<select id='" + strID + "'>";
+
+
+
+  strTemp += "<select class='rpgui-dropdown' id='" + strID + "'>";
   // strTemp += "<option value=''>Choose an option</option>";
   for (i in JSONtoConvert) {
     strTemp += "<option value='" + i + "'>" + JSONtoConvert[i].name + "</option>";
@@ -32,7 +35,7 @@ function createComboBoxfromJSONticketPrice(JSONtoConvert, strID) {
   var strTemp = "";
   // strTemp += "<option value=''>Choose an option</option>";
   for (a in JSONtoConvert) {
-    strTemp += "<select id='" + strID + "'>";
+    strTemp += "<select class='rpgui-dropdown' id='" + strID + "'>";
     var object2 = JSONtoConvert[0];//put your object here
     for(var key2 in object2) {
         if(object2.hasOwnProperty(key2)) {
@@ -53,7 +56,7 @@ function createComboBoxfromJSONband(JSONtoConvert) {
   var strName = "";
   var intIndex = 0;
 
-  strTemp = "<select>";
+  strTemp = "<select class='rpgui-dropdown '>";
   // strTemp += "<option value=''>Choose an option</option>";
   for (i in JSONtoConvert) {
 //    strName = JSONtoConvert[i]; //get musician
@@ -68,7 +71,7 @@ function createComboBoxfromJSONband(JSONtoConvert) {
 function createComboBoxfromJSONTEMP(JSONtoConvert) {
   //create and string return complete html combo box
   var strTemp = "";
-  strTemp += "<select>";
+  strTemp += "<select class='rpgui-dropdown'>";
   // strTemp += "<option value=''>Choose an option</option>";
   for (i in JSONtoConvert) {
     strTemp += "<option value='" + i + "'>" + JSONtoConvert[i].name + " - " + JSONtoConvert[i].musician.length + " musicians</option>";
