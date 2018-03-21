@@ -17,6 +17,7 @@
   <script src="_js/contract.js"></script>
   <script src="_js/gift.js"></script>
   <script src="_js/gig.js"></script>
+  <script src="_js/gui.js"></script>
   <script src="_js/practice.js"></script>
   <script src="_js/publicity.js"></script>
   <script src="_js/record.js"></script>
@@ -46,11 +47,26 @@
   <script src="_json/tracks.js"></script>
   <script src="_json/venue.js"></script>
 
+  <!-- rpgui -->
+  <link href='_js/rpgui/Press+Start+2P.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="_js/rpgui/rpgui.css">
+	<script src="_js/rpgui/rpgui.js"></script>
+
 </head>
 <body>
 
 
-  <div id="divPlayerBand"></div>
+
+<div id="rpguiContentMain" class="rpgui-content">
+  <div id="divGUI"></div>
+  <div id="divGUImusician"></div>
+</div><!-- rpgui-content -->
+
+
+
+
+
+<div id="divPlayerBand"></div>
 
 
 
@@ -59,17 +75,12 @@
       <div class="divCell">
 
         <section id="secCreateBand">
-          <h2>Create a band</h2>
-          <input id="inpBandName" type="text" value="Profanity"></input>
-          <h3>Band musicians</h3>
-          <div id="divBandComboBox"></div>
-          <h3>Musicians</h3>
-          <div id="divMusicianComboBox"></div>
-          <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
+          <!-- <div id="divMusicianComboBox"></div>
+          <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button> -->
           <!-- <div id="divInstrumentComboBox"></div> -->
           <h3>Equipment</h3>
           <div id="divEquipmentComboBox"></div>
-          <button onClick="bandCreatePlayerStart()">Create Player Band</button>
+          <!-- <button onClick="bandCreatePlayerStart()">Create Player Band</button> -->
         </section><!-- secCreateBand -->
 
         <div id="divOtherBandsComboBox"></div>
@@ -80,17 +91,6 @@
 
 
         <section id="secPractice">
-          <h2>Practice</h2>
-          <select id="divPracticeComboBox">
-            <!-- <option value="">Please choose</option> -->
-            <option value="2">2 days</option>
-            <option value="3">3 days</option>
-            <option value="4">4 days</option>
-            <option value="5">5 days</option>
-            <option value="6">6 days</option>
-            <option value="7">7 days</option>
-          </select>
-          <button onClick="setPractice(document.getElementById('divPracticeComboBox').value)">SET Practice</button>
         </section><!-- secPractice -->
 
 

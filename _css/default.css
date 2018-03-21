@@ -41,7 +41,7 @@
 }
 .divCell {
   vertical-align: top;
-  border: 1px #CCC solid;
+  border: 0px #CCC solid;
   display: table-cell;
   padding: 5px;
 }

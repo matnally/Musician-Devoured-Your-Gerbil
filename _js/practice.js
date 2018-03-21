@@ -1,11 +1,16 @@
 function setPractice(intDays) {
   //set player (0) attributes appropiate for action
+
+  alert("why?!")
+
+intDays = document.getElementById('divPracticeComboBox').value;
+
   var datDateActionFinish = 0;
       datDateActionFinish = getDateActionFinish(intDays);
   JSONband[0].dateActionFinish = datDateActionFinish;
   JSONband[0].action = 0; //0 = practice
   JSONband[0].days = parseInt(intDays);
-  showMusicians(); //just to update what player has chosen
+//  showMusicians(); //just to update what player has chosen
 } //function
 
 

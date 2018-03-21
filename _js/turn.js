@@ -2,21 +2,25 @@
 
 function turnInit() {
   //Initialisation of turn / Start of game!
-  updateElement("divEquipmentComboBox", createComboBoxfromJSONiAndName(JSONequipment, "selEquipmentComboBox"));
 
-  updateElement("divDirectorComboBox", createComboBoxfromJSONiAndName(JSONdirector, "selDirectorComboBox"));
-  updateElement("divFeatureComboBox", createComboBoxfromJSONiAndName(JSONfeature, "selFeatureComboBox"));
-  updateElement("divLocationComboBox", createComboBoxfromJSONiAndName(JSONlocation, "selLocationComboBox"));
+guiCreateChoiceGUI("init");
 
-  updateElement("divGiftComboBox", createComboBoxfromJSONiAndName(JSONgift, "selGiftComboBox"));
-
-  updateElement("divTracksComboBox", createComboBoxfromJSONiAndName(JSONtracks, "selTracksComboBox"));
-
-  updateElement("divMusicianComboBox", createComboBoxfromJSONiAndName(JSONmusician, "selMusicianComboBox"));
-  updateElement("divBandComboBox", createComboBoxfromJSONiAndName(JSONband, "selBandComboBox"));
-
-  updateElement("divVenueComboBox", createComboBoxfromJSONiAndName(JSONvenue, "selVenueComboBox"));
-  updateElement("divTicketPriceComboBox", createComboBoxfromJSONticketPrice(JSONtickets, "selTicketPriceComboBox"));
+  //
+  // updateElement("divEquipmentComboBox", createComboBoxfromJSONiAndName(JSONequipment, "selEquipmentComboBox"));
+  //
+  // updateElement("divDirectorComboBox", createComboBoxfromJSONiAndName(JSONdirector, "selDirectorComboBox"));
+  // updateElement("divFeatureComboBox", createComboBoxfromJSONiAndName(JSONfeature, "selFeatureComboBox"));
+  // updateElement("divLocationComboBox", createComboBoxfromJSONiAndName(JSONlocation, "selLocationComboBox"));
+  //
+  // updateElement("divGiftComboBox", createComboBoxfromJSONiAndName(JSONgift, "selGiftComboBox"));
+  //
+  // updateElement("divTracksComboBox", createComboBoxfromJSONiAndName(JSONtracks, "selTracksComboBox"));
+  //
+  // updateElement("divMusicianComboBox", createComboBoxfromJSONiAndName(JSONmusician, "selMusicianComboBox"));
+  // updateElement("divBandComboBox", createComboBoxfromJSONiAndName(JSONband, "selBandComboBox"));
+  //
+  // updateElement("divVenueComboBox", createComboBoxfromJSONiAndName(JSONvenue, "selVenueComboBox"));
+  // updateElement("divTicketPriceComboBox", createComboBoxfromJSONticketPrice(JSONtickets, "selTicketPriceComboBox"));
 
 
 } //function
@@ -36,7 +40,7 @@ function turnStart() {
   checkDOWaction(); //choose action corressponding to day of week
 
 //showPlayer();
-showMusicians();
+//showMusicians();
 
 } //function
 

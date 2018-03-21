@@ -12,11 +12,14 @@ function musicianDisplay(index) {
 } //function
 
 
-function musicianAdd(index) {
-//  alert(index);
+function musicianAdd() {
   //Add musician index to band musician array
-  var strTemp = "";
 
+  var index = 0;
+  index = GLOBALintMusicianChoice;
+      // index = document.getElementById("comboBandMusician").value; //chosen musician
+
+  var strTemp = "";
 
   JSONband[0].musician.push(index);
 //  for (i in JSONband[0].musician) {
@@ -34,7 +37,10 @@ function bandCreatePlayerStart() {
   bandCreateOther(); //creates bands from the remaining musicians
   bandOtherActionChoose(); //sets an action to each band CALLED !!!ONLY ONCE!!!
   //  bandOtherActionExecute(); //start the other band's turn!   ????????????????????????
-  showMusicians();
+
+//  showMusicians();
+
+
 } //function
 
 
@@ -45,7 +51,7 @@ function bandCreatePlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;
   //musicians already added
   JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
-  JSONtoUse.equipment = document.getElementById("selEquipmentComboBox").value;
+//  JSONtoUse.equipment = document.getElementById("selEquipmentComboBox").value;
   JSONtoUse.money = JSONconfig[0].moneyMedium;
 } //function
 function bandCreateOther() {
