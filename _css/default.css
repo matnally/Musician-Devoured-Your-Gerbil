@@ -9,19 +9,60 @@
 
 /************ END OF DEFAULT STYLES ************/
 
+#secBands {
+  font-size: 8pt;
+}
+
+.divContainerHide {
+  display: none;
+}
+.divContainerShow {
+  display: block;
+  background-color: #ccc;
+}
+
+
+
 .divTable {
   display: table;
   width: 100%;
 
 }
+
+
+
+
+
 .divRow {
   display: table-row;
+}
+.divRight:nth-child(odd) { /*zebra stripes*/
+   /* background-color: #ccc; */
 }
 .divCell {
   vertical-align: top;
   border: 1px #CCC solid;
   display: table-cell;
   padding: 5px;
+
+
+  /* border-style: solid;
+  border-image-source: url("../_js/rpgui/img/border-image.png");
+  border-image-repeat: repeat;
+  border-image-slice: 6 6 6 6;
+  border-image-width: 18px;
+  border-width: 15px;
+  padding: 12px; */
+  /* internal border */
+  /* box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; */
+  /* background */
+  /* background: url("../_js/rpgui/img/background-image.png") repeat repeat;
+  background-clip: padding-box;
+  background-origin: padding-box;
+  background-position: center; */
+
 }
 .divRight {
   text-align: right;

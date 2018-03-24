@@ -7,12 +7,6 @@ var JSONsingle = [
     ,"director" : 0
     ,"location" : 0
     ,"feature"  : 0
-  }
-  ,{
-    "name"      : "single two"
-    ,"album"    : 0
-    ,"video"    : 0
-    ,"location" : 0
-    ,"feature"  : 0
+    ,"active"  : false
   }
 ];
