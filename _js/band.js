@@ -25,8 +25,20 @@ function musicianAdd(index) {
   updateElement("divBandComboBox", strTemp);
 } //function
 
+function setMusicianEquipment() {
+  //random equipment SET
+  for (i in JSONmusician) {
+    JSONmusician[i].equipment = getMusicianEquipment();
+  } //for musician
+} //function
+function getMusicianEquipment() {
+  return Math.floor(Math.random() * JSONequipment.length);
+} //function
 
 function bandCreatePlayerStart() {
+
+setMusicianEquipment(); //cheating so random i dont have to input them all
+
   bandCreatePlayer(JSONband[0]); //create band from player's chosen musicians
   bandOtherActionChoose(); // init FOR PLAYER ONLY
   bandCreateOther(); //creates bands from the remaining musicians
@@ -36,6 +48,8 @@ function bandCreatePlayerStart() {
 
 updateGUItrees();
 //  $('#dockingLayout').jqxDockingLayout('addFloatGroup', 300, 200, { x: 500, y: 200 }, 'documentPanel', 'Float title', 'Float stuff');
+
+
 
 $('#musicianExplorerTree').on('select', function (event) {
   var args = event.args;
@@ -70,11 +84,10 @@ function getJSONIDfromName(strName, JSONtoUse) {
 function updateGUItrees() {
   $('#bandExplorerTree').jqxTree({ source: createJQWidgetTreeBands(JSONband), width: '100%' });
   $('#musicianExplorerTree').jqxTree({ source: createJQWidgetTreeMusicians(JSONmusician), width: '100%' });
-
   $('#bandPlayerExplorerTree').jqxTree({ source: createJQWidgetTreeBandSingle(0), width: '100%' });
 } //function
 
-function bandCreateOtherStart() {
+function bandCreateOtherStart() { //????? needed?????
 } //function
 
 function bandCreatePlayer(JSONtoUse) {
@@ -286,6 +299,7 @@ if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
 
 
 } //function
+
 
 
 ///////The GETS!//////

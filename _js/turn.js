@@ -32,18 +32,14 @@ function updateDate(){
 
 function turnStart() {
   //Start of turn
-
-updateDate();
+  updateDate();
 
   bandOtherActionExecute(); //do actions for bands
+
   eventContract(); //see if they are eligible for a record contract, if not already
   checkDOWaction(); //choose action corressponding to day of week
-
-//showPlayer();
-showMusicians();
-
-updateGUItrees();
-
+  updateGUItrees();
+  showMusicians();
 } //function
 
 

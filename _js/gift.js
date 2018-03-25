@@ -5,7 +5,10 @@ function setGift(intDays, intGifts) {
   JSONband[0].action = 3; //3 = gift
   JSONband[0].days = intDays;
   JSONband[0].gift = intGifts;
-  showMusicians(); //just to update what player has chosen
+
+//showMusicians(); //just to update what player has chosen
+turnStartInterval();
+
 } //function
 
 function gift(i) {

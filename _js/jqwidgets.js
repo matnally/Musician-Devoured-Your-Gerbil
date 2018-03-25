@@ -1,4 +1,12 @@
 
+function guiActionCostCalc(intTemp) {
+
+  var strTemp = "";
+  strTemp +=  "It will cost " + JSONconfig[0].currency + displayNumbersWithCommas(JSONconfig[0].costPractice) + " per day";
+  strTemp +=  "Thats a total of " + JSONconfig[0].currency + displayNumbersWithCommas((JSONconfig[0].costPractice * intTemp)) + " for " +intTemp+ "  days";
+  updateElement("divActionCost", strTemp);
+} //function
+
 function createTableDetails(strID, JSONtoUse, i) {
 
 var bob = []; //new array
@@ -7,13 +15,10 @@ var bob = []; //new array
 if (JSONtoUse[i].musician) {  //check if have musician attribute
 //a band request
 
-
-
   for (a in JSONtoUse[i].musician) {
     //for every musician in band
     bob.push(JSONmusician[JSONtoUse[i].musician[a]]);
   } //for
-
 
   var arrDataFields = [
     { name: 'name', type: 'string' }
@@ -158,59 +163,80 @@ if (JSONtoUse[i].musician) {  //check if have musician attribute
   title: 'Band',
   contentContainer: 'guiTest'
 }
-
-
-
             ]
-          }, {
+          }
+          //END OF TOP LEFT
+
+          , {
               type: 'tabbedGroup',
               height: '50%',
               pinnedHeight: '10%',
               items: [{
                   type: 'layoutPanel',
-                  title: 'Error List',
-                  contentContainer: 'ErrorListPanel'
+                  title: 'Buttons',
+                  contentContainer: 'buttonsPanel'
               }, {
                   type: 'layoutPanel',
-                  title: 'Table',
-                  contentContainer: 'OutputPanel',
+                  title: 'Data',
+                  contentContainer: 'tableDataPanel',
                   selected: true
               }]
           }]
-      }, {
-          type: 'tabbedGroup',
-          width: '30%',
-          items: [
-            {
-              type: 'layoutPanel',
-              title: 'All Bands',
-              contentContainer: 'guiBand',
-              initContent: function () {
-                  // initialize a jqxTree inside the Solution Explorer Panel
-              }
-          }
-          ,{
-              type: 'layoutPanel',
-              title: 'All Musicians',
-              contentContainer: 'guiMusicians',
-              initContent: function () {
-                  // initialize a jqxTree inside the Solution Explorer Panel
-              }
-          } //item
-          ,{
-              type: 'layoutPanel',
-              title: 'Your Band',
-              contentContainer: 'guiBandPlayer',
-              initContent: function () {
-                  // initialize a jqxTree inside the Solution Explorer Panel
-              }
-          } //item
+      }
+//END OF BOTTOM LEFT
+,
+
+//START TOP RIGHT
+{
+    type: 'layoutGroup',
+    orientation: 'vertical',
+    width: '30%',
+    items: [{
+        type: 'documentGroup',
+        height: '70%',
+        minHeight: '20%',
+        items: [
+{
+  type: 'documentPanel',
+  title: 'All Bands',
+  contentContainer: 'guiBand'
+}
+,{
+  type: 'documentPanel',
+  title: 'All Musicians',
+  contentContainer: 'guiMusicians'
+}
+,{
+  type: 'documentPanel',
+  title: 'Your Band',
+  contentContainer: 'guiBandPlayer'
+}
 
 
+      ]
+    }
+//END TOP RIGHT
+    ,
+//START BOTTOM RIGHT
+     {
+        type: 'tabbedGroup',
+        height: '30%',
+        pinnedHeight: '10%',
+        items: [{
+            type: 'layoutPanel',
+            title: 'Logging Output',
+            contentContainer: 'testGUI1'
+        }, {
+            type: 'layoutPanel',
+            title: 'Dunno',
+            contentContainer: 'testGUI2',
+            selected: true
+        }]
+    }
+//END BOTTOM RIGHT
 
-
-        ] //tabbedGroup items
-      }]
+  ]}
+  ]
   }];
 
 
@@ -232,7 +258,7 @@ function createJQWidgetTreeBandSingle(i) {
 //  for (i in JSONtoUse) {
     //in every band
     arrItem = {
-      icon: '_js/jqwidgets/images/star.png'
+      icon: ''//'_js/jqwidgets/images/star.png'
       ,label: JSONtoUse[i].name
       ,items: []
     }; //arrItem
@@ -242,7 +268,8 @@ function createJQWidgetTreeBandSingle(i) {
       if(object.hasOwnProperty(key)) {
         var property = object[key];
         arrChildren = {
-          icon: '_js/jqwidgets/images/check_indeterminate_disabled.png'
+          icon: ''//'_js/jqwidgets/images/check_indeterminate_disabled.png'
+          ,disabled:true
           ,label: '' + key.toUpperCase() + ' : ' + property
           ,items: []
         }; //arrItem
@@ -252,7 +279,7 @@ function createJQWidgetTreeBandSingle(i) {
     for (v in JSONtoUse[i].musician) {
       //for every musician in a band
       arrChildren = {
-        icon: '_js/jqwidgets/images/sotd.png'
+        icon: ''//'_js/jqwidgets/images/sotd.png'
         ,label: JSONmusician[(JSONtoUse[i].musician[v])].name
         ,items: []
       }; //arrItem
@@ -262,7 +289,8 @@ function createJQWidgetTreeBandSingle(i) {
          if(object.hasOwnProperty(key)) {
            var property = object[key];
            arrChildrenChildren = {
-             icon: '_js/jqwidgets/images/check_indeterminate_black.png'
+             icon: ''//'_js/jqwidgets/images/check_indeterminate_black.png'
+             ,disabled:true
              ,label: '' + key.toUpperCase() + ' : ' + property
              ,items: []
            }; //arrItem
@@ -286,43 +314,51 @@ function createJQWidgetTreeBands(JSONtoUse) {
   for (i in JSONtoUse) {
     //in every band
     arrItem = {
-      icon: '_js/jqwidgets/images/star.png'
+      icon: ''//'_js/jqwidgets/images/star.png'
       ,label: JSONtoUse[i].name
       ,items: []
     }; //arrItem
+
    object = JSONtoUse[i];//put your object here
     for(var key in object) {
       //for every node in band
       if(object.hasOwnProperty(key)) {
         var property = object[key];
         arrChildren = {
-          icon: '_js/jqwidgets/images/check_indeterminate_disabled.png'
+          icon: ''//'_js/jqwidgets/images/check_indeterminate_disabled.png'
+          ,disabled:true
           ,label: '' + key.toUpperCase() + ' : ' + property
           ,items: []
         }; //arrItem
       } //if
       arrItem.items.push(arrChildren);
     } //for
+
+
     for (v in JSONtoUse[i].musician) {
       //for every musician in a band
       arrChildren = {
-        icon: '_js/jqwidgets/images/sotd.png'
+        icon: ''//'_js/jqwidgets/images/sotd.png'
         ,label: JSONmusician[(JSONtoUse[i].musician[v])].name
         ,items: []
       }; //arrItem
+
       object = JSONmusician[JSONtoUse[i].musician[v]];//put your object here
        for(var key in object) {
          //for every node in musician
          if(object.hasOwnProperty(key)) {
            var property = object[key];
            arrChildrenChildren = {
-             icon: '_js/jqwidgets/images/check_indeterminate_black.png'
+             icon: ''//'_js/jqwidgets/images/check_indeterminate_black.png'
+             ,disabled:true
              ,label: '' + key.toUpperCase() + ' : ' + property
              ,items: []
            }; //arrItem
          } //if
          arrChildren.items.push(arrChildrenChildren);
        } //for
+
+
       arrItem.items.push(arrChildren);
     } //for
     arrTemp.push(arrItem);
@@ -338,7 +374,7 @@ function createJQWidgetTreeMusicians(JSONtoUse) {
   for (i in JSONtoUse) {
     //in every musician
     arrItem = {
-      icon: '_js/jqwidgets/images/sotd.png'
+      icon: ''//'_js/jqwidgets/images/sotd.png'
       ,label: JSONtoUse[i].name
       ,items: []
     }; //arrItem
@@ -348,7 +384,8 @@ function createJQWidgetTreeMusicians(JSONtoUse) {
       if(object.hasOwnProperty(key)) {
         var property = object[key];
         arrChildren = {
-          icon: '_js/jqwidgets/images/check_indeterminate_black.png'
+          icon: ''//'_js/jqwidgets/images/check_indeterminate_black.png'
+          ,disabled:true
           ,label: '' + key.toUpperCase() + ' : ' + property
           ,items: []
         }; //arrItem

@@ -70,33 +70,69 @@
 
   <div id="dockingLayout">
       <!--The panel content divs can have a flat structure-->
-      <!--autoHideGroup-->
-      <div data-container="ToolboxPanel">
-          List of tools</div>
-      <div data-container="HelpPanel">
-          Help topics</div>
+
       <!--documentGroup-->
       <div data-container="guiStartGame">
         <section id="secCreateBand">
-          <h2>Create a band</h2>
-          <input id="inpBandName" type="text" value="Profanity"></input>
-          <h3>Band musicians</h3>
-          <div id="divBandComboBox"></div>
-          <h3>Musicians</h3>
-          <div id="divMusicianComboBox"></div>
-          <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
-          <!-- <div id="divInstrumentComboBox"></div> -->
-          <h3>Equipment</h3>
-          <div id="divEquipmentComboBox"></div>
-          <button onClick="bandCreatePlayerStart()">Create Player Band</button>
+
+
+<div class="divTable">
+
+  <div class="divRow">
+    <div class="divCell divRight">
+      <h3>Band name</h3>
+    </div> <!-- divCell -->
+    <div class="divCell">
+      <input id="inpBandName" type="text" value="Profanity"></input>
+    </div> <!-- divCell -->
+  </div> <!-- divRow -->
+
+  <div class="divRow">
+    <div class="divCell divRight">
+      <h3>Band musicians</h3>
+    </div> <!-- divCell -->
+    <div class="divCell">
+      <div id="divBandComboBox"></div>
+    </div> <!-- divCell -->
+  </div> <!-- divRow -->
+
+  <div class="divRow">
+    <div class="divCell divRight">
+      <h3>Musicians</h3>
+    </div> <!-- divCell -->
+    <div class="divCell">
+      <div id="divMusicianComboBox"></div>
+      <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
+    </div> <!-- divCell -->
+  </div> <!-- divRow -->
+
+  <div class="divRow">
+    <div class="divCell divRight">
+      <h3>Equipment</h3>
+    </div> <!-- divCell -->
+    <div class="divCell">
+      <div id="divEquipmentComboBox"></div>
+    </div> <!-- divCell -->
+  </div> <!-- divRow -->
+
+  <div class="divRow">
+    <div class="divCell divRight">
+    </div> <!-- divCell -->
+    <div class="divCell">
+    </div> <!-- divCell -->
+  </div> <!-- divRow -->
+
+</div> <!-- divTable -->
+
+<button onClick="bandCreatePlayerStart()">Create Player Band</button>
+
+
         </section><!-- secCreateBand -->
-
       </div><!-- guiStartGame -->
-
       <div data-container="guiPractice">
         <section id="secPractice">
           <h2>Practice</h2>
-          <select id="divPracticeComboBox">
+          <select id="divPracticeComboBox" onChange="guiActionCostCalc(this.value)">
             <!-- <option value="">Please choose</option> -->
             <option value="2">2 days</option>
             <option value="3">3 days</option>
@@ -156,15 +192,14 @@
       </div><!-- guiRelease -->
 
       <div data-container="guiTest">
-        <div id="divPlayerBand"></div>
+
       </div><!-- guiTest -->
 
-
       <div data-container="guiBandPlayerDetails">
-
 guiBandPlayerDetails
       </div>
-      <!--right tabbedGroup-->
+
+
       <div data-container="guiMusicians">
         <div id="musicianExplorerTree" style="border:none;"></div>
       </div>
@@ -174,23 +209,33 @@ guiBandPlayerDetails
       <div data-container="guiBandPlayer">
         <div id="bandPlayerExplorerTree" style="border:none;"></div>
       </div>
-      <!--floatGroup-->
-      <div data-container="OutputPanel">
 
+
+      <div data-container="tableDataPanel">
             <div id="tableMat"></div>
             <div id="tableMatMusician"></div>
             <div id="tableMatBand"></div>
-
-
       </div>
 
-      <div data-container="ErrorListPanel">
-        <div id="divCurrentDate"></div>
-            <button onClick="turnStartInterval()">Execute Turn</button>
+      <div data-container="buttonsPanel">
+            <!-- <button onClick="turnStartInterval()">Execute Turn</button> -->
+            <div id="loggingOutput"></div>
+      </div>
 
+
+<div data-container="testGUI1">
+</div>
+<div data-container="testGUI2">
+  <div id="divActionCost"></div>
+  <div id="divCurrentDate"></div>
+  <div id="divPlayerBand"></div>
 </div>
 
-  </div>
+
+
+
+
+  </div><!-- dockingLayout -->
 
 
 

@@ -4,7 +4,8 @@ function setRelease(intDays) {
   JSONband[0].dateActionFinish = datDateActionFinish;
   JSONband[0].action = 5; //5 = release
   JSONband[0].days = intDays;
-  showMusicians(); //just to update what player has chosen
+//  showMusicians(); //just to update what player has chosen
+turnStartInterval();
 } //function
 
 function release(i) {

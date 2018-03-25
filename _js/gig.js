@@ -8,68 +8,36 @@ function setGig(intDays, intVenue, intTicketPrice) {
 
   JSONband[0].venue = intVenue;
   JSONband[0].ticketPrice = intTicketPrice;
-  showMusicians(); //just to update what player has chosen
+//  showMusicians(); //just to update what player has chosen
+turnStartInterval();
 } //function
-
-
-
-
-function getTicketsSold(i) {
-  return Math.floor(Math.random() * JSONvenue[JSONband[i].venue].seats);
-} //function
-
 
 function gig(i) {
   //execute gig for the ith band
-
   var strTemp = "";
   var intTemp = 0;
   var intIndex = 0;
-
-
-  //update momey - venue cost
-  intTemp = parseInt(JSONband[i].money) - parseInt(JSONvenue[JSONband[i].venue].money);
-    JSONband[i].money = intTemp;
-
-  //update momey - ticket sales
-  intTemp = getTicketsSold(i);
-  if (intTemp >= parseInt(JSONvenue[JSONband[i].venue].seats)) {
-    alert("sold out gig!");
-  }
-
-//  console.log(JSONband[i].name + " gigged at " + JSONvenue[JSONband[i].venue].name + " ("+intTemp +" seats at £"+JSONband[i].ticketPrice+" per ticket)");
-
-  intTemp = parseInt(JSONband[i].ticketPrice) * intTemp;
-  intTemp = parseInt(JSONband[i].money) + intTemp;
-    JSONband[i].money = intTemp;
-
-
+  //RANDOM?!?!?!?!
+    intTemp = getTicketsSold(i); // CALC somewhere
+  loggingOutput("gig cost", JSONband[i].name + " paid "+JSONvenue[JSONband[i].venue].money+" to play "+JSONvenue[JSONband[i].venue].name+" selling "+intTemp+" tickets<br>");
+    intTemp = (parseInt(JSONband[i].ticketPrice) * intTemp); //ticket profits CALC
+  loggingOutput("gig profit", JSONband[i].name + " made ££"+(intTemp)+" from ticket sales<br>");
+  updateBandMoneyCost(i, JSONvenue[JSONband[i].venue].money, "gig"); //update money - venue cost
+  updateBandMoneyProfit(i, intTemp, "gig"); //update band money ticket sales
 
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
-
+    //SAME EQUIPMENT BONUS
+    getEquipmentBonusMusician(i, a); //applies any bonus  if any
     //update skill
-    intTemp = parseInt(JSONmusician[JSONband[i].musician[a]].skill) + JSONconfig[0].valueGigSkill;
-      JSONmusician[JSONband[i].musician[a]].skill = intTemp;
-    //update happiness
-    intTemp = parseInt(JSONmusician[JSONband[i].musician[a]].happiness) + JSONconfig[0].valueGigHappiness;
-      JSONmusician[JSONband[i].musician[a]].happiness = intTemp;
-    //update reputation
-    intTemp = parseInt(JSONmusician[JSONband[i].musician[a]].reputation) + JSONconfig[0].valueGigReputation;
-      JSONmusician[JSONband[i].musician[a]].reputation = intTemp;
-
-//UPDATE band reputation???
-
+    updateMusicianAttribute(i, a, "skill", JSONconfig[0].valueGigSkill);
+    updateMusicianAttribute(i, a, "happiness", JSONconfig[0].valueGigHappiness);
+    updateMusicianAttribute(i, a, "reputation", JSONconfig[0].valueGigReputation);
   }//for
+  loggingOutput("**********************", "<br>");
 
 //TODO:
 //ticket sales
-i = updateBandReputation(i);
+//i = updateBandReputation(i);
 
-} //function
-
-
-
-function getTicketPrice() {
-  return Math.floor(Math.random() * JSONtickets.length);
 } //function

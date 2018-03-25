@@ -7,7 +7,8 @@ function setRecord(intTracks) {
   JSONband[0].action = 4; //4 = record
   JSONband[0].days = intDays;
   JSONband[0].tracks = JSONtracks[intTracks].tracks;
-  showMusicians(); //just to update what player has chosen
+//  showMusicians(); //just to update what player has chosen
+turnStartInterval();
 } //function
 
 function record() {
