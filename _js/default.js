@@ -1,5 +1,10 @@
 //Default functions go here!
 
+function loggingOutput(strAction, strTemp) {
+  document.getElementById("loggingOutput").innerHTML += "["+strAction.toUpperCase()+"] " + strTemp;
+} //function
+
+
 function updateElement(elemName, strTemp) {
   //update the element with text
   document.getElementById(elemName).innerHTML = strTemp;
@@ -19,10 +24,7 @@ function createComboBoxfromJSON(JSONtoConvert, strID) {
 function createComboBoxfromJSONiAndName(JSONtoConvert, strID) {
   //create and string return complete html combo box
   var strTemp = "";
-
-
-
-  strTemp += "<select class='rpgui-dropdown' id='" + strID + "'>";
+  strTemp += "<select id='" + strID + "' onChange='guiActionCostCalc(" + strID + ")'>";
   // strTemp += "<option value=''>Choose an option</option>";
   for (i in JSONtoConvert) {
     strTemp += "<option value='" + i + "'>" + JSONtoConvert[i].name + "</option>";
@@ -181,7 +183,7 @@ showPlayer();
 
 
   strTemp += '<section id="secBands">';
-  strTemp += "<h3>" + GLOBALdatDateCurrent + "</h3>";
+  strTemp += "<h1>" + GLOBALdatDateCurrent + "</h1>";
   strTemp += '<div class="divTable">';
 
   for (a in JSONband) {

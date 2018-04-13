@@ -46,42 +46,93 @@
   <script src="_json/tracks.js"></script>
   <script src="_json/venue.js"></script>
 
+<!-- jqwidgets GUI -->
+<link rel="stylesheet" href="_js/jqwidgets/jqx.base.css" type="text/css" />
+<script type="text/javascript" src="_js/jqwidgets.js"></script>
+<script type="text/javascript" src="_js/jqwidgets/jqxcore.js"></script>
+
+<script type="text/javascript" src="_js/jqwidgets/jqxbuttons.js"></script>
+<script type="text/javascript" src="_js/jqwidgets/jqxdata.js"></script>
+<script type="text/javascript" src="_js/jqwidgets/jqxdatatable.js"></script>
+<script type="text/javascript" src="_js/jqwidgets/jqxribbon.js"></script>
+<script type="text/javascript" src="_js/jqwidgets/jqxwindow.js"></script>
+<script type="text/javascript" src="_js/jqwidgets/jqxlayout.js"></script>
+<!-- <script type="text/javascript" src="_js/jqwidgets/jqxdocking.js"></script> -->
+<script type="text/javascript" src="_js/jqwidgets/jqxdockinglayout.js"></script>
+<script type="text/javascript" src="_js/jqwidgets/jqxscrollbar.js"></script>
+<script type="text/javascript" src="_js/jqwidgets/jqxtree.js"></script>
+
+
 </head>
 <body>
 
 
-  <div id="divPlayerBand"></div>
 
+  <div id="dockingLayout">
+      <!--The panel content divs can have a flat structure-->
 
-
-  <div class="divTable">
-    <div class="divRow">
-      <div class="divCell">
-
+      <!--documentGroup-->
+      <div data-container="guiStartGame">
         <section id="secCreateBand">
-          <h2>Create a band</h2>
-          <input id="inpBandName" type="text" value="Profanity"></input>
-          <h3>Band musicians</h3>
-          <div id="divBandComboBox"></div>
-          <h3>Musicians</h3>
-          <div id="divMusicianComboBox"></div>
-          <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
-          <!-- <div id="divInstrumentComboBox"></div> -->
-          <h3>Equipment</h3>
-          <div id="divEquipmentComboBox"></div>
-          <button onClick="bandCreatePlayerStart()">Create Player Band</button>
+
+
+<div class="divTable">
+
+  <div class="divRow">
+    <div class="divCell divRight">
+      <h3>Band name</h3>
+    </div> <!-- divCell -->
+    <div class="divCell">
+      <input id="inpBandName" type="text" value="Profanity"></input>
+    </div> <!-- divCell -->
+  </div> <!-- divRow -->
+
+  <div class="divRow">
+    <div class="divCell divRight">
+      <h3>Band musicians</h3>
+    </div> <!-- divCell -->
+    <div class="divCell">
+      <div id="divBandComboBox"></div>
+    </div> <!-- divCell -->
+  </div> <!-- divRow -->
+
+  <div class="divRow">
+    <div class="divCell divRight">
+      <h3>Musicians</h3>
+    </div> <!-- divCell -->
+    <div class="divCell">
+      <div id="divMusicianComboBox"></div>
+      <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
+    </div> <!-- divCell -->
+  </div> <!-- divRow -->
+
+  <div class="divRow">
+    <div class="divCell divRight">
+      <h3>Equipment</h3>
+    </div> <!-- divCell -->
+    <div class="divCell">
+      <div id="divEquipmentComboBox"></div>
+    </div> <!-- divCell -->
+  </div> <!-- divRow -->
+
+  <div class="divRow">
+    <div class="divCell divRight">
+    </div> <!-- divCell -->
+    <div class="divCell">
+    </div> <!-- divCell -->
+  </div> <!-- divRow -->
+
+</div> <!-- divTable -->
+
+<button onClick="bandCreatePlayerStart()">Create Player Band</button>
+
+
         </section><!-- secCreateBand -->
-
-        <div id="divOtherBandsComboBox"></div>
-
-
-      </div><!-- divCell -->
-      <div class="divCell">
-
-
+      </div><!-- guiStartGame -->
+      <div data-container="guiPractice">
         <section id="secPractice">
           <h2>Practice</h2>
-          <select id="divPracticeComboBox">
+          <select id="divPracticeComboBox" onChange="guiActionCostCalc(this.value)">
             <!-- <option value="">Please choose</option> -->
             <option value="2">2 days</option>
             <option value="3">3 days</option>
@@ -92,12 +143,8 @@
           </select>
           <button onClick="setPractice(document.getElementById('divPracticeComboBox').value)">SET Practice</button>
         </section><!-- secPractice -->
-
-
-      </div><!-- divCell -->
-      <div class="divCell">
-
-
+      </div><!-- guiPractice -->
+      <div data-container="guiGig">
         <section id="secGig">
           <h2>Gig</h2>
           <div id="divVenueComboBox"></div>
@@ -113,44 +160,28 @@
           </select>
           <button onClick="setGig(document.getElementById('divGigDays').value,document.getElementById('selVenueComboBox').value,document.getElementById('selTicketPriceComboBox').value)">SET Gig</button>
         </section><!-- secGig -->
-
-
-      </div><!-- divCell -->
-      <div class="divCell">
-
-
+      </div><!-- guiGig -->
+      <div data-container="guiPublicity">
         <section id="secPublicity">
           <h2>Publicity</h2>
           <button onClick="setPublicity(1)">SET Publicity</button>
         </section><!-- secPublicity -->
-
-
-      </div><!-- divCell -->
-      <div class="divCell">
-
-
+      </div><!-- guiPublicity -->
+      <div data-container="guiGifts">
         <section id="secGifts">
           <h2>Gifts</h2>
           <div id="divGiftComboBox"></div>
           <button onClick="setGift(1,document.getElementById('selGiftComboBox').value)">SET Gift</button>
         </section><!-- secGifts -->
-
-
-      </div><!-- divCell -->
-      <div class="divCell">
-
-
+      </div><!-- guiGifts -->
+      <div data-container="guiRecord">
         <section id="secRecord">
           <h2>Record</h2>
           <div id="divTracksComboBox"></div>
           <button onClick="setRecord(document.getElementById('selTracksComboBox').value)">SET Record</button>
         </section><!-- secRecord -->
-
-
-      </div><!-- divCell -->
-      <div class="divCell">
-
-
+      </div><!-- guiRecord -->
+      <div data-container="guiRelease">
         <section id="secRelease">
           <h2>Release</h2>
           <div id="divDirectorComboBox"></div>
@@ -158,21 +189,63 @@
           <div id="divFeatureComboBox"></div>
           <button onClick="release()">SET Release</button>
         </section><!-- secRelease -->
+      </div><!-- guiRelease -->
+
+      <div data-container="guiTest">
+
+      </div><!-- guiTest -->
+
+      <div data-container="guiBandPlayerDetails">
+guiBandPlayerDetails
+      </div>
 
 
-      </div><!-- divCell -->
-      <div class="divCell">
+      <div data-container="guiMusicians">
+        <div id="musicianExplorerTree" style="border:none;"></div>
+      </div>
+      <div data-container="guiBand">
+        <div id="bandExplorerTree" style="border:none;"></div>
+      </div>
+      <div data-container="guiBandPlayer">
+        <div id="bandPlayerExplorerTree" style="border:none;"></div>
+      </div>
 
-        <button onClick="turnStartInterval()">Execute Turn</button>
 
-      </div><!-- divCell -->
+      <div data-container="tableDataPanel">
+            <div id="tableMat"></div>
+            <div id="tableMatMusician"></div>
+            <div id="tableMatBand"></div>
+      </div>
+
+      <div data-container="buttonsPanel">
+            <!-- <button onClick="turnStartInterval()">Execute Turn</button> -->
+            <div id="loggingOutput"></div>
+      </div>
 
 
-    </div><!-- divRow -->
-  </div><!-- divTable -->
+<div data-container="testGUI1">
+</div>
+<div data-container="testGUI2">
+  <div id="divActionCost"></div>
+  <div id="divCurrentDate"></div>
+  <div id="divPlayerBand"></div>
+</div>
 
 
+
+
+
+  </div><!-- dockingLayout -->
+
+
+
+
+
+
+
+  ********************************
 <div id="divData"></div>
+********************************
 
 
 

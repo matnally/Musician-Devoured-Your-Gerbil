@@ -2,22 +2,20 @@
 
 function turnInit() {
   //Initialisation of turn / Start of game!
-  updateElement("divEquipmentComboBox", createComboBoxfromJSONiAndName(JSONequipment, "selEquipmentComboBox"));
 
+createGUI();
+document.getElementById("divCurrentDate").innerHTML = "<h1>Date: " + JSONconfig[0].date + "</h1>";
+
+  updateElement("divEquipmentComboBox", createComboBoxfromJSONiAndName(JSONequipment, "selEquipmentComboBox"));
   updateElement("divDirectorComboBox", createComboBoxfromJSONiAndName(JSONdirector, "selDirectorComboBox"));
   updateElement("divFeatureComboBox", createComboBoxfromJSONiAndName(JSONfeature, "selFeatureComboBox"));
   updateElement("divLocationComboBox", createComboBoxfromJSONiAndName(JSONlocation, "selLocationComboBox"));
-
   updateElement("divGiftComboBox", createComboBoxfromJSONiAndName(JSONgift, "selGiftComboBox"));
-
   updateElement("divTracksComboBox", createComboBoxfromJSONiAndName(JSONtracks, "selTracksComboBox"));
-
   updateElement("divMusicianComboBox", createComboBoxfromJSONiAndName(JSONmusician, "selMusicianComboBox"));
   updateElement("divBandComboBox", createComboBoxfromJSONiAndName(JSONband, "selBandComboBox"));
-
   updateElement("divVenueComboBox", createComboBoxfromJSONiAndName(JSONvenue, "selVenueComboBox"));
   updateElement("divTicketPriceComboBox", createComboBoxfromJSONticketPrice(JSONtickets, "selTicketPriceComboBox"));
-
 
 } //function
 
@@ -26,18 +24,22 @@ function turnStartInterval() {
   GLOBALintervalTurn = setInterval(turnStart, 1000);
 } //function
 
+function updateDate(){
+  GLOBALdatDateCurrent.setDate(GLOBALdatDateCurrent.getDate() + 1); //increase GLOBAL current date
+  updateElement("divCurrentDate", "<h1>Date: " + GLOBALdatDateCurrent + "</h1>");
+//  document.getElementById("divCurrentDate").innerHTML = "<h1>Date: " + GLOBALdatDateCurrent + "</h1>";
+} //function
+
 function turnStart() {
   //Start of turn
-
-  GLOBALdatDateCurrent.setDate(GLOBALdatDateCurrent.getDate() + 1); //increase GLOBAL current date
+  updateDate();
 
   bandOtherActionExecute(); //do actions for bands
+
   eventContract(); //see if they are eligible for a record contract, if not already
   checkDOWaction(); //choose action corressponding to day of week
-
-//showPlayer();
-showMusicians();
-
+  updateGUItrees();
+  showMusicians();
 } //function
 
 
