@@ -46,28 +46,7 @@ setMusicianEquipment(); //cheating so random i dont have to input them all
   //  bandOtherActionExecute(); //start the other band's turn!   ????????????????????????
   showMusicians();
 
-updateGUItrees();
-//  $('#dockingLayout').jqxDockingLayout('addFloatGroup', 300, 200, { x: 500, y: 200 }, 'documentPanel', 'Float title', 'Float stuff');
 
-
-
-$('#musicianExplorerTree').on('select', function (event) {
-  var args = event.args;
-  var item = $('#musicianExplorerTree').jqxTree('getItem', args.element);
-//  alert("Selected: " + item.label);
-//alert(getJSONIDfromName(item.label, JSONmusician));
-//updateElement("tableMatBand", "%nbsp;");
-createTableDetails("tableMat", JSONmusician, getJSONIDfromName(item.label, JSONmusician));
-});
-$('#bandExplorerTree').on('select', function (event) {
-  var args = event.args;
-  var item = $('#bandExplorerTree').jqxTree('getItem', args.element);
-//  updateElement("tableMatMusician", "");
-//updateElement("tableMatBand", "WORKED");
-  createTableDetails("tableMat", JSONband, getJSONIDfromName(item.label, JSONband));
-  //updateElement("tableMatMusician", "%nbsp;");
-//  createTableDetails("tableMatMusician", JSONmusician, getJSONIDfromName(item.label, JSONmusician));
-});
 
 } //function
 function getJSONIDfromName(strName, JSONtoUse) {
@@ -81,11 +60,6 @@ function getJSONIDfromName(strName, JSONtoUse) {
 } //function
 
 
-function updateGUItrees() {
-  $('#bandExplorerTree').jqxTree({ source: createJQWidgetTreeBands(JSONband), width: '100%' });
-  $('#musicianExplorerTree').jqxTree({ source: createJQWidgetTreeMusicians(JSONmusician), width: '100%' });
-  $('#bandPlayerExplorerTree').jqxTree({ source: createJQWidgetTreeBandSingle(0), width: '100%' });
-} //function
 
 function bandCreateOtherStart() { //????? needed?????
 } //function
