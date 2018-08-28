@@ -1,26 +1,5 @@
 //Default functions go here!
 
-function applyListeners() {
-
-  document.getElementById("selTracksComboBox").addEventListener("click",function(event){
-    setAlbumTracks(this.value);
-  });
-
-} //function
-
-
-
-function getJSONIDfromName(strName, JSONtoUse) {
-  var intTemp = 0;
-  for (i in JSONtoUse) {
-    if (JSONtoUse[i].name == strName) {
-      intTemp = i;
-    } //if
-  } //for
-  return intTemp;
-} //function
-
-
 function loggingOutput(strAction, strTemp) {
   document.getElementById("loggingOutput").innerHTML += "["+strAction.toUpperCase()+"] " + strTemp;
 } //function
@@ -38,6 +17,17 @@ function createComboBoxfromJSON(JSONtoConvert, strID) {
   // strTemp += "<option value=''>Choose an option</option>";
   for (i in JSONtoConvert) {
     strTemp += "<option value='" + JSONtoConvert[i].name + "'>" + JSONtoConvert[i].name + "</option>";
+  }
+  strTemp += "</select>";
+  return strTemp;
+} //function
+function createComboBoxfromJSONiAndNameNoOnChange(JSONtoConvert, strID) {
+  //create and string return complete html combo box
+  var strTemp = "";
+  strTemp += "<select id='" + strID + "' onChange=''>";
+  // strTemp += "<option value=''>Choose an option</option>";
+  for (i in JSONtoConvert) {
+    strTemp += "<option value='" + i + "'>" + JSONtoConvert[i].name + "</option>";
   }
   strTemp += "</select>";
   return strTemp;
@@ -142,8 +132,9 @@ function formatDate(value) {
 
    var strTemp = "";
 
-   strTemp += '<div class="divTable">';
+   strTemp += '<h1>Your band</h1>';
 
+   strTemp += '<div class="divTable">';
    strTemp += '<div class="divRow">';
    strTemp += '<div class="divCell">';
 
@@ -201,8 +192,7 @@ showPlayer();
 
   var strTemp = "";
 
-  strTemp += '<section id="secBands">';
-  strTemp += "<h1>" + GLOBALdatDateCurrent + "</h1>";
+  strTemp += "<h1>All bands</h1>";
   strTemp += '<div class="divTable">';
 
   for (a in JSONband) {
@@ -250,8 +240,8 @@ showPlayer();
       strTemp += '</div>'; //row
     } //if    show albums
 
+  strTemp += '</div>'; //row
   strTemp += '</div>'; //table
-  strTemp += '</div>'; //section
 
     for (b in JSONband[a].musician) {
       strTemp += '<div class="divCell">';
@@ -287,7 +277,6 @@ showPlayer();
   }
 
   strTemp += '</div>';
-  strTemp += '</section>';
 
   updateElement("divData", strTemp);
 

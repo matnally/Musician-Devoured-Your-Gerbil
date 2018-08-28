@@ -24,6 +24,7 @@
   <script src="_js/tracks.js"></script>
   <script src="_js/turn.js"></script>
   <script src="_js/venue.js"></script>
+  <script src="_js/nav.js"></script>
 
   <!-- JSON -->
   <script src="_json/album.js"></script>
@@ -48,132 +49,163 @@
 </head>
 <body>
 
-  <div class="divTable">
+  <section id="secStartGame">
+    <div class="divTable">
+      <div class="divRow">
+        <div class="divCell divRight">
+          <h3>Band name</h3>
+        </div> <!-- divCell -->
+        <div class="divCell">
+          <input id="inpBandName" type="text" value="Profanity"></input>
+        </div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell divRight">
+          <h3>Band musicians</h3>
+        </div> <!-- divCell -->
+        <div class="divCell">
+          <div id="divBandComboBox"></div>
+        </div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell divRight">
+          <h3>Musicians</h3>
+        </div> <!-- divCell -->
+        <div class="divCell">
+          <div id="divMusicianComboBox"></div>
+          <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
+        </div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell divRight">
+          <h3>Equipment</h3>
+        </div> <!-- divCell -->
+        <div class="divCell">
+          <div id="divEquipmentComboBox"></div>
+        </div> <!-- divCell -->
+      </div> <!-- divRow -->
+    </div> <!-- divTable -->
+    <button onClick="bandCreatePlayerStart()">Create Player Band</button>
+  </section>
 
+
+
+  <div id="divMain" class="divTable">
     <div class="divRow">
-      <div class="divCell divRight">
-        <h3>Band name</h3>
-      </div> <!-- divCell -->
       <div class="divCell">
-        <input id="inpBandName" type="text" value="Profanity"></input>
-      </div> <!-- divCell -->
-    </div> <!-- divRow -->
 
-    <div class="divRow">
-      <div class="divCell divRight">
-        <h3>Band musicians</h3>
-      </div> <!-- divCell -->
+        <section id="secMainMenu">
+          <h3>Main Menu</h3>
+          <button class="butMainMenu" onClick="navShow('#secPractice')">Practice</button>
+          <br>
+          <button class="butMainMenu" onClick="navShow('#secGig')">Gig</button>
+          <br>
+          <button class="butMainMenu" onClick="navShow('#secPublicity')">Publicity</button>
+          <br>
+          <button class="butMainMenu" onClick="navShow('#secGifts')">Gifts</button>
+          <br>
+          <button class="butMainMenu" onClick="navShow('#secRecord')">Record</button>
+          <br>
+          <button class="butMainMenu" onClick="navShow('#secRelease')">Release</button>
+        </section>
+
+        <section id="secPractice">
+          <h2>Practice</h2>
+          <select id="divPracticeComboBox" onChange="guiActionCostCalc(this.value)">
+            <!-- <option value="">Please choose</option> -->
+            <option value="2">2 days</option>
+            <option value="3">3 days</option>
+            <option value="4">4 days</option>
+            <option value="5">5 days</option>
+            <option value="6">6 days</option>
+            <option value="7">7 days</option>
+          </select>
+          <button onClick="setPractice(document.getElementById('divPracticeComboBox').value)">SET Practice</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu')">< Back</button>
+        </section>
+
+        <section id="secGig">
+          <h2>Gig</h2>
+          <div id="divVenueComboBox"></div>
+          <div id="divTicketPriceComboBox"></div>
+          <select id="divGigDays" onChange="">
+            <!-- <option value="">Choose an option</option> -->
+            <option value="2">2 nights</option>
+            <option value="3">3 nights</option>
+            <option value="4">4 nights</option>
+            <option value="5">5 nights</option>
+            <option value="6">6 nights</option>
+            <option value="7">7 nights</option>
+          </select>
+          <button onClick="setGig(document.getElementById('divGigDays').value,document.getElementById('selVenueComboBox').value,document.getElementById('selTicketPriceComboBox').value)">SET Gig</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu')">< Back</button>
+        </section>
+
+        <section id="secPublicity">
+          <h2>Publicity</h2>
+          <button onClick="setPublicity(1)">SET Publicity</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu')">< Back</button>
+        </section>
+
+        <section id="secGifts">
+          <h2>Gifts</h2>
+          <div id="divGiftComboBox"></div>
+          <button onClick="setGift(1,document.getElementById('selGiftComboBox').value)">SET Gift</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu')">< Back</button>
+        </section>
+
+        <section id="secRecord">
+          <h2>Record</h2>
+          <div id="divTracksComboBox"></div>
+          <button onClick="setRecord(document.getElementById('selTracksComboBox').value)">SET Record</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu')">< Back</button>
+        </section>
+
+        <section id="secRelease">
+          <h2>Release</h2>
+          <div id="divDirectorComboBox"></div>
+          <div id="divLocationComboBox"></div>
+          <div id="divFeatureComboBox"></div>
+          <button onClick="release()">SET Release</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu')">< Back</button>
+        </section>
+
+      </div><!-- divCell -->
       <div class="divCell">
-        <div id="divBandComboBox"></div>
-      </div> <!-- divCell -->
-    </div> <!-- divRow -->
 
-    <div class="divRow">
-      <div class="divCell divRight">
-        <h3>Musicians</h3>
-      </div> <!-- divCell -->
-      <div class="divCell">
-        <div id="divMusicianComboBox"></div>
-        <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
-      </div> <!-- divCell -->
-    </div> <!-- divRow -->
+        <h3>Action</h3>
+        <div id="divActionCost"></div>
 
-    <div class="divRow">
-      <div class="divCell divRight">
-        <h3>Equipment</h3>
-      </div> <!-- divCell -->
-      <div class="divCell">
-        <div id="divEquipmentComboBox"></div>
-      </div> <!-- divCell -->
-    </div> <!-- divRow -->
+        <h3>Date</h3>
+        <div id="divCurrentDate"></div>
 
-    <div class="divRow">
-      <div class="divCell divRight">
-      </div> <!-- divCell -->
-      <div class="divCell">
-      </div> <!-- divCell -->
-    </div> <!-- divRow -->
+        <h3>Band</h3>
+        <div id="divPlayerBand"></div>
 
-  </div> <!-- divTable -->
-  <button onClick="bandCreatePlayerStart()">Create Player Band</button>
+      </div><!-- divCell -->
+    </div><!-- divRow -->
+  </div><!-- divTable -->
 
 
-
-  <h2>Practice</h2>
-  <select id="divPracticeComboBox" onChange="guiActionCostCalc(this.value)">
-    <!-- <option value="">Please choose</option> -->
-    <option value="2">2 days</option>
-    <option value="3">3 days</option>
-    <option value="4">4 days</option>
-    <option value="5">5 days</option>
-    <option value="6">6 days</option>
-    <option value="7">7 days</option>
-  </select>
-  <button onClick="setPractice(document.getElementById('divPracticeComboBox').value)">SET Practice</button>
-
-
-
-  <h2>Gig</h2>
-  <div id="divVenueComboBox"></div>
-  <div id="divTicketPriceComboBox"></div>
-  <select id="divGigDays" onChange="">
-    <!-- <option value="">Choose an option</option> -->
-    <option value="2">2 nights</option>
-    <option value="3">3 nights</option>
-    <option value="4">4 nights</option>
-    <option value="5">5 nights</option>
-    <option value="6">6 nights</option>
-    <option value="7">7 nights</option>
-  </select>
-  <button onClick="setGig(document.getElementById('divGigDays').value,document.getElementById('selVenueComboBox').value,document.getElementById('selTicketPriceComboBox').value)">SET Gig</button>
-
-
-
-  <h2>Publicity</h2>
-  <button onClick="setPublicity(1)">SET Publicity</button>
-
-
-
-  <h2>Gifts</h2>
-  <div id="divGiftComboBox"></div>
-  <button onClick="setGift(1,document.getElementById('selGiftComboBox').value)">SET Gift</button>
-
-
-
-  <h2>Record</h2>
-  <div id="divTracksComboBox"></div>
-  <button onClick="setRecord(document.getElementById('selTracksComboBox').value)">SET Record</button>
-
-
-
-  <h2>Release</h2>
-  <div id="divDirectorComboBox"></div>
-  <div id="divLocationComboBox"></div>
-  <div id="divFeatureComboBox"></div>
-  <button onClick="release()">SET Release</button>
-
-
-
-
-
-
-  <div id="divActionCost"></div>
-  <div id="divCurrentDate"></div>
-  <div id="divPlayerBand"></div>
-
-
-  <div id="divData"></div>
-  <div id="loggingOutput"></div>
-
-
-
-
+<div id="divData"></div>
+<div id="loggingOutput"></div>
 
 
   <script>
     $(document).ready(function() {
       turnInit(); //Initialisation of turn / Start of game!
-      applyListeners();
     });
   </script>
 

@@ -15,29 +15,9 @@
 /************ END OF DEFAULT STYLES ************/
 
 
-section {
-  height: 100%;
-
-  /* border-style: solid;
-  border-image-source: url('../_js/jqwidgets/images/bg.png');
-  border-image-repeat: repeat;
-  border-image-slice: 6 6 6 6;
-  border-image-width: 18px;
-  border-width: 15px;
-  padding: 12px; */
-  /* internal border */
-  /* box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-
-  background-color: #ccc;
-  background: url("../_js/jqwidgets/images/background-image.png") repeat repeat;
-  background-clip: padding-box;
-  background-origin: padding-box;
-  background-position: center; */
-
+.butMainMenu {
+  width: 200px;
 }
-
 
 .divContainerHide {
   display: none;
@@ -52,7 +32,6 @@ section {
 .divTable {
   display: table;
   width: 100%;
-
 }
 
 

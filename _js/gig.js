@@ -1,69 +1,43 @@
-
 function setGig(intDays, intVenue, intTicketPrice) {
-  //set player's band attributes for appropiate action
-  JSONband[0].dateActionFinish = getDateActionFinish(intDays);
+  //set player (0) attributes appropiate for action
+  var datDateActionFinish = 0;
+      datDateActionFinish = getDateActionFinish(intDays);
+  JSONband[0].dateActionFinish = datDateActionFinish;
   JSONband[0].action = 1; //1 = gig
   JSONband[0].days = intDays;
+
   JSONband[0].venue = intVenue;
   JSONband[0].ticketPrice = intTicketPrice;
-  turnStartInterval();
+//  showMusicians(); //just to update what player has chosen
+turnStartInterval();
 } //function
 
 function gig(i) {
-  /*
-    METHOD
-    ======
-    Get tickets sold
-    Get ticket sales total (tickets sold * ticket price)
-    Subtract venue cost from Band's money
-    Add ticket sales total to Band's money
-    Update equipment bonuses
-    Update musician SKILL, HAPPINESS, REPUTATION
-  */
-
-  var intTicketsSold = getTicketsSold(i); // CALC somewhere
-  var intTicketsProfit = parseInt(JSONband[i].ticketPrice) * intTicketsSold; //ticket profits CALC
-
-  updateBandMoneySubtract(i, JSONvenue[JSONband[i].venue].money, "gig"); //VENUE COST
-  updateBandMoneyAdd(i, intTicketsProfit, "gig"); //update band money ticket sales
-
-  loggingOutput("gig cost", JSONband[i].name + " paid "+JSONvenue[JSONband[i].venue].money+" to play "+JSONvenue[JSONband[i].venue].name+" selling "+intTicketsSold+" tickets<br>");
-  loggingOutput("gig profit", JSONband[i].name + " made £"+intTicketsProfit+" from ticket sales<br>");
+  //execute gig for the ith band
+  var strTemp = "";
+  var intTemp = 0;
+  var intIndex = 0;
+  //RANDOM?!?!?!?!
+    intTemp = getTicketsSold(i); // CALC somewhere
+  loggingOutput("gig cost", JSONband[i].name + " paid "+JSONvenue[JSONband[i].venue].money+" to play "+JSONvenue[JSONband[i].venue].name+" selling "+intTemp+" tickets<br>");
+    intTemp = (parseInt(JSONband[i].ticketPrice) * intTemp); //ticket profits CALC
+  loggingOutput("gig profit", JSONband[i].name + " made ££"+(intTemp)+" from ticket sales<br>");
+  updateBandMoneyCost(i, JSONvenue[JSONband[i].venue].money, "gig"); //update money - venue cost
+  updateBandMoneyProfit(i, intTemp, "gig"); //update band money ticket sales
 
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
-    getEquipmentBonusMusician(i, a); //applies any bonus if any
+    //SAME EQUIPMENT BONUS
+    getEquipmentBonusMusician(i, a); //applies any bonus  if any
+    //update skill
     updateMusicianAttribute(i, a, "skill", JSONconfig[0].valueGigSkill);
     updateMusicianAttribute(i, a, "happiness", JSONconfig[0].valueGigHappiness);
     updateMusicianAttribute(i, a, "reputation", JSONconfig[0].valueGigReputation);
   }//for
   loggingOutput("**********************", "<br>");
 
-} //function
+//TODO:
+//ticket sales
+//i = updateBandReputation(i);
 
-
-//////////////////////////
-//// SUPPORTING LOGIC ////
-//////////////////////////
-
-function updateBandMoneySubtract(intBand, intCost, strAction) {
-  //update band money
-  var strTemp = "";
-      strTemp = (JSONband[intBand].name + " had " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + " costs are " + JSONconfig[0].currency + displayNumbersWithCommas(intCost));
-
-  var intTemp = parseInt(JSONband[intBand].money) - parseInt(intCost); // CALC
-  JSONband[intBand].money = intTemp; // THE ACTION !!!!!!!!
-
-  loggingOutput(strAction + " cost", (strTemp + " now has " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + "<br>"));
-} //function
-
-function updateBandMoneyAdd(intBand, intCost, strAction) {
-  //update band money
-  var strTemp = "";
-      strTemp = (JSONband[intBand].name + " had " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + " profits are " + JSONconfig[0].currency + displayNumbersWithCommas(intCost));
-
-  var intTemp = parseInt(JSONband[intBand].money) + parseInt(intCost); // CALC
-  JSONband[intBand].money = intTemp; // THE ACTION !!!!!!!!
-
-  loggingOutput(strAction + " profit", (strTemp + " now has " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + "<br>"));
 } //function
