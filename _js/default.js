@@ -1,5 +1,26 @@
 //Default functions go here!
 
+function applyListeners() {
+
+  document.getElementById("selTracksComboBox").addEventListener("click",function(event){
+    setAlbumTracks(this.value);
+  });
+
+} //function
+
+
+
+function getJSONIDfromName(strName, JSONtoUse) {
+  var intTemp = 0;
+  for (i in JSONtoUse) {
+    if (JSONtoUse[i].name == strName) {
+      intTemp = i;
+    } //if
+  } //for
+  return intTemp;
+} //function
+
+
 function loggingOutput(strAction, strTemp) {
   document.getElementById("loggingOutput").innerHTML += "["+strAction.toUpperCase()+"] " + strTemp;
 } //function
@@ -179,8 +200,6 @@ function showMusicians() {
 showPlayer();
 
   var strTemp = "";
-
-
 
   strTemp += '<section id="secBands">';
   strTemp += "<h1>" + GLOBALdatDateCurrent + "</h1>";

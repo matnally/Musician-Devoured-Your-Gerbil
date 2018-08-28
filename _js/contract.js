@@ -1,8 +1,8 @@
+
 function chkAlreadyHaveContract(i) {
   //returns boolean check on band's contract attribute
   var returnValue = false;
   if (JSONband[i].contract === false) {
-//    console.log(JSONband[i].name + " - contract : " + JSONband[i].contract);
     returnValue = false;
   } else {
     returnValue = true;
@@ -11,12 +11,11 @@ function chkAlreadyHaveContract(i) {
 } //function
 
 function calChanceContract(i) {
+  //Determines if BAND has enough Reputation to get Record contract
 
-  var intTemp = 0;
-      intTemp = parseInt(JSONband[i].reputation); //get the band's reputation
+  var intTemp = parseInt(JSONband[i].reputation); //get the band's reputation
 
-  var returnValue = false;
-
+  var returnValue = false; //boolean to return
   switch (true) {
     case (intTemp > 500):
       returnValue = true;
@@ -30,6 +29,7 @@ function calChanceContract(i) {
     case (intTemp > 100):
       returnValue = false;
     break;
+      returnValue = false;
   } //switch
 
   return returnValue;
@@ -41,22 +41,18 @@ function eventContract() {
 
   for (i in JSONband) {
     //for each band
-
     if (chkAlreadyHaveContract(i) == false) {
       //band DOES NOT have a record contract already
-
       if (calChanceContract(i) == true) {
         //SUCCESS!!!
         JSONband[i].contract = getContract();
-//        console.log(JSONband[i].name + " has got a record contract with " + JSONcontract[JSONband[i].contract].name);
       } //if calChanceContract
 
     } else {
-//      console.log(JSONband[i].name + " ALREADY has a record contract with " + JSONcontract[JSONband[i].contract].name);
+      //Already has a record contract
     } //if chkAlreadyHaveContract
 
   } //for
-
 
 } //function
 

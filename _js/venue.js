@@ -1,10 +1,3 @@
-function getBandTotalAttributeFromMusicians(i, strAttribute) {
-  var intTemp = 0;
-  for (a in JSONband[i].musician) {
-    intTemp += JSONmusician[JSONband[i].musician[a]][strAttribute];
-  } //for
-  return intTemp;
-} //function
 
 function getTicketsSold(i) {
 
@@ -17,14 +10,16 @@ function getTicketsSold(i) {
   var intTicketsSold = 0;
 
   /*
+    vs = venue seats
+
     r  = reputation
     s  = skill
     h  = happiness
     vr = venue reputation
     tp = ticket price
   */
-  intTicketsSold = ((r+s+h+vr) / (tp/vr)).toFixed(0);
-  //loggingOutput("gig logic", "intTicketsSold: "+intTicketsSold+"<br>");
+
+  intTicketsSold = ((r+s+h+vr) / (tp/vr)).toFixed(0); // LOGIC
 
   if (intTicketsSold >= vs) {
     intTicketsSold = vs;
@@ -37,12 +32,24 @@ function getTicketsSold(i) {
 } //function
 
 
+
+function getBandTotalAttributeFromMusicians(i, strAttribute) {
+  var intTemp = 0;
+  for (a in JSONband[i].musician) {
+    intTemp += JSONmusician[JSONband[i].musician[a]][strAttribute];
+  } //for
+  return intTemp;
+} //function
+
+
+
 // The GETS
 function getVenue() {
   return Math.floor(Math.random() * JSONvenue.length);
 } //function
+
 function getTicketPrice() {
-//  return Math.floor(Math.random() * JSONtickets.length);
-//TODO: properly!
+  //  return Math.floor(Math.random() * JSONtickets.length);
+  //TODO: properly!
   return 5;
 } //function

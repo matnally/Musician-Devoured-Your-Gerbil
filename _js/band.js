@@ -1,82 +1,44 @@
 
-function musicianSelect(index) {
-  //Musician selected
-
-  musicianDisplay(index);
-
-} //function}
-
-
-function musicianDisplay(index) {
-  //Display musician's details
+function musicianAdd(index) {
+  //Add musician index to band musician array
+  JSONband[0].musician.push(index);
+  //Update and display the comboBox
+  updateElement("divBandComboBox", createComboBoxfromJSONband(JSONband[0].musician));
 } //function
 
-
-function musicianAdd(index) {
-//  alert(index);
-  //Add musician index to band musician array
-  var strTemp = "";
-
-
-  JSONband[0].musician.push(index);
-//  for (i in JSONband[0].musician) {
-  strTemp = createComboBoxfromJSONband(JSONband[0].musician);
-  //} //for
-  updateElement("divBandComboBox", strTemp);
+function bandCreatePlayerStart() {
+  setMusicianEquipment(); //cheating so random i dont have to input them all
+  bandCreatePlayer(JSONband[0]); //create band from player's chosen musicians
+  bandCreateOther(); //creates bands from the remaining musicians
+  bandOtherActionChoose(); //sets an action to each band CALLED !!!ONLY ONCE!!!
+  showMusicians();
 } //function
 
 function setMusicianEquipment() {
   //random equipment SET
   for (i in JSONmusician) {
     JSONmusician[i].equipment = getMusicianEquipment();
-  } //for musician
+  } //for
 } //function
 function getMusicianEquipment() {
   return Math.floor(Math.random() * JSONequipment.length);
 } //function
 
-function bandCreatePlayerStart() {
-
-setMusicianEquipment(); //cheating so random i dont have to input them all
-
-  bandCreatePlayer(JSONband[0]); //create band from player's chosen musicians
-  bandOtherActionChoose(); // init FOR PLAYER ONLY
-  bandCreateOther(); //creates bands from the remaining musicians
-  bandOtherActionChoose(); //sets an action to each band CALLED !!!ONLY ONCE!!!
-  //  bandOtherActionExecute(); //start the other band's turn!   ????????????????????????
-  showMusicians();
-
-
-
-} //function
-function getJSONIDfromName(strName, JSONtoUse) {
-  var intTemp = 0;
-  for (i in JSONtoUse) {
-    if (JSONtoUse[i].name == strName) {
-      intTemp = i;
-    } //if
-  } //for
-  return intTemp;
-} //function
-
-
-
-function bandCreateOtherStart() { //????? needed?????
-} //function
-
 function bandCreatePlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;
-  //musicians already added
   JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
   JSONtoUse.equipment = document.getElementById("selEquipmentComboBox").value;
   JSONtoUse.money = JSONconfig[0].moneyMedium;
+  actionChoose(0); // init for PLAYER ONLY BAND
 } //function
+
 function bandCreateOther() {
   //player has created their band so create bands from remaining musicians
   var arrTemp = [];
   var intMusiciansToAdd = 0;
   var arrMusiciansRemaining = [];
       arrMusiciansRemaining = getMusiciansRemaining();
+
   do {
     arrTemp = []; //clear array for new band
     intMusiciansToAdd =  Math.floor(Math.random() * 4) + 1; //create random number between 1-4 for no. of musicians to add
@@ -100,30 +62,25 @@ function bandCreateOther() {
     JSONband.push({'name':strName, 'money':JSONconfig[0].moneyMedium, 'contract':false, 'reputation':intReputation, 'musician':arrTemp, 'equipment':intRandomEquipment, 'days':0, 'dateActionFinish':GLOBALdatDateCurrent, 'album':false, 'tracks':0}); //add band JSON
   } while (arrMusiciansRemaining.length > 0); //do  // SHOULD BE 1??????????? ABOVE IN THE DO WHILE
 
-//updateElement("divOtherBandsComboBox", createComboBoxfromJSONTEMP(JSONband)); // SHOWS COMBO BOX OF BANDS
-
 } //function
+
 function bandOtherActionChoose() {
   //set each band's action attribute
-    for (i in JSONband) {
-      //looping through all the bands
-//      if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
-        actionChoose(i);
-  //    } //if
-    } //for
-
+  for (i in JSONband) {
+    actionChoose(i);
+  } //for
 } //function
 function actionChoose(i) {
   //sets but doesn't execute action for a band
 
-    var intDays = 0;
-    var intGifts = 0;
-    var intVenue = 0;
-    var intTicketPrice = 0;
-    var intTracks = 0;
+  var intDays = 0;
+  var intGifts = 0;
+  var intVenue = 0;
+  var intTicketPrice = 0;
+  var intTracks = 0;
 
-    var intAction = 0;
-        intAction = Math.floor(Math.random() * 6); //randomise action
+  var intAction = 0;
+      intAction = Math.floor(Math.random() * 6); //randomise action
 
   //START CHECK record / release
   if ((intAction == 4) || (intAction == 5)) { // 4 = record - 5 = release
@@ -157,124 +114,183 @@ function actionChoose(i) {
   } //if ((intAction == 4) || (intAction == 5))
   //END CHECK record / release
 
+  switch(intAction) {
+    case 0:
+      //practice
+      intDays = getDays(7);
+    break;
+    case 1:
+      //gig
+      intDays = getDays(7);
+      intVenue = getVenue();
+      intTicketPrice = getTicketPrice();
+    break;
+    case 2:
+      //publicity
+      intDays = 1;
+    break;
+    case 3:
+      //gifts
+      intDays = 1;
+      intGifts = getGift();
+    break;
+    case 4:
+      //record
 
-        switch(intAction) {
-          case 0:
-            //practice
-            intDays = getDays();
-          break;
-          case 1:
-            //gig
-            intDays = getDays();
-            intVenue = getVenue();
-            intTicketPrice = getTicketPrice();
-          break;
-          case 2:
-            //publicity
-            intDays = 1;
-          break;
-          case 3:
-            //gifts
-            intDays = 1;
-            intGifts = getGift();
-          break;
-          case 4:
-            //record
+      //get the number of days needed to record album
+      intTracks = getTracks();
+      intDays = JSONtracks[intTracks].days;
 
-            //get the number of days needed to record album
-            intTracks = getTracks();
-            intDays = JSONtracks[intTracks].days;
+    break;
+    case 5:
+      //release
+      intDays = 1;
+    break;
+  } //switch
 
-          break;
-          case 5:
-            //release
-            intDays = 1;
-          break;
-        } //switch
+  var datDateActionFinish = 0;
+      datDateActionFinish = getDateActionFinish(intDays);
 
-    var datDateActionFinish = 0;
-        datDateActionFinish = getDateActionFinish(intDays);
-
-    //action chosen so update band object
-    JSONband[i].action = intAction;
-    JSONband[i].days = intDays;
-    JSONband[i].dateActionFinish = datDateActionFinish;
-    JSONband[i].gift = intGifts;
-    JSONband[i].venue = intVenue;
-    JSONband[i].ticketPrice = intTicketPrice;
-    JSONband[i].tracks = intTracks;
+  //action chosen so update band object
+  JSONband[i].action = intAction;
+  JSONband[i].days = intDays;
+  JSONband[i].dateActionFinish = datDateActionFinish;
+  JSONband[i].gift = intGifts;
+  JSONband[i].venue = intVenue;
+  JSONband[i].ticketPrice = intTicketPrice;
+  JSONband[i].tracks = intTracks;
 
 } //function
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function bandOtherActionExecute() {
   //execute each band's action
 
-    var intReputation = 0;
+  for (i in JSONband) {
+    //looping through all the bands
 
-    for (i in JSONband) {
-      //looping through all the bands
-
-      //action finish check
-      var datDateActionFinish = new Date(JSONband[i].dateActionFinish);
-      if (GLOBALdatDateCurrent.getTime() === datDateActionFinish.getTime()) {
-        //today is the day the action move finishes
-
-if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
+    //action finish check
+    var datDateActionFinish = new Date(JSONband[i].dateActionFinish);
+    if (GLOBALdatDateCurrent.getTime() === datDateActionFinish.getTime()) {
+      //today is the day the action move finishes
+      if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
         actionChoose(i);  //sets next action for a band
-} else {
-  clearInterval(GLOBALintervalTurn);
-  alert("Action complete. Interval stopped? Choose another action.");
-} //if  //player check at the very top
+      } else {
+        clearInterval(GLOBALintervalTurn);
+        alert("Action complete. Interval stopped? Choose another action.");
+      } //if (i != 0)
+    } //if
 
-      } //if
+    /////TODO: BUG ?????
+    i = updateBandReputation(i);
+    ///////////////////////////////////////////////////
 
-  /////TODO: BUG ?????
-  i = updateBandReputation(i);
-  ///////////////////////////////////////////////////
+    switch((JSONband[i].action)) {
+      case 0:
+        //practice
+        practice(i);
+      break;
+      case 1:
+        //gig
+        gig(i);
+      break;
+      case 2:
+        //publicity
+        publicity(i);
+      break;
+      case 3:
+      //gift
+        gift(i);
+      break;
+      case 4:
+        //record
+        //CAN'T CREATE ALBUM EVERY DAY SO CHECK!
+        if (!JSONband[i].album) //only run on first instance???
+          createAlbum(i); //creates the album!
+      break;
+      case 5:
+        //release
+        release(i);
+      break;
+      default:
+    } //switch
 
-      switch((JSONband[i].action)) {
-        case 0:
-          //practice
-          practice(i);
-        break;
-        case 1:
-          //gig
-          gig(i);
-        break;
-        case 2:
-          //publicity
-          publicity(i);
-        break;
-        case 3:
-        //gift
-          gift(i);
-        break;
-        case 4:
-          //record
-
-          //CAN'T CREATE ALBUM EVERY DAY SO CHECK!
-          if (!JSONband[i].album) //only run on first instance???
-            createAlbum(i); //creates the album!
-
-        break;
-        case 5:
-          //release
-
-          release(i);
-
-        break;
-        default:
-          console.log("");
-      } //switch
-
-
-
-    } //for
-
+  } //for
 
 } //function
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function updateBandReputation(intI) {
+  var bob = [];
+  bob = calcBandReputation(JSONband[intI].musician);
+  JSONband[intI].reputation = bob;
+  return intI;
+} //function
+
+function calcBandReputation(JSONtoUse) {
+  //add all musicians reputation return total
+  var intTemp = 0;
+  var intIndex = 0;
+  var intReputation = 0;
+
+  for (i in JSONtoUse) {
+    intReputation = JSONmusician[JSONtoUse[i]].reputation;
+    intTemp += parseInt(intReputation);
+  } //for
+
+  return intTemp;
+} //function
+
+function getBandMusicianJSONindex(strName) {
+  //returns the JSON index of the corressponding name
+  var intIndex = 0;
+  for (i in JSONmusician) {
+    if (JSONmusician[i].name == strName) {
+        //found musician
+        intIndex = i;
+    } //if
+  } //for
+  return intIndex;
+} //function
 
 ///////The GETS!//////
 var GLOBALdatDateCurrent = new Date("01/01/1989"); // GLOBAL!!!!!  mm/dd/yyyy
@@ -290,8 +306,8 @@ function getDateActionFinish(i) {
   return tmpDate;
 } //function
 
-function getDays() {
-  return Math.floor(Math.random() * 7) + 1;
+function getDays(intMax) {
+  return Math.floor(Math.random() * intMax) + 1;
 } //function
 function getBandEquipment() {
   return Math.floor(Math.random() * JSONequipment.length);
@@ -312,7 +328,6 @@ function getBandName(arrTemp) {
   } //switch
   return strTemp;
 } //function
-
 
 function getMusiciansRemaining() {
   //creates and returns an array of musician IDs that are not in the player's band
@@ -337,16 +352,6 @@ function getMusiciansRemaining() {
   } //for
   return arrTemp;
 } //function
-
-
-
-
-
-
-
-
-
-
 
 function getRandomName() {
   return createName();

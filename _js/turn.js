@@ -1,9 +1,14 @@
 
+var GLOBALintervalTurn; //GLOBAL TURN
+function turnStartInterval() {
+  GLOBALintervalTurn = setInterval(turnStart, 1000);
+} //function
+
 
 function turnInit() {
   //Initialisation of turn / Start of game!
 
-document.getElementById("divCurrentDate").innerHTML = "<h1>Date: " + JSONconfig[0].date + "</h1>";
+  document.getElementById("divCurrentDate").innerHTML = "<h1>Date: " + JSONconfig[0].date + "</h1>";
 
   updateElement("divEquipmentComboBox", createComboBoxfromJSONiAndName(JSONequipment, "selEquipmentComboBox"));
   updateElement("divDirectorComboBox", createComboBoxfromJSONiAndName(JSONdirector, "selDirectorComboBox"));
@@ -18,54 +23,49 @@ document.getElementById("divCurrentDate").innerHTML = "<h1>Date: " + JSONconfig[
 
 } //function
 
-var GLOBALintervalTurn;
-function turnStartInterval() {
-  GLOBALintervalTurn = setInterval(turnStart, 1000);
+function turnStart() {
+  //Start of turn
+  updateDate();
+  bandOtherActionExecute(); //do actions for bands
+  eventContract(); //see if they are eligible for a record contract, if not already
+  checkDOWaction(); //choose action corressponding to day of week
+  showMusicians();
 } //function
 
 function updateDate(){
   GLOBALdatDateCurrent.setDate(GLOBALdatDateCurrent.getDate() + 1); //increase GLOBAL current date
   updateElement("divCurrentDate", "<h1>Date: " + GLOBALdatDateCurrent + "</h1>");
-//  document.getElementById("divCurrentDate").innerHTML = "<h1>Date: " + GLOBALdatDateCurrent + "</h1>";
 } //function
-
-function turnStart() {
-  //Start of turn
-  updateDate();
-
-  bandOtherActionExecute(); //do actions for bands
-
-  eventContract(); //see if they are eligible for a record contract, if not already
-  checkDOWaction(); //choose action corressponding to day of week
-
-  showMusicians();
-} //function
-
 
 function checkDOWaction() {
   //choose action corressponding to day of week
-switch(GLOBALdatDateCurrent.getDay()) {
-  case 0:
-    //Sunday
-//    console.log("**** CHART TIME ****");
-  case 5:
-    //friday
-    takewageAway();
-    console.log("**** WAGE TIME ****");
-  break;
-  default:
-} //switch
-
-  // var d = new Date();
-  // var weekday = new Array(7);
-  // weekday[0] =  "Sunday";
-  // weekday[1] = "Monday";
-  // weekday[2] = "Tuesday";
-  // weekday[3] = "Wednesday";
-  // weekday[4] = "Thursday";
-  // weekday[5] = "Friday";
-  // weekday[6] = "Saturday";
-  // var n = weekday[d.getDay()];
+  switch(GLOBALdatDateCurrent.getDay()) {
+    case 0:
+      //Sunday
+      //TODO: CHART TIME!!!
+    break;
+    case 1:
+      //Monday
+    break;
+    case 2:
+      //Tuesday
+    break;
+    case 3:
+      //Wednesday
+    break;
+    case 4:
+      //Thursday
+    break;
+    case 5:
+      //Friday
+      takewageAway();
+      loggingOutput("WAGE TIME", "Day of the Week!");
+    break;
+    case 6:
+      //Saturday
+    break;
+    default:
+  } //switch
 
 } //function
 
@@ -79,14 +79,12 @@ function takewageAway() {
     intTemp=0; //reset
     for (a in JSONband[i].musician) {
       //for every musician band
-//      console.log(JSONmusician[JSONband[i].musician[a]].name + " has wages of " + JSONmusician[JSONband[i].musician[a]].wage);
       intTemp += parseInt(JSONmusician[JSONband[i].musician[a]].wage);
     }//for
-    console.log("'" + JSONband[i].name + "' total wages are: " + JSONconfig[0].currency + displayNumbersWithCommas(intTemp));
+    loggingOutput("WAGES","'" + JSONband[i].name + "' total wages are: " + JSONconfig[0].currency + displayNumbersWithCommas(intTemp));
     //update money
-    intTemp = parseInt(JSONband[i].money) - parseInt(intTemp);
-      JSONband[i].money = intTemp;
-
+    intTemp = parseInt(JSONband[i].money) - parseInt(intTemp);  // THE ACTION !!!!!!!!
+    JSONband[i].money = intTemp;
   }//for
 
 } //function
@@ -95,16 +93,4 @@ function takewageAway() {
 function turnEnd() {
   //End of turn
 
-} //function
-
-
-
-
-
-function guiActionCostCalc(intTemp) {
-
-  var strTemp = "";
-  strTemp +=  "It will cost " + JSONconfig[0].currency + displayNumbersWithCommas(JSONconfig[0].costPractice) + " per day";
-  strTemp +=  "Thats a total of " + JSONconfig[0].currency + displayNumbersWithCommas((JSONconfig[0].costPractice * intTemp)) + " for " +intTemp+ "  days";
-  updateElement("divActionCost", strTemp);
 } //function
