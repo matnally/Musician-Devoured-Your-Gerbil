@@ -4,7 +4,7 @@ function setPractice(intDays) {
   JSONband[0].dateActionFinish = getDateActionFinish(intDays);
   JSONband[0].action = 0; //0 = practice
   JSONband[0].days = parseInt(intDays);
-  turnStartInterval(); //starts action for nth days (interval)
+  turnStart(); //starts action for nth days (interval)
 } //function
 
 function practice(i) {

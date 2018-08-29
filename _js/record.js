@@ -8,7 +8,7 @@ function setRecord(intTracks) {
     JSONband[0].action = 4; //4 = record
     JSONband[0].days = JSONtracks[intTracks].days;
     JSONband[0].tracks = JSONtracks[intTracks].tracks;
-    turnStartInterval();
+    turnStart();
   } //if
 } //function
 

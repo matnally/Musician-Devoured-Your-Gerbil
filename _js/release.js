@@ -7,7 +7,7 @@ function setRelease(intDays) {
     JSONband[0].dateActionFinish = getDateActionFinish(intDays);
     JSONband[0].action = 5; //5 = release
     JSONband[0].days = intDays;
-    turnStartInterval();
+    turnStart();
   } //if
 } //function
 
@@ -31,9 +31,12 @@ function release(i) {
 
   } else {
     //there are NO more ative singles
-    alert("NO MORE ACTIVE SINGLES! Record another album");
-    JSONband[0].album = false;
+    JSONband[i].album = false;
     //remmove album???
+
+    if (i==0)
+      alert("NO MORE ACTIVE SINGLES! Record another album");
+
   } //if
 
 } //function

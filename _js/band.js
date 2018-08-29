@@ -27,7 +27,7 @@ function getMusicianEquipment() {
 function bandCreatePlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;
 JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
-JSONtoUse.reputation = 5000; //CHEATING FOR TESTING PURPOSES
+JSONtoUse.reputation = 5000; //TODO: CHEATING FOR TESTING PURPOSES
   JSONtoUse.equipment = document.getElementById("selEquipmentComboBox").value;
   JSONtoUse.money = JSONconfig[0].moneyMedium;
   actionChoose(0); // init for PLAYER ONLY BAND
@@ -187,10 +187,9 @@ function bandOtherActionExecute() {
     if (GLOBALdatDateCurrent.getTime() === datDateActionFinish.getTime()) {
       //today is the day the action move finishes
       if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
-        actionChoose(i);  //sets next action for a band
+        actionChoose(i);  //sets next action for a band  IMPORTANT!!!
       } else {
-        clearInterval(GLOBALintervalTurn);
-        alert("Action complete. Interval stopped? Choose another action.");
+        clearTimeout(GLOBALintervalTurn); //IMPORTANT!!!
       } //if (i != 0)
     } //if
 
@@ -275,6 +274,8 @@ function calcBandReputation(JSONtoUse) {
     intReputation = JSONmusician[JSONtoUse[i]].reputation;
     intTemp += parseInt(intReputation);
   } //for
+
+intTemp = 5000;//TODO: CHEATING FOR TESTING PURPOSES
 
   return intTemp;
 } //function

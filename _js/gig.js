@@ -6,7 +6,7 @@ function setGig(intDays, intVenue, intTicketPrice) {
   JSONband[0].days = intDays;
   JSONband[0].venue = intVenue;
   JSONband[0].ticketPrice = intTicketPrice;
-  turnStartInterval();
+  turnStart();
 } //function
 
 function gig(i) {

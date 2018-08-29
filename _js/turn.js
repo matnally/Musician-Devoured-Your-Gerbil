@@ -1,16 +1,14 @@
 
 
 var GLOBALintervalTurn; //GLOBAL TURN
-function turnStartInterval() {
-  GLOBALintervalTurn = setInterval(turnStart, 1000);
-} //function
+// function turnStartInterval() {
+//   GLOBALintervalTurn = setTimeout(turnStart, 1000);
+// } //function
 
 
 function turnInit() {
   //Initialisation of turn / Start of game!
-
   document.getElementById("divCurrentDate").innerHTML = "<h1>Date: " + JSONconfig[0].date + "</h1>";
-
   updateElement("divEquipmentComboBox", createComboBoxfromJSONiAndName(JSONequipment, "selEquipmentComboBox"));
   updateElement("divDirectorComboBox", createComboBoxfromJSONiAndName(JSONdirector, "selDirectorComboBox"));
   updateElement("divFeatureComboBox", createComboBoxfromJSONiAndName(JSONfeature, "selFeatureComboBox"));
@@ -21,19 +19,18 @@ function turnInit() {
   updateElement("divBandComboBox", createComboBoxfromJSONiAndName(JSONband, "selBandComboBox"));
   updateElement("divVenueComboBox", createComboBoxfromJSONiAndName(JSONvenue, "selVenueComboBox"));
   updateElement("divTicketPriceComboBox", createComboBoxfromJSONticketPrice(JSONtickets, "selTicketPriceComboBox"));
-
 } //function
 
 function turnStart() {
   //Start of turn
-  loggingOutput("DAY ?", "************************" + "<br>" + "<br>");
+  GLOBALintervalTurn = setTimeout(turnStart, 500);
   updateDate();
+  loggingOutput("DAY " + GLOBALdatDateCurrent, " ************************" + "<br>" + "<br>");
   bandOtherActionExecute(); //do actions for bands
   eventContract(); //see if they are eligible for a record contract, if not already
   checkDOWaction(); //choose action corressponding to day of week
   showMusicians();
   loggingOutput("TURN END", "************************" + "<br>" + "<br>");
-
 } //function
 
 function updateDate(){
@@ -92,16 +89,6 @@ function takewageAway() {
 } //function
 
 
-function turnEnd() {
-  //End of turn
-  loggingOutput("TURN ? END", "************************" + "<br>" + "<br>");
-  showMusicians();
-
-} //function
-
-
-
-
 
 
 
@@ -111,15 +98,18 @@ function chartTime() {
 
   var arrTemp = [];
   for (y in JSONsingle) {
-    //get ALL active singles
+    //get ALL singles
     if (JSONsingle[y].active == false) {
-      //single belongs to album
+      //single not released yet
       arrTemp.push(JSONsingle[y]); //add single to temp array
+      console.log("Single name: " + JSONsingle[y].name);
+      console.log("qualityRating: " + JSONsingle[y].qualityRating);
+
     } //if
   } //for
 
-alert(arrTemp[1].name);
+  // console.log("arrTemp: " + arrTemp);
+  // console.log("");
+  // alert(arrTemp[1].name);
 
-
-
-}
+} //function

@@ -62,7 +62,8 @@ function getJSONIDfromName(strName, JSONtoUse) {
 
 
 function loggingOutput(strAction, strTemp) {
-  document.getElementById("loggingOutput").innerHTML += "["+strAction.toUpperCase()+"] " + strTemp;
+  //document.getElementById("loggingOutput").innerHTML += "["+strAction.toUpperCase()+"] " + strTemp;
+  console.log("["+strAction.toUpperCase()+"] " + strTemp);
 } //function
 
 

@@ -5,7 +5,7 @@ function setGift(intDays, intGifts) {
   JSONband[0].action = 3; //3 = gift
   JSONband[0].days = intDays;
   JSONband[0].gift = intGifts;
-  turnStartInterval();
+  turnStart();
 } //function
 
 function gift(i) {
