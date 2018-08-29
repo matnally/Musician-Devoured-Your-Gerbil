@@ -1,4 +1,5 @@
 
+
 var GLOBALintervalTurn; //GLOBAL TURN
 function turnStartInterval() {
   GLOBALintervalTurn = setInterval(turnStart, 1000);
@@ -25,12 +26,13 @@ function turnInit() {
 
 function turnStart() {
   //Start of turn
+  loggingOutput("DAY ?", "************************" + "<br>" + "<br>");
   updateDate();
   bandOtherActionExecute(); //do actions for bands
   eventContract(); //see if they are eligible for a record contract, if not already
   checkDOWaction(); //choose action corressponding to day of week
   showMusicians();
-  loggingOutput("TURN ? START", "************************" + "<br>" + "<br>");
+  loggingOutput("TURN END", "************************" + "<br>" + "<br>");
 
 } //function
 
@@ -45,6 +47,7 @@ function checkDOWaction() {
     case 0:
       //Sunday
       //TODO: CHART TIME!!!
+      chartTime();
     break;
     case 1:
       //Monday
@@ -61,7 +64,6 @@ function checkDOWaction() {
     case 5:
       //Friday
       takewageAway();
-      loggingOutput("WAGE TIME", "Day of the Week!");
     break;
     case 6:
       //Saturday
@@ -83,10 +85,8 @@ function takewageAway() {
       //for every musician band
       intTemp += parseInt(JSONmusician[JSONband[i].musician[a]].wage);
     }//for
+    updateBandMoneySubtract(i, intTemp, "wages"); //update band money
     loggingOutput("WAGES","'" + JSONband[i].name + "' total wages are: " + JSONconfig[0].currency + displayNumbersWithCommas(intTemp) + "<br>");
-    //update money
-    intTemp = parseInt(JSONband[i].money) - parseInt(intTemp);  // THE ACTION !!!!!!!!
-    JSONband[i].money = intTemp;
   }//for
 
 } //function
@@ -95,5 +95,31 @@ function takewageAway() {
 function turnEnd() {
   //End of turn
   loggingOutput("TURN ? END", "************************" + "<br>" + "<br>");
+  showMusicians();
 
 } //function
+
+
+
+
+
+
+
+
+
+function chartTime() {
+
+  var arrTemp = [];
+  for (y in JSONsingle) {
+    //get ALL active singles
+    if (JSONsingle[y].active == false) {
+      //single belongs to album
+      arrTemp.push(JSONsingle[y]); //add single to temp array
+    } //if
+  } //for
+
+alert(arrTemp[1].name);
+
+
+
+}

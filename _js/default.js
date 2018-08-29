@@ -2,9 +2,49 @@
 
 function applyListeners() {
 
-  document.getElementById("selTracksComboBox").addEventListener("click",function(event){
+  document.getElementById("selTracksComboBox").addEventListener("change",function(event){
     setAlbumTracks(this.value);
   });
+
+  document.getElementById("selGiftComboBox").addEventListener("change",function(event){
+    guiActionCostCalc(3);
+  });
+
+  document.getElementById("selVenueComboBox").addEventListener("change",function(event){
+    guiActionCostCalc(1);
+  });
+  // document.getElementById("divTicketPriceComboBox").addEventListener("change",function(event){
+  //   guiActionCostCalc(1);
+  // });
+
+
+
+  //
+  //
+  //
+  //
+  // selEquipmentComboBox
+  // selDirectorComboBox
+  // selFeatureComboBox
+  // selLocationComboBox
+  // selGiftComboBox
+  // selTracksComboBox
+  // selMusicianComboBox
+  // selBandComboBox
+  // selVenueComboBox
+  // selTicketPriceComboBox
+  //
+  //
+
+
+
+
+
+
+
+
+
+
 
 } //function
 

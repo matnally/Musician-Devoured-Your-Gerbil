@@ -26,7 +26,8 @@ function getMusicianEquipment() {
 
 function bandCreatePlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;
-  JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
+JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
+JSONtoUse.reputation = 5000; //CHEATING FOR TESTING PURPOSES
   JSONtoUse.equipment = document.getElementById("selEquipmentComboBox").value;
   JSONtoUse.money = JSONconfig[0].moneyMedium;
   actionChoose(0); // init for PLAYER ONLY BAND
@@ -193,9 +194,7 @@ function bandOtherActionExecute() {
       } //if (i != 0)
     } //if
 
-    /////TODO: BUG ?????
-    i = updateBandReputation(i);
-    ///////////////////////////////////////////////////
+    loggingOutput(JSONband[i].name + " TURN", "*****" + getActionName(JSONband[i].action) + "*****<br>");
 
     switch((JSONband[i].action)) {
       case 0:

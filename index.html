@@ -52,38 +52,29 @@
 
     <div class="divRow">
       <div class="divCell divRight">
-        <h3>Band name</h3>
       </div> <!-- divCell -->
       <div class="divCell">
-        <input id="inpBandName" type="text" value="Profanity"></input>
       </div> <!-- divCell -->
     </div> <!-- divRow -->
 
     <div class="divRow">
       <div class="divCell divRight">
-        <h3>Band musicians</h3>
       </div> <!-- divCell -->
       <div class="divCell">
-        <div id="divBandComboBox"></div>
       </div> <!-- divCell -->
     </div> <!-- divRow -->
 
     <div class="divRow">
       <div class="divCell divRight">
-        <h3>Musicians</h3>
       </div> <!-- divCell -->
       <div class="divCell">
-        <div id="divMusicianComboBox"></div>
-        <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
       </div> <!-- divCell -->
     </div> <!-- divRow -->
 
     <div class="divRow">
       <div class="divCell divRight">
-        <h3>Equipment</h3>
       </div> <!-- divCell -->
       <div class="divCell">
-        <div id="divEquipmentComboBox"></div>
       </div> <!-- divCell -->
     </div> <!-- divRow -->
 
@@ -95,12 +86,30 @@
     </div> <!-- divRow -->
 
   </div> <!-- divTable -->
-  <button onClick="bandCreatePlayerStart()">Create Player Band</button>
+
+
+  <h3>Band name</h3>
+  <input id="inpBandName" type="text" value="Profanity"></input>
+
+  <h3>Band musicians</h3>
+  <div id="divBandComboBox"></div>
+
+  <h3>Musicians</h3>
+  <div id="divMusicianComboBox"></div>
+  <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
+
+  <h3>Equipment</h3>
+  <div id="divEquipmentComboBox"></div>
+  <br><br>
+  <button onClick="bandCreatePlayerStart()">Create Band</button>
+
+  <hr>
+
 
 
 
   <h2>Practice</h2>
-  <select id="divPracticeComboBox" onChange="guiActionCostCalc(this.value)">
+  <select id="divPracticeComboBox" onChange="guiActionCostCalc(0)">
     <!-- <option value="">Please choose</option> -->
     <option value="2">2 days</option>
     <option value="3">3 days</option>
@@ -109,14 +118,13 @@
     <option value="6">6 days</option>
     <option value="7">7 days</option>
   </select>
-  <button onClick="setPractice(document.getElementById('divPracticeComboBox').value)">SET Practice</button>
-
-
+  <button onClick="setPractice(document.getElementById('divPracticeComboBox').value)">Band Practice</button>
+  <hr>
 
   <h2>Gig</h2>
   <div id="divVenueComboBox"></div>
   <div id="divTicketPriceComboBox"></div>
-  <select id="divGigDays" onChange="">
+  <select id="divGigDays" onChange="guiActionCostCalc(1)">
     <!-- <option value="">Choose an option</option> -->
     <option value="2">2 nights</option>
     <option value="3">3 nights</option>
@@ -125,43 +133,43 @@
     <option value="6">6 nights</option>
     <option value="7">7 nights</option>
   </select>
-  <button onClick="setGig(document.getElementById('divGigDays').value,document.getElementById('selVenueComboBox').value,document.getElementById('selTicketPriceComboBox').value)">SET Gig</button>
-
-
+  <button onClick="setGig(document.getElementById('divGigDays').value,document.getElementById('selVenueComboBox').value,document.getElementById('selTicketPriceComboBox').value)">Play Gig</button>
+  <hr>
 
   <h2>Publicity</h2>
-  <button onClick="setPublicity(1)">SET Publicity</button>
-
-
+  <button onClick="setPublicity(1)">Get Publicity</button>
+  <hr>
 
   <h2>Gifts</h2>
   <div id="divGiftComboBox"></div>
-  <button onClick="setGift(1,document.getElementById('selGiftComboBox').value)">SET Gift</button>
-
-
+  <button onClick="setGift(1,document.getElementById('selGiftComboBox').value)">Give Gifts</button>
+  <hr>
 
   <h2>Record</h2>
   <div id="divTracksComboBox"></div>
-  <button onClick="setRecord(document.getElementById('selTracksComboBox').value)">SET Record</button>
-
-
+  <button onClick="setRecord(document.getElementById('selTracksComboBox').value)">Record an album</button>
+  <hr>
 
   <h2>Release</h2>
   <div id="divDirectorComboBox"></div>
   <div id="divLocationComboBox"></div>
   <div id="divFeatureComboBox"></div>
-  <button onClick="release()">SET Release</button>
+  <button onClick="setRelease(1)">Release Single</button>
+  <br>
+  <button onClick="alert('TODO');">Release Album</button>
+  <hr>
 
 
 
 
 
 
+  <h2>Action</h2>
   <div id="divActionCost"></div>
+  <h2>Date</h2>
   <div id="divCurrentDate"></div>
+
   <div id="divPlayerBand"></div>
-
-
   <div id="divData"></div>
   <div id="loggingOutput"></div>
 

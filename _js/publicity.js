@@ -17,10 +17,8 @@ function publicity(i) {
 
   var intPublicity = getPublicityBandBonusReputation(i); // for the band??? in real time (musicians stats are changing)
   for (a in JSONband[i].musician) {
-
-    // TODO: get change of getting publicity ???
-
     //for every musician in the passed in band
+    updateBandMoneySubtract(i, JSONconfig[0].valuePublicityCost, "publicity"); //update band money
     updateMusicianAttribute(i, a, "reputation", intPublicity);
     loggingOutput("musician publicity", JSONmusician[JSONband[i].musician[a]].name + "got "+intPublicity+" reputation<br>");
   } //for

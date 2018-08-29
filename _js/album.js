@@ -15,19 +15,30 @@ function createAlbum(i) {
 
   //Create Tracks for Album
   for (var z = 0; z < parseInt(intTracks); z++) {
-    createTrack(intAlbum);
+    createTrack(i, intAlbum);
   } //for
 
-  updateBandMoneySubtract(i, JSONtracks[i].money, "record album"); //update band money
+  updateBandMoneySubtract(i, JSONtracks[document.getElementById('selTracksComboBox').value].money, "record album"); //update band money
 
-  loggingOutput("ALBUM RECORDED", JSONband[i].name + " recorded an album called " + JSONalbum[JSONband[i].album].name + "<br>");
+  loggingOutput("ALBUM RECORDED", JSONband[i].name + " recorded an album called " + JSONalbum[JSONband[i].album].name + " consisting of "+intTracks+" tracks<br>");
 
 } //function
 
 
-function createTrack(intAlbum) {
+function createTrack(i, intAlbum) {
   //Writes Track details to JSON file
   var strTrackName = getRandomName();
-  JSONsingle.push({'name':strTrackName,'album':intAlbum, 'active':true});
-  loggingOutput("TRACK RECORDED", "The track "+strTrackName+" of the total for the album " + JSONsingle[intAlbum].name  + " has been recorded by " + JSONband[i].name + "<br>");
+  var intQualityRating = getQualityRatingTrack(i);
+  JSONsingle.push({'name':strTrackName,'album':intAlbum, 'active':true, 'qualityRating':intQualityRating, 'recordedDate':GLOBALdatDateCurrent.getTime()});
+  loggingOutput("TRACK RECORDED", "The track "+strTrackName+" for the album " + intAlbum  + " has been recorded by " + JSONband[i].name + "<br>");
+} //function
+
+function getQualityRatingTrack(i) {
+  //Return the quality rating of the track, just add all musician's skill
+  var intQualityRating = 0;
+  for (a in JSONband[i].musician) {
+    //for every musician in the passed in band
+    intQualityRating += JSONmusician[a].skill
+  }//for
+  return intQualityRating;
 } //function

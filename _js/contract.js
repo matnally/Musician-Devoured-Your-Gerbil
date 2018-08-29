@@ -1,8 +1,40 @@
 
+function eventContract() {
+  //see if they are eligible for a record contract, if not already
+
+  for (i in JSONband) {
+    //for each band
+    if ((chkAlreadyHaveContract(i) == false) && (calChanceContract(i) == true)) {
+      //band DOES NOT have a record contract and has a change of a contract
+      if (i == 0) { //Check to see if its the player's band?
+        //Player's band
+        askSignContract();
+      } else {
+        JSONband[i].contract = getContract();
+      } //if
+      loggingOutput("RECORD CONTRACT", JSONband[i].name + " has just signed a record contract with "+JSONcontract[JSONband[i].contract].name+"<br>");
+    } else {
+      //Already has a record contract or no chance of a contract
+    } //if
+  } //for
+
+} //function
+
+function askSignContract() {
+  var intContract = getContract();
+  JSONband[0].contract = intContract;
+  alert("Do you want to sign with " + JSONcontract[intContract].name) + "? To be easy, I assume YES! TODO!";
+}
+
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
+
+
 function chkAlreadyHaveContract(i) {
   //returns boolean check on band's contract attribute
   var returnValue = false;
-  if (JSONband[i].contract === false) {
+  if (JSONband[i].contract == false) {
     returnValue = false;
   } else {
     returnValue = true;
@@ -33,26 +65,6 @@ function calChanceContract(i) {
   } //switch
 
   return returnValue;
-
-} //function
-
-function eventContract() {
-  //see if they are eligible for a record contract, if not already
-
-  for (i in JSONband) {
-    //for each band
-    if (chkAlreadyHaveContract(i) == false) {
-      //band DOES NOT have a record contract already
-      if (calChanceContract(i) == true) {
-        //SUCCESS!!!
-        JSONband[i].contract = getContract();
-      } //if calChanceContract
-
-    } else {
-      //Already has a record contract
-    } //if chkAlreadyHaveContract
-
-  } //for
 
 } //function
 
