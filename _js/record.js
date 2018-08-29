@@ -12,5 +12,5 @@ function record() {
 } //function
 
 function setAlbumTracks(intTracks) {
-  JSONband[0].tracks = intTracks;
+  JSONband[0].tracks = JSONtracks[intTracks].tracks; //gets the number of days needed to record the tracks
 }

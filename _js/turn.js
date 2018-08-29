@@ -30,6 +30,8 @@ function turnStart() {
   eventContract(); //see if they are eligible for a record contract, if not already
   checkDOWaction(); //choose action corressponding to day of week
   showMusicians();
+  loggingOutput("TURN ? START", "************************" + "<br>" + "<br>");
+
 } //function
 
 function updateDate(){
@@ -81,7 +83,7 @@ function takewageAway() {
       //for every musician band
       intTemp += parseInt(JSONmusician[JSONband[i].musician[a]].wage);
     }//for
-    loggingOutput("WAGES","'" + JSONband[i].name + "' total wages are: " + JSONconfig[0].currency + displayNumbersWithCommas(intTemp));
+    loggingOutput("WAGES","'" + JSONband[i].name + "' total wages are: " + JSONconfig[0].currency + displayNumbersWithCommas(intTemp) + "<br>");
     //update money
     intTemp = parseInt(JSONband[i].money) - parseInt(intTemp);  // THE ACTION !!!!!!!!
     JSONband[i].money = intTemp;
@@ -92,5 +94,6 @@ function takewageAway() {
 
 function turnEnd() {
   //End of turn
+  loggingOutput("TURN ? END", "************************" + "<br>" + "<br>");
 
 } //function
