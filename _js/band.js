@@ -12,6 +12,8 @@ function bandCreatePlayerStart() {
   bandCreateOther(); //creates bands from the remaining musicians
   bandOtherActionChoose(); //sets an action to each band CALLED !!!ONLY ONCE!!!
   showMusicians();
+  //navHideAll();
+  navShow("#secMainMenu")
 } //function
 
 function setMusicianEquipment() {
@@ -165,17 +167,6 @@ function actionChoose(i) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 function bandOtherActionExecute() {
   //execute each band's action
 
@@ -189,7 +180,7 @@ function bandOtherActionExecute() {
       if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
         actionChoose(i);  //sets next action for a band  IMPORTANT!!!
       } else {
-        clearTimeout(GLOBALintervalTurn); //IMPORTANT!!!
+        turnEnd();
       } //if (i != 0)
     } //if
 

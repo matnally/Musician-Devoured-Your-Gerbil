@@ -184,6 +184,7 @@ function formatDate(value) {
    } //function
 
 
+
  function showPlayer() {
 
    var strTemp = "";
@@ -247,7 +248,7 @@ showPlayer();
 
   var strTemp = "";
 
-  strTemp += '<section id="secBands">';
+//  strTemp += '<section id="secBands">';
   strTemp += "<h1>" + GLOBALdatDateCurrent + "</h1>";
   strTemp += '<div class="divTable">';
 
@@ -333,7 +334,7 @@ showPlayer();
   }
 
   strTemp += '</div>';
-  strTemp += '</section>';
+  //strTemp += '</section>';
 
   updateElement("divData", strTemp);
 

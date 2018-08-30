@@ -31,7 +31,7 @@ function eventContract() {
 function askSignContract() {
   var intContract = getContract();
   JSONband[0].contract = intContract;
-  alert("Do you want to sign with " + JSONcontract[intContract].name) + "? To be easy, I assume YES! TODO!";
+  console.log("Do you want to sign with " + JSONcontract[intContract].name + "? To be easy, I assume YES! TODO! Hopefully this is only shown once!");
 //  alert("JSONband[0].contract: " + JSONband[0].contract);
 }
 
