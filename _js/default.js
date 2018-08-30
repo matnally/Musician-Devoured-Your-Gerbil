@@ -61,11 +61,16 @@ function getJSONIDfromName(strName, JSONtoUse) {
 } //function
 
 
+var GLOBALstrLogging = "";
 function loggingOutput(strAction, strTemp) {
   //document.getElementById("loggingOutput").innerHTML += "["+strAction.toUpperCase()+"] " + strTemp;
-  console.log("["+strAction.toUpperCase()+"] " + strTemp);
-} //function
+  //console.log("["+strAction.toUpperCase()+"] " + strTemp);
+  GLOBALstrLogging += "["+strAction.toUpperCase()+"] " + strTemp;
 
+} //function
+function logShow() {
+  document.getElementById("loggingOutput").innerHTML = GLOBALstrLogging;
+}
 
 function updateElement(elemName, strTemp) {
   //update the element with text
@@ -284,7 +289,7 @@ showPlayer();
         if (JSONsingle[y].album == JSONband[a].album) {
           //single belongs to album
           strTemp += '<br>- ';
-          strTemp += JSONsingle[y].name + " (ACTIVE : " + JSONsingle[y].active + ")";
+          strTemp += JSONsingle[y].name + " (Released : " + JSONsingle[y].active + ")";
         } //if
       } //for
       strTemp += '</div>'; //cell

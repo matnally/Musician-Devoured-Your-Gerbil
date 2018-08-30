@@ -297,6 +297,7 @@ var GLOBALdatDateCurrent = new Date("01/01/1989"); // GLOBAL!!!!!  mm/dd/yyyy
 function getDateCurrent() {
   //returns the in-game current date
   var datCurrent = GLOBALdatDateCurrent;
+//  datCurrent = GLOBALdatDateCurrent.getFullYear() +"/"+ GLOBALdatDateCurrent.getMonth() +"/"+ GLOBALdatDateCurrent.getDate();
   return datCurrent;
 } //function
 function getDateActionFinish(i) {

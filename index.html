@@ -53,26 +53,26 @@
     <div class="divRow">
       <div class="divCell">
 
-        <h3>Band name</h3>
+        <p>Band name</p>
         <input id="inpBandName" type="text" value="Profanity"></input>
 
       </div> <!-- divCell -->
       <div class="divCell">
 
-        <h3>Band musicians</h3>
+        <p>Band musicians</p>
         <div id="divBandComboBox"></div>
 
       </div> <!-- divCell -->
       <div class="divCell">
 
-        <h3>Musicians</h3>
+        <p>Musicians</p>
         <div id="divMusicianComboBox"></div>
         <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
 
       </div> <!-- divCell -->
       <div class="divCell">
 
-        <h3>Equipment</h3>
+        <p>Equipment</p>
         <div id="divEquipmentComboBox"></div>
         <br><br>
         <button onClick="bandCreatePlayerStart()">Create Band</button>
@@ -90,7 +90,7 @@
     <div class="divRow">
       <div class="divCell">
 
-        <h2>Practice</h2>
+        <p>Practice</p>
         <select id="divPracticeComboBox" onChange="guiActionCostCalc(0)">
           <!-- <option value="">Please choose</option> -->
           <option value="2">2 days</option>
@@ -105,7 +105,7 @@
       </div> <!-- divCell -->
       <div class="divCell">
 
-        <h2>Gig</h2>
+        <p>Gig</p>
         <div id="divVenueComboBox"></div>
         <div id="divTicketPriceComboBox"></div>
         <select id="divGigDays" onChange="guiActionCostCalc(1)">
@@ -122,27 +122,27 @@
       </div> <!-- divCell -->
       <div class="divCell">
 
-        <h2>Publicity</h2>
+        <p>Publicity</p>
         <button onClick="setPublicity(1)">Get Publicity</button>
 
       </div> <!-- divCell -->
       <div class="divCell">
 
-        <h2>Gifts</h2>
+        <p>Gifts</p>
         <div id="divGiftComboBox"></div>
         <button onClick="setGift(1,document.getElementById('selGiftComboBox').value)">Give Gifts</button>
 
       </div> <!-- divCell -->
       <div class="divCell">
 
-        <h2>Record</h2>
+        <p>Record</p>
         <div id="divTracksComboBox"></div>
         <button onClick="setRecord(document.getElementById('selTracksComboBox').value)">Record an album</button>
 
       </div> <!-- divCell -->
       <div class="divCell">
 
-        <h2>Release</h2>
+        <p>Release</p>
         <div id="divDirectorComboBox"></div>
         <div id="divLocationComboBox"></div>
         <div id="divFeatureComboBox"></div>
@@ -155,7 +155,7 @@
 
   </div> <!-- divTable -->
 
-  <h2>Action</h2>
+  <p>Action</p>
   <div id="divActionCost"></div>
 
 
@@ -164,8 +164,9 @@
 
   <div id="divPlayerBand"></div>
   <div id="divData"></div>
-  <div id="loggingOutput"></div>
 
+  <button onClick="logShow();">Show Logs</button>
+  <div id="loggingOutput"></div>
 
 
   <script>
