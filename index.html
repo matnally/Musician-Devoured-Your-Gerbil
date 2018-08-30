@@ -11,12 +11,14 @@
   <script src="_js/jquery.min.js"></script>
 
   <!-- LOGIC -->
+  <script src="_js/admin.js"></script>
   <script src="_js/album.js"></script>
   <script src="_js/band.js"></script>
   <script src="_js/calc.js"></script>
   <script src="_js/contract.js"></script>
   <script src="_js/gift.js"></script>
   <script src="_js/gig.js"></script>
+  <script src="_js/gui.js"></script>
   <script src="_js/nav.js"></script>
   <script src="_js/practice.js"></script>
   <script src="_js/publicity.js"></script>
@@ -63,21 +65,12 @@
         <p>Band name</p>
         <input id="inpBandName" type="text" value="Profanity"></input>
 
-      </div> <!-- divCell -->
-      <div class="divCell">
-
         <p>Band musicians</p>
         <div id="divBandComboBox"></div>
-
-      </div> <!-- divCell -->
-      <div class="divCell">
 
         <p>Musicians</p>
         <div id="divMusicianComboBox"></div>
         <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
-
-      </div> <!-- divCell -->
-      <div class="divCell">
 
         <p>Equipment</p>
         <div id="divEquipmentComboBox"></div>
@@ -92,20 +85,23 @@
 
 
   <div id="divCurrentDate"></div>
+  <p>Action</p>
+  <div id="divActionCost"></div>
 
 
   <div class="divTable">
 
-    <div class="divRow">
+    <div class="divRow divRowLegend">
       <div class="divCell">
 
-        <section id="secMainMenu">
+          <section id="secMainMenu">
           <button class="butMainMenu" onClick="navShow('#secPractice')">Practice</button><br>
           <button class="butMainMenu" onClick="navShow('#secGig')">Gig</button><br>
           <button class="butMainMenu" onClick="navShow('#secPublicity')">Publicity</button><br>
           <button class="butMainMenu" onClick="navShow('#secGifts')">Gifts</button><br>
           <button class="butMainMenu" onClick="navShow('#secRecord')">Record</button><br>
-          <button class="butMainMenu" onClick="navShow('#secRelease')">Release</button>
+          <button class="butMainMenu" onClick="navShow('#secRelease')">Release</button><br><br>
+          <button class="butMainMenu" onClick="navShow('#secAdmin')">Admin</button>
         </section>
 
         <section id="secPractice">
@@ -167,18 +163,156 @@
           <div id="divFeatureComboBox"></div>
           <button onClick="setRelease(1)">Release Single</button>
           <br>
-          <button onClick="alert('TODO');">Release Album</button>
+          <button onClick="alert('TODO');">TODO Release Album</button>
           <button onClick="navShow('#secMainMenu')">< Back</button>
         </section><!-- section -->
+
+        <section id="secAdmin">
+          <p>Admin</p>
+
+          <div id="divAdminBandComboBox"></div>
+          <button onClick="showBandDetails(GLOBALBandi-1);"> < Previous Band</button>
+          <button onClick="showBandDetails(GLOBALBandi+1);"> Next Band > </button>
+          <br>
+
+          <div id="divAdminMusicianComboBox"></div>
+          <button onClick="showMusicianDetails(GLOBALMusiciani-1);"> < Previous Musician</button>
+          <button onClick="showMusicianDetails(GLOBALMusiciani+1);"> Next Musician > </button>
+
+          <br>
+          <button onClick="logShow();">Show Logs</button>
+          <div id="loggingOutput"></div>
+
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu')">< Back</button>
+        </section>
+
 
       </div> <!-- divCell -->
 
       <div class="divCell">
 
-        <p>Action</p>
-        <div id="divActionCost"></div>
 
-        <p>Details</p>
+        <section id="secBandDetails">
+        <p>Bands</p>
+        <div class="divTable">
+
+          <div class="divRow">
+            <div class="divCell divRight divRowLegend">
+              <p>Name</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divBandDetailsName">BandName</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">
+              <p>Money</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divBandDetailsMoney">BandMoney</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">
+              <p>Reputation</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divBandDetailsReputation">BandReputation</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">
+              <p>Equipment owned</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divBandDetailsEquipment">BandEquipment</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">
+              <p>Record Contract</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divBandDetailsContract">BandContract</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">
+              <p>Albums</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divBandDetailsAlbums">BandAlbums</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+
+        </div> <!-- divTable -->
+
+        <div id="divBandDetailsMusicians">Musicians</div> <!-- div -->
+        </section><!-- section -->
+
+
+<br><br><br>
+
+
+        <p>Musicians</p>
+        <div class="divTable">
+
+          <div class="divRow">
+            <div class="divCell divRight divRowLegend">
+              <p>Name</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divMusicianDetailsName">MusicianName</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">
+              <p>Skill</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divMusicianDetailsSkill">MusicianSkill</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">
+              <p>Reputation</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divMusicianDetailsReputation">MusicianReputation</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">
+              <p>Preferred Equipment</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divMusicianDetailsEquipment">MusicianEquipment</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">
+              <p>Happiness</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divMusicianDetailsHappiness">MusicianHappiness</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">
+              <p>Favourite Gift</p>
+            </div> <!-- divCell -->
+            <div class="divCell">
+              <div id="divMusicianDetailsGift">MusicianGift</div> <!-- div -->
+            </div> <!-- divCell -->
+          </div> <!-- divRow -->
+
+        </div> <!-- divTable -->
+
+
+<hr>
+
         <div id="divPlayerBand"></div>
 
       </div> <!-- divCell -->
@@ -192,8 +326,7 @@
 
   <div id="divData"></div>
 
-  <button onClick="logShow();">Show Logs</button>
-  <div id="loggingOutput"></div>
+
 
 
   <script>

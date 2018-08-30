@@ -99,6 +99,30 @@ function createComboBoxfromJSONiAndName(JSONtoConvert, strID) {
   strTemp += "</select>";
   return strTemp;
 } //function
+
+
+function createComboBoxfromJSONiAndNameMusicianDetails(JSONtoConvert, strID) {
+  //create and string return complete html combo box
+  var strTemp = "";
+  strTemp += "<select id='" + strID + "' onChange='showMusicianDetails(this.value)'>";
+  // strTemp += "<option value=''>Choose an option</option>";
+  for (i in JSONtoConvert) {
+    strTemp += "<option value='" + i + "'>" + JSONtoConvert[i].name + "</option>";
+  }
+  strTemp += "</select>";
+  return strTemp;
+} //function
+function createComboBoxfromJSONiAndNameBandDetails(JSONtoConvert, strID) {
+  //create and string return complete html combo box
+  var strTemp = "";
+  strTemp += "<select id='" + strID + "' onChange='showBandDetails(this.value)'>";
+  // strTemp += "<option value=''>Choose an option</option>";
+  for (i in JSONtoConvert) {
+    strTemp += "<option value='" + i + "'>" + JSONtoConvert[i].name + "</option>";
+  }
+  strTemp += "</select>";
+  return strTemp;
+} //function
 function createComboBoxfromJSONticketPrice(JSONtoConvert, strID) {
   //create and string return complete html combo box
   var strTemp = "";

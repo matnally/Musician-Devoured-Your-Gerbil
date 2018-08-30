@@ -13,7 +13,7 @@ function turnInit() {
   updateElement("divVenueComboBox", createComboBoxfromJSONiAndName(JSONvenue, "selVenueComboBox"));
   updateElement("divTicketPriceComboBox", createComboBoxfromJSONticketPrice(JSONtickets, "selTicketPriceComboBox"));
   //navHideAll();
-  navShow("#secStartGame")
+  navShow("#secStartGame");
 } //function
 
 var GLOBALintervalTurn; //GLOBAL TURN so can stop it from anywhere in the code
@@ -23,18 +23,24 @@ function turnStart() {
   GLOBALintervalRunning = true;
   GLOBALintervalTurn = setTimeout(turnStart, 500);
 //navHideAll();
-navShow("#secActionScreen")
+navShow("#secActionScreen");
+navShowSingle("#secBandDetails");
+
   updateDate();
   loggingOutput("DAY " + GLOBALdatDateCurrent, " ************************" + "<br>" + "<br>");
   bandOtherActionExecute(); //do actions for bands
   eventContract(); //see if they are eligible for a record contract, if not already
   checkDOWaction(); //choose action corressponding to day of week
-  showMusicians();
+  // showMusicians();
+  showBandDetails(0);
   loggingOutput("TURN END", "************************" + "<br>" + "<br>");
 
 if (GLOBALintervalRunning == false) {
   //navHideAll();
-  navShow("#secMainMenu")
+  //RESET????
+  navShow("#secMainMenu");
+  navShowSingle("#secBandDetails");
+
 } //if
 
 } //function

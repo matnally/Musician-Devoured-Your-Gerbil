@@ -3,10 +3,6 @@ function navHide(elem) {
     $(elem).hide();
 } //function
 
-function navHide(elem) {
-    $(elem).show();
-} //function
-
 function navToggle(elem) {
     $(elem).toggle();
 } //function
@@ -20,7 +16,12 @@ function navHideAll() {
   } //for
 } //function
 
- function navShow(elem) {
+function navShow(elem) {
     navHideAll();
+    $(elem).show();
+    navShowSingle("#secBandDetails");
+} //function
+
+function navShowSingle(elem) {
     $(elem).show();
 } //function
