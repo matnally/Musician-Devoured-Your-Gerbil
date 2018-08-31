@@ -12,8 +12,9 @@ function turnInit() {
   updateElement("divBandComboBox", createComboBoxfromJSONiAndName(JSONband, "selBandComboBox"));
   updateElement("divVenueComboBox", createComboBoxfromJSONiAndName(JSONvenue, "selVenueComboBox"));
   updateElement("divTicketPriceComboBox", createComboBoxfromJSONticketPrice(JSONtickets, "selTicketPriceComboBox"));
-  //navHideAll();
-  navShow("#secStartGame");
+
+  navHideAll();
+  navShowSingle("#secStartGame");
 } //function
 
 var GLOBALintervalTurn; //GLOBAL TURN so can stop it from anywhere in the code
@@ -23,7 +24,6 @@ function turnStart() {
   GLOBALintervalRunning = true;
   GLOBALintervalTurn = setTimeout(turnStart, 500);
 //navHideAll();
-navShow("#secActionScreen");
 navShowSingle("#secBandDetails");
 
   updateDate();

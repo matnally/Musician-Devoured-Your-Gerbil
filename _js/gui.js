@@ -16,7 +16,13 @@ function showBandDetails(i) {
   updateElement("divBandDetailsMoney", JSONconfig[0].currency + displayNumbersWithCommas(JSONband[i].money));
   updateElement("divBandDetailsReputation", displayNumbersWithCommas(JSONband[i].reputation));
   updateElement("divBandDetailsEquipment", JSONequipment[JSONband[i].equipment].name);
-  updateElement("divBandDetailsContract", JSONband[i].contract);
+
+  if (JSONband[i].contract == false) {
+    updateElement("divBandDetailsContract", "Not signed yet");
+  } else {
+    updateElement("divBandDetailsContract", JSONcontract[JSONband[i].contract].name);
+  } //if
+
   updateElement("divBandDetailsAlbums", JSONband[i].album);
 
 //Musicians
@@ -45,7 +51,60 @@ function showMusicianDetails(i) {
 
 }
 
+
+function guiDisplayDetailsMultiple(JSONtoUse) {
+  //Iterates through JSONtoUse for output
+  var strTemp = "";
+  var intIndex = 0;
+var JSONtoUse2 = [];
+
+  if (JSONtoUse.length > 0) {
+    intIndex = JSONtoUse.length;
+    //MULTIPLE
+    // for (i in JSONtoUse) {
+    //   //for every band
+    //   for(k in JSONtoUse[i]) {
+    //     //for every key value in band
+    //     if(JSONtoUse[i].hasOwnProperty(k)) {
+    //         strTemp += '<div class="divCell divRight"><strong>' + k + '</strong></div><div class="divCell">' + JSONtoUse[i][k] + "</div>";
+    //     } //if
+    //   } //for every key value in band
+    // } //for every band
+
+  } else {
+    //SINGLE
+    // for(k in JSONtoUse) {
+    //   //for every key value in band
+    //   if(JSONtoUse.hasOwnProperty(k)) {
+    //       strTemp += '<div class="divCell divRight"><strong>' + k + '</strong></div><div class="divCell">' + JSONtoUse[k] + "</div>";
+    //   } //if
+    // } //for every key value in band
+
+  } //if
+
+  for (i = 0; i <= intIndex; i++) {
+    alert(i);
+    for(k in JSONtoUse[intIndex]) {
+      //for every key value in band
+      if(JSONtoUse[intIndex].hasOwnProperty(k)) {
+          strTemp += '<div class="divCell divRight"><strong>' + k + '</strong></div><div class="divCell">' + JSONtoUse[intIndex][k] + "</div>";
+          alert(strTemp);
+      } //if
+    } //for every key value in band
+  } //for every band
+
+
+  return strTemp;
+} //function
+
+
+
 function guiCreateMusicians(i) {
+
+document.write(guiDisplayDetailsMultiple(JSONband[i]));
+
+  updateElement("divAdminBandMusiciansComboBox", createComboBoxfromJSONiAndNameMusicianInBandsDetails(JSONband[i].musician, "selAdminBandMusiciansComboBox"));
+  showMusicianDetails(document.getElementById("selAdminBandMusiciansComboBox").value);
 
   var strTemp = "";
 
@@ -60,11 +119,11 @@ function guiCreateMusicians(i) {
     strTemp +="   <div class='divTable'>";
     strTemp +="     <div class='divRow'>";
     strTemp +="       <div class='divCell divRight divRowLegend'>";
-    strTemp +="         <p>Name</p>";
     strTemp +="       </div> <!-- divCell -->";
     strTemp +="       <div class='divCell'>";
     strTemp +="         <div id=''>";
-    strTemp += JSONmusician[JSONband[i].musician[m]].name;
+    strTemp +="           <img src='_images/gui32x32.png' alt='Musician Name'>";
+    strTemp +=            JSONmusician[JSONband[i].musician[m]].name;
     strTemp +="         </div> <!-- div -->";
     strTemp +="       </div> <!-- divCell -->";
     strTemp +="     </div> <!-- divRow -->";
@@ -75,7 +134,8 @@ function guiCreateMusicians(i) {
     strTemp +="       </div> <!-- divCell -->";
     strTemp +="       <div class='divCell'>";
     strTemp +="         <div id=''>";
-    strTemp += JSONmusician[JSONband[i].musician[m]].skill;
+    strTemp +="           <img src='_images/gui32x32.png' alt='Musician Skill'>";
+    strTemp +=            JSONmusician[JSONband[i].musician[m]].skill;
     strTemp +="         </div> <!-- div -->";
     strTemp +="       </div> <!-- divCell -->";
     strTemp +="     </div> <!-- divRow -->";
@@ -135,4 +195,15 @@ function guiCreateMusicians(i) {
 
   updateElement("divBandDetailsMusicians", strTemp);
 
+  guiAddImagetoDiv("gui32x32.png", "Band Name", "divBandDetailsNameImage");
+
 } //function
+
+
+
+function guiAddImagetoDiv(strSrc, strAlt, elem){
+  var elemImage = document.createElement("img");
+      elemImage.setAttribute("src", "_images/" + strSrc);
+      elemImage.setAttribute("alt", "dunno");
+  document.getElementById(elem).appendChild(elemImage);
+}

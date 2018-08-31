@@ -2,7 +2,7 @@
 function createAlbum(i) {
 
   //Get how many Tracks for Album
-  var intTracks = JSONband[i].tracks;
+  var intTracks = JSONtracks[JSONband[i].tracks].tracks;
 
   //Writes Ablum details to JSON file
   JSONalbum.push({'name':getRandomName(),'tracks':intTracks,'band':i,'active':true}); //add band JSON

@@ -17,35 +17,6 @@ function applyListeners() {
   //   guiActionCostCalc(1);
   // });
 
-
-
-  //
-  //
-  //
-  //
-  // selEquipmentComboBox
-  // selDirectorComboBox
-  // selFeatureComboBox
-  // selLocationComboBox
-  // selGiftComboBox
-  // selTracksComboBox
-  // selMusicianComboBox
-  // selBandComboBox
-  // selVenueComboBox
-  // selTicketPriceComboBox
-  //
-  //
-
-
-
-
-
-
-
-
-
-
-
 } //function
 
 
@@ -108,6 +79,17 @@ function createComboBoxfromJSONiAndNameMusicianDetails(JSONtoConvert, strID) {
   // strTemp += "<option value=''>Choose an option</option>";
   for (i in JSONtoConvert) {
     strTemp += "<option value='" + i + "'>" + JSONtoConvert[i].name + "</option>";
+  }
+  strTemp += "</select>";
+  return strTemp;
+} //function
+function createComboBoxfromJSONiAndNameMusicianInBandsDetails(JSONtoConvert, strID) {
+  //create and string return complete html combo box
+  var strTemp = "";
+  strTemp += "<select id='" + strID + "' onChange='showMusicianDetails(this.value)'>";
+  // strTemp += "<option value=''>Choose an option</option>";
+  for (i in JSONtoConvert) {
+    strTemp += "<option value='" + JSONtoConvert[i] + "'>" + JSONmusician[JSONtoConvert[i]].name + "</option>";
   }
   strTemp += "</select>";
   return strTemp;
