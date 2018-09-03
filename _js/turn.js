@@ -1,3 +1,6 @@
+///////////////////////
+//GAME FUNCTIONS
+///////////////////////
 
 function gameInit() {
   //Initialisation of turn / Start of game!
@@ -8,61 +11,81 @@ function gameInit() {
     Apply any listeners to elements
     Show Gane Start section
   */
-
   guiCreateElements(); //Create everything needed
   guiApplyListeners();
 
-
   navHideAll();
   navShowSingle("#secStartGame");
+  guiDisplayDetailsMusician(GLOBALMusiciani);
+  navShowSingle("#secStartGameDetails");
+} //function
+
+function gameStart() {
+  /*
+    METHOD
+    ======
+
+  */
+  createBandPlayer(JSONband[0]); //create band from player's chosen musicians
+  createBandOther(); //creates bands from the remaining musicians
+  bandActionChoose(); //sets an action to each band
+
+  updateElement("divCurrentDate", GLOBALdatDateCurrent);
+
+  navShow("#secMainMenu");
+
+  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONband[0])));
+  navShowSingle("#secBandDetails");
 } //function
 
 
+///////////////////////
+//TURN FUNCTIONS
+///////////////////////
 
+/*
+Order of syntax:
+  INIT
+  BEGIN
+  START
+  END
+  FINISH
+*/
 
+var GLOBALintervalRunning = false; //GLOBAL
 
-
-
-var GLOBALintervalTurn; //GLOBAL TURN so can stop it from anywhere in the code
-
+function turnBegin() {
+  navShowSingle("#secBandDetails");
+  for (var i=0;i<JSONband[0].days;i++) {
+    // setTimeout(turnStart, 1000);
+    turnStart();
+  } //for
+  turnFinish();
+} //function
 function turnStart() {
   //Start of turn
-  GLOBALintervalRunning = true;
-  GLOBALintervalTurn = setTimeout(turnStart, 500);
-//navHideAll();
-navShowSingle("#secBandDetails");
-
   updateDate();
   loggingOutput("DAY " + GLOBALdatDateCurrent, " ************************" + "<br>" + "<br>");
-  bandOtherActionExecute(); //do actions for bands
+  bandActionExecute(); //do actions for bands
   eventContract(); //see if they are eligible for a record contract, if not already
-  checkDOWaction(); //choose action corressponding to day of week
-  // showMusicians();
-  showBandDetails(0);
+  eventDOWaction(); //choose action corressponding to day of week
   loggingOutput("TURN END", "************************" + "<br>" + "<br>");
+  //WAIT???
 
-if (GLOBALintervalRunning == false) {
-  //navHideAll();
-  //RESET????
-  navShow("#secMainMenu");
-  navShowSingle("#secBandDetails");
-
-} //if
+  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONband[0]))); //GUI
 
 } //function
-
-var GLOBALintervalRunning = false
 function turnEnd() {
-  clearTimeout(GLOBALintervalTurn); //IMPORTANT!!!
-  GLOBALintervalRunning = false;
+} //function
+function turnFinish() {
+  navShow("#secMainMenu");
+
+  navShowSingle("#secBandDetails");
 } //function
 
-function updateDate(){
-  GLOBALdatDateCurrent.setDate(GLOBALdatDateCurrent.getDate() + 1); //increase GLOBAL current date
-  updateElement("divCurrentDate", "<p>Date: " + GLOBALdatDateCurrent + "</p>");
-} //function
 
-function checkDOWaction() {
+
+function eventDOWaction() {
   //choose action corressponding to day of week
   switch(GLOBALdatDateCurrent.getDay()) {
     case 0:
@@ -94,6 +117,7 @@ function checkDOWaction() {
 
 } //function
 
+
 function takewageAway() {
   //takes away wage from the band's money
   var strTemp = "";
@@ -110,64 +134,4 @@ function takewageAway() {
     loggingOutput("WAGES","'" + JSONband[i].name + "' total wages are: " + JSONconfig[0].currency + displayNumbersWithCommas(intTemp) + "<br>");
   }//for
 
-} //function
-
-
-
-
-
-
-// CHART TIME FUNCTIONS
-
-function sortArrayByKey(array, key) {
-  //Sorts an array by a key in DECENDING order. For asending, change to "function(a, b)"
-  return array.sort(function(b, a) {
-      var x = a[key];
-      var y = b[key];
-      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-  });
-}
-
-function chartTime() {
-
-  var arrTemp = [];
-  for (y in JSONsingle) {
-    //get ALL singles
-    if (JSONsingle[y].active == false) {
-      //single not released yet
-      arrTemp.push(JSONsingle[y]); //add single to temp array
-    } //if
-  } //for
-
-  for (a in arrTemp) {
-    for (i in JSONband) {
-      if (arrTemp[a].album == JSONband[i].album) {
-        arrTemp[a].qualityRating = calcChartTimeSingle(arrTemp[a].qualityRating, i);
-      } //if
-    } //for
-  } //for
-
-  arrTemp = sortArrayByKey(arrTemp, 'qualityRating');
-  console.log(arrTemp);
-
-} //function
-
-function calcChartTimeSingle(intQualityRating, i) {
-  //Work out final value of single, adding dynamic rpoperties
-  var intTemp = 0;
-  var br = JSONband[i].reputation;
-  var qr = intQualityRating
-
-  /*
-    br = Band Reputation
-
-    r  = reputation
-    s  = skill
-    h  = happiness
-    vr = venue reputation
-    tp = ticket price
-  */
-
-  intTemp = intQualityRating + JSONband[i].reputation;
-  return intTemp;
 } //function

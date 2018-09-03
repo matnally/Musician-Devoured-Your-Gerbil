@@ -52,7 +52,12 @@ section {
 .divRowLabel {
   width: 25%;
 }
-
+.divGameLeft {
+  width: 25%;
+}
+.divGameRight {
+  width: 75%;
+}
 
 
 

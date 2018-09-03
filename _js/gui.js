@@ -26,22 +26,63 @@ function guiCreateElements() {
 
 function guiApplyListeners() {
 
-  document.getElementById("selTracksComboBox").addEventListener("change",function(event){
-    setAlbumTracks(this.value);
+  document.getElementById("selMusicianComboBox").addEventListener("change",function(event){
+    guiDisplayDetailsMusician(this.value);
   });
-
-  document.getElementById("selGiftComboBox").addEventListener("change",function(event){
-    guiActionCostCalc(3);
-  });
-
-  document.getElementById("selVenueComboBox").addEventListener("change",function(event){
-    guiActionCostCalc(1);
-  });
+  // document.getElementById("selTracksComboBox").addEventListener("change",function(event){
+  //   setAlbumTracks(this.value);
+  // });
+  //
+  // document.getElementById("selGiftComboBox").addEventListener("change",function(event){
+  //   guiActionCostCalc(3);
+  // });
+  //
+  // document.getElementById("selVenueComboBox").addEventListener("change",function(event){
+  //   guiActionCostCalc(1);
+  // });
   // document.getElementById("divTicketPriceComboBox").addEventListener("change",function(event){
   //   guiActionCostCalc(1);
   // });
 
 } //function
+
+var GLOBALBandi = 0;
+function guiDisplayDetailsBand(i) {
+
+  i = parseInt(i);
+
+  if (i < 0)
+    i = JSONband.length - 1;
+
+  if (i >= JSONband.length)
+    i=0;
+
+  GLOBALBandi = i;
+
+  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONband[i])));
+} //function
+var GLOBALMusiciani = 0;
+function guiDisplayDetailsMusician(i) {
+
+  i = parseInt(i);
+
+  if (i < 0)
+    i = JSONmusician.length - 1;
+
+  if (i >= JSONmusician.length)
+    i=0;
+
+  GLOBALMusiciani = i;
+
+  updateElement("divMusicianDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONmusician[i])));
+} //function
+
+
+
+
+
+
+
 
 function guiDisplayDetailsReturnArray(JSONtoUse) {
   //Returns array of fully formed labeks and values to display
@@ -57,7 +98,7 @@ function guiDisplayDetailsReturnArray(JSONtoUse) {
       arrTemp = guiDisplayDetailsLabelsGetAlternativeValues(arrTemp); //Get alternative value | Value first as labels may change and using that for comparison
       arrTemp = guiDisplayDetailsLabelsGetAlternativeLabels(arrTemp); //Get alternative labels
   return arrTemp;
-}
+} //function
 
 function guiDisplayDetailsLabelsReturnArray(JSONtoUse) {
   //Iterates through JSONtoUse for output
@@ -141,6 +182,21 @@ function guiDisplayDetailsLabelsGetAlternativeValues(arrTemp) {
       } //switch
   } //for
   return arrTemp;
+} //function
+
+function guiDisplayDetailsCreateHTMLsimple(arrTemp) {
+  var strTemp = "";
+
+  for (l in arrTemp) {
+    //for every label
+
+    strTemp +="<div>";
+    strTemp += arrTemp[l][0];
+    strTemp += arrTemp[l][1];
+    strTemp +="</div>";
+  } //for musician
+
+  return strTemp;
 } //function
 
 function guiDisplayDetailsCreateHTMLtable(arrTemp) {

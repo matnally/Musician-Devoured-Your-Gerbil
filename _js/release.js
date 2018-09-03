@@ -7,7 +7,7 @@ function setRelease(intDays) {
     JSONband[0].dateActionFinish = getDateActionFinish(intDays);
     JSONband[0].action = 5; //5 = release
     JSONband[0].days = intDays;
-    turnStart();
+    turnBegin();
   } //if
 } //function
 

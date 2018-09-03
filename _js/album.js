@@ -18,7 +18,8 @@ function createAlbum(i) {
     createTrack(i, intAlbum);
   } //for
 
-  updateBandMoneySubtract(i, JSONtracks[document.getElementById('selTracksComboBox').value].money, "record album"); //update band money
+  updateBandMoneySubtract(i, JSONtracks[JSONband[i].tracks].money, "record album"); //update band money
+//  updateBandMoneySubtract(i, JSONtracks[document.getElementById('selTracksComboBox').value].money, "record album"); //update band money
 
   loggingOutput("ALBUM RECORDED", JSONband[i].name + " recorded an album called " + JSONalbum[JSONband[i].album].name + " consisting of "+intTracks+" tracks<br>");
 

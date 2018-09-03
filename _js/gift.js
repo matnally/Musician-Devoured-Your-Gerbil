@@ -5,7 +5,7 @@ function setGift(intDays, intGifts) {
   JSONband[0].action = 3; //3 = gift
   JSONband[0].days = intDays;
   JSONband[0].gift = intGifts;
-  turnStart();
+  turnBegin();
 } //function
 
 function gift(i) {
@@ -32,6 +32,8 @@ function gift(i) {
     //update happiness
     var intTemp = parseInt(JSONmusician[JSONband[i].musician[a]].happiness) + intBonus;
     JSONmusician[JSONband[i].musician[a]].happiness = intTemp; // THE ACTION !!!!!!!!
+
+//TODO: Take away money!!!!!
 
   }//for
 

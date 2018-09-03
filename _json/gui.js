@@ -6,6 +6,12 @@ var JSONgui = [{
   ,"money": {
 		"label": "Money"
 	}
+  ,"reputation": {
+		"label": "Reputation"
+	}
+  ,"skill": {
+		"label": "Skill"
+	}
   ,"gift": {
 		"label": "Fav Gift"
 	}

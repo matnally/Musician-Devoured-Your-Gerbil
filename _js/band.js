@@ -1,67 +1,15 @@
 
+//BAND CREATION FUNCTIONS
 
-//PLAYER'S BAND functions
-
-function bandAddMusician(index) {
-  //Add musician index to band musician array
-  JSONband[0].musician.push(index);
-  updateElement("divBandComboBox", createComboBoxfromJSONband(JSONband[0].musician)); //Update and display the comboBox
-} //function
-
-
-
-
-function gameStart() {
-  /*
-    METHOD
-    ======
-
-  */
-
-  setMusicianEquipment(); //TODO: cheating so random i dont have to input them all
-  bandCreatePlayer(JSONband[0]); //create band from player's chosen musicians
-  bandCreateOther(); //creates bands from the remaining musicians
-  bandOtherActionChoose(); //sets an action to each band CALLED !!!ONLY ONCE!!!
-
-  navShow("#secMainMenu");
-  navShowSingle("#secBandDetails");
-  guiAdminBandsAllShow();
-} //function
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function setMusicianEquipment() {
-  //random equipment SET
-  for (i in JSONmusician) {
-    JSONmusician[i].equipment = getMusicianEquipment();
-  } //for
-} //function
-function getMusicianEquipment() {
-  return Math.floor(Math.random() * JSONequipment.length);
-} //function
-
-
-function bandCreatePlayer(JSONtoUse) {
+function createBandPlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;
-JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
-JSONtoUse.reputation = 5000; //TODO: CHEATING FOR TESTING PURPOSES
+  JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
   JSONtoUse.equipment = document.getElementById("selEquipmentComboBox").value;
   JSONtoUse.money = JSONconfig[0].moneyMedium;
-  actionChoose(0); // init for PLAYER ONLY BAND
+//  actionChoose(0); // init for PLAYER ONLY BAND
 } //function
 
-function bandCreateOther() {
+function createBandOther() {
   //player has created their band so create bands from remaining musicians
   var arrTemp = [];
   var intMusiciansToAdd = 0;
@@ -77,7 +25,7 @@ function bandCreateOther() {
       //Not a lot of musicians left (less than 4) so just create a band from the rest
       intMusiciansToAdd = arrMusiciansRemaining.length
     } //if
-    for (var i=1; i<=intMusiciansToAdd; i++) {  // WHY 1 ?!?!?!?!?!
+    for (var i=1; i<=intMusiciansToAdd; i++) {  // 1 because 0 is player's i
       var intRandomMusicianIndex = Math.floor(Math.random() * arrMusiciansRemaining.length);
       var intRandomMusician = arrMusiciansRemaining[intRandomMusicianIndex]; //get a random musician from the remaining
       arrTemp.push(intRandomMusician); //add chosen musician to temp array
@@ -88,12 +36,12 @@ function bandCreateOther() {
     var intReputation = calcBandReputation(arrTemp); //calculate band total reputation
     var intRandomEquipment = getBandEquipment(); //get random equipment
     //CREATES band - GLOBALdatDateCurrent used for dateActionFinish so triggers actionChoose
-    JSONband.push({'name':strName, 'money':JSONconfig[0].moneyMedium, 'contract':false, 'reputation':intReputation, 'musician':arrTemp, 'equipment':intRandomEquipment, 'days':0, 'dateActionFinish':GLOBALdatDateCurrent, 'album':false, 'tracks':0}); //add band JSON
+    JSONband.push({'name':strName, 'money':JSONconfig[0].moneyMedium, 'contract':getContract(), 'reputation':intReputation, 'musician':arrTemp, 'equipment':intRandomEquipment, 'days':0, 'dateActionFinish':GLOBALdatDateCurrent, 'album':false, 'tracks':0}); //add band JSON
   } while (arrMusiciansRemaining.length > 0); //do  // SHOULD BE 1??????????? ABOVE IN THE DO WHILE
 
 } //function
 
-function bandOtherActionChoose() {
+function bandActionChoose() {
   //set each band's action attribute
   for (i in JSONband) {
     actionChoose(i);
@@ -193,7 +141,7 @@ function actionChoose(i) {
 
 
 
-function bandOtherActionExecute() {
+function bandActionExecute() {
   //execute each band's action
 
   for (i in JSONband) {

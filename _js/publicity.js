@@ -4,7 +4,7 @@ function setPublicity(intDays) {
   JSONband[0].dateActionFinish = getDateActionFinish(intDays);
   JSONband[0].action = 2; //2 = publicity
   JSONband[0].days = intDays;
-  turnStart();
+  turnBegin();
 } //function
 
 function publicity(i) {

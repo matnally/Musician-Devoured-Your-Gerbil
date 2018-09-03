@@ -15,11 +15,13 @@
   <script src="_js/album.js"></script>
   <script src="_js/band.js"></script>
   <script src="_js/calc.js"></script>
+  <script src="_js/chart.js"></script>
   <script src="_js/contract.js"></script>
   <script src="_js/gift.js"></script>
   <script src="_js/gig.js"></script>
   <script src="_js/gui.js"></script>
   <script src="_js/nav.js"></script>
+  <script src="_js/player.js"></script>
   <script src="_js/practice.js"></script>
   <script src="_js/publicity.js"></script>
   <script src="_js/record.js"></script>
@@ -52,40 +54,28 @@
 </head>
 <body>
 
-  <section id="secStartGame">
-  <div class="divTable">
-
-    <div class="divRow">
-      <div class="divCell">
-
-        <p>Band name</p>
-        <input id="inpBandName" type="text" value="Profanity"></input>
-
-        <p>Band musicians</p>
-        <div id="divBandComboBox"></div>
-
-        <p>Musicians</p>
-        <div id="divMusicianComboBox"></div>
-        <button onClick="bandAddMusician(document.getElementById('selMusicianComboBox').value)">Add musician</button>
-
-        <p>Equipment</p>
-        <div id="divEquipmentComboBox"></div>
-        <br><br>
-        <button onClick="gameStart()">Create Band</button>
-
-      </div> <!-- divCell -->
-    </div> <!-- divRow -->
-
-  </div> <!-- divTable -->
-  </section><!-- section -->
-
 
   <div class="divTable">
 
-    <div class="divRow divRowLabel">
+    <div class="divRow divGameLeft">
       <div class="divCell">
 
-          <section id="secMainMenu">
+
+        <section id="secStartGame">
+
+          <p>Band name</p>
+          <input id="inpBandName" type="text" value="Profanity"></input>
+
+          <p>Band musicians</p>
+          <div id="divBandComboBox"></div>
+
+          <p>Equipment</p>
+          <div id="divEquipmentComboBox"></div>
+          <br><br>
+          <button onClick="gameStart()">Create Band</button>
+        </section><!-- section -->
+
+        <section id="secMainMenu">
           <button class="butMainMenu" onClick="navShow('#secPractice')">Practice</button><br>
           <button class="butMainMenu" onClick="navShow('#secGig')">Gig</button><br>
           <button class="butMainMenu" onClick="navShow('#secPublicity')">Publicity</button><br>
@@ -97,7 +87,7 @@
 
         <section id="secPractice">
           <p>Practice</p>
-          <select id="divPracticeComboBox" onChange="guiActionCostCalc(0)">
+          <select id="divPracticeComboBox">
             <!-- <option value="">Please choose</option> -->
             <option value="2">2 days</option>
             <option value="3">3 days</option>
@@ -114,7 +104,7 @@
           <p>Gig</p>
           <div id="divVenueComboBox"></div>
           <div id="divTicketPriceComboBox"></div>
-          <select id="divGigDays" onChange="guiActionCostCalc(1)">
+          <select id="divGigDays">
             <!-- <option value="">Choose an option</option> -->
             <option value="2">2 nights</option>
             <option value="3">3 nights</option>
@@ -182,17 +172,34 @@
 
       </div> <!-- divCell -->
 
-      <div class="divCell">
+      <div class="divCell divGameRight">
 
 
+        <div id="divCurrentDate"></div>
 
+
+        <section id="secStartGameDetails">
+          <p>Musicians</p>
+          <div id="divMusicianComboBox"></div>
+          <div id="divMusicianDetails"></div>
+          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani-1);"> < </button>
+          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani+1);"> > </button>
+          <br>
+          <button onClick="bandAddMusician(GLOBALMusiciani)">Add musician</button>
+        </section><!-- section -->
+
+
+        <section id="secBandDetails">
+          <div id="divBandDetails"></div><!-- div divBandDetails -->
+          <button onClick="guiDisplayDetailsBand(GLOBALBandi-1);"> < </button>
+          <button onClick="guiDisplayDetailsBand(GLOBALBandi+1);"> > </button>
+        </section><!-- section -->
 
 
       </div> <!-- divCell -->
     </div> <!-- divRow -->
 
   </div> <!-- divTable -->
-
 
 
   <script>

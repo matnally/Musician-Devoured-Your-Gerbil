@@ -33,7 +33,8 @@ function askSignContract() {
   JSONband[0].contract = intContract;
   console.log("Do you want to sign with " + JSONcontract[intContract].name + "? To be easy, I assume YES! TODO! Hopefully this is only shown once!");
 //  alert("JSONband[0].contract: " + JSONband[0].contract);
-}
+} //function
+
 
 //////////////////////////
 //// SUPPORTING LOGIC ////
