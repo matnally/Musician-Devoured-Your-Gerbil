@@ -52,56 +52,64 @@ function showMusicianDetails(i) {
 }
 
 
-function guiDisplayDetailsMultiple(JSONtoUse) {
+function guiDisplayDetails(JSONtoUse) {
   //Iterates through JSONtoUse for output
   var strTemp = "";
-  var intIndex = 0;
-var JSONtoUse2 = [];
+  var arrTemp = [];
+  var strLegend = "";
+  var strLegendValue = "";
 
   if (JSONtoUse.length > 0) {
-    intIndex = JSONtoUse.length;
     //MULTIPLE
-    // for (i in JSONtoUse) {
-    //   //for every band
-    //   for(k in JSONtoUse[i]) {
-    //     //for every key value in band
-    //     if(JSONtoUse[i].hasOwnProperty(k)) {
-    //         strTemp += '<div class="divCell divRight"><strong>' + k + '</strong></div><div class="divCell">' + JSONtoUse[i][k] + "</div>";
-    //     } //if
-    //   } //for every key value in band
-    // } //for every band
+    for (i in JSONtoUse) {
+      //for every band
+      for (k in JSONtoUse[i]) {
+        //for every key value in band
+        if (JSONtoUse[i].hasOwnProperty(k)) {
+          strLegend = k;
+          strLegendValue = JSONtoUse[i][k];
+
+          if (!guiDisplayDetailsShowKeyChk(strLegend))
+            arrTemp.push([strLegend,strLegendValue]);
+          // strTemp += guiDisplayDetailsShowKeyChk(strLegend, );
+          //strTemp += '<div class="divCell divRight"><strong>' + strLegend + '</strong></div><div class="divCell">' + strLegendValue + "</div>";
+        } //if
+      } //for every key value in band
+    } //for every band
 
   } else {
     //SINGLE
-    // for(k in JSONtoUse) {
-    //   //for every key value in band
-    //   if(JSONtoUse.hasOwnProperty(k)) {
-    //       strTemp += '<div class="divCell divRight"><strong>' + k + '</strong></div><div class="divCell">' + JSONtoUse[k] + "</div>";
-    //   } //if
-    // } //for every key value in band
-
-  } //if
-
-  for (i = 0; i <= intIndex; i++) {
-    alert(i);
-    for(k in JSONtoUse[intIndex]) {
+    for (k in JSONtoUse) {
       //for every key value in band
-      if(JSONtoUse[intIndex].hasOwnProperty(k)) {
-          strTemp += '<div class="divCell divRight"><strong>' + k + '</strong></div><div class="divCell">' + JSONtoUse[intIndex][k] + "</div>";
-          alert(strTemp);
+      if (JSONtoUse.hasOwnProperty(k)) {
+        strLegend = k;
+        strLegendValue = JSONtoUse[k];
+
+        if (!guiDisplayDetailsShowKeyChk(strLegend))
+          arrTemp.push([strLegend,strLegendValue]);
+        // strTemp += '<div class="divCell divRight"><strong>' + strLegend + '</strong></div><div class="divCell">' + strLegendValue + "</div>";
       } //if
     } //for every key value in band
-  } //for every band
 
+  } //if
+console.log(arrTemp);
+//alert(strTemp);
+//TODO: update element
 
-  return strTemp;
 } //function
 
+
+function guiDisplayDetailsShowKeyChk(strLegend) {
+
+  //if strLegend in do not show
+
+  return false;
+} //function
 
 
 function guiCreateMusicians(i) {
 
-document.write(guiDisplayDetailsMultiple(JSONband[i]));
+//guiDisplayDetails(JSONband[i]); //????????????????!!!!!!!!!!!
 
   updateElement("divAdminBandMusiciansComboBox", createComboBoxfromJSONiAndNameMusicianInBandsDetails(JSONband[i].musician, "selAdminBandMusiciansComboBox"));
   showMusicianDetails(document.getElementById("selAdminBandMusiciansComboBox").value);
