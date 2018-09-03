@@ -1,4 +1,161 @@
 
+function guiDisplayDetailsLabelsReturnArray(JSONtoUse) {
+  //Iterates through JSONtoUse for output
+  var strTemp = "";
+  var arrTemp = [];
+  var strLabel = "";
+  var strLabelValue = "";
+
+  if (JSONtoUse.length > 0) {
+    //MULTIPLE
+    for (i in JSONtoUse) {
+      //for every band
+      for (k in JSONtoUse[i]) {
+        //for every key value in band
+        if (JSONtoUse[i].hasOwnProperty(k)) {
+          strLabel = k;
+          strLabelValue = JSONtoUse[i][k];
+
+          if (guiDisplayDetailsLabelsCheckToShow(strLabel))
+            arrTemp.push([strLabel,strLabelValue]);
+
+        } //if
+      } //for every key value in band
+    } //for every band
+
+  } else {
+    //SINGLE
+    for (k in JSONtoUse) {
+      //for every key value in band
+      if (JSONtoUse.hasOwnProperty(k)) {
+        strLabel = k;
+        strLabelValue = JSONtoUse[k];
+
+        if (guiDisplayDetailsLabelsCheckToShow(strLabel))
+          arrTemp.push([strLabel,strLabelValue]);
+
+      } //if
+    } //for every key value in band
+
+  } //if
+
+  return arrTemp;
+
+} //function
+function guiDisplayDetailsLabelsCheckToShow(strLabel) {
+  //Check to see if label exists in JSONgui, if so then show!
+  var boolTemp = false;
+  for (l in JSONgui[0]) {
+    if (strLabel == l)
+      boolTemp = true;
+  } //for
+  return boolTemp;
+} //function
+function guiDisplayDetailsLabelsGetAlternativeLabels(arrTemp) {
+  //Get alternative labels
+  for (a in arrTemp) {
+  //for every label
+    for (b in JSONgui[0]) {
+      if (arrTemp[a][0] == b) {
+        //Found label
+        arrTemp[a][0] = JSONgui[0][b].label;
+      } //if
+    } //for
+  } //for
+  return arrTemp;
+} //function
+function guiDisplayDetailsLabelsGetAlternativeValues(arrTemp) {
+  //Get alternative value
+  for (a in arrTemp) {
+  //for every label
+      switch(arrTemp[a][0]) {
+        case "money":
+          //money
+        break;
+        case "gift":
+          //gift
+          arrTemp[a][1] = JSONgift[arrTemp[a][1]].name;
+        break;
+        default:
+      } //switch
+  } //for
+  return arrTemp;
+} //function
+
+function guiDisplayDetailsCreateHTMLtable(arrTemp) {
+  var strTemp = "";
+  strTemp +="   <div class='divTable'>";
+  for (l in arrTemp) {
+    //for every label
+    strTemp +="     <div class='divRow'>";
+    strTemp +="       <div class='divCell divRight divRowLabel'>";
+    strTemp +=            arrTemp[l][0];
+    strTemp +="       </div> <!-- divCell -->";
+    strTemp +="       <div class='divCell'>";
+    strTemp +=            arrTemp[l][1];
+    strTemp +="       </div> <!-- divCell -->";
+    strTemp +="     </div> <!-- divRow -->";
+  } //for musician
+  strTemp +="   </div> <!-- divTable -->";
+  return strTemp;
+} //function
+
+function guiDisplayDetailsCreateHTMLcomboBox(arrTemp) {
+  var strTemp = "";
+  strTemp += "<select onChange=''>";
+  for (l in arrTemp) {
+    //for every label
+    strTemp += "<option value='" + arrTemp[l][1] + "'>" + arrTemp[l][0] + "</option>";
+  } //for musician
+  strTemp += "</select>";
+  return strTemp;
+} //function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var GLOBALBandi = 0; //GLOBAL band youre viewing CHEAT
 function showBandDetails(i) {
@@ -52,67 +209,24 @@ function showMusicianDetails(i) {
 }
 
 
-function guiDisplayDetails(JSONtoUse) {
-  //Iterates through JSONtoUse for output
-  var strTemp = "";
-  var arrTemp = [];
-  var strLegend = "";
-  var strLegendValue = "";
-
-  if (JSONtoUse.length > 0) {
-    //MULTIPLE
-    for (i in JSONtoUse) {
-      //for every band
-      for (k in JSONtoUse[i]) {
-        //for every key value in band
-        if (JSONtoUse[i].hasOwnProperty(k)) {
-          strLegend = k;
-          strLegendValue = JSONtoUse[i][k];
-
-          if (!guiDisplayDetailsShowKeyChk(strLegend))
-            arrTemp.push([strLegend,strLegendValue]);
-          // strTemp += guiDisplayDetailsShowKeyChk(strLegend, );
-          //strTemp += '<div class="divCell divRight"><strong>' + strLegend + '</strong></div><div class="divCell">' + strLegendValue + "</div>";
-        } //if
-      } //for every key value in band
-    } //for every band
-
-  } else {
-    //SINGLE
-    for (k in JSONtoUse) {
-      //for every key value in band
-      if (JSONtoUse.hasOwnProperty(k)) {
-        strLegend = k;
-        strLegendValue = JSONtoUse[k];
-
-        if (!guiDisplayDetailsShowKeyChk(strLegend))
-          arrTemp.push([strLegend,strLegendValue]);
-        // strTemp += '<div class="divCell divRight"><strong>' + strLegend + '</strong></div><div class="divCell">' + strLegendValue + "</div>";
-      } //if
-    } //for every key value in band
-
-  } //if
-console.log(arrTemp);
-//alert(strTemp);
-//TODO: update element
-
-} //function
-
-
-function guiDisplayDetailsShowKeyChk(strLegend) {
-
-  //if strLegend in do not show
-
-  return false;
-} //function
 
 
 function guiCreateMusicians(i) {
 
-//guiDisplayDetails(JSONband[i]); //????????????????!!!!!!!!!!!
+var arrTemp = [];
+    arrTemp = guiDisplayDetailsLabelsReturnArray(JSONband[i]); //Get what to show
+    arrTemp = guiDisplayDetailsLabelsGetAlternativeValues(arrTemp); //Get alternative value | Value first as labels may change and using that for comparison
+    arrTemp = guiDisplayDetailsLabelsGetAlternativeLabels(arrTemp); //Get alternative labels
+
+
+//document.write(guiDisplayDetailsCreateHTMLcomboBox(arrTemp));
+document.write(guiDisplayDetailsCreateHTMLtable(arrTemp));
+
+
 
   updateElement("divAdminBandMusiciansComboBox", createComboBoxfromJSONiAndNameMusicianInBandsDetails(JSONband[i].musician, "selAdminBandMusiciansComboBox"));
   showMusicianDetails(document.getElementById("selAdminBandMusiciansComboBox").value);
+
 
   var strTemp = "";
 
@@ -126,7 +240,7 @@ function guiCreateMusicians(i) {
 
     strTemp +="   <div class='divTable'>";
     strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLegend'>";
+    strTemp +="       <div class='divCell divRight divRowLabel'>";
     strTemp +="       </div> <!-- divCell -->";
     strTemp +="       <div class='divCell'>";
     strTemp +="         <div id=''>";
@@ -137,7 +251,7 @@ function guiCreateMusicians(i) {
     strTemp +="     </div> <!-- divRow -->";
 
     strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLegend'>";
+    strTemp +="       <div class='divCell divRight divRowLabel'>";
     strTemp +="         <p>Skill</p>";
     strTemp +="       </div> <!-- divCell -->";
     strTemp +="       <div class='divCell'>";
@@ -149,7 +263,7 @@ function guiCreateMusicians(i) {
     strTemp +="     </div> <!-- divRow -->";
 
     strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLegend'>";
+    strTemp +="       <div class='divCell divRight divRowLabel'>";
     strTemp +="         <p>Reputation</p>";
     strTemp +="       </div> <!-- divCell -->";
     strTemp +="       <div class='divCell'>";
@@ -160,7 +274,7 @@ function guiCreateMusicians(i) {
     strTemp +="     </div> <!-- divRow -->";
 
     strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLegend'>";
+    strTemp +="       <div class='divCell divRight divRowLabel'>";
     strTemp +="         <p>Preferred Equipment</p>";
     strTemp +="       </div> <!-- divCell -->";
     strTemp +="       <div class='divCell'>";
@@ -171,7 +285,7 @@ function guiCreateMusicians(i) {
     strTemp +="     </div> <!-- divRow -->";
 
     strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLegend'>";
+    strTemp +="       <div class='divCell divRight divRowLabel'>";
     strTemp +="         <p>Happiness</p>";
     strTemp +="       </div> <!-- divCell -->";
     strTemp +="       <div class='divCell'>";
@@ -182,7 +296,7 @@ function guiCreateMusicians(i) {
     strTemp +="     </div> <!-- divRow -->";
 
     strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLegend'>";
+    strTemp +="       <div class='divCell divRight divRowLabel'>";
     strTemp +="         <p>Favourite Gift</p>";
     strTemp +="       </div> <!-- divCell -->";
     strTemp +="       <div class='divCell'>";

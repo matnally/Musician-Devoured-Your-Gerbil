@@ -11,6 +11,8 @@ function bandCreatePlayerStart() {
   bandCreatePlayer(JSONband[0]); //create band from player's chosen musicians
   bandCreateOther(); //creates bands from the remaining musicians
   bandOtherActionChoose(); //sets an action to each band CALLED !!!ONLY ONCE!!!
+
+  
   showBandDetails(0);
   // showMusicians();
   //navHideAll();
