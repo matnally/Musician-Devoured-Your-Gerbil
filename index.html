@@ -66,12 +66,12 @@
 
         <p>Musicians</p>
         <div id="divMusicianComboBox"></div>
-        <button onClick="musicianAdd(document.getElementById('selMusicianComboBox').value)">Add musician</button>
+        <button onClick="bandAddMusician(document.getElementById('selMusicianComboBox').value)">Add musician</button>
 
         <p>Equipment</p>
         <div id="divEquipmentComboBox"></div>
         <br><br>
-        <button onClick="bandCreatePlayerStart()">Create Band</button>
+        <button onClick="gameStart()">Create Band</button>
 
       </div> <!-- divCell -->
     </div> <!-- divRow -->
@@ -184,129 +184,8 @@
 
       <div class="divCell">
 
-        <section id="secBandDetails">
-
-        <div id="divCurrentDate"></div>
-        <p>Action</p>
-        <div id="divActionCost"></div>
-
-<br>
-
-        <div class="divTable">
-
-          <div class="divRow">
-            <div class="divCell divRight divRowLabel">
-              <p>Name</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <span id="divBandDetailsNameImage"></span> <!-- div -->
-              <div id="divBandDetailsName">BandName</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">
-              <p>Money</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <div id="divBandDetailsMoney">BandMoney</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">
-              <p>Reputation</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <div id="divBandDetailsReputation">BandReputation</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">
-              <p>Equipment owned</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <div id="divBandDetailsEquipment">BandEquipment</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">
-              <p>Record Contract</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <div id="divBandDetailsContract">BandContract</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">
-              <p>Albums</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <div id="divBandDetailsAlbums">BandAlbums</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-
-        </div> <!-- divTable -->
-
-        <div id="divAdminBandMusiciansComboBox">Musicians Combo box</div> <!-- div -->
-        <div id="divBandDetailsMusicians">Musicians</div> <!-- div -->
 
 
-<br>
-
-
-        <p>Musicians</p>
-        <div class="divTable">
-
-          <div class="divRow">
-            <div class="divCell divRight divRowLabel">
-              <p>Name</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <div id="divMusicianDetailsName">MusicianName</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">
-              <p>Skill</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <div id="divMusicianDetailsSkill">MusicianSkill</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">
-              <p>Reputation</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <div id="divMusicianDetailsReputation">MusicianReputation</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">
-              <p>Preferred Equipment</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <div id="divMusicianDetailsEquipment">MusicianEquipment</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">
-              <p>Happiness</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <div id="divMusicianDetailsHappiness">MusicianHappiness</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">
-              <p>Favourite Gift</p>
-            </div> <!-- divCell -->
-            <div class="divCell">
-              <div id="divMusicianDetailsGift">MusicianGift</div> <!-- div -->
-            </div> <!-- divCell -->
-          </div> <!-- divRow -->
-
-        </div> <!-- divTable -->
-      </section><!-- section -->
 
 
       </div> <!-- divCell -->
@@ -318,8 +197,7 @@
 
   <script>
     $(document).ready(function() {
-      turnInit(); //Initialisation of turn / Start of game!
-      applyListeners();
+      gameInit(); //Initialisation of turn / Start of game!
     });
   </script>
 

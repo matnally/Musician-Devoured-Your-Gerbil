@@ -1,25 +1,45 @@
 
-function musicianAdd(index) {
+
+//PLAYER'S BAND functions
+
+function bandAddMusician(index) {
   //Add musician index to band musician array
   JSONband[0].musician.push(index);
-  //Update and display the comboBox
-  updateElement("divBandComboBox", createComboBoxfromJSONband(JSONband[0].musician));
+  updateElement("divBandComboBox", createComboBoxfromJSONband(JSONband[0].musician)); //Update and display the comboBox
 } //function
 
-function bandCreatePlayerStart() {
-  setMusicianEquipment(); //cheating so random i dont have to input them all
+
+
+
+function gameStart() {
+  /*
+    METHOD
+    ======
+
+  */
+
+  setMusicianEquipment(); //TODO: cheating so random i dont have to input them all
   bandCreatePlayer(JSONband[0]); //create band from player's chosen musicians
   bandCreateOther(); //creates bands from the remaining musicians
   bandOtherActionChoose(); //sets an action to each band CALLED !!!ONLY ONCE!!!
 
-  
-  showBandDetails(0);
-  // showMusicians();
-  //navHideAll();
   navShow("#secMainMenu");
   navShowSingle("#secBandDetails");
   guiAdminBandsAllShow();
 } //function
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function setMusicianEquipment() {
   //random equipment SET
@@ -30,6 +50,7 @@ function setMusicianEquipment() {
 function getMusicianEquipment() {
   return Math.floor(Math.random() * JSONequipment.length);
 } //function
+
 
 function bandCreatePlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;

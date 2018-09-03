@@ -1,4 +1,64 @@
 
+function guiCreateElements() {
+  //Creates and displays all elements needed for the game
+
+  //COMBO BOXES
+  //Game Start
+  updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
+  updateElement("divMusicianComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONmusician, "selMusicianComboBox"));
+  updateElement("divEquipmentComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONequipment, "selEquipmentComboBox"));
+  //Practice
+  //DAYS?
+  //Gig
+  //DAYS?
+  updateElement("divVenueComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONvenue, "selVenueComboBox"));
+  updateElement("divTicketPriceComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONtickets, "selTicketPriceComboBox"));
+  //Gifts
+  updateElement("divGiftComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONgift, "selGiftComboBox"));
+  //Record
+  updateElement("divTracksComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONtracks, "selTracksComboBox"));
+  //Release
+  updateElement("divDirectorComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONdirector, "selDirectorComboBox"));
+  updateElement("divFeatureComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONfeature, "selFeatureComboBox"));
+  updateElement("divLocationComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONlocation, "selLocationComboBox"));
+
+} //function
+
+function guiApplyListeners() {
+
+  document.getElementById("selTracksComboBox").addEventListener("change",function(event){
+    setAlbumTracks(this.value);
+  });
+
+  document.getElementById("selGiftComboBox").addEventListener("change",function(event){
+    guiActionCostCalc(3);
+  });
+
+  document.getElementById("selVenueComboBox").addEventListener("change",function(event){
+    guiActionCostCalc(1);
+  });
+  // document.getElementById("divTicketPriceComboBox").addEventListener("change",function(event){
+  //   guiActionCostCalc(1);
+  // });
+
+} //function
+
+function guiDisplayDetailsReturnArray(JSONtoUse) {
+  //Returns array of fully formed labeks and values to display
+  /*
+    METHOD
+    ======
+    Get the labels to display from JSON
+    Get the alternative value, if any, for the values
+    Get the alternative names, if any, for the labels
+  */
+  var arrTemp = [];
+      arrTemp = guiDisplayDetailsLabelsReturnArray(JSONtoUse); //Get what to show
+      arrTemp = guiDisplayDetailsLabelsGetAlternativeValues(arrTemp); //Get alternative value | Value first as labels may change and using that for comparison
+      arrTemp = guiDisplayDetailsLabelsGetAlternativeLabels(arrTemp); //Get alternative labels
+  return arrTemp;
+}
+
 function guiDisplayDetailsLabelsReturnArray(JSONtoUse) {
   //Iterates through JSONtoUse for output
   var strTemp = "";
@@ -51,6 +111,7 @@ function guiDisplayDetailsLabelsCheckToShow(strLabel) {
   } //for
   return boolTemp;
 } //function
+
 function guiDisplayDetailsLabelsGetAlternativeLabels(arrTemp) {
   //Get alternative labels
   for (a in arrTemp) {
@@ -100,232 +161,23 @@ function guiDisplayDetailsCreateHTMLtable(arrTemp) {
   return strTemp;
 } //function
 
-function guiDisplayDetailsCreateHTMLcomboBox(arrTemp) {
+function guiDisplayDetailsCreateHTMLcomboBoxTopLevel(arrTemp, strID) {
   var strTemp = "";
-  strTemp += "<select onChange=''>";
-  for (l in arrTemp) {
-    //for every label
-    strTemp += "<option value='" + arrTemp[l][1] + "'>" + arrTemp[l][0] + "</option>";
-  } //for musician
+  strTemp += "<select id='"+strID+"' onChange=''>";
+  for (i in arrTemp) {
+    strTemp += "<option value='" + i + "'>" + arrTemp[i].name + "</option>";
+  }
   strTemp += "</select>";
   return strTemp;
 } //function
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var GLOBALBandi = 0; //GLOBAL band youre viewing CHEAT
-function showBandDetails(i) {
-
-  if (i < 0) {
-    i = JSONband.length - 1; //Tale away 1 as array starts from 0
-  }
-  if (i > (JSONband.length - 1)) {
-    i = 0; //Tale away 1 as array starts from 0
-  }
-
-  GLOBALBandi = i;
-
-  updateElement("divBandDetailsName", JSONband[i].name);
-  updateElement("divBandDetailsMoney", JSONconfig[0].currency + displayNumbersWithCommas(JSONband[i].money));
-  updateElement("divBandDetailsReputation", displayNumbersWithCommas(JSONband[i].reputation));
-  updateElement("divBandDetailsEquipment", JSONequipment[JSONband[i].equipment].name);
-
-  if (JSONband[i].contract == false) {
-    updateElement("divBandDetailsContract", "Not signed yet");
-  } else {
-    updateElement("divBandDetailsContract", JSONcontract[JSONband[i].contract].name);
-  } //if
-
-  updateElement("divBandDetailsAlbums", JSONband[i].album);
-
-//Musicians
-guiCreateMusicians(i);
-
-}
-
-var GLOBALMusiciani = 0; //GLOBAL Musician youre viewing CHEAT
-function showMusicianDetails(i) {
-
-  if (i < 0) {
-    i = JSONmusician.length - 1; //Tale away 1 as array starts from 0
-  }
-  if (i > (JSONmusician.length - 1)) {
-    i = 0; //Tale away 1 as array starts from 0
-  }
-
-  GLOBALMusiciani = i;
-
-  updateElement("divMusicianDetailsName", JSONmusician[i].name);
-  updateElement("divMusicianDetailsSkill", displayNumbersWithCommas(JSONmusician[i].skill));
-  updateElement("divMusicianDetailsReputation", displayNumbersWithCommas(JSONmusician[i].reputation));
-  updateElement("divMusicianDetailsEquipment", JSONequipment[JSONmusician[i].equipment].name);
-  updateElement("divMusicianDetailsHappiness", JSONmusician[i].happiness);
-  updateElement("divMusicianDetailsGift", JSONgift[JSONmusician[i].gift].name);
-
-}
-
-
-
-
-function guiCreateMusicians(i) {
-
-var arrTemp = [];
-    arrTemp = guiDisplayDetailsLabelsReturnArray(JSONband[i]); //Get what to show
-    arrTemp = guiDisplayDetailsLabelsGetAlternativeValues(arrTemp); //Get alternative value | Value first as labels may change and using that for comparison
-    arrTemp = guiDisplayDetailsLabelsGetAlternativeLabels(arrTemp); //Get alternative labels
-
-
-//document.write(guiDisplayDetailsCreateHTMLcomboBox(arrTemp));
-document.write(guiDisplayDetailsCreateHTMLtable(arrTemp));
-
-
-
-  updateElement("divAdminBandMusiciansComboBox", createComboBoxfromJSONiAndNameMusicianInBandsDetails(JSONband[i].musician, "selAdminBandMusiciansComboBox"));
-  showMusicianDetails(document.getElementById("selAdminBandMusiciansComboBox").value);
-
-
+function guiDisplayDetailsCreateHTMLcomboBox(arrTemp, strID) {
   var strTemp = "";
-
-  strTemp +="   <div class='divTable'>";
-  strTemp +="     <div class='divRow'>";
-
-  for (m in JSONband[i].musician) {
-    //for every musician in band
-
-    strTemp +="   <div class='divCell'>";
-
-    strTemp +="   <div class='divTable'>";
-    strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLabel'>";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="       <div class='divCell'>";
-    strTemp +="         <div id=''>";
-    strTemp +="           <img src='_images/gui32x32.png' alt='Musician Name'>";
-    strTemp +=            JSONmusician[JSONband[i].musician[m]].name;
-    strTemp +="         </div> <!-- div -->";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="     </div> <!-- divRow -->";
-
-    strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLabel'>";
-    strTemp +="         <p>Skill</p>";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="       <div class='divCell'>";
-    strTemp +="         <div id=''>";
-    strTemp +="           <img src='_images/gui32x32.png' alt='Musician Skill'>";
-    strTemp +=            JSONmusician[JSONband[i].musician[m]].skill;
-    strTemp +="         </div> <!-- div -->";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="     </div> <!-- divRow -->";
-
-    strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLabel'>";
-    strTemp +="         <p>Reputation</p>";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="       <div class='divCell'>";
-    strTemp +="         <div id=''>";
-    strTemp += JSONmusician[JSONband[i].musician[m]].reputation;
-    strTemp +="         </div> <!-- div -->";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="     </div> <!-- divRow -->";
-
-    strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLabel'>";
-    strTemp +="         <p>Preferred Equipment</p>";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="       <div class='divCell'>";
-    strTemp +="         <div id=''>";
-    strTemp += JSONequipment[JSONmusician[JSONband[i].musician[m]].equipment].name;
-    strTemp +="         </div> <!-- div -->";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="     </div> <!-- divRow -->";
-
-    strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLabel'>";
-    strTemp +="         <p>Happiness</p>";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="       <div class='divCell'>";
-    strTemp +="         <div id=''>";
-    strTemp += JSONmusician[JSONband[i].musician[m]].happiness;
-    strTemp +="         </div> <!-- div -->";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="     </div> <!-- divRow -->";
-
-    strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLabel'>";
-    strTemp +="         <p>Favourite Gift</p>";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="       <div class='divCell'>";
-    strTemp +="         <div id=''>";
-    strTemp += JSONgift[JSONmusician[JSONband[i].musician[m]].gift].name;
-    strTemp +="         </div> <!-- div -->";
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="     </div> <!-- divRow -->";
-    strTemp +="   </div> <!-- divTable -->";
-
-    strTemp +="   </div> <!-- divCell -->";
-
+  strTemp += "<select id='"+strID+"' onChange=''>";
+  for (l in arrTemp) {
+    //for every label
+    strTemp += "<option value='" + l + "'>" + arrTemp[l][1] + "</option>";
   } //for musician
-
-  strTemp +="       </div> <!-- divCell -->";
-  strTemp +="     </div> <!-- divRow -->";
-  strTemp +="   </div> <!-- divTable -->";
-
-  updateElement("divBandDetailsMusicians", strTemp);
-
-  guiAddImagetoDiv("gui32x32.png", "Band Name", "divBandDetailsNameImage");
-
+  strTemp += "</select>";
+  return strTemp;
 } //function
-
-
-
-function guiAddImagetoDiv(strSrc, strAlt, elem){
-  var elemImage = document.createElement("img");
-      elemImage.setAttribute("src", "_images/" + strSrc);
-      elemImage.setAttribute("alt", "dunno");
-  document.getElementById(elem).appendChild(elemImage);
-}

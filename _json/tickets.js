@@ -1,8 +1,23 @@
 //store of ticket prices
-var JSONtickets = [{
-  "2" : 2
-  ,"5" : 5
-  ,"10" : 10
-  ,"15" : 15
-  ,"20" : 20
-}];
+var JSONtickets = [
+  {
+    "name"    : "2 tickets"
+    ,"tickets"  : 2
+  }
+  ,{
+    "name"    : "2 tickets"
+    ,"tickets"  : 5
+  }
+  ,{
+    "name"    : "2 tickets"
+    ,"tickets"  : 10
+  }
+  ,{
+    "name"    : "2 tickets"
+    ,"tickets"  : 15
+  }
+  ,{
+    "name"    : "2 tickets"
+    ,"tickets"  : 20
+  }
+];

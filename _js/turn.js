@@ -1,21 +1,27 @@
 
-function turnInit() {
+function gameInit() {
   //Initialisation of turn / Start of game!
-  document.getElementById("divCurrentDate").innerHTML = "<p>Date: " + JSONconfig[0].date + "</p>";
-  updateElement("divEquipmentComboBox", createComboBoxfromJSONiAndName(JSONequipment, "selEquipmentComboBox"));
-  updateElement("divDirectorComboBox", createComboBoxfromJSONiAndName(JSONdirector, "selDirectorComboBox"));
-  updateElement("divFeatureComboBox", createComboBoxfromJSONiAndName(JSONfeature, "selFeatureComboBox"));
-  updateElement("divLocationComboBox", createComboBoxfromJSONiAndName(JSONlocation, "selLocationComboBox"));
-  updateElement("divGiftComboBox", createComboBoxfromJSONiAndName(JSONgift, "selGiftComboBox"));
-  updateElement("divTracksComboBox", createComboBoxfromJSONiAndName(JSONtracks, "selTracksComboBox"));
-  updateElement("divMusicianComboBox", createComboBoxfromJSONiAndName(JSONmusician, "selMusicianComboBox"));
-  updateElement("divBandComboBox", createComboBoxfromJSONiAndName(JSONband, "selBandComboBox"));
-  updateElement("divVenueComboBox", createComboBoxfromJSONiAndName(JSONvenue, "selVenueComboBox"));
-  updateElement("divTicketPriceComboBox", createComboBoxfromJSONticketPrice(JSONtickets, "selTicketPriceComboBox"));
+  /*
+    METHOD
+    ======
+    Create elements needed for game
+    Apply any listeners to elements
+    Show Gane Start section
+  */
+
+  guiCreateElements(); //Create everything needed
+  guiApplyListeners();
+
 
   navHideAll();
   navShowSingle("#secStartGame");
 } //function
+
+
+
+
+
+
 
 var GLOBALintervalTurn; //GLOBAL TURN so can stop it from anywhere in the code
 
@@ -109,6 +115,10 @@ function takewageAway() {
 
 
 
+
+
+// CHART TIME FUNCTIONS
+
 function sortArrayByKey(array, key) {
   //Sorts an array by a key in DECENDING order. For asending, change to "function(a, b)"
   return array.sort(function(b, a) {
@@ -117,8 +127,6 @@ function sortArrayByKey(array, key) {
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
   });
 }
-
-
 
 function chartTime() {
 
@@ -143,7 +151,6 @@ function chartTime() {
   console.log(arrTemp);
 
 } //function
-
 
 function calcChartTimeSingle(intQualityRating, i) {
   //Work out final value of single, adding dynamic rpoperties
