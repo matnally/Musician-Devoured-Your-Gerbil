@@ -16,7 +16,7 @@ function practice(i) {
     Update musician SKILL, HAPPINESS, REPUTATION
   */
 
-  updateBandMoneySubtract(i, JSONconfig[0].costPractice, "practice"); //update band money
+  updateBandMoneySubtract(i, JSONconfig[0].valuePracticeCost, "practice"); //update band money
   for (a in JSONband[i].musician) {
     //update musician attributes
     getEquipmentBonusMusician(i, a); //applies any bonus if any

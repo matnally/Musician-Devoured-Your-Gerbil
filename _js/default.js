@@ -38,6 +38,7 @@ function loggingOutput(strAction, strTemp) {
 } //function
 function logShow() {
   document.getElementById("loggingOutput").innerHTML = GLOBALstrLogging;
+  $("#loggingOutput").toggle();
 }
 
 function updateElement(elemName, strTemp) {

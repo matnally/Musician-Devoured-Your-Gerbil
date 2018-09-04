@@ -16,6 +16,7 @@ function gameInit() {
 
   navHideAll();
   navShowSingle("#secStartGame");
+
   guiDisplayDetailsMusician(GLOBALMusiciani);
   navShowSingle("#secStartGameDetails");
 } //function
@@ -34,8 +35,28 @@ function gameStart() {
 
   navShow("#secMainMenu");
 
-  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONband[0])));
+  guiDisplayDetailsBandMusicians(0);
   navShowSingle("#secBandDetails");
+} //function
+
+
+function guiDisplayDetailsBandMusicians(i) {
+
+  i = parseInt(i);
+
+  if (i < 0)
+    i = JSONband.length - 1;
+
+  if (i >= JSONband.length)
+    i=0;
+
+  GLOBALBandi = i;
+  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONband[i])));
+  var strMusicians = "";
+  for (m in JSONband[i].musician) {
+    strMusicians += guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONmusician[JSONband[i].musician[m]]));
+  } //for
+  updateElement("divBandMusicianDetails", strMusicians);
 } //function
 
 

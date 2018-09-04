@@ -29,22 +29,120 @@ function guiApplyListeners() {
   document.getElementById("selMusicianComboBox").addEventListener("change",function(event){
     guiDisplayDetailsMusician(this.value);
   });
-  // document.getElementById("selTracksComboBox").addEventListener("change",function(event){
-  //   setAlbumTracks(this.value);
-  // });
-  //
-  // document.getElementById("selGiftComboBox").addEventListener("change",function(event){
-  //   guiActionCostCalc(3);
-  // });
-  //
-  // document.getElementById("selVenueComboBox").addEventListener("change",function(event){
-  //   guiActionCostCalc(1);
-  // });
-  // document.getElementById("divTicketPriceComboBox").addEventListener("change",function(event){
-  //   guiActionCostCalc(1);
-  // });
+
+//START MAIN MENU
+  document.getElementById("divPracticeComboBox").addEventListener("change",function(event){
+    guiDisplayActionCost(this.value, 0); //0 = Practice
+  });
+
+  //GIG
+  document.getElementById("selVenueComboBox").addEventListener("change",function(event){
+    guiDisplayActionCost(this.value, 1); //1 = Gig
+  });
+  document.getElementById("selTicketPriceComboBox").addEventListener("change",function(event){
+    guiDisplayActionCost(this.value, 1); //1 = Gig
+  });
+  document.getElementById("divGigDays").addEventListener("change",function(event){
+    guiDisplayActionCost(this.value, 1); //1 = Gig
+  });
+
+  document.getElementById("secPublicity").addEventListener("mousemove",function(event){
+    guiDisplayActionCost(1, 2); //2 = Publicity
+  });
+
+//END MAIN MENU
+
+  document.getElementById("selGiftComboBox").addEventListener("change",function(event){
+    guiDisplayActionCost(this.value, 3); //3 = Gifts
+  });
+
+  document.getElementById("selTracksComboBox").addEventListener("change",function(event){
+    guiDisplayActionCost(this.value, 4); //4 = Record
+  });
+
+  //Release
+  document.getElementById("selDirectorComboBox").addEventListener("change",function(event){
+    guiDisplayActionCost(this.value, 5); //5 = Release
+  });
+  document.getElementById("selLocationComboBox").addEventListener("change",function(event){
+    guiDisplayActionCost(this.value, 5); //5 = Release
+  });
+  document.getElementById("selFeatureComboBox").addEventListener("change",function(event){
+    guiDisplayActionCost(this.value, 5); //5 = Release
+  });
 
 } //function
+
+
+function guiDisplayActionCost(i, index) {
+
+  var strTemp = "";
+  var intTotalCost = 0;
+  var intDayCost = 0;
+  var intTotalCost = "";
+
+  switch(index) {
+    case 0:
+      //practice
+      intDayCost = displayNumbersWithCommas(JSONconfig[0].valuePracticeCost);
+      intTotalCost = displayNumbersWithCommas(i * JSONconfig[0].valuePracticeCost);
+      strTemp = "To <strong>Practice</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+    break;
+    case 1:
+      //gig
+      intDayCost = displayNumbersWithCommas(JSONvenue[i].money);
+      intTotalCost = displayNumbersWithCommas(document.getElementById("divGigDays").value * JSONvenue[i].money);
+      strTemp = "To <strong>Gig</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+    break;
+    case 2:
+      //publicity
+      intDayCost = displayNumbersWithCommas(JSONconfig[0].valuePublicityCost);
+      intTotalCost = displayNumbersWithCommas(JSONconfig[0].valuePublicityCost);
+      strTemp = "To gain <strong>Publicity</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+    break;
+    case 3:
+      //gifts
+      intDayCost = displayNumbersWithCommas(JSONgift[i].money);
+      intTotalCost = displayNumbersWithCommas(JSONgift[i].money * JSONband[0].musician.length);
+      strTemp = "Buying <strong>Gifts</strong> for <strong>" + JSONband[0].musician.length + "</strong> musician(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per musician, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+    break;
+    case 4:
+      //record
+      intDayCost = displayNumbersWithCommas(JSONtracks[i].money);
+      intTotalCost = displayNumbersWithCommas(JSONtracks[i].money);
+      strTemp = "To <strong>Record</strong> a <strong>" + JSONtracks[i].tracks + "</strong>-track album will take <strong>"+JSONtracks[i].days+"</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intDayCost + "</strong>";
+    break;
+    case 5:
+      //release
+      intDayCost = displayNumbersWithCommas(JSONconfig[0].valueReleaseCost);
+      intTotalCost = displayNumbersWithCommas(JSONdirector[document.getElementById("selDirectorComboBox").value].money + JSONlocation[document.getElementById("selLocationComboBox").value].money + JSONfeature[document.getElementById("selFeatureComboBox").value].money);
+      strTemp = "To <strong>Release</strong> a <strong>Single</strong> it will take <strong>"+1+"</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intTotalCost + "</strong>";
+      strTemp += "To create a music video directed by <strong>"+JSONdirector[document.getElementById("selDirectorComboBox").value].name+"</strong> in <strong>"+JSONlocation[document.getElementById("selLocationComboBox").value].name+"</strong> featuring <strong>"+JSONfeature[document.getElementById("selFeatureComboBox").value].name+"</strong>, will take <strong>1</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intTotalCost + "</strong>";
+    break;
+  } //switch
+
+  updateElement("divActionCost", "<br>" + strTemp);
+
+} //function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var GLOBALBandi = 0;
 function guiDisplayDetailsBand(i) {
@@ -60,6 +158,7 @@ function guiDisplayDetailsBand(i) {
   GLOBALBandi = i;
 
   updateElement("divBandDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONband[i])));
+
 } //function
 var GLOBALMusiciani = 0;
 function guiDisplayDetailsMusician(i) {
@@ -76,12 +175,6 @@ function guiDisplayDetailsMusician(i) {
 
   updateElement("divMusicianDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONmusician[i])));
 } //function
-
-
-
-
-
-
 
 
 function guiDisplayDetailsReturnArray(JSONtoUse) {
@@ -184,22 +277,22 @@ function guiDisplayDetailsLabelsGetAlternativeValues(arrTemp) {
   return arrTemp;
 } //function
 
-function guiDisplayDetailsCreateHTMLsimple(arrTemp) {
+function guiDisplayDetailsCreateHTMLtable(arrTemp) {
   var strTemp = "";
 
   for (l in arrTemp) {
     //for every label
 
-    strTemp +="<div>";
-    strTemp += arrTemp[l][0];
+    strTemp +="<p>";
+    strTemp += "<span>" + arrTemp[l][0] + ".png</span>";
     strTemp += arrTemp[l][1];
-    strTemp +="</div>";
+    strTemp +="</p>";
   } //for musician
 
   return strTemp;
 } //function
 
-function guiDisplayDetailsCreateHTMLtable(arrTemp) {
+function guiDisplayDetailsCreateHTMLsimple(arrTemp) {
   var strTemp = "";
   strTemp +="   <div class='divTable'>";
   for (l in arrTemp) {

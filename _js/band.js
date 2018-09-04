@@ -5,8 +5,7 @@ function createBandPlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;
   JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
   JSONtoUse.equipment = document.getElementById("selEquipmentComboBox").value;
-  JSONtoUse.money = JSONconfig[0].moneyMedium;
-//  actionChoose(0); // init for PLAYER ONLY BAND
+  JSONtoUse.money = JSONconfig[0][document.getElementById('divMoney').value];
 } //function
 
 function createBandOther() {
@@ -36,7 +35,7 @@ function createBandOther() {
     var intReputation = calcBandReputation(arrTemp); //calculate band total reputation
     var intRandomEquipment = getBandEquipment(); //get random equipment
     //CREATES band - GLOBALdatDateCurrent used for dateActionFinish so triggers actionChoose
-    JSONband.push({'name':strName, 'money':JSONconfig[0].moneyMedium, 'contract':getContract(), 'reputation':intReputation, 'musician':arrTemp, 'equipment':intRandomEquipment, 'days':0, 'dateActionFinish':GLOBALdatDateCurrent, 'album':false, 'tracks':0}); //add band JSON
+    JSONband.push({'name':strName, 'money':JSONconfig[0]["moneyNormal"], 'contract':getContract(), 'reputation':intReputation, 'musician':arrTemp, 'equipment':intRandomEquipment, 'days':0, 'dateActionFinish':GLOBALdatDateCurrent, 'album':false, 'tracks':0}); //add band JSON
   } while (arrMusiciansRemaining.length > 0); //do  // SHOULD BE 1??????????? ABOVE IN THE DO WHILE
 
 } //function

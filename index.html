@@ -62,7 +62,6 @@
 
 
         <section id="secStartGame">
-
           <p>Band name</p>
           <input id="inpBandName" type="text" value="Profanity"></input>
 
@@ -71,6 +70,14 @@
 
           <p>Equipment</p>
           <div id="divEquipmentComboBox"></div>
+
+          <p>Money</p>
+          <select id="divMoney">
+            <option value="moneyEasy">Easy £100,000</option>
+            <option value="moneyNormal">Normal £50,000</option>
+            <option value="moneyHard">Hard £10,000</option>
+          </select>
+
           <br><br>
           <button onClick="gameStart()">Create Band</button>
         </section><!-- section -->
@@ -88,7 +95,6 @@
         <section id="secPractice">
           <p>Practice</p>
           <select id="divPracticeComboBox">
-            <!-- <option value="">Please choose</option> -->
             <option value="2">2 days</option>
             <option value="3">3 days</option>
             <option value="4">4 days</option>
@@ -96,7 +102,10 @@
             <option value="6">6 days</option>
             <option value="7">7 days</option>
           </select>
+          <br>
           <button onClick="setPractice(document.getElementById('divPracticeComboBox').value)">Band Practice</button>
+          <br>
+          <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
         </section><!-- section -->
 
@@ -105,7 +114,6 @@
           <div id="divVenueComboBox"></div>
           <div id="divTicketPriceComboBox"></div>
           <select id="divGigDays">
-            <!-- <option value="">Choose an option</option> -->
             <option value="2">2 nights</option>
             <option value="3">3 nights</option>
             <option value="4">4 nights</option>
@@ -113,13 +121,18 @@
             <option value="6">6 nights</option>
             <option value="7">7 nights</option>
           </select>
+          <br>
           <button onClick="setGig(document.getElementById('divGigDays').value,document.getElementById('selVenueComboBox').value,document.getElementById('selTicketPriceComboBox').value)">Play Gig</button>
+          <br>
+          <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
         </section><!-- section -->
 
         <section id="secPublicity">
           <p>Publicity</p>
           <button onClick="setPublicity(1)">Get Publicity</button>
+          <br>
+          <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
         </section><!-- section -->
 
@@ -127,6 +140,8 @@
           <p>Gifts</p>
           <div id="divGiftComboBox"></div>
           <button onClick="setGift(1,document.getElementById('selGiftComboBox').value)">Give Gifts</button>
+          <br>
+          <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
         </section><!-- section -->
 
@@ -134,6 +149,8 @@
           <p>Record</p>
           <div id="divTracksComboBox"></div>
           <button onClick="setRecord(document.getElementById('selTracksComboBox').value)">Record an album</button>
+          <br>
+          <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
         </section><!-- section -->
 
@@ -145,30 +162,20 @@
           <button onClick="setRelease(1)">Release Single</button>
           <br>
           <button onClick="alert('TODO');">TODO Release Album</button>
+          <br>
+          <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
         </section><!-- section -->
 
         <section id="secAdmin">
           <p>Admin</p>
-
-          <div id="divAdminBandComboBox"></div>
-          <button onClick="showBandDetails(GLOBALBandi-1);"> < Previous Band</button>
-          <button onClick="showBandDetails(GLOBALBandi+1);"> Next Band > </button>
-          <br>
-
-          <div id="divAdminMusicianComboBox"></div>
-          <button onClick="showMusicianDetails(GLOBALMusiciani-1);"> < Previous Musician</button>
-          <button onClick="showMusicianDetails(GLOBALMusiciani+1);"> Next Musician > </button>
-
-          <br>
           <button onClick="logShow();">Show Logs</button>
           <div id="loggingOutput"></div>
-
           <br>
           <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
         </section>
-
+        <div id="divActionCost"></div>
 
       </div> <!-- divCell -->
 
@@ -182,17 +189,17 @@
           <p>Musicians</p>
           <div id="divMusicianComboBox"></div>
           <div id="divMusicianDetails"></div>
-          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani-1);"> < </button>
-          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani+1);"> > </button>
+          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani-1);">< Prev Musician</button>
+          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani+1);">Next Musician ></button>
           <br>
-          <button onClick="bandAddMusician(GLOBALMusiciani)">Add musician</button>
+          <button onClick="bandAddMusician(GLOBALMusiciani)">+ Add Musician</button>
         </section><!-- section -->
-
 
         <section id="secBandDetails">
           <div id="divBandDetails"></div><!-- div divBandDetails -->
-          <button onClick="guiDisplayDetailsBand(GLOBALBandi-1);"> < </button>
-          <button onClick="guiDisplayDetailsBand(GLOBALBandi+1);"> > </button>
+          <button onClick="guiDisplayDetailsBandMusicians(GLOBALBandi-1);">< Prev Band</button>
+          <button onClick="guiDisplayDetailsBandMusicians(GLOBALBandi+1);">Next Band ></button>
+          <div id="divBandMusicianDetails"></div>
         </section><!-- section -->
 
 
