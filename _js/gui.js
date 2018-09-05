@@ -189,7 +189,7 @@ function guiDisplayDetailsReturnArray(JSONtoUse) {
   var arrTemp = [];
       arrTemp = guiDisplayDetailsLabelsReturnArray(JSONtoUse); //Get what to show
       arrTemp = guiDisplayDetailsLabelsGetAlternativeValues(arrTemp); //Get alternative value | Value first as labels may change and using that for comparison
-      arrTemp = guiDisplayDetailsLabelsGetAlternativeLabels(arrTemp); //Get alternative labels
+//      arrTemp = guiDisplayDetailsLabelsGetAlternativeLabels(arrTemp); //Get alternative labels
   return arrTemp;
 } //function
 
@@ -283,10 +283,20 @@ function guiDisplayDetailsCreateHTMLtable(arrTemp) {
   for (l in arrTemp) {
     //for every label
 
-    strTemp +="<p>";
-    strTemp += "<span>" + arrTemp[l][0] + ".png</span>";
+    strTemp += "<p>";
+    strTemp += "<span>";
+    strTemp += "<img src='_images/";
+    strTemp += arrTemp[l][0];
+    // strTemp += "_images/gui32x32";
+    strTemp += ".png";
+    strTemp += "' alt='";
+    strTemp += arrTemp[l][0];
+    strTemp += "'>";
+    strTemp += "</span>";
+    strTemp += "&nbsp;";
     strTemp += arrTemp[l][1];
-    strTemp +="</p>";
+    strTemp += "</p>";
+
   } //for musician
 
   return strTemp;

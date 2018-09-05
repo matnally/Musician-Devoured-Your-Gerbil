@@ -52,11 +52,20 @@ function guiDisplayDetailsBandMusicians(i) {
 
   GLOBALBandi = i;
   updateElement("divBandDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONband[i])));
-  var strMusicians = "";
+  var strTemp = "";
+  strTemp +="   <div class='divTable'>";
+  strTemp +="     <div class='divRow'>";
   for (m in JSONband[i].musician) {
-    strMusicians += guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONmusician[JSONband[i].musician[m]]));
+    strTemp +="       <div class='divCell'>";
+
+    strTemp += guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONmusician[JSONband[i].musician[m]]));
+
+    strTemp +="       </div> <!-- divCell -->";
+
   } //for
-  updateElement("divBandMusicianDetails", strMusicians);
+  strTemp +="     </div> <!-- divRow -->";
+  strTemp +="   </div> <!-- divTable -->";
+  updateElement("divBandMusicianDetails", strTemp);
 } //function
 
 
