@@ -8,6 +8,17 @@
  }
 
 
+
+
+.valuePositive {
+  color: green;
+}
+.valueNegative {
+  color: red;
+}
+
+
+
 /************ END OF DEFAULT STYLES ************/
 
 

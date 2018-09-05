@@ -11,7 +11,7 @@ var JSONband = [{
   ,"dateActionFinish" : 0
   ,"venue"            : 0
   ,"ticketPrice"      : 0
-  ,"contract"         : false
-  ,"album"            : false
+  ,"contract"         : 1
+  ,"album"            : [] //albums band has recorded
   ,"tracks"           : 0
 }];

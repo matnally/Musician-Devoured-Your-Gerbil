@@ -1,17 +1,21 @@
 
 function createAlbum(i) {
+  alert("createAlbum(i): " + i);
 
   //Get how many Tracks for Album
   var intTracks = JSONtracks[JSONband[i].tracks].tracks;
 
   //Writes Ablum details to JSON file
   JSONalbum.push({'name':getRandomName(),'tracks':intTracks,'band':i,'active':true}); //add band JSON
-
+console.log(JSONalbum);
   //Get the index of the newly created Album
   var intAlbum = 0;
       intAlbum = parseInt(JSONalbum.length);
       intAlbum = intAlbum - 1; //bloody array 0 starting from zero
-      JSONband[i].album = intAlbum;
+
+alert(i);
+  i = parseInt(i);
+  JSONband[i].album.push(intAlbum); //add album ref to band's details
 
   //Create Tracks for Album
   for (var z = 0; z < parseInt(intTracks); z++) {
@@ -19,9 +23,7 @@ function createAlbum(i) {
   } //for
 
   updateBandMoneySubtract(i, JSONtracks[JSONband[i].tracks].money, "record album"); //update band money
-//  updateBandMoneySubtract(i, JSONtracks[document.getElementById('selTracksComboBox').value].money, "record album"); //update band money
-
-  loggingOutput("ALBUM RECORDED", JSONband[i].name + " recorded an album called " + JSONalbum[JSONband[i].album].name + " consisting of "+intTracks+" tracks<br>");
+  loggingOutput("ALBUM RECORDED", JSONband[i].name + " recorded an album called " + JSONalbum[intAlbum].name + " consisting of "+intTracks+" tracks<br>");
 
 } //function
 

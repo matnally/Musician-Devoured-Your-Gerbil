@@ -11,6 +11,7 @@
   <script src="_js/jquery.min.js"></script>
 
   <!-- LOGIC -->
+  <script src="_js/action.js"></script>
   <script src="_js/admin.js"></script>
   <script src="_js/album.js"></script>
   <script src="_js/band.js"></script>
@@ -170,7 +171,6 @@
         <section id="secAdmin">
           <p>Admin</p>
           <button onClick="logShow();">Show Logs</button>
-          <div id="loggingOutput"></div>
           <br>
           <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
@@ -178,12 +178,9 @@
         <div id="divActionCost"></div>
 
       </div> <!-- divCell -->
-
       <div class="divCell divGameRight">
 
-
         <div id="divCurrentDate"></div>
-
 
         <section id="secStartGameDetails">
           <p>Add a Musician</p>
@@ -199,16 +196,20 @@
           <div id="divBandDetails"></div><!-- div divBandDetails -->
           <p>Musicians</p>
           <div id="divBandMusicianDetails"></div>
+          <p>Albums</p>
+          <div id="divBandAlbumsDetails"></div>
           <button onClick="guiDisplayDetailsBandMusicians(GLOBALBandi-1);">< Prev Band</button>
           <button onClick="guiDisplayDetailsBandMusicians(GLOBALBandi+1);">Next Band ></button>
+          <div id="divBandActionCurrent"></div>
         </section><!-- section -->
-
 
       </div> <!-- divCell -->
     </div> <!-- divRow -->
 
   </div> <!-- divTable -->
 
+
+  <div id="loggingOutput"></div>
 
   <script>
     $(document).ready(function() {

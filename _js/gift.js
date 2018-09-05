@@ -15,14 +15,18 @@ function gift(i) {
     Get chosen gift
     Go through band to see if chosen gift is musician's gift choice
     Update musician HAPPINESS
+    Update band money
   */
 
   var intBonus = 0;
-
   var intGift = parseInt(JSONband[i].gift); //get chosen gift
+  var intTotal = 0;
 
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
+
+    intTotal += parseInt(JSONgift[JSONband[i].gift].money); //build up total copst of gifts
+
     if (parseInt(JSONmusician[JSONband[i].musician[a]].gift) == intGift) {
       //gift is musician's favourite
       intBonus = JSONconfig[0].sameGiftBonus; //Bonus for favourite gift
@@ -33,9 +37,9 @@ function gift(i) {
     var intTemp = parseInt(JSONmusician[JSONband[i].musician[a]].happiness) + intBonus;
     JSONmusician[JSONband[i].musician[a]].happiness = intTemp; // THE ACTION !!!!!!!!
 
-//TODO: Take away money!!!!!
-
   }//for
+
+  updateBandMoneySubtract(i, intTotal, "gift"); //updates band money
 
 } //function
 

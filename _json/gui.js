@@ -12,7 +12,21 @@ var JSONgui = [{
   ,"skill": {
 		"label": "Skill"
 	}
+  ,"happiness": {
+		"label": "Happiness"
+	}
   ,"gift": {
 		"label": "Fav Gift"
 	}
+
+// MusicianS
+  ,"fee": {
+		"label": "Signing Fee"
+	}
+  ,"wage": {
+		"label": "Weekly Wage"
+	}
+
+
+
 }];

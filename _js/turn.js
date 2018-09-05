@@ -51,21 +51,38 @@ function guiDisplayDetailsBandMusicians(i) {
     i=0;
 
   GLOBALBandi = i;
-  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONband[i])));
+  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[i])));
   var strTemp = "";
+
   strTemp +="   <div class='divTable'>";
   strTemp +="     <div class='divRow'>";
+
   for (m in JSONband[i].musician) {
     strTemp +="       <div class='divCell'>";
-
-    strTemp += guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONmusician[JSONband[i].musician[m]]));
-
+    strTemp += guiDisplayDetailsCreateHTMLmusician(guiDisplayDetailsReturnArray(JSONmusician[JSONband[i].musician[m]]));
     strTemp +="       </div> <!-- divCell -->";
-
   } //for
   strTemp +="     </div> <!-- divRow -->";
   strTemp +="   </div> <!-- divTable -->";
   updateElement("divBandMusicianDetails", strTemp);
+
+
+  strTemp +="   <div class='divTable'>";
+  strTemp +="     <div class='divRow'>";
+
+  for (m in JSONband[i].musician) {
+    strTemp +="       <div class='divCell'>";
+    strTemp += guiDisplayDetailsCreateHTMLalbum(JSONband[i].musician);
+    strTemp +="       </div> <!-- divCell -->";
+  } //for
+  strTemp +="     </div> <!-- divRow -->";
+  strTemp +="   </div> <!-- divTable -->";
+  updateElement("divBandAlbumsDetails", strTemp);
+
+
+  guiDisplayActionCurrent(i);
+
+
 } //function
 
 
@@ -86,6 +103,7 @@ var GLOBALintervalRunning = false; //GLOBAL
 
 function turnBegin() {
   navShowSingle("#secBandDetails");
+  guiDisplayDetailsBandMusicians(0);
   for (var i=0;i<JSONband[0].days;i++) {
     // setTimeout(turnStart, 1000);
     turnStart();
@@ -97,12 +115,12 @@ function turnStart() {
   updateDate();
   loggingOutput("DAY " + GLOBALdatDateCurrent, " ************************" + "<br>" + "<br>");
   bandActionExecute(); //do actions for bands
-  eventContract(); //see if they are eligible for a record contract, if not already
+  // eventContract(); //see if they are eligible for a record contract, if not already
   eventDOWaction(); //choose action corressponding to day of week
   loggingOutput("TURN END", "************************" + "<br>" + "<br>");
   //WAIT???
 
-  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONband[0]))); //GUI
+  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[0]))); //GUI
 
 } //function
 function turnEnd() {
@@ -111,6 +129,7 @@ function turnFinish() {
   navShow("#secMainMenu");
 
   navShowSingle("#secBandDetails");
+  guiDisplayDetailsBandMusicians(0);
 } //function
 
 

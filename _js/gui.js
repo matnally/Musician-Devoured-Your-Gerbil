@@ -76,6 +76,8 @@ function guiApplyListeners() {
 
 function guiDisplayActionCost(i, index) {
 
+  guiDisplayDetailsBandMusicians(0);
+
   var strTemp = "";
   var intTotalCost = 0;
   var intDayCost = 0;
@@ -87,11 +89,18 @@ function guiDisplayActionCost(i, index) {
       intDayCost = displayNumbersWithCommas(JSONconfig[0].valuePracticeCost);
       intTotalCost = displayNumbersWithCommas(i * JSONconfig[0].valuePracticeCost);
       strTemp = "To <strong>Practice</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+      strTemp += "<br>";
+      strTemp += "For each of the "+JSONband[0].musician.length+" musician(s) in <strong>" + JSONband[0].name + "</strong> they will recieve <strong>" + JSONconfig[0].valuePracticeSkill + "</strong> Skill, <strong>" + JSONconfig[0].valuePracticeHappiness + "</strong> Happiness and <strong>" + JSONconfig[0].valuePracticeReputation + "</strong> Reputation for each day's practice, not included any extra bonuses for using the musician's favourite equipment.";
+
+      guiDisplayMovementLabelMusician("spnMovementMusicianskill", (i * JSONconfig[0].valuePracticeSkill));
+      guiDisplayMovementLabelMusician("spnMovementMusicianhappiness", (i * JSONconfig[0].valuePracticeHappiness));
+      guiDisplayMovementLabelMusician("spnMovementMusicianreputation", (i * JSONconfig[0].valuePracticeReputation));
+
     break;
     case 1:
       //gig
-      intDayCost = displayNumbersWithCommas(JSONvenue[i].money);
-      intTotalCost = displayNumbersWithCommas(document.getElementById("divGigDays").value * JSONvenue[i].money);
+      intDayCost = displayNumbersWithCommas(JSONvenue[document.getElementById("selVenueComboBox").value].money);
+      intTotalCost = displayNumbersWithCommas(document.getElementById("divGigDays").value * JSONvenue[document.getElementById("selVenueComboBox").value].money);
       strTemp = "To <strong>Gig</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
     break;
     case 2:
@@ -121,7 +130,59 @@ function guiDisplayActionCost(i, index) {
     break;
   } //switch
 
-  updateElement("divActionCost", "<br>" + strTemp);
+
+  // intTotalCost = -intTotalCost; //turn into negative number
+  guiDisplayMovementLabelBand("spnMovementBandmoney", (i * intDayCost));
+
+  updateElement("divActionCost", "<br>" + strTemp); //updates element
+
+
+} //function
+
+
+function guiDisplayMovementLabelMusician(strID, intTotalCost) {
+  //Updates how much will be taken for the property, applying the appropiate class
+  var strTemp = "";
+  var elems = document.getElementsByName(strID);
+
+  for (var m = 0; m < elems.length; m++) {
+
+    if (intTotalCost < 0) {
+      elems[m].setAttribute("class", "valueNegative");
+      strTemp = "&nbsp;";
+    } else {
+      elems[m].setAttribute("class", "valuePositive");
+      strTemp = "&nbsp; +";
+    } //if
+    elems[m].innerHTML = strTemp + intTotalCost;
+
+
+  } //for
+
+} //function
+
+
+function guiDisplayMovementLabelBand(strID, intTotalCost) {
+  //Updates how much will be taken for the property, applying the appropiate class
+  var elem = document.getElementById(strID);
+  var strTemp = "";
+  if (intTotalCost < 0) {
+    elem.setAttribute("class", "valueNegative");
+    strTemp = "&nbsp;";
+  } else {
+    elem.setAttribute("class", "valuePositive");
+    strTemp = "&nbsp; +";
+  } //if
+  elem.innerHTML = strTemp + intTotalCost;
+} //function
+
+
+
+function guiDisplayActionCurrent(i) {
+
+  var strTemp = "";
+      strTemp = "<strong>" + JSONband[i].name + "</strong> is <strong>" + getActionName(JSONband[i].action) + "</strong> for <strong>" + JSONband[i].days + "</strong> day(s). They are due to finish on <strong>" + JSONband[i].dateActionFinish + "</strong>";
+  updateElement("divBandActionCurrent", "<br>" + strTemp);
 
 } //function
 
@@ -157,7 +218,7 @@ function guiDisplayDetailsBand(i) {
 
   GLOBALBandi = i;
 
-  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONband[i])));
+  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[i])));
 
 } //function
 var GLOBALMusiciani = 0;
@@ -173,7 +234,7 @@ function guiDisplayDetailsMusician(i) {
 
   GLOBALMusiciani = i;
 
-  updateElement("divMusicianDetails", guiDisplayDetailsCreateHTMLtable(guiDisplayDetailsReturnArray(JSONmusician[i])));
+  updateElement("divMusicianDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONmusician[i])));
 } //function
 
 
@@ -277,7 +338,7 @@ function guiDisplayDetailsLabelsGetAlternativeValues(arrTemp) {
   return arrTemp;
 } //function
 
-function guiDisplayDetailsCreateHTMLtable(arrTemp) {
+function guiDisplayDetailsCreateHTMLband(arrTemp) {
   var strTemp = "";
 
   for (l in arrTemp) {
@@ -295,12 +356,60 @@ function guiDisplayDetailsCreateHTMLtable(arrTemp) {
     strTemp += "</span>";
     strTemp += "&nbsp;";
     strTemp += arrTemp[l][1];
+    strTemp += "<span id='spnMovementBand"+arrTemp[l][0]+"'>";
+    strTemp += "</span>";
+    strTemp += "</p>";
+
+  } //for band
+
+  return strTemp;
+} //function
+function guiDisplayDetailsCreateHTMLmusician(arrTemp) {
+  var strTemp = "";
+
+  for (l in arrTemp) {
+    //for every label
+
+    strTemp += "<p>";
+    strTemp += "<span>";
+    strTemp += "<img src='_images/";
+    strTemp += arrTemp[l][0];
+    // strTemp += "_images/gui32x32";
+    strTemp += ".png";
+    strTemp += "' alt='";
+    strTemp += arrTemp[l][0];
+    strTemp += "'>";
+    strTemp += "</span>";
+    strTemp += "&nbsp;";
+    strTemp += arrTemp[l][1];
+    strTemp += "<span name='spnMovementMusician"+arrTemp[l][0]+"'>";
+    strTemp += "</span>";
     strTemp += "</p>";
 
   } //for musician
 
   return strTemp;
 } //function
+function guiDisplayDetailsCreateHTMLalbum(arrTemp) {
+  var strTemp = "";
+
+  for (l in arrTemp) {
+    //for every label
+
+    strTemp += "<p>";
+    strTemp += JSONalbum[arrTemp[l].name];
+    strTemp += "<br>";
+    strTemp += JSONalbum[arrTemp[l].tracks];
+    strTemp += "</p>";
+
+  } //for album
+
+  return strTemp;
+} //function
+
+
+
+
 
 function guiDisplayDetailsCreateHTMLsimple(arrTemp) {
   var strTemp = "";

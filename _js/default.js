@@ -31,7 +31,7 @@ function getJSONIDfromName(strName, JSONtoUse) {
 
 var GLOBALstrLogging = "";
 function loggingOutput(strAction, strTemp) {
-  //document.getElementById("loggingOutput").innerHTML += "["+strAction.toUpperCase()+"] " + strTemp;
+  // document.getElementById("loggingOutput").innerHTML += "["+strAction.toUpperCase()+"] " + strTemp;
   //console.log("["+strAction.toUpperCase()+"] " + strTemp);
   GLOBALstrLogging += "["+strAction.toUpperCase()+"] " + strTemp;
 
