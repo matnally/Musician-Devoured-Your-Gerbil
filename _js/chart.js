@@ -30,7 +30,7 @@ function chartTime() {
   } //for
 
   arrTemp = sortArrayByKey(arrTemp, 'qualityRating');
-  console.log(arrTemp);
+  console.log("CHART ARRAY: " + arrTemp);
 
 } //function
 

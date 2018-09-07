@@ -1,10 +1,15 @@
 
-function setPublicity(intDays) {
+function setPublicityPlayer() {
   //set player's band attributes for appropiate action
-  JSONband[0].dateActionFinish = getDateActionFinish(intDays);
-  JSONband[0].action = 2; //2 = publicity
-  JSONband[0].days = intDays;
+  setPublicity(0)
   turnBegin();
+} //function
+
+function setPublicity(i) {
+  //set band attributes for appropiate action
+  JSONband[i].action = 2; //2 = publicity
+  JSONband[i].days = JSONconfig[0].valuePublicityDaysDuration;
+  JSONband[i].dateActionFinish = getActionDateFinish(JSONband[i].days);
 } //function
 
 function publicity(i) {

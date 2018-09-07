@@ -1,11 +1,16 @@
 
-function setGift(intDays, intGifts) {
+function setGiftPlayer(intGifts) {
   //set player's band attributes for appropiate action
-  JSONband[0].dateActionFinish = getDateActionFinish(intDays);
-  JSONband[0].action = 3; //3 = gift
-  JSONband[0].days = intDays;
-  JSONband[0].gift = intGifts;
+  setGift(0, intGifts);
   turnBegin();
+} //function
+
+function setGift(i, intGift) {
+  //set band attributes for appropiate action
+  JSONband[i].gift = intGift;
+  JSONband[i].action = 3; //3 = gift
+  JSONband[i].days = JSONconfig[0].valueGiftDaysDuration;
+  JSONband[i].dateActionFinish = getActionDateFinish(JSONband[i].days);
 } //function
 
 function gift(i) {

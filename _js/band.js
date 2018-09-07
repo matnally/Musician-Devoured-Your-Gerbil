@@ -35,7 +35,7 @@ function createBandOther() {
     var intReputation = calcBandReputation(arrTemp); //calculate band total reputation
     var intRandomEquipment = getBandEquipment(); //get random equipment
     //CREATES band - GLOBALdatDateCurrent used for dateActionFinish so triggers actionChoose
-    JSONband.push({'name':strName, 'money':JSONconfig[0]["moneyNormal"], 'contract':getContract(), 'reputation':intReputation, 'musician':arrTemp, 'equipment':intRandomEquipment, 'days':0, 'dateActionFinish':GLOBALdatDateCurrent, 'album':false, 'tracks':0}); //add band JSON
+    JSONband.push({'name':strName, 'money':JSONconfig[0]["moneyNormal"], 'contract':getContract(), 'reputation':intReputation, 'musician':arrTemp, 'equipment':intRandomEquipment, 'days':0, 'dateActionFinish':GLOBALdatDateCurrent, 'album':[], 'tracks':0}); //add band JSON
   } while (arrMusiciansRemaining.length > 0); //do  // SHOULD BE 1??????????? ABOVE IN THE DO WHILE
 
 } //function
@@ -112,7 +112,7 @@ function getDateCurrent() {
 //  datCurrent = GLOBALdatDateCurrent.getFullYear() +"/"+ GLOBALdatDateCurrent.getMonth() +"/"+ GLOBALdatDateCurrent.getDate();
   return datCurrent;
 } //function
-function getDateActionFinish(i) {
+function getActionDateFinish(i) {
   //calc what in-game date action will finish
   var tmpDate = new Date(getDateCurrent());
   tmpDate.setDate(tmpDate.getDate() + parseInt(i));

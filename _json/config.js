@@ -23,11 +23,14 @@ var JSONconfig = [{
   ,"valuePublicityCost"           : 5000
   ,"valuePublicityReputationGood" : 10
   ,"valuePublicityReputationBad"  : -10
+  ,"valuePublicityDaysDuration"   : 1 //in days
+
+  ,"valueGiftDaysDuration"        : 1 //in days
 
   ,"sameGiftBonus"                : 1 //gift
 
-
   ,"valueReleaseCost"             : 20000
+  ,"valueReleaseDaysDuration"     : 1 //in days
 
 
 }];

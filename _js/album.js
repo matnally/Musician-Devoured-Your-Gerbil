@@ -1,22 +1,24 @@
 
-function createAlbum(i) {
-  alert("createAlbum(i): " + i);
+function chkAlreadyHaveAlbum(i) {
+  var boolReturnValue = false;
+  if (JSONband[i].album == false)
+    boolReturnValue = false;
+  else
+    boolReturnValue = true;
+  return boolReturnValue;
+} //function
 
-  //Get how many Tracks for Album
-  var intTracks = JSONtracks[JSONband[i].tracks].tracks;
+function createAlbum(i) {
+
+  var intTracks = JSONtracks[JSONband[i].tracks].tracks; //Get how many Tracks for Album
 
   //Writes Ablum details to JSON file
   JSONalbum.push({'name':getRandomName(),'tracks':intTracks,'band':i,'active':true}); //add band JSON
-console.log(JSONalbum);
+
   //Get the index of the newly created Album
-  var intAlbum = 0;
-      intAlbum = parseInt(JSONalbum.length);
-      intAlbum = intAlbum - 1; //bloody array 0 starting from zero
-
-alert(i);
-  i = parseInt(i);
+  var intAlbum = parseInt(JSONalbum.length-1); //bloody array 0 starting from zero
   JSONband[i].album.push(intAlbum); //add album ref to band's details
-
+console.log("Album " + intAlbum + " pushed to " + JSONband[i].name);
   //Create Tracks for Album
   for (var z = 0; z < parseInt(intTracks); z++) {
     createTrack(i, intAlbum);

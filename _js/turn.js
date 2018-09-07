@@ -29,7 +29,7 @@ function gameStart() {
   */
   createBandPlayer(JSONband[0]); //create band from player's chosen musicians
   createBandOther(); //creates bands from the remaining musicians
-  bandActionChoose(); //sets an action to each band
+  actionChooseBandAll(); //sets an action to each band
 
   updateElement("divCurrentDate", GLOBALdatDateCurrent);
 
@@ -52,11 +52,10 @@ function guiDisplayDetailsBandMusicians(i) {
 
   GLOBALBandi = i;
   updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[i])));
-  var strTemp = "";
 
+  var strTemp = "";
   strTemp +="   <div class='divTable'>";
   strTemp +="     <div class='divRow'>";
-
   for (m in JSONband[i].musician) {
     strTemp +="       <div class='divCell'>";
     strTemp += guiDisplayDetailsCreateHTMLmusician(guiDisplayDetailsReturnArray(JSONmusician[JSONband[i].musician[m]]));
@@ -66,13 +65,12 @@ function guiDisplayDetailsBandMusicians(i) {
   strTemp +="   </div> <!-- divTable -->";
   updateElement("divBandMusicianDetails", strTemp);
 
-
+  strTemp = "";
   strTemp +="   <div class='divTable'>";
   strTemp +="     <div class='divRow'>";
-
-  for (m in JSONband[i].musician) {
+  for (b in JSONband[i].album) {
     strTemp +="       <div class='divCell'>";
-    strTemp += guiDisplayDetailsCreateHTMLalbum(JSONband[i].musician);
+    strTemp += guiDisplayDetailsCreateHTMLalbum(JSONband[i].album[b]);
     strTemp +="       </div> <!-- divCell -->";
   } //for
   strTemp +="     </div> <!-- divRow -->";
@@ -114,7 +112,7 @@ function turnStart() {
   //Start of turn
   updateDate();
   loggingOutput("DAY " + GLOBALdatDateCurrent, " ************************" + "<br>" + "<br>");
-  bandActionExecute(); //do actions for bands
+  actionExecuteBandAll(); //do actions for bands
   // eventContract(); //see if they are eligible for a record contract, if not already
   eventDOWaction(); //choose action corressponding to day of week
   loggingOutput("TURN END", "************************" + "<br>" + "<br>");

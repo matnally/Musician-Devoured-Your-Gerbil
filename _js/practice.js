@@ -1,10 +1,15 @@
 
-function setPractice(intDays) {
+function setPracticePlayer(intDays) {
   //set player's band attributes for appropiate action
-  JSONband[0].dateActionFinish = getDateActionFinish(intDays);
-  JSONband[0].action = 0; //0 = practice
-  JSONband[0].days = parseInt(intDays);
+  setPractice(0, intDays);
   turnBegin(); //starts action for nth days (interval)
+} //function
+
+function setPractice(i, intDays) {
+  //set band attributes for appropiate action
+  JSONband[i].action = 0; //0 = practice
+  JSONband[i].days = intDays;
+  JSONband[i].dateActionFinish = getActionDateFinish(JSONband[i].days);
 } //function
 
 function practice(i) {

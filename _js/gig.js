@@ -1,12 +1,17 @@
 
-function setGig(intDays, intVenue, intTicketPrice) {
+function setGigPlayer(intDays, intVenue, intTicketPrice) {
   //set player's band attributes for appropiate action
-  JSONband[0].dateActionFinish = getDateActionFinish(intDays);
-  JSONband[0].action = 1; //1 = gig
-  JSONband[0].days = intDays;
-  JSONband[0].venue = intVenue;
-  JSONband[0].ticketPrice = intTicketPrice;
+  setGig(0, intDays, intVenue, intTicketPrice);
   turnBegin();
+} //function
+
+function setGig(i, intDays, intVenue, intTicketPrice) {
+  //set band attributes for appropiate action
+  JSONband[i].action = 1; //1 = gig
+  JSONband[i].days = intDays;
+  JSONband[i].dateActionFinish = getActionDateFinish(JSONband[i].days);
+  JSONband[i].venue = intVenue;
+  JSONband[i].ticketPrice = intTicketPrice;
 } //function
 
 function gig(i) {

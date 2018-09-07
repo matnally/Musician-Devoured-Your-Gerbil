@@ -1,14 +1,20 @@
 
-function setRelease(intDays) {
+function setReleasePlayer() {
+  //set player's band attributes for appropiate action
   if (JSONband[0].album == false) {
     //No albums recorded
     alert("You have not recorded an album yet!");
   } else {
-    JSONband[0].dateActionFinish = getDateActionFinish(intDays);
-    JSONband[0].action = 5; //5 = release
-    JSONband[0].days = intDays;
+    setRelease(0);
     turnBegin();
   } //if
+} //function
+
+function setRelease(i) {
+  //set band attributes for appropiate action
+  JSONband[i].action = 5; //5 = release
+  JSONband[i].days = JSONconfig[0].valueReleaseDaysDuration;
+  JSONband[i].dateActionFinish = getActionDateFinish(JSONband[i].days);
 } //function
 
 function release(i) {
@@ -31,7 +37,7 @@ function release(i) {
 
   } else {
     //there are NO more ative singles
-    JSONband[i].album = false;
+//    JSONband[i].album = false;
     //remmove album???
 
     if (i==0)

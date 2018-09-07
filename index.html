@@ -104,7 +104,7 @@
             <option value="7">7 days</option>
           </select>
           <br>
-          <button onClick="setPractice(document.getElementById('divPracticeComboBox').value)">Band Practice</button>
+          <button onClick="setPracticePlayer(document.getElementById('divPracticeComboBox').value)">Band Practice</button>
           <br>
           <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
@@ -123,7 +123,7 @@
             <option value="7">7 nights</option>
           </select>
           <br>
-          <button onClick="setGig(document.getElementById('divGigDays').value,document.getElementById('selVenueComboBox').value,document.getElementById('selTicketPriceComboBox').value)">Play Gig</button>
+          <button onClick="setGigPlayer(document.getElementById('divGigDays').value,document.getElementById('selVenueComboBox').value,document.getElementById('selTicketPriceComboBox').value)">Play Gig</button>
           <br>
           <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
@@ -131,7 +131,7 @@
 
         <section id="secPublicity">
           <p>Publicity</p>
-          <button onClick="setPublicity(1)">Get Publicity</button>
+          <button onClick="setPublicityPlayer()">Get Publicity</button>
           <br>
           <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
@@ -140,7 +140,7 @@
         <section id="secGifts">
           <p>Gifts</p>
           <div id="divGiftComboBox"></div>
-          <button onClick="setGift(1,document.getElementById('selGiftComboBox').value)">Give Gifts</button>
+          <button onClick="setGiftPlayer(document.getElementById('selGiftComboBox').value)">Give Gifts</button>
           <br>
           <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
@@ -149,7 +149,7 @@
         <section id="secRecord">
           <p>Record</p>
           <div id="divTracksComboBox"></div>
-          <button onClick="setRecord(document.getElementById('selTracksComboBox').value)">Record an album</button>
+          <button onClick="setRecordPlayer(document.getElementById('selTracksComboBox').value)">Record an album</button>
           <br>
           <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
@@ -160,6 +160,11 @@
           <div id="divDirectorComboBox"></div>
           <div id="divLocationComboBox"></div>
           <div id="divFeatureComboBox"></div>
+          <br>
+          <br>
+          <div id="divBandAlbums"></div>
+          <div id="divBandAlbumSingles"></div>
+          <br>
           <button onClick="setRelease(1)">Release Single</button>
           <br>
           <button onClick="alert('TODO');">TODO Release Album</button>

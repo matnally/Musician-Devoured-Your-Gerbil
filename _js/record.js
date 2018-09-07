@@ -1,21 +1,19 @@
 
-function setRecord(intTracks) {
+function setRecordPlayer(intTracks) {
   if (JSONband[0].contract == false) {
     //No albums recorded
     alert("You dont have a record contract yet!");
   } else {
-    JSONband[0].dateActionFinish = getDateActionFinish(JSONtracks[intTracks].days);
-    JSONband[0].action = 4; //4 = record
-    JSONband[0].days = JSONtracks[intTracks].days;
-    JSONband[0].tracks = intTracks;
+    //set player's band attributes for appropiate action
+    setRecord(0, intTracks);
     turnBegin();
   } //if
 } //function
 
-function record() {
-  createAlbum(0);
+function setRecord(i, intTracks) {
+  //set band attributes for appropiate action
+  JSONband[i].action = 4; //4 = record
+  JSONband[i].days = JSONtracks[intTracks].days;
+  JSONband[i].dateActionFinish = getActionDateFinish(JSONband[i].days);
+  JSONband[i].tracks = intTracks;
 } //function
-
-function setAlbumTracks(intTracks) {
-  JSONband[0].tracks = intTracks; //gets the number of days needed to record the tracks
-}

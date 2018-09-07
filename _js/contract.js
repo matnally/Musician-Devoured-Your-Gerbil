@@ -2,25 +2,15 @@
 function eventContract() {
   //see if they are eligible for a record contract, if not already
 
-  // console.log("");
-  // console.log("");
-
   for (i in JSONband) {
     //for each band
     if (chkAlreadyHaveContract(i) == false) {
-
-      if (i == 0) //Check to see if its the player's band?
-        console.log("FALSE only once ****");
-
 
       if (calChanceContract(i) == true) {
         //band DOES NOT have a record contract and has a change of a contract
         if (i == 0) { //Check to see if its the player's band?
           //Player's band
-          console.log(" i: " + i);
-          console.log("chkAlreadyHaveContract(0): " + chkAlreadyHaveContract(0));
-          console.log("chkAlreadyHaveContract(i): " + chkAlreadyHaveContract(i));
-          console.log("calChanceContract(i): " + calChanceContract(i));
+
           if (chkAlreadyHaveContract(0) == false)
             askSignContract();
 
@@ -39,12 +29,7 @@ function eventContract() {
 
 function askSignContract() {
   var intContract = getContract();
-  console.log("intContract: " + intContract);
-
   JSONband[0].contract = intContract;
-  console.log("Sign with " + JSONcontract[intContract].name + "? To be easy, I assume YES! TODO! Hopefully this is only shown once!");
-//  alert("JSONband[0].contract: " + JSONband[0].contract);
-  console.log("JSONband[0].contract: " + JSONband[0].contract);
 } //function
 
 
@@ -57,12 +42,7 @@ function chkAlreadyHaveContract(i) {
   //returns boolean check on band's contract attribute
   var returnValue = false;
 
-  if (i==0)
-    console.log("JSONband[0].contract == false?: " + JSONband[0].contract);
-
   if (JSONband[i].contract === false) {
-    if (i==0)
-      console.log("JSONband[0].contract == false Only ONCE??: " + JSONband[0].contract);
     returnValue = false;
   } else {
     returnValue = true;

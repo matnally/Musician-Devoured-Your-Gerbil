@@ -390,20 +390,20 @@ function guiDisplayDetailsCreateHTMLmusician(arrTemp) {
 
   return strTemp;
 } //function
-function guiDisplayDetailsCreateHTMLalbum(arrTemp) {
+
+function guiDisplayDetailsCreateHTMLalbum(intBandAlbumID) {
   var strTemp = "";
-
-  for (l in arrTemp) {
-    //for every label
-
-    strTemp += "<p>";
-    strTemp += JSONalbum[arrTemp[l].name];
-    strTemp += "<br>";
-    strTemp += JSONalbum[arrTemp[l].tracks];
-    strTemp += "</p>";
-
-  } //for album
-
+  strTemp += "<p>";
+  strTemp += JSONalbum[intBandAlbumID].name + " - " + JSONalbum[intBandAlbumID].tracks + " track album";
+  strTemp += "</p>";
+  for (t in JSONsingle) {
+    if (JSONsingle[t].album == intBandAlbumID) {
+      //SAME album so track belongs to album
+      strTemp += "<p>";
+      strTemp += JSONsingle[t].name;
+      strTemp += "</p>";
+    } //if
+  } //for
   return strTemp;
 } //function
 
@@ -447,5 +447,44 @@ function guiDisplayDetailsCreateHTMLcomboBox(arrTemp, strID) {
     strTemp += "<option value='" + l + "'>" + arrTemp[l][1] + "</option>";
   } //for musician
   strTemp += "</select>";
+  return strTemp;
+} //function
+
+
+
+
+
+
+
+
+
+
+
+function guiDisplayDetailsCreateHTMLcomboBoxAlbums(strID) {
+
+  var strTemp = "";
+
+  strTemp += "<select id='"+strID+"' onChange='showAlbumSingles(this.value)'>";
+  for (b in JSONband[0].album) {
+    //for every band album
+    strTemp += "<option value='" + JSONband[0].album[b] + "'>" + JSONalbum[JSONband[0].album[b]].name + "</option>";
+  } //for
+  strTemp += "</select>";
+
+  return strTemp;
+} //function
+function guiDisplayDetailsCreateHTMLcomboBoxSingles(i, strID) {
+
+  var strTemp = "";
+
+  strTemp += "<select id='"+strID+"' onChange=''>";
+    for (t in JSONsingle) {
+      if (JSONsingle[t].album == i) {
+        //SAME album so track belongs to album
+        strTemp += "<option value='" + t + "'>" + JSONsingle[t].name + "</option>";
+      } //if
+    } //for
+  strTemp += "</select>";
+
   return strTemp;
 } //function
