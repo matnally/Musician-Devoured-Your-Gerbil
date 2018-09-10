@@ -76,11 +76,14 @@ function actionExecuteBandAll() {
         if (GLOBALdatDateCurrent.getTime() === datDateActionFinish.getTime()) {//Check if last day of action. If so, do action as can't do it every day!
           createAlbum(i); //creates the album!
           updateElement("divBandAlbums", guiDisplayDetailsCreateHTMLcomboBoxAlbums("selBandAlbums"));
+          showAlbumSingles(document.getElementById("selBandAlbums").value);
         } //if
       break;
       case 5:
         //release
-        release(i);
+        if (GLOBALdatDateCurrent.getTime() === datDateActionFinish.getTime()) {//Check if last day of action. If so, do action as can't do it every day!
+          release(i);
+        } //if
       break;
       default:
     } //switch

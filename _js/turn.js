@@ -128,6 +128,9 @@ function turnFinish() {
 
   navShowSingle("#secBandDetails");
   guiDisplayDetailsBandMusicians(0);
+
+displayJSON();
+
 } //function
 
 

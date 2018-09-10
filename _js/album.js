@@ -1,7 +1,7 @@
 
 function chkAlreadyHaveAlbum(i) {
   var boolReturnValue = false;
-  if (JSONband[i].album == false)
+  if (JSONband[i].album === false)
     boolReturnValue = false;
   else
     boolReturnValue = true;
@@ -13,12 +13,11 @@ function createAlbum(i) {
   var intTracks = JSONtracks[JSONband[i].tracks].tracks; //Get how many Tracks for Album
 
   //Writes Ablum details to JSON file
-  JSONalbum.push({'name':getRandomName(),'tracks':intTracks,'band':i,'active':true}); //add band JSON
+  JSONalbum.push({'name':getRandomName(),'tracks':intTracks,'band':i,'releasedDate':false}); //add band JSON
 
   //Get the index of the newly created Album
   var intAlbum = parseInt(JSONalbum.length-1); //bloody array 0 starting from zero
   JSONband[i].album.push(intAlbum); //add album ref to band's details
-console.log("Album " + intAlbum + " pushed to " + JSONband[i].name);
   //Create Tracks for Album
   for (var z = 0; z < parseInt(intTracks); z++) {
     createTrack(i, intAlbum);
@@ -34,7 +33,7 @@ function createTrack(i, intAlbum) {
   //Writes Track details to JSON file
   var strTrackName = getRandomName();
   var intQualityRating = getQualityRatingTrack(i);
-  JSONsingle.push({'name':strTrackName,'album':intAlbum, 'active':true, 'qualityRating':intQualityRating, 'recordedDate':GLOBALdatDateCurrent.getTime()});
+  JSONsingle.push({'name':strTrackName,'album':intAlbum, 'releasedDate':false, 'qualityRating':intQualityRating, 'recordedDate':GLOBALdatDateCurrent.getTime()});
   loggingOutput("TRACK RECORDED", "The track "+strTrackName+" for the album " + intAlbum  + " has been recorded by " + JSONband[i].name + "<br>");
 } //function
 

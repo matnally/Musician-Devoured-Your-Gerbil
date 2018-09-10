@@ -15,7 +15,7 @@ function chartTime() {
   var arrTemp = [];
   for (y in JSONsingle) {
     //get ALL singles
-    if (JSONsingle[y].active == false) {
+    if (JSONsingle[y].releasedDate === false) {
       //single not released yet
       arrTemp.push(JSONsingle[y]); //add single to temp array
     } //if

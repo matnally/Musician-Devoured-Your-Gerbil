@@ -461,22 +461,17 @@ function guiDisplayDetailsCreateHTMLcomboBox(arrTemp, strID) {
 
 
 function guiDisplayDetailsCreateHTMLcomboBoxAlbums(strID) {
-
   var strTemp = "";
-
   strTemp += "<select id='"+strID+"' onChange='showAlbumSingles(this.value)'>";
   for (b in JSONband[0].album) {
     //for every band album
     strTemp += "<option value='" + JSONband[0].album[b] + "'>" + JSONalbum[JSONband[0].album[b]].name + "</option>";
   } //for
   strTemp += "</select>";
-
   return strTemp;
 } //function
 function guiDisplayDetailsCreateHTMLcomboBoxSingles(i, strID) {
-
   var strTemp = "";
-
   strTemp += "<select id='"+strID+"' onChange=''>";
     for (t in JSONsingle) {
       if (JSONsingle[t].album == i) {
@@ -485,6 +480,26 @@ function guiDisplayDetailsCreateHTMLcomboBoxSingles(i, strID) {
       } //if
     } //for
   strTemp += "</select>";
-
   return strTemp;
+} //function
+
+
+
+
+
+
+
+
+function displayJSON() {
+
+  console.log("************** START OF BAND JSON************************");
+  console.log(JSON.stringify(JSONband));
+  console.log("************** END OF BAND JSON************************");
+  console.log("************** START OF ALBUM JSON************************");
+  console.log(JSON.stringify(JSONalbum));
+  console.log("************** END OF ALBUM JSON************************");
+  console.log("************** START OF SINGLES JSON************************");
+  console.log(JSON.stringify(JSONsingle));
+  console.log("************** END OF SINGLES JSON************************");
+
 } //function

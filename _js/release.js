@@ -1,7 +1,7 @@
 
 function setReleasePlayer() {
   //set player's band attributes for appropiate action
-  if (JSONband[0].album == false) {
+  if (JSONband[0].album === false) {
     //No albums recorded
     alert("You have not recorded an album yet!");
   } else {
@@ -19,39 +19,58 @@ function setRelease(i) {
 
 function release(i) {
   //try to release a single
+  var intSingle = 0;
 
-  var arrTemp = getSinglesOfAlbumYetToBeReleased(i); //get singles of album
-  if (arrTemp.length > 0) {
-    //there are still come ative singles so release single
-    var intSingle = 0;
-    do {
-      intSingle = getSingle(arrTemp); //get a random single
-    } while(JSONsingle[arrTemp[intSingle]].active == false); //get a single while one is stil active, ignore false singles
-
-    JSONsingle[arrTemp[intSingle]].active = false; //RELEASE single by making it inactive?!
-    JSONsingle[arrTemp[intSingle]].releaseDate = GLOBALdatDateCurrent.getTime();
-
-    loggingOutput("SINGLE RELEASE", JSONband[i].name + " released the single '" + JSONsingle[arrTemp[intSingle]].name + "' from the album '" +JSONalbum[JSONband[i].album].name+ "'<br>");
-
-    //TODO: Cost to release? Video cost
+  if (i==0) {
+    //Player's Band
+    intSingle = document.getElementById("selBandAlbumSingles").value;
 
   } else {
-    //there are NO more ative singles
-//    JSONband[i].album = false;
-    //remmove album???
+    //Other's band
 
-    if (i==0)
-      alert("NO MORE ACTIVE SINGLES! Record another album");
+
+// GET ALBUMS
+// GET SINGLES
+// GET NOT RELEASED SINGLES
+var intAlbum = [];
+var intSingleUnreleased = [];
+var intSingle = false;
+var arrTemp = [];
+
+if (JSONband[i].album != false) {
+  intAlbum = JSONband[i].album;
+  arrTemp = getSinglesOfAlbumYetToBeReleased(i);
+  intSingle = getSingle(arrTemp);
+  console.log("intSingle: " + intSingle);
+  console.log("getSingle(arrTemp): " + getSingle(arrTemp));
+  console.log();
+  alert(JSONsingle[arrTemp[intSingle]].name);
+  JSONsingle[arrTemp[intSingle]].releasedDate = GLOBALdatDateCurrent.getTime(); //RELEASE single by giving it a releasedDate
+  updateBandMoneySubtract(i, JSONconfig[0].valueReleaseCost, "single release"); //update band money
+  loggingOutput("SINGLE RELEASE", JSONband[i].name + " released the single '" + JSONsingle[arrTemp[intSingle]].name + "' from the album '" +JSONalbum[JSONband[i].album].name+ "'<br>");
+} //if
+
+
+    // do {
+    //   // arrTemp = getSinglesOfAlbumYetToBeReleased(i);
+    //   // intSingle = getSingle(arrTemp); //get a random single
+    //   intSingle = getSingle(getSinglesOfAlbumYetToBeReleased(i)); //get a random single
+    //   console.log("intSingle: " + intSingle);
+    // } while(JSONsingle[intSingle].releasedDate === false); //get a single with no releasedDate
+
+
 
   } //if
 
+
 } //function
+
 
 function getSinglesOfAlbumYetToBeReleased(i) {
   var arrTemp = [];
   for (y in JSONsingle) {
     //get singles of album
-    if ((JSONsingle[y].album == JSONband[i].album) && (JSONsingle[y].active == true)) {
+    if ((JSONsingle[y].album == JSONband[i].album) && (JSONsingle[y].releasedDate === false)) {
       //single belongs to album
       arrTemp.push(y); //add single to temp array
     } //if

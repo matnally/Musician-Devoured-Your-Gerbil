@@ -7,9 +7,8 @@ var JSONsingle = [
   //   ,"director"      : 0
   //   ,"location"      : 0
   //   ,"feature"       : 0
-  //   ,"active"        : false
+  //   ,"releasedDate"  : false
   //   ,"qualityRating" : 0
   //   ,"recordedDate"  : 0
-  //   ,"releaseDate"   : 0
   // }
 ];
