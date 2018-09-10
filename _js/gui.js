@@ -355,7 +355,7 @@ function guiDisplayDetailsCreateHTMLband(arrTemp) {
     strTemp += "'>";
     strTemp += "</span>";
     strTemp += "&nbsp;";
-    strTemp += arrTemp[l][1];
+    strTemp += displayNumbersWithCommas(arrTemp[l][1]);
     strTemp += "<span id='spnMovementBand"+arrTemp[l][0]+"'>";
     strTemp += "</span>";
     strTemp += "</p>";
@@ -381,7 +381,7 @@ function guiDisplayDetailsCreateHTMLmusician(arrTemp) {
     strTemp += "'>";
     strTemp += "</span>";
     strTemp += "&nbsp;";
-    strTemp += arrTemp[l][1];
+    strTemp += displayNumbersWithCommas(arrTemp[l][1]);
     strTemp += "<span name='spnMovementMusician"+arrTemp[l][0]+"'>";
     strTemp += "</span>";
     strTemp += "</p>";

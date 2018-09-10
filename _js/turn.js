@@ -113,12 +113,16 @@ function turnStart() {
   updateDate();
   loggingOutput("DAY " + GLOBALdatDateCurrent, " ************************" + "<br>" + "<br>");
   actionExecuteBandAll(); //do actions for bands
+  // updateBandReputation();  //WRITES and CALS single band reps
   // eventContract(); //see if they are eligible for a record contract, if not already
   eventDOWaction(); //choose action corressponding to day of week
   loggingOutput("TURN END", "************************" + "<br>" + "<br>");
   //WAIT???
 
   updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[0]))); //GUI
+  updateElement("divBandAlbums", guiDisplayDetailsCreateHTMLcomboBoxAlbums("selBandAlbums")); //TODO: Needs to be here?
+  showAlbumSingles(0);
+  guiDisplayDetailsBandMusicians(0);
 
 } //function
 function turnEnd() {
@@ -127,9 +131,11 @@ function turnFinish() {
   navShow("#secMainMenu");
 
   navShowSingle("#secBandDetails");
-  guiDisplayDetailsBandMusicians(0);
 
-displayJSON();
+  // updateBandReputation();  //WRITES and CALS single band reps
+
+
+// displayJSON();
 
 } //function
 

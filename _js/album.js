@@ -1,10 +1,16 @@
 
 function chkAlreadyHaveAlbum(i) {
   var boolReturnValue = false;
-  if (JSONband[i].album === false)
-    boolReturnValue = false;
-  else
+  if (JSONband[i].album == false) {
+
+    if (JSONband[i].album === false)
+      boolReturnValue = false;
+    else
+      boolReturnValue = true;
+
+  } else {
     boolReturnValue = true;
+  }
   return boolReturnValue;
 } //function
 
@@ -13,8 +19,7 @@ function createAlbum(i) {
   var intTracks = JSONtracks[JSONband[i].tracks].tracks; //Get how many Tracks for Album
 
   //Writes Ablum details to JSON file
-  JSONalbum.push({'name':getRandomName(),'tracks':intTracks,'band':i,'releasedDate':false}); //add band JSON
-
+  JSONalbum.push({'name':getRandomName(),'tracks':intTracks,'band':i,'releasedDate':false,'recordedDate':GLOBALdatDateCurrent.getTime()}); //add band JSON
   //Get the index of the newly created Album
   var intAlbum = parseInt(JSONalbum.length-1); //bloody array 0 starting from zero
   JSONband[i].album.push(intAlbum); //add album ref to band's details
@@ -42,7 +47,7 @@ function getQualityRatingTrack(i) {
   var intQualityRating = 0;
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
-    intQualityRating += JSONmusician[a].skill
+    intQualityRating = intQualityRating + parseInt(JSONmusician[a].skill);
   }//for
   return intQualityRating;
 } //function

@@ -69,11 +69,11 @@ function createBandOther() {
 
 
 
-function updateBandReputation(intI) {
-  var bob = [];
-  bob = calcBandReputation(JSONband[intI].musician);
-  JSONband[intI].reputation = bob;
-  return intI;
+function updateBandReputation(i) {
+  //WRITES and CALS single band reps
+  var bob = 0;
+  bob = calcBandReputation(JSONband[i].musician);
+  JSONband[i].reputation = bob;
 } //function
 
 function calcBandReputation(JSONtoUse) {
@@ -84,10 +84,10 @@ function calcBandReputation(JSONtoUse) {
 
   for (i in JSONtoUse) {
     intReputation = JSONmusician[JSONtoUse[i]].reputation;
-    intTemp += parseInt(intReputation);
+    intTemp = intTemp + parseInt(intReputation);
   } //for
 
-intTemp = 5000;//TODO: CHEATING FOR TESTING PURPOSES
+// intTemp = 5000;//TODO: CHEATING FOR TESTING PURPOSES
 
   return intTemp;
 } //function

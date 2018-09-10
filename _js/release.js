@@ -1,13 +1,28 @@
 
 function setReleasePlayer() {
   //set player's band attributes for appropiate action
-  if (JSONband[0].album === false) {
-    //No albums recorded
-    alert("You have not recorded an album yet!");
+
+  if (!chkAlreadyHaveAlbum(0)) {
+    //returned false so does NOT have any albums so choose action again until it's not 5 = release
+    console.log("NO ALBUM");
   } else {
-    setRelease(0);
-    turnBegin();
+    //DO have at least one album so can release
+
+    //Check for still have singles unreleased
+    var arrTemp = getSinglesOfAlbumYetToBeReleased(0);
+    console.log("arrTemp.length: " + arrTemp.length);
+    if (!arrTemp.length) {
+      console.log("SET RELEASE");
+    } else {
+      console.log("SET RECORD");
+    } //if
+
   } //if
+
+
+
+  setRelease(0);
+  turnBegin();
 } //function
 
 function setRelease(i) {
@@ -18,53 +33,35 @@ function setRelease(i) {
 } //function
 
 function release(i) {
-  //try to release a single
+  // GET ALBUMS, GET SINGLES, GET NOT RELEASED SINGLES
   var intSingle = 0;
 
   if (i==0) {
     //Player's Band
     intSingle = document.getElementById("selBandAlbumSingles").value;
-
   } else {
     //Other's band
-
-
-// GET ALBUMS
-// GET SINGLES
-// GET NOT RELEASED SINGLES
-var intAlbum = [];
-var intSingleUnreleased = [];
-var intSingle = false;
-var arrTemp = [];
-
-if (JSONband[i].album != false) {
-  intAlbum = JSONband[i].album;
-  arrTemp = getSinglesOfAlbumYetToBeReleased(i);
-  intSingle = getSingle(arrTemp);
-  console.log("intSingle: " + intSingle);
-  console.log("getSingle(arrTemp): " + getSingle(arrTemp));
-  console.log();
-  alert(JSONsingle[arrTemp[intSingle]].name);
-  JSONsingle[arrTemp[intSingle]].releasedDate = GLOBALdatDateCurrent.getTime(); //RELEASE single by giving it a releasedDate
-  updateBandMoneySubtract(i, JSONconfig[0].valueReleaseCost, "single release"); //update band money
-  loggingOutput("SINGLE RELEASE", JSONband[i].name + " released the single '" + JSONsingle[arrTemp[intSingle]].name + "' from the album '" +JSONalbum[JSONband[i].album].name+ "'<br>");
-} //if
-
-
-    // do {
-    //   // arrTemp = getSinglesOfAlbumYetToBeReleased(i);
-    //   // intSingle = getSingle(arrTemp); //get a random single
-    //   intSingle = getSingle(getSinglesOfAlbumYetToBeReleased(i)); //get a random single
-    //   console.log("intSingle: " + intSingle);
-    // } while(JSONsingle[intSingle].releasedDate === false); //get a single with no releasedDate
-
-
-
+    intSingle = singleChoose(i);
   } //if
 
+  JSONsingle[intSingle].releasedDate = GLOBALdatDateCurrent.getTime(); //RELEASE single by giving it a releasedDate
+  updateBandMoneySubtract(i, JSONconfig[0].valueReleaseCost, "single release"); //update band money
+  loggingOutput("SINGLE RELEASE", JSONband[i].name + " released the single '" + JSONsingle[intSingle].name + "' from the album '" +JSONalbum[JSONsingle[intSingle].album].name+ "'<br>");
 
 } //function
 
+CHECK FOR MULTIPLE ALBUMS BUG?!?!
+
+function singleChoose(i) {
+  var intAlbum = [];
+      intAlbum = JSONband[i].album;
+  var arrTemp = [];
+      arrTemp = getSinglesOfAlbumYetToBeReleased(i);
+  var intSingle = 0;
+      intSingle = getSingle(arrTemp);
+      intSingle = arrTemp[intSingle];
+  return intSingle;
+} //function
 
 function getSinglesOfAlbumYetToBeReleased(i) {
   var arrTemp = [];

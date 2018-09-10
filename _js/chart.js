@@ -1,36 +1,23 @@
 
 // CHART TIME FUNCTIONS
 
-function sortArrayByKey(array, key) {
-  //Sorts an array by a key in DECENDING order. For asending, change to "function(a, b)"
-  return array.sort(function(b, a) {
-      var x = a[key];
-      var y = b[key];
-      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-  });
-}
-
 function chartTime() {
 
   var arrTemp = [];
   for (y in JSONsingle) {
     //get ALL singles
-    if (JSONsingle[y].releasedDate === false) {
+    if (JSONsingle[y].releasedDate !== false) {
       //single not released yet
       arrTemp.push(JSONsingle[y]); //add single to temp array
     } //if
   } //for
 
   for (a in arrTemp) {
-    for (i in JSONband) {
-      if (arrTemp[a].album == JSONband[i].album) {
-        arrTemp[a].qualityRating = calcChartTimeSingle(arrTemp[a].qualityRating, i);
-      } //if
-    } //for
+    arrTemp[a].qualityRating = calcChartTimeSingle(arrTemp[a].qualityRating, i);
   } //for
 
   arrTemp = sortArrayByKey(arrTemp, 'qualityRating');
-  console.log("CHART ARRAY: " + arrTemp);
+  console.log("CHART TIME: " + JSON.stringify(arrTemp));
 
 } //function
 
@@ -53,3 +40,13 @@ function calcChartTimeSingle(intQualityRating, i) {
   intTemp = intQualityRating + JSONband[i].reputation;
   return intTemp;
 } //function
+
+
+function sortArrayByKey(array, key) {
+  //Sorts an array by a key in DECENDING order. For asending, change to "function(a, b)"
+  return array.sort(function(b, a) {
+      var x = a[key];
+      var y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+  });
+}

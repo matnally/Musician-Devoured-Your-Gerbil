@@ -28,7 +28,7 @@ function publicity(i) {
     loggingOutput("musician publicity", JSONmusician[JSONband[i].musician[a]].name + "got "+intPublicity+" reputation<br>");
   } //for
 
-  updateBandReputation(i); // Need to do?
+  // updateBandReputation(i); // Need to do?
 
 } //function
 

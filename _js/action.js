@@ -8,8 +8,9 @@ function actionChooseBandAll() {
 
 function actionChoose(i) {
   //sets but doesn't execute action for a band
-
-  switch(getAction()) {
+var mat = getAction();
+// mat = 4;
+  switch(mat) {
     case 0:
       //practice
       setPractice(i, getDays(7));
@@ -28,7 +29,14 @@ function actionChoose(i) {
     break;
     case 4:
       //record
-      setRecord(i, getTracks());
+      setRecord(i, getTracks()); //default action just record album
+      // if (!chkAlreadyHaveAlbum(i)) { //TODO: Cheating?!
+      //   //returned false so does NOT have any albums so choose action again until it's not 5 = release
+      //   setRecord(i, getTracks()); //default action just record album
+      // } else {
+      //   //DO have at least one album so can release
+      //   setRelease(i);
+      // } //if
     break;
     case 5:
       //release
@@ -37,7 +45,16 @@ function actionChoose(i) {
         setRecord(i, getTracks()); //default action just record album
       } else {
         //DO have at least one album so can release
-        setRelease(i);
+
+        //Check for still have singles unreleased
+        var arrTemp = getSinglesOfAlbumYetToBeReleased(i);
+
+        if (!arrTemp.length) {
+          setRelease(i);
+        } else {
+          setRecord(i, getTracks()); //default action just record album
+        } //if
+
       } //if
     break;
     default:
@@ -73,33 +90,43 @@ function actionExecuteBandAll() {
       break;
       case 4:
         //record
-        if (GLOBALdatDateCurrent.getTime() === datDateActionFinish.getTime()) {//Check if last day of action. If so, do action as can't do it every day!
+        if (GLOBALdatDateCurrent.getTime() == datDateActionFinish.getTime()) {//Check if last day of action. If so, do action as can't do it every day!
           createAlbum(i); //creates the album!
-          updateElement("divBandAlbums", guiDisplayDetailsCreateHTMLcomboBoxAlbums("selBandAlbums"));
-          showAlbumSingles(document.getElementById("selBandAlbums").value);
+
+if (i=0) {
+    //PLAYER
+    updateElement("divBandAlbums", guiDisplayDetailsCreateHTMLcomboBoxAlbums("selBandAlbums")); //TODO: Needs to be here?
+    showAlbumSingles(document.getElementById("selBandAlbums").value);
+} //if
         } //if
       break;
       case 5:
         //release
-        if (GLOBALdatDateCurrent.getTime() === datDateActionFinish.getTime()) {//Check if last day of action. If so, do action as can't do it every day!
+        if (GLOBALdatDateCurrent.getTime() == datDateActionFinish.getTime()) {//Check if last day of action. If so, do action as can't do it every day!
           release(i);
         } //if
       break;
       default:
     } //switch
 
+    //to do after executing turn for single band
+    updateBandReputation(i);  //WRITES and CALS single band reps
+
+
+    //AT START OR END?????
+    //action finish check
+    if (GLOBALdatDateCurrent.getTime() === datDateActionFinish.getTime()) {
+      //today is the day the action move finishes
+      if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
+        actionChoose(i);  //sets next action for a band  IMPORTANT!!!
+      } else {
+        turnEnd();
+      } //if (i != 0)
+    } //if
+
+
   } //for
 
-  //AT START OR END?????
-  //action finish check
-  if (GLOBALdatDateCurrent.getTime() === datDateActionFinish.getTime()) {
-    //today is the day the action move finishes
-    if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
-      actionChoose(i);  //sets next action for a band  IMPORTANT!!!
-    } else {
-      turnEnd();
-    } //if (i != 0)
-  } //if
 
 } //function
 
