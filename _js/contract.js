@@ -37,7 +37,6 @@ function askSignContract() {
 //// SUPPORTING LOGIC ////
 //////////////////////////
 
-
 function chkAlreadyHaveContract(i) {
   //returns boolean check on band's contract attribute
   var returnValue = false;

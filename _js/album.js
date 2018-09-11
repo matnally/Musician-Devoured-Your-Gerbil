@@ -1,19 +1,4 @@
 
-function chkAlreadyHaveAlbum(i) {
-  var boolReturnValue = false;
-  if (JSONband[i].album == false) {
-
-    if (JSONband[i].album === false)
-      boolReturnValue = false;
-    else
-      boolReturnValue = true;
-
-  } else {
-    boolReturnValue = true;
-  }
-  return boolReturnValue;
-} //function
-
 function createAlbum(i) {
 
   var intTracks = JSONtracks[JSONband[i].tracks].tracks; //Get how many Tracks for Album
@@ -33,13 +18,32 @@ function createAlbum(i) {
 
 } //function
 
-
 function createTrack(i, intAlbum) {
   //Writes Track details to JSON file
   var strTrackName = getRandomName();
   var intQualityRating = getQualityRatingTrack(i);
   JSONsingle.push({'name':strTrackName,'album':intAlbum, 'releasedDate':false, 'qualityRating':intQualityRating, 'recordedDate':GLOBALdatDateCurrent.getTime()});
-  loggingOutput("TRACK RECORDED", "The track "+strTrackName+" for the album " + intAlbum  + " has been recorded by " + JSONband[i].name + "<br>");
+  loggingOutput("TRACK RECORDED", "The track "+strTrackName+" for the album " + JSONalbum[intAlbum].name  + " has been recorded by " + JSONband[i].name + "<br>");
+} //function
+
+
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
+
+function chkAlreadyHaveAlbum(i) {
+  var boolReturnValue = false;
+  if (JSONband[i].album == false) {
+
+    if (JSONband[i].album === false)
+      boolReturnValue = false;
+    else
+      boolReturnValue = true;
+
+  } else {
+    boolReturnValue = true;
+  }
+  return boolReturnValue;
 } //function
 
 function getQualityRatingTrack(i) {

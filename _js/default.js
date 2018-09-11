@@ -36,7 +36,7 @@ function loggingOutput(strAction, strTemp) {
   GLOBALstrLogging += "["+strAction.toUpperCase()+"] " + strTemp;
 
 } //function
-function logShow() {
+function adminShowLog() {
   document.getElementById("loggingOutput").innerHTML = GLOBALstrLogging;
   $("#loggingOutput").toggle();
 }
@@ -79,17 +79,17 @@ function formatDate(value) {
 
 
 
-   function displayContainer(strDivID) {
-     //Loop through all containers: remove Show class, add Hide class
-     var i;
-     var x = document.getElementsByClassName("divMusicianContainer");
-     for (i=0; i<x.length; i++) {
-       x[i].classList.remove("divContainerShow");
-       x[i].classList.add("divContainerHide");
-     } //for
-     if (strDivID != "")
-      document.getElementById(strDivID).classList.add("divContainerShow"); //Show passed in container
-   } //function
+function displayContainer(strDivID) {
+ //Loop through all containers: remove Show class, add Hide class
+ var i;
+ var x = document.getElementsByClassName("divMusicianContainer");
+ for (i=0; i<x.length; i++) {
+   x[i].classList.remove("divContainerShow");
+   x[i].classList.add("divContainerHide");
+ } //for
+ if (strDivID != "")
+  document.getElementById(strDivID).classList.add("divContainerShow"); //Show passed in container
+} //function
 
 
 
@@ -124,5 +124,5 @@ function getActionName(index) {
       strTemp = "release";
     break;
   } //switch
-return strTemp;
-}
+  return strTemp;
+} //function

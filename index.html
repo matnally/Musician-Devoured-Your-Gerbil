@@ -21,6 +21,7 @@
   <script src="_js/gift.js"></script>
   <script src="_js/gig.js"></script>
   <script src="_js/gui.js"></script>
+  <script src="_js/names.js"></script>
   <script src="_js/nav.js"></script>
   <script src="_js/player.js"></script>
   <script src="_js/practice.js"></script>
@@ -44,6 +45,7 @@
   <script src="_json/gui.js"></script>
   <script src="_json/instrument.js"></script>
   <script src="_json/location.js"></script>
+  <script src="_json/names.js"></script>
   <script src="_json/musician.js"></script>
   <script src="_json/player.js"></script>
   <script src="_json/single.js"></script>
@@ -56,6 +58,11 @@
 <body>
 
 
+  <br>
+  <div id="divCurrentDate"></div>
+  <br>
+
+
   <div class="divTable">
 
     <div class="divRow divGameLeft">
@@ -65,25 +72,27 @@
         <section id="secStartGame">
           <p>Band name</p>
           <input id="inpBandName" type="text" value="Profanity"></input>
-
+          <br>
+          <br>
           <p>Band musicians</p>
           <div id="divBandComboBox"></div>
-
+          <br>
           <p>Equipment</p>
           <div id="divEquipmentComboBox"></div>
-
+          <br>
           <p>Money</p>
           <select id="divMoney">
             <option value="moneyEasy">Easy £100,000</option>
             <option value="moneyNormal">Normal £50,000</option>
             <option value="moneyHard">Hard £10,000</option>
           </select>
-
-          <br><br>
+          <br>
+          <br>
           <button onClick="gameStart()">Create Band</button>
         </section><!-- section -->
 
         <section id="secMainMenu">
+          <p>Main menu</p>
           <button class="butMainMenu" onClick="navShow('#secPractice')">Practice</button><br>
           <button class="butMainMenu" onClick="navShow('#secGig')">Gig</button><br>
           <button class="butMainMenu" onClick="navShow('#secPublicity')">Publicity</button><br>
@@ -167,44 +176,49 @@
           <br>
           <button onClick="setReleasePlayer()">Release Single</button>
           <br>
-          <button onClick="alert('TODO')">TODO Release Album</button>
-          <br>
           <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
         </section><!-- section -->
 
         <section id="secAdmin">
           <p>Admin</p>
-          <button onClick="logShow();">Show Logs</button>
+          <button onClick="guiAdminShowJSON(JSONband);">Show All Bands</button>
+          <br>
+          <button onClick="guiAdminShowJSON(JSONmusician);">Show All Musicians</button>
+          <br>
+          <br>
+          <button onClick="guiAdminShowJSON(JSONalbum);">Show All Albums</button>
+          <br>
+          <button onClick="guiAdminShowJSON(JSONsingle);">Show All Singles</button>
+          <br>
+          <br>
+          <button onClick="adminShowLog();">Show Logs</button>
           <br>
           <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
         </section>
+
         <div id="divActionCost"></div>
 
       </div> <!-- divCell -->
       <div class="divCell divGameRight">
 
-        <div id="divCurrentDate"></div>
-
         <section id="secStartGameDetails">
           <p>Add a Musician</p>
-          <div id="divMusicianComboBox"></div>
-          <div id="divMusicianDetails"></div>
           <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani-1);">< Prev Musician</button>
           <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani+1);">Next Musician ></button>
+          <div id="divMusicianComboBox"></div>
+          <div id="divMusicianDetails"></div>
           <br>
           <button onClick="bandAddMusician(GLOBALMusiciani)">+ Add Musician</button>
         </section><!-- section -->
 
         <section id="secBandDetails">
-          <div id="divBandDetails"></div><!-- div divBandDetails -->
-          <p>Musicians</p>
-          <div id="divBandMusicianDetails"></div>
-          <p>Albums</p>
-          <div id="divBandAlbumsDetails"></div>
           <button onClick="guiDisplayDetailsBandMusicians(GLOBALBandi-1);">< Prev Band</button>
           <button onClick="guiDisplayDetailsBandMusicians(GLOBALBandi+1);">Next Band ></button>
+          <div id="divBandDetails"></div><!-- div divBandDetails -->
+          <div id="divBandMusicianDetails"></div>
+          <div id="divBandAlbumsDetails"></div>
           <div id="divBandActionCurrent"></div>
         </section><!-- section -->
 

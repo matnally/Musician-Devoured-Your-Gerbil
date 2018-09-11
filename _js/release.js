@@ -1,26 +1,6 @@
 
 function setReleasePlayer() {
   //set player's band attributes for appropiate action
-
-  if (!chkAlreadyHaveAlbum(0)) {
-    //returned false so does NOT have any albums so choose action again until it's not 5 = release
-    console.log("NO ALBUM");
-  } else {
-    //DO have at least one album so can release
-
-    //Check for still have singles unreleased
-    var arrTemp = getSinglesOfAlbumYetToBeReleased(0);
-    console.log("arrTemp.length: " + arrTemp.length);
-    if (!arrTemp.length) {
-      console.log("SET RELEASE");
-    } else {
-      console.log("SET RECORD");
-    } //if
-
-  } //if
-
-
-
   setRelease(0);
   turnBegin();
 } //function
@@ -50,7 +30,10 @@ function release(i) {
 
 } //function
 
-CHECK FOR MULTIPLE ALBUMS BUG?!?!
+
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
 
 function singleChoose(i) {
   var intAlbum = [];
@@ -68,18 +51,6 @@ function getSinglesOfAlbumYetToBeReleased(i) {
   for (y in JSONsingle) {
     //get singles of album
     if ((JSONsingle[y].album == JSONband[i].album) && (JSONsingle[y].releasedDate === false)) {
-      //single belongs to album
-      arrTemp.push(y); //add single to temp array
-    } //if
-  } //for
-  return arrTemp;
-} //function
-
-function getSinglesOfAlbum(i) {
-  var arrTemp = [];
-  for (y in JSONsingle) {
-    //get singles of album
-    if (JSONsingle[y].album == JSONband[i].album) {
       //single belongs to album
       arrTemp.push(y); //add single to temp array
     } //if

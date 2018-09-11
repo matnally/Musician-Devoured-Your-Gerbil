@@ -84,9 +84,9 @@ function guiDisplayDetailsBandMusicians(i) {
 } //function
 
 
-///////////////////////
-//TURN FUNCTIONS
-///////////////////////
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
 
 /*
 Order of syntax:
@@ -121,7 +121,7 @@ function turnStart() {
 
   updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[0]))); //GUI
   updateElement("divBandAlbums", guiDisplayDetailsCreateHTMLcomboBoxAlbums("selBandAlbums")); //TODO: Needs to be here?
-  showAlbumSingles(0);
+  showAlbumSingles(document.getElementById("selBandAlbums").value);
   guiDisplayDetailsBandMusicians(0);
 
 } //function

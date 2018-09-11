@@ -1,5 +1,8 @@
 
-function guiAdminBandsAllShow() {
-  // updateElement("divAdminBandComboBox", createComboBoxfromJSONiAndNameBandDetails(JSONband, "selAdminBandComboBox"));
-  // updateElement("divAdminMusicianComboBox", createComboBoxfromJSONiAndNameMusicianDetails(JSONmusician, "selAdminMusicianComboBox"));
-} //function
+function guiAdminShowJSON(JSONtoUse) {
+
+  console.log("***************** START *********************");
+  console.log(JSON.stringify(JSONtoUse));
+  console.log("****************** END **********************");
+
+}

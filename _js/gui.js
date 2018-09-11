@@ -30,7 +30,7 @@ function guiApplyListeners() {
     guiDisplayDetailsMusician(this.value);
   });
 
-//START MAIN MENU
+  //START MAIN MENU
   document.getElementById("divPracticeComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 0); //0 = Practice
   });
@@ -49,8 +49,7 @@ function guiApplyListeners() {
   document.getElementById("secPublicity").addEventListener("mousemove",function(event){
     guiDisplayActionCost(1, 2); //2 = Publicity
   });
-
-//END MAIN MENU
+  //END MAIN MENU
 
   document.getElementById("selGiftComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 3); //3 = Gifts
@@ -73,10 +72,7 @@ function guiApplyListeners() {
 
 } //function
 
-
 function guiDisplayActionCost(i, index) {
-
-  guiDisplayDetailsBandMusicians(0);
 
   var strTemp = "";
   var intTotalCost = 0;
@@ -133,7 +129,6 @@ function guiDisplayActionCost(i, index) {
 
   // intTotalCost = -intTotalCost; //turn into negative number
   guiDisplayMovementLabelBand("spnMovementBandmoney", (i * intDayCost));
-
   updateElement("divActionCost", "<br>" + strTemp); //updates element
 
 
@@ -400,7 +395,12 @@ function guiDisplayDetailsCreateHTMLalbum(intBandAlbumID) {
     if (JSONsingle[t].album == intBandAlbumID) {
       //SAME album so track belongs to album
       strTemp += "<p>";
-      strTemp += JSONsingle[t].name;
+
+      if (JSONsingle[t].releasedDate === false)
+        strTemp += JSONsingle[t].name;
+      else
+        strTemp += JSONsingle[t].name + " - released";
+
       strTemp += "</p>";
     } //if
   } //for
@@ -486,6 +486,9 @@ function guiDisplayDetailsCreateHTMLcomboBoxSingles(i, strID) {
 
 
 
+function showAlbumSingles(i) {
+  updateElement("divBandAlbumSingles", guiDisplayDetailsCreateHTMLcomboBoxSingles(i, "selBandAlbumSingles"));
+} //function
 
 
 

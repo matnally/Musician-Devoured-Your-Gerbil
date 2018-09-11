@@ -1,13 +1,8 @@
 
 function setRecordPlayer(intTracks) {
-  if (JSONband[0].contract == false) {
-    //No albums recorded
-    alert("You dont have a record contract yet!");
-  } else {
-    //set player's band attributes for appropiate action
-    setRecord(0, intTracks);
-    turnBegin();
-  } //if
+  //set player's band attributes for appropiate action
+  setRecord(0, intTracks);
+  turnBegin();
 } //function
 
 function setRecord(i, intTracks) {

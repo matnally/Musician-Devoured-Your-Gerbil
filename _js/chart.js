@@ -1,6 +1,4 @@
 
-// CHART TIME FUNCTIONS
-
 function chartTime() {
 
   var arrTemp = [];
@@ -12,12 +10,21 @@ function chartTime() {
     } //if
   } //for
 
+  //Do this in temp so doesn't affect the original
   for (a in arrTemp) {
     arrTemp[a].qualityRating = calcChartTimeSingle(arrTemp[a].qualityRating, i);
   } //for
 
-  arrTemp = sortArrayByKey(arrTemp, 'qualityRating');
-  console.log("CHART TIME: " + JSON.stringify(arrTemp));
+  arrTemp = sortArrayByKey(arrTemp, 'qualityRating'); //reorder by qualityRating
+
+  // console.log("CHART TIME: " + JSON.stringify(arrTemp));
+  console.log("CHART TIME!!!");
+  for (i in arrTemp) {
+    console.log("Single name: " + arrTemp[i].name);
+    console.log("Quality rating: " + arrTemp[i].qualityRating);
+    console.log("Album: " + arrTemp[i].album);
+    console.log("***********");
+  } //for
 
 } //function
 
@@ -42,6 +49,10 @@ function calcChartTimeSingle(intQualityRating, i) {
 } //function
 
 
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
+
 function sortArrayByKey(array, key) {
   //Sorts an array by a key in DECENDING order. For asending, change to "function(a, b)"
   return array.sort(function(b, a) {
@@ -49,4 +60,4 @@ function sortArrayByKey(array, key) {
       var y = b[key];
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
   });
-}
+} //function

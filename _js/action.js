@@ -8,9 +8,8 @@ function actionChooseBandAll() {
 
 function actionChoose(i) {
   //sets but doesn't execute action for a band
-var mat = getAction();
-// mat = 4;
-  switch(mat) {
+
+  switch(getAction()) {
     case 0:
       //practice
       setPractice(i, getDays(7));
@@ -30,13 +29,6 @@ var mat = getAction();
     case 4:
       //record
       setRecord(i, getTracks()); //default action just record album
-      // if (!chkAlreadyHaveAlbum(i)) { //TODO: Cheating?!
-      //   //returned false so does NOT have any albums so choose action again until it's not 5 = release
-      //   setRecord(i, getTracks()); //default action just record album
-      // } else {
-      //   //DO have at least one album so can release
-      //   setRelease(i);
-      // } //if
     break;
     case 5:
       //release
@@ -49,7 +41,7 @@ var mat = getAction();
         //Check for still have singles unreleased
         var arrTemp = getSinglesOfAlbumYetToBeReleased(i);
 
-        if (!arrTemp.length) {
+        if (arrTemp.length) {
           setRelease(i);
         } else {
           setRecord(i, getTracks()); //default action just record album
@@ -67,9 +59,20 @@ function actionExecuteBandAll() {
 
   for (i in JSONband) { //looping through all the bands
 
-    loggingOutput(JSONband[i].name + " TURN", "*****" +  JSONband[i].name + " - " + getActionName(JSONband[i].action) + "*****<br>");
-
     var datDateActionFinish = new Date(JSONband[i].dateActionFinish);
+    //AT START OR END?????
+    //action finish check
+    if (GLOBALdatDateCurrent.getTime() === datDateActionFinish.getTime()) {
+      //today is the day the action move finishes
+      if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
+        actionChoose(i);  //sets next action for a band  IMPORTANT!!!
+        // console.log("*&*&: " + JSONband[i].name + " action has finished so choose antoher");
+      } else {
+        turnEnd();
+      } //if (i != 0)
+    } //if
+
+    loggingOutput(JSONband[i].name + " TURN", "*****" +  JSONband[i].name + " - " + getActionName(JSONband[i].action) + "*****<br>");
 
     switch((JSONband[i].action)) {
       case 0:
@@ -94,10 +97,11 @@ function actionExecuteBandAll() {
           createAlbum(i); //creates the album!
 
 if (i=0) {
-    //PLAYER
-    updateElement("divBandAlbums", guiDisplayDetailsCreateHTMLcomboBoxAlbums("selBandAlbums")); //TODO: Needs to be here?
-    showAlbumSingles(document.getElementById("selBandAlbums").value);
+  //PLAYER
+  updateElement("divBandAlbums", guiDisplayDetailsCreateHTMLcomboBoxAlbums("selBandAlbums")); //TODO: Needs to be here?
+  showAlbumSingles(document.getElementById("selBandAlbums").value);
 } //if
+
         } //if
       break;
       case 5:
@@ -112,29 +116,8 @@ if (i=0) {
     //to do after executing turn for single band
     updateBandReputation(i);  //WRITES and CALS single band reps
 
-
-    //AT START OR END?????
-    //action finish check
-    if (GLOBALdatDateCurrent.getTime() === datDateActionFinish.getTime()) {
-      //today is the day the action move finishes
-      if (i != 0) { //NOT equals zero so its NOT the player's band (first created)
-        actionChoose(i);  //sets next action for a band  IMPORTANT!!!
-      } else {
-        turnEnd();
-      } //if (i != 0)
-    } //if
-
-
   } //for
 
-
-} //function
-
-
-
-
-function showAlbumSingles(i) {
-  updateElement("divBandAlbumSingles", guiDisplayDetailsCreateHTMLcomboBoxSingles(i, "selBandAlbumSingles"));
 } //function
 
 
