@@ -1,8 +1,14 @@
 
 function setReleasePlayer() {
   //set player's band attributes for appropiate action
-  setRelease(0);
-  turnBegin();
+  if (!chkAlreadyReleasedSingleInPastWeek(0)) {
+    //false so NOT released in the past week
+    setRelease(0);
+    turnBegin();
+  } else {
+    alert("ALREADY RELEASED");
+  } //if
+
 } //function
 
 function setRelease(i) {
@@ -22,8 +28,9 @@ function release(i) {
   } else {
     //Other's band
     intSingle = singleChoose(i);
+    alert("Single released: " + intSingle);
   } //if
-
+console.log("intSingle: " + intSingle);
   JSONsingle[intSingle].releasedDate = GLOBALdatDateCurrent.getTime(); //RELEASE single by giving it a releasedDate
   updateBandMoneySubtract(i, JSONconfig[0].valueReleaseCost, "single release"); //update band money
   loggingOutput("SINGLE RELEASE", JSONband[i].name + " released the single '" + JSONsingle[intSingle].name + "' from the album '" +JSONalbum[JSONsingle[intSingle].album].name+ "'<br>");
@@ -42,7 +49,8 @@ function singleChoose(i) {
       arrTemp = getSinglesOfAlbumYetToBeReleased(i);
   var intSingle = 0;
       intSingle = getSingle(arrTemp);
-      intSingle = arrTemp[intSingle];
+      // intSingle = arrTemp[intSingle];
+      // intSingle = arrTemp[0];
   return intSingle;
 } //function
 
@@ -50,14 +58,17 @@ function getSinglesOfAlbumYetToBeReleased(i) {
   var arrTemp = [];
   for (y in JSONsingle) {
     //get singles of album
-    if ((JSONsingle[y].album == JSONband[i].album) && (JSONsingle[y].releasedDate === false)) {
-      //single belongs to album
-      arrTemp.push(y); //add single to temp array
-    } //if
+
+    arrTemp.push(y); //add single to temp array
+
+
   } //for
   return arrTemp;
 } //function
 
 function getSingle(arrTemp) {
-  return Math.floor(Math.random() * arrTemp.length);
+  var mat = 0;
+  mat = Math.floor(Math.random() * arrTemp.length);
+  mat = arrTemp(mat);
+  return mat;
 } //function

@@ -34,7 +34,7 @@ function createTrack(i, intAlbum) {
 function chkAlreadyHaveAlbum(i) {
   var boolReturnValue = false;
   if (JSONband[i].album == false) {
-
+ 
     if (JSONband[i].album === false)
       boolReturnValue = false;
     else
@@ -53,5 +53,6 @@ function getQualityRatingTrack(i) {
     //for every musician in the passed in band
     intQualityRating = intQualityRating + parseInt(JSONmusician[a].skill);
   }//for
+  intQualityRating = intQualityRating / JSONband[i].musician.length; //IMPORTANT gets average
   return intQualityRating;
 } //function
