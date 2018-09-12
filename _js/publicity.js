@@ -25,7 +25,7 @@ function publicity(i) {
     //for every musician in the passed in band
     updateBandMoneySubtract(i, JSONconfig[0].valuePublicityCost, "publicity"); //update band money
     updateMusicianAttribute(i, a, "reputation", intPublicity);
-    loggingOutput("musician publicity", JSONmusician[JSONband[i].musician[a]].name + "got "+intPublicity+" reputation<br>");
+    loggingOutput(i, "musician publicity", JSONmusician[JSONband[i].musician[a]].name + "got "+intPublicity+" reputation<br>");
   } //for
 
   // updateBandReputation(i); // Need to do?
@@ -49,12 +49,12 @@ function getPublicityBandBonusReputation(i) {
     case (intBandCurrentReputation > intAVGreputation):
       //better than the average band
       intBonus = JSONconfig[0].valuePublicityReputationGood;
-      loggingOutput("band publicity", JSONband[i].name + " is better than the AVG band "+intBonus+" to rep<br>");
+      loggingOutput(i, "band publicity", JSONband[i].name + " is better than the AVG band "+intBonus+" to rep<br>");
     break;
     case (intBandCurrentReputation <= intAVGreputation):
       //equal or less than the average band
       intBonus = JSONconfig[0].valuePublicityReputationBad;
-      loggingOutput("band publicity", JSONband[i].name + " is equal or less than the AVG band "+intBonus+" to rep<br>");
+      loggingOutput(i, "band publicity", JSONband[i].name + " is equal or less than the AVG band "+intBonus+" to rep<br>");
     break;
     default:
       alert("Current band rep: " + intBandCurrentReputation);

@@ -111,12 +111,10 @@ function turnBegin() {
 function turnStart() {
   //Start of turn
   updateDate();
-  loggingOutput("DAY " + GLOBALdatDateCurrent, " ************************" + "<br>" + "<br>");
   actionExecuteBandAll(); //do actions for bands
   // updateBandReputation();  //WRITES and CALS single band reps
   // eventContract(); //see if they are eligible for a record contract, if not already
   eventDOWaction(); //choose action corressponding to day of week
-  loggingOutput("TURN END", "************************" + "<br>" + "<br>");
   //WAIT???
 
   updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[0]))); //GUI
@@ -131,6 +129,7 @@ function turnFinish() {
   navShow("#secMainMenu");
 
   navShowSingle("#secBandDetails");
+  document.getElementById("loggingOutput").innerHTML = GLOBALstrLogging;
 
   // updateBandReputation();  //WRITES and CALS single band reps
 
@@ -187,7 +186,7 @@ function takewageAway() {
       intTemp += parseInt(JSONmusician[JSONband[i].musician[a]].wage);
     }//for
     updateBandMoneySubtract(i, intTemp, "wages"); //update band money
-    loggingOutput("WAGES","'" + JSONband[i].name + "' total wages are: " + JSONconfig[0].currency + displayNumbersWithCommas(intTemp) + "<br>");
+    loggingOutput(i, "WAGES","'" + JSONband[i].name + "' total wages are: " + JSONconfig[0].currency + displayNumbersWithCommas(intTemp) + "<br>");
   }//for
 
 } //function

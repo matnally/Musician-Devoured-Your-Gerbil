@@ -23,10 +23,10 @@ function getTicketsSold(i) {
 
   if (intTicketsSold >= vs) {
     intTicketsSold = vs;
-    loggingOutput("gig sold out", JSONband[i].name + " sold out " + JSONvenue[JSONband[i].venue].name+"<br>");
+    loggingOutput(i, "gig sold out", JSONband[i].name + " sold out " + JSONvenue[JSONband[i].venue].name+"<br>");
   } //if
 
-  loggingOutput("gig box office", JSONband[i].name + " sold " + intTicketsSold + " tickets out of "+ vs +" total seats at "+JSONconfig[0].currency + JSONband[i].ticketPrice+"<br>");
+  loggingOutput(i, "gig box office", JSONband[i].name + " sold " + intTicketsSold + " tickets out of "+ vs +" total seats at "+JSONconfig[0].currency + JSONband[i].ticketPrice+"<br>");
 
   return intTicketsSold;
 } //function

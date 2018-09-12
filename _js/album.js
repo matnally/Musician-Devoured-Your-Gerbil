@@ -19,7 +19,7 @@ function createAlbum(i) {
   } //for
 
   updateBandMoneySubtract(i, JSONtracks[JSONband[i].tracks].money, "record album"); //update band money
-  loggingOutput("ALBUM RECORDED", JSONband[i].name + " recorded an album called " + JSONalbum[intAlbum].name + " consisting of "+intTracks+" tracks<br>");
+  loggingOutput(i, "ALBUM RECORDED", JSONband[i].name + " recorded an album called " + JSONalbum[intAlbum].name + " consisting of "+intTracks+" tracks<br>");
 
 } //function
 
@@ -28,7 +28,7 @@ function createTrack(i, intAlbum) {
   var strTrackName = getRandomName();
   var intQualityRating = getQualityRatingTrack(i);
   JSONsingle.push({'name':strTrackName,'album':intAlbum, 'releasedDate':false, 'qualityRating':intQualityRating, 'recordedDate':GLOBALdatDateCurrent.getTime()});
-  loggingOutput("TRACK RECORDED", "The track "+strTrackName+" for the album " + JSONalbum[intAlbum].name  + " has been recorded by " + JSONband[i].name + "<br>");
+  loggingOutput(i, "TRACK RECORDED", "The track "+strTrackName+" for the album " + JSONalbum[intAlbum].name  + " has been recorded by " + JSONband[i].name + "<br>");
 } //function
 
 

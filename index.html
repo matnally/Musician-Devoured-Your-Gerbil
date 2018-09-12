@@ -93,6 +93,7 @@
 
         <section id="secMainMenu">
           <p>Main menu</p>
+          <p>What shall we do tomorrow?</p>
           <button class="butMainMenu" onClick="navShow('#secPractice')">Practice</button><br>
           <button class="butMainMenu" onClick="navShow('#secGig')">Gig</button><br>
           <button class="butMainMenu" onClick="navShow('#secPublicity')">Publicity</button><br>
@@ -207,10 +208,10 @@
 
         <section id="secStartGameDetails">
           <p>Add a Musician</p>
-          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani-1);">< Prev Musician</button>
-          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani+1);">Next Musician ></button>
           <div id="divMusicianComboBox"></div>
           <div id="divMusicianDetails"></div>
+          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani-1);">< Prev Musician</button>
+          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani+1);">Next Musician ></button>
           <br>
           <button onClick="bandAddMusician(GLOBALMusiciani)">+ Add Musician</button>
         </section><!-- section -->

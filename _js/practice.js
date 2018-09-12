@@ -29,7 +29,7 @@ function practice(i) {
     updateMusicianAttribute(i, a, "happiness", JSONconfig[0].valuePracticeHappiness);
     updateMusicianAttribute(i, a, "reputation", JSONconfig[0].valuePracticeReputation);
   }//for musician
-  loggingOutput("**********************", "<br>");
+
 } //function
 
 
@@ -46,7 +46,7 @@ function updateMusicianAttribute(intBand, intMusician, strAttribute, intValue) {
   JSONmusician[JSONband[intBand].musician[intMusician]][strAttribute] = intTotal; // THE ACTION !!!!!!!!
 
   strTemp += (" now has " + JSONmusician[JSONband[intBand].musician[intMusician]][strAttribute] + "<br>");
-  loggingOutput("musician " + strAttribute, strTemp); //update the logger
+  loggingOutput(intBand, "musician " + strAttribute, strTemp); //update the logger
 } //function
 
 function getEquipmentBonusMusician(i, a){
@@ -61,6 +61,6 @@ function getEquipmentBonusMusician(i, a){
     var intEquipmentBonus = JSONconfig[0].sameEquipmentBonus;
     updateMusicianAttribute(i, a, "skill", intEquipmentBonus); // THE ACTION !!!!!!!!
 
-    loggingOutput("band musician equipment bonus", JSONmusician[JSONband[i].musician[a]].name + " of band " + JSONband[i].name + " using same equipment +1 SKILL bonus<br>");
+    loggingOutput(i, "equipment bonus", JSONmusician[JSONband[i].musician[a]].name + " of band " + JSONband[i].name + " using same equipment +1 SKILL bonus<br>");
   } //if
 } //function

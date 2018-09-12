@@ -30,17 +30,21 @@ function gift(i) {
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
 
-    intTotal += parseInt(JSONgift[JSONband[i].gift].money); //build up total copst of gifts
+    intBonus = 0; //reset
+    intTotal += parseInt(JSONgift[JSONband[i].gift].money); //build up total cost of gifts
 
     if (parseInt(JSONmusician[JSONband[i].musician[a]].gift) == intGift) {
       //gift is musician's favourite
       intBonus = JSONconfig[0].sameGiftBonus; //Bonus for favourite gift
-      loggingOutput("GIFT BONUS", JSONmusician[JSONband[i].musician[a]].name + " received their favorite gift of " +JSONgift[JSONmusician[JSONband[i].musician[a]].gift].name+ "<br>");
+      loggingOutput(i, "GIFT BONUS", JSONmusician[JSONband[i].musician[a]].name + " received their favorite gift of " +JSONgift[JSONmusician[JSONband[i].musician[a]].gift].name+ " and received "+JSONgift[intGift].happiness+" Happiness plus a "+intBonus+" Happiness bonus<br>");
+    } else {
+      loggingOutput(i, "GIFT RECEIVED", JSONmusician[JSONband[i].musician[a]].name + " received a gift of " +JSONgift[intGift].name+ " and received "+JSONgift[intGift].happiness+" Happiness<br>");
     } //if
 
     //update happiness
     var intTemp = parseInt(JSONmusician[JSONband[i].musician[a]].happiness) + intBonus;
     JSONmusician[JSONband[i].musician[a]].happiness = intTemp; // THE ACTION !!!!!!!!
+
 
   }//for
 

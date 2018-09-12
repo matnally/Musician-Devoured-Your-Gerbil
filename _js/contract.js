@@ -20,7 +20,7 @@ function eventContract() {
           //other bands
           JSONband[i].contract = getContract();
         } //if
-        loggingOutput("RECORD CONTRACT", JSONband[i].name + " has just signed a record contract with "+JSONcontract[JSONband[i].contract].name+"<br>");
+        loggingOutput(i, "RECORD CONTRACT", JSONband[i].name + " has just signed a record contract with "+JSONcontract[JSONband[i].contract].name+"<br>");
       } //if calChanceContract
     } //if chkAlreadyHaveContract
   } //for

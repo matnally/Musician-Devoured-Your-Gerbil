@@ -1,12 +1,62 @@
 
+function chkBandCanReleaseSingle(i) {
+  var booReturnValue = false;
+
+  if (JSONband[i].album.length > 0) {
+      //band has at least 1 album
+
+      for (a in JSONband[i].album) {
+        //for every album
+        // console.log("album: " + JSONband[i].album[a]);
+
+        for (s in JSONsingle) {
+          //for every single
+
+          if (JSONsingle[s].album == JSONband[i].album[a]) {
+            //single belongs to band's albums
+            // console.log("single found: " + s);
+
+            if (!JSONsingle[s].releasedDate) {
+              //single not released yet
+              booReturnValue = true;
+            } else {
+              //single released
+
+              //check if released in the past 7 days
+              var date1 = new Date(GLOBALdatDateCurrent);
+              var date2 = new Date(JSONsingle[s].releasedDate);
+              var timeDiff = date1.getTime() - date2.getTime();
+              var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+              // console.log("diffDays: " + diffDays);
+
+              if(diffDays < 7) {
+                // console.log(JSONband[i].name + " released in the past week!");
+                booReturnValue = false;
+                return booReturnValue;
+              } //if
+
+            } //if
+
+          } //if
+
+        } //for
+
+      } //for
+
+  } //if
+
+  return booReturnValue;
+} //function
+
 function setReleasePlayer() {
   //set player's band attributes for appropiate action
-  if (!chkAlreadyReleasedSingleInPastWeek(0)) {
-    //false so NOT released in the past week
-    setRelease(0);
-    turnBegin();
+  if (chkBandCanReleaseSingle(0)) {
+      //true so can release
+      setRelease(0);
+      turnBegin();
   } else {
-    alert("ALREADY RELEASED");
+      //false so CANNOT release
+      alert("DONT HAVE ALBUM or NO MORE SINGLES TO RELEASE or ALREADY RELEASED THIS WEEK");
   } //if
 
 } //function
@@ -38,7 +88,7 @@ function release(i) {
 
   JSONsingle[intSingle].releasedDate = GLOBALdatDateCurrent.getTime(); //RELEASE single by giving it a releasedDate
   updateBandMoneySubtract(i, JSONconfig[0].valueReleaseCost, "single release"); //update band money
-  loggingOutput("SINGLE RELEASE", JSONband[i].name + " released the single '" + JSONsingle[intSingle].name + "' from the album '" +JSONalbum[JSONsingle[intSingle].album].name+ "'<br>");
+  loggingOutput(i, "SINGLE RELEASE", JSONband[i].name + " released the single '" + JSONsingle[intSingle].name + "' from the album '" +JSONalbum[JSONsingle[intSingle].album].name+ "'<br>");
 
 } //function
 

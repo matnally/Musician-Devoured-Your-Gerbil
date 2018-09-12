@@ -30,10 +30,12 @@ function getJSONIDfromName(strName, JSONtoUse) {
 
 
 var GLOBALstrLogging = "";
-function loggingOutput(strAction, strTemp) {
+function loggingOutput(i, strAction, strTemp) {
   // document.getElementById("loggingOutput").innerHTML += "["+strAction.toUpperCase()+"] " + strTemp;
   //console.log("["+strAction.toUpperCase()+"] " + strTemp);
+if (i==0) {
   GLOBALstrLogging += "["+strAction.toUpperCase()+"] " + strTemp;
+} //if
 
 } //function
 function adminShowLog() {

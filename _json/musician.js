@@ -8,7 +8,7 @@ var JSONmusician = [
     "fee": 10000,
     "wage": 8000,
     "gift": 3,
-    "equipment": 2
+    "equipment": 0
   },
   {
     "name": "By George",

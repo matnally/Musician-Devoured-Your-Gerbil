@@ -33,95 +33,24 @@ function actionChoose(i) {
     case 5:
       //release
 
-/*
-if the BAND has at least one album
-  if the BAND has singles yet to be released in the albums
-    if the BAND has not released a single in the past 7 days
-      choose a single to release
-*/
+      if (chkBandCanReleaseSingle(i)) {
+        setRelease(i);
+      } else {
+        actionChoose(i);
+      } //if
 
-if (JSONband[i].album === false) {
-  //not have album
-  setRecord(i, getTracks()); //default action just record album
-} else {
-  //have album
-
-  //Check for still have singles unreleased
-  var arrTemp = getSinglesOfAlbumYetToBeReleased(i);
-  if ( (arrTemp.length > 0) && (!chkAlreadyReleasedSingleInPastWeek(i)) ) {
-    setRelease(i);
-  } else {
-    setGig(i, getDays(7), getVenue(), getTicketPrice());
-  } //if
-
-
-} //if
-
-
-
-
-      // if (!chkAlreadyHaveAlbum(i)) {
-      //   //returned false so does NOT have any albums so choose action again until it's not 5 = release
-      //   console.log("recording");
-      //   setRecord(i, getTracks()); //default action just record album
-      // } else {
-      //   //DO have at least one album so can release?
-      //   console.log("else");
-      //
-      //   //Check for still have singles unreleased
-      //   var arrTemp = getSinglesOfAlbumYetToBeReleased(i);
-      //   if (arrTemp.length) {
-      //     //TODO: Hmmmm
-      //     console.log("arrTemp.length");
-      //
-      //     if (chkAlreadyReleasedSingleInPastWeek(i) == false) {
-      //       //false so NOT released in the past week
-      //       console.log("setRelease");
-      //       setRelease(i);
-      //     } else {
-      //       console.log("setGig");
-      //       setGig(i, getDays(7), getVenue(), getTicketPrice());
-      //     } //if
-      //
-      //   } else {
-      //     console.log("setRecord");
-      //     setRecord(i, getTracks()); //default action just record album
-      //   } //if
-      //
-      // } //if
     break;
     default:
   } //switch
 
 } //function
 
-// THIS IS THE PROBLEM!
-function chkAlreadyReleasedSingleInPastWeek(i) {
-  var boolReturnValue = false;
-  var arrTemp = [];
-      arrTemp = getReleasedSinglesAll();
-  for (s in arrTemp) {
-    //for every single released
-    if (i == getBandFromAlbum(arrTemp[s].album)) {
-      //band found
-      var date1 = new Date(GLOBALdatDateCurrent);
-      var date2 = new Date(arrTemp[s].releasedDate);
-      var timeDiff = date2.getTime() - date1.getTime();
-      var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-console.log(JSONband[i].name + " are trying to release. diffDays: " + diffDays);
-      if(diffDays < -7) {
-console.log(JSONband[i].name + " diffDays < 7! so release");
-        boolReturnValue = true;
-      } //if
-    } //if
-  } //for
-  return boolReturnValue;
-} //function
-
 function actionExecuteBandAll() {
   //execute each band's action
 
   for (i in JSONband) { //looping through all the bands
+
+    loggingOutput(i, "DAY", GLOBALdatDateCurrent + "<br>");
 
     var datDateActionFinish = new Date(JSONband[i].dateActionFinish);
     //AT START OR END?????
@@ -136,7 +65,7 @@ function actionExecuteBandAll() {
       } //if (i != 0)
     } //if
 
-    loggingOutput(JSONband[i].name + " TURN", "*****" +  JSONband[i].name + " - " + getActionName(JSONband[i].action) + "*****<br>");
+    loggingOutput(i, JSONband[i].name, " chose <strong>" + getActionName(JSONband[i].action) + "</strong><br>");
 
     switch((JSONband[i].action)) {
       case 0:
@@ -181,6 +110,8 @@ if (i=0) {
     updateBandReputation(i);  //WRITES and CALS single band reps
 
   } //for
+
+  loggingOutput(0, "TURN END", "<br><br>"); // 0 ???
 
 } //function
 

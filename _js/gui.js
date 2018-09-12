@@ -78,12 +78,14 @@ function guiDisplayActionCost(i, index) {
   var intTotalCost = 0;
   var intDayCost = 0;
   var intTotalCost = "";
+  var intDays = 0;
 
   switch(index) {
     case 0:
       //practice
-      intDayCost = displayNumbersWithCommas(JSONconfig[0].valuePracticeCost);
-      intTotalCost = displayNumbersWithCommas(i * JSONconfig[0].valuePracticeCost);
+      intDays = document.getElementById("divPracticeComboBox").value;
+      intDayCost = (JSONconfig[0].valuePracticeCost);
+      intTotalCost = (i * JSONconfig[0].valuePracticeCost);
       strTemp = "To <strong>Practice</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
       strTemp += "<br>";
       strTemp += "For each of the "+JSONband[0].musician.length+" musician(s) in <strong>" + JSONband[0].name + "</strong> they will recieve <strong>" + JSONconfig[0].valuePracticeSkill + "</strong> Skill, <strong>" + JSONconfig[0].valuePracticeHappiness + "</strong> Happiness and <strong>" + JSONconfig[0].valuePracticeReputation + "</strong> Reputation for each day's practice, not included any extra bonuses for using the musician's favourite equipment.";
@@ -95,32 +97,39 @@ function guiDisplayActionCost(i, index) {
     break;
     case 1:
       //gig
-      intDayCost = displayNumbersWithCommas(JSONvenue[document.getElementById("selVenueComboBox").value].money);
-      intTotalCost = displayNumbersWithCommas(document.getElementById("divGigDays").value * JSONvenue[document.getElementById("selVenueComboBox").value].money);
-      strTemp = "To <strong>Gig</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+      intDays = document.getElementById("divGigDays").value;
+      intDayCost = JSONvenue[document.getElementById("selVenueComboBox").value].money;
+      intTotalCost = (document.getElementById("divGigDays").value * JSONvenue[document.getElementById("selVenueComboBox").value].money);
+      strTemp = "To <strong>Gig</strong> for <strong>" + document.getElementById("divGigDays").value + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
     break;
     case 2:
       //publicity
-      intDayCost = displayNumbersWithCommas(JSONconfig[0].valuePublicityCost);
-      intTotalCost = displayNumbersWithCommas(JSONconfig[0].valuePublicityCost);
+      intDays = JSONconfig[0].valuePublicityDaysDuration;
+      intDayCost = (JSONconfig[0].valuePublicityCost);
+      intTotalCost = (JSONconfig[0].valuePublicityCost);
       strTemp = "To gain <strong>Publicity</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
     break;
     case 3:
       //gifts
-      intDayCost = displayNumbersWithCommas(JSONgift[i].money);
-      intTotalCost = displayNumbersWithCommas(JSONgift[i].money * JSONband[0].musician.length);
+      intDays = JSONconfig[0].valueGiftDaysDuration;
+      intDayCost = (JSONgift[i].money);
+      intTotalCost = (JSONgift[i].money * JSONband[0].musician.length);
       strTemp = "Buying <strong>Gifts</strong> for <strong>" + JSONband[0].musician.length + "</strong> musician(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per musician, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+      strTemp += "<br>";
+      strTemp += "For each of the "+JSONband[0].musician.length+" musician(s) in <strong>" + JSONband[0].name + "</strong> they will recieve <strong>" + JSONgift[i].happiness + "</strong> Happiness";
     break;
     case 4:
       //record
-      intDayCost = displayNumbersWithCommas(JSONtracks[i].money);
-      intTotalCost = displayNumbersWithCommas(JSONtracks[i].money);
+      intDays = JSONtracks[i].days;
+      intDayCost = (JSONtracks[i].money);
+      intTotalCost = (JSONtracks[i].money);
       strTemp = "To <strong>Record</strong> a <strong>" + JSONtracks[i].tracks + "</strong>-track album will take <strong>"+JSONtracks[i].days+"</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intDayCost + "</strong>";
     break;
     case 5:
       //release
-      intDayCost = displayNumbersWithCommas(JSONconfig[0].valueReleaseCost);
-      intTotalCost = displayNumbersWithCommas(JSONdirector[document.getElementById("selDirectorComboBox").value].money + JSONlocation[document.getElementById("selLocationComboBox").value].money + JSONfeature[document.getElementById("selFeatureComboBox").value].money);
+      intDays = JSONconfig[0].valueReleaseDaysDuration;
+      intDayCost = (JSONconfig[0].valueReleaseCost);
+      intTotalCost = (JSONdirector[document.getElementById("selDirectorComboBox").value].money + JSONlocation[document.getElementById("selLocationComboBox").value].money + JSONfeature[document.getElementById("selFeatureComboBox").value].money);
       strTemp = "To <strong>Release</strong> a <strong>Single</strong> it will take <strong>"+1+"</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intTotalCost + "</strong>";
       strTemp += "To create a music video directed by <strong>"+JSONdirector[document.getElementById("selDirectorComboBox").value].name+"</strong> in <strong>"+JSONlocation[document.getElementById("selLocationComboBox").value].name+"</strong> featuring <strong>"+JSONfeature[document.getElementById("selFeatureComboBox").value].name+"</strong>, will take <strong>1</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intTotalCost + "</strong>";
     break;
@@ -128,7 +137,7 @@ function guiDisplayActionCost(i, index) {
 
 
   // intTotalCost = -intTotalCost; //turn into negative number
-  guiDisplayMovementLabelBand("spnMovementBandmoney", (i * intDayCost));
+  guiDisplayMovementLabelBand("spnMovementBandmoney", (intDays * intDayCost));
   updateElement("divActionCost", "<br>" + strTemp); //updates element
 
 
@@ -149,7 +158,7 @@ function guiDisplayMovementLabelMusician(strID, intTotalCost) {
       elems[m].setAttribute("class", "valuePositive");
       strTemp = "&nbsp; +";
     } //if
-    elems[m].innerHTML = strTemp + intTotalCost;
+    elems[m].innerHTML = strTemp + displayNumbersWithCommas(intTotalCost);
 
 
   } //for
@@ -161,6 +170,7 @@ function guiDisplayMovementLabelBand(strID, intTotalCost) {
   //Updates how much will be taken for the property, applying the appropiate class
   var elem = document.getElementById(strID);
   var strTemp = "";
+  elem.setAttribute("class", "valueNegative");
   if (intTotalCost < 0) {
     elem.setAttribute("class", "valueNegative");
     strTemp = "&nbsp;";
@@ -168,15 +178,18 @@ function guiDisplayMovementLabelBand(strID, intTotalCost) {
     elem.setAttribute("class", "valuePositive");
     strTemp = "&nbsp; +";
   } //if
-  elem.innerHTML = strTemp + intTotalCost;
+  elem.innerHTML = strTemp + displayNumbersWithCommas(intTotalCost);
 } //function
 
 
 
 function guiDisplayActionCurrent(i) {
-
   var strTemp = "";
-      strTemp = "<strong>" + JSONband[i].name + "</strong> is <strong>" + getActionName(JSONband[i].action) + "</strong> for <strong>" + JSONband[i].days + "</strong> day(s). They are due to finish on <strong>" + JSONband[i].dateActionFinish + "</strong>";
+  strTemp = "<strong>" + JSONband[i].name + "</strong> is <strong>" + getActionName(JSONband[i].action) + "</strong> for <strong>" + JSONband[i].days + "</strong> day(s). They are due to finish on <strong>" + JSONband[i].dateActionFinish + "</strong>";
+
+  if (i==0)
+    strTemp = ""; //dont want to show Player's current action
+
   updateElement("divBandActionCurrent", "<br>" + strTemp);
 
 } //function

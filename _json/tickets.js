@@ -5,19 +5,19 @@ var JSONtickets = [
     ,"tickets"  : 2
   }
   ,{
-    "name"    : "2 tickets"
+    "name"    : "5 tickets"
     ,"tickets"  : 5
   }
   ,{
-    "name"    : "2 tickets"
+    "name"    : "10 tickets"
     ,"tickets"  : 10
   }
   ,{
-    "name"    : "2 tickets"
+    "name"    : "15 tickets"
     ,"tickets"  : 15
   }
   ,{
-    "name"    : "2 tickets"
+    "name"    : "20 tickets"
     ,"tickets"  : 20
   }
 ];
