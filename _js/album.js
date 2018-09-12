@@ -7,8 +7,13 @@ function createAlbum(i) {
   JSONalbum.push({'name':getRandomName(),'tracks':intTracks,'band':i,'releasedDate':false,'recordedDate':GLOBALdatDateCurrent.getTime()}); //add band JSON
   //Get the index of the newly created Album
   var intAlbum = parseInt(JSONalbum.length-1); //bloody array 0 starting from zero
+
+  if (JSONband[i].album === false) { //Do I need this?
+    JSONband[i].album = [];
+  } //if
   JSONband[i].album.push(intAlbum); //add album ref to band's details
   //Create Tracks for Album
+
   for (var z = 0; z < parseInt(intTracks); z++) {
     createTrack(i, intAlbum);
   } //for
@@ -34,7 +39,7 @@ function createTrack(i, intAlbum) {
 function chkAlreadyHaveAlbum(i) {
   var boolReturnValue = false;
   if (JSONband[i].album == false) {
- 
+
     if (JSONband[i].album === false)
       boolReturnValue = false;
     else

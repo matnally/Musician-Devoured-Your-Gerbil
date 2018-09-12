@@ -28,9 +28,14 @@ function release(i) {
   } else {
     //Other's band
     intSingle = singleChoose(i);
-    alert("Single released: " + intSingle);
   } //if
-console.log("intSingle: " + intSingle);
+
+  // if (JSONband[i].album == false)
+  //   console.log(JSONband[i].name + " albums === false");
+
+// console.log(JSONband[i].name + " has the following albums " + JSONband[i].album.length);
+// console.log("intSingle: " + intSingle);
+
   JSONsingle[intSingle].releasedDate = GLOBALdatDateCurrent.getTime(); //RELEASE single by giving it a releasedDate
   updateBandMoneySubtract(i, JSONconfig[0].valueReleaseCost, "single release"); //update band money
   loggingOutput("SINGLE RELEASE", JSONband[i].name + " released the single '" + JSONsingle[intSingle].name + "' from the album '" +JSONalbum[JSONsingle[intSingle].album].name+ "'<br>");
@@ -56,19 +61,45 @@ function singleChoose(i) {
 
 function getSinglesOfAlbumYetToBeReleased(i) {
   var arrTemp = [];
-  for (y in JSONsingle) {
-    //get singles of album
 
-    arrTemp.push(y); //add single to temp array
+/*
+for all Singles
+  for all band Albums
+    if single.album = band[i].album
+      if single not released yet
+        PUSH
+*/
+
+for (y in JSONsingle) {
+  if (JSONsingle[y].releasedDate == false) {
+    for (a in JSONband[i].album) {
+      if (JSONsingle[y].album == JSONband[i].album[a]) {
+        arrTemp.push(y); //add single to temp array
+      } //if
+    } //for
+  } //if
+} //for
 
 
-  } //for
+  // console.log("JSONband[i].name: " + JSONband[i].name);
+  // console.log("JSONband[i].album: " + JSONband[i].album);
+  //
+  // for (a in JSONband[i].album) {
+  //   console.log("JSONband[i].album[a]: " + JSONband[i].album[a]);
+  //   for (y in JSONsingle) {
+  //     if (JSONsingle[y].album == JSONband[i].album[a]) {
+  //       if (JSONsingle[y].releasedDate === false) {
+  //         arrTemp.push(y); //add single to temp array
+  //       } //if
+  //     } //if
+  //   } //for
+  // } //for
   return arrTemp;
 } //function
 
 function getSingle(arrTemp) {
   var mat = 0;
   mat = Math.floor(Math.random() * arrTemp.length);
-  mat = arrTemp(mat);
+  mat = arrTemp[mat];
   return mat;
 } //function

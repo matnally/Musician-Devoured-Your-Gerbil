@@ -48,8 +48,7 @@ if (JSONband[i].album === false) {
 
   //Check for still have singles unreleased
   var arrTemp = getSinglesOfAlbumYetToBeReleased(i);
-  console.log("arrTemp.length: " + arrTemp.length);
-  if ( (arrTemp.length > 0) || (chkAlreadyReleasedSingleInPastWeek(i) == false) ) {
+  if ( (arrTemp.length > 0) && (!chkAlreadyReleasedSingleInPastWeek(i)) ) {
     setRelease(i);
   } else {
     setGig(i, getDays(7), getVenue(), getTicketPrice());
@@ -96,6 +95,7 @@ if (JSONband[i].album === false) {
 
 } //function
 
+// THIS IS THE PROBLEM!
 function chkAlreadyReleasedSingleInPastWeek(i) {
   var boolReturnValue = false;
   var arrTemp = [];
@@ -106,10 +106,11 @@ function chkAlreadyReleasedSingleInPastWeek(i) {
       //band found
       var date1 = new Date(GLOBALdatDateCurrent);
       var date2 = new Date(arrTemp[s].releasedDate);
-      var timeDiff = date1.getTime() - date2.getTime();
+      var timeDiff = date2.getTime() - date1.getTime();
       var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-      console.log("diffDays: " + diffDays);
-      if(diffDays < 7) {
+console.log(JSONband[i].name + " are trying to release. diffDays: " + diffDays);
+      if(diffDays < -7) {
+console.log(JSONband[i].name + " diffDays < 7! so release");
         boolReturnValue = true;
       } //if
     } //if
