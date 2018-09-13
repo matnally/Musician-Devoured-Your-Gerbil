@@ -1,15 +1,5 @@
-function getReleasedSinglesAll() {
-  // get all released singles
-  var arrTemp = [];
-  for (y in JSONsingle) {
-    //get ALL singles
-    if (JSONsingle[y].releasedDate !== false) {
-      //single not released yet
-      arrTemp.push(JSONsingle[y]); //add single to temp array
-    } //if
-  } //for
-  return arrTemp;
-} //function
+
+var GLOBALJSONchart = [];
 
 function chartTime() {
 
@@ -18,56 +8,55 @@ function chartTime() {
 
   //Do this in temp so doesn't affect the original
   for (a in arrTemp) {
-    arrTemp[a].qualityRating = calcChartTimeSingle(arrTemp[a].qualityRating, i);
+    arrTemp[a].qualityRating = calcChartTimeSingleQualityRating(arrTemp[a]);
   } //for
+
+  GLOBALJSONchart = arrTemp;
 
   arrTemp = sortArrayByKey(arrTemp, 'qualityRating'); //reorder by qualityRating IMPORTANT
 
+  //TODO: Display better!
   console.log("CHART TIME!!!");
   var intChartPosition = 1; //charts start from one! duh
   for (i in arrTemp) {
     console.log(intChartPosition + ": " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name);
-    intChartPosition++;
-    // console.log(i + ": " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name + " from the album " + JSONalbum[arrTemp[i].album].name + "");
-    // console.log("Single name: " + arrTemp[i].name);
-    // console.log("Quality rating: " + arrTemp[i].qualityRating);
-    // console.log("Album: " + JSONalbum[arrTemp[i].album].name);
-    // console.log("Band: " + JSONband[getBandFromAlbum(arrTemp[i].album)].name);
-    // console.log("***********");
+    if (intChartPosition >= 20)
+      break;
+    else
+      intChartPosition++;
   } //for
+  console.log("********************");
 
 } //function
 
-
-function getBandFromAlbum(intAlbum) {
-  var intBandi = 0;
-  for (i in JSONband) { //band
-    for (m in JSONband[i].album) { // band albums
-      if (intAlbum == JSONband[i].album[m])
-        intBandi = i;
-    } //for
-  } //for
-  return intBandi;
-} //function
-
-
-function calcChartTimeSingle(intQualityRating, i) {
+function calcChartTimeSingleQualityRating(arrItemSingle) {
   //Work out final value of single, adding dynamic rpoperties
   var intTemp = 0;
-  var br = JSONband[i].reputation;
-  var qr = intQualityRating
+  var i = getBandFromAlbum(arrItemSingle.album);
+
+  var q = arrItemSingle.qualityRating;
+  var d = getDateDifference(GLOBALdatDateCurrent, arrItemSingle.releasedDate);
+  var r = JSONband[i].reputation;
+  var f = 1
 
   /*
-    br = Band Reputation
-
-    r  = reputation
-    s  = skill
-    h  = happiness
-    vr = venue reputation
-    tp = ticket price
+    q = Single quality rating
+    r = Band's reputation
+    d = days difference from Single's release date to current date
+    f = factor for difference
+    RESULT = (q + r) - (d * f)
   */
+  intTemp = ((q + r) - (d * f));
 
-  intTemp = intQualityRating + JSONband[i].reputation;
+  console.log("**************");
+  console.log(JSONband[i].name);
+  console.log("q: " + q);
+  console.log("d: " + d);
+  console.log("r: " + r);
+  console.log("f: " + f);
+  console.log("total: " + intTemp);
+  console.log("**************");
+
   return intTemp;
 } //function
 
@@ -83,4 +72,28 @@ function sortArrayByKey(array, key) {
       var y = b[key];
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
   });
+} //function
+
+function getBandFromAlbum(intAlbum) {
+  var intBandi = 0;
+  for (i in JSONband) { //band
+    for (m in JSONband[i].album) { // band albums
+      if (intAlbum == JSONband[i].album[m])
+        intBandi = i;
+    } //for
+  } //for
+  return intBandi;
+} //function
+
+function getReleasedSinglesAll() {
+  // get all released singles
+  var arrTemp = [];
+  for (y in JSONsingle) {
+    //get ALL singles
+    if (JSONsingle[y].releasedDate !== false) {
+      //single not released yet
+      arrTemp.push(JSONsingle[y]); //add single to temp array
+    } //if
+  } //for
+  return arrTemp;
 } //function

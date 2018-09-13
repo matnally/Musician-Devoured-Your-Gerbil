@@ -1,53 +1,4 @@
 
-function chkBandCanReleaseSingle(i) {
-  var booReturnValue = false;
-
-  if (JSONband[i].album.length > 0) {
-      //band has at least 1 album
-
-      for (a in JSONband[i].album) {
-        //for every album
-        // console.log("album: " + JSONband[i].album[a]);
-
-        for (s in JSONsingle) {
-          //for every single
-
-          if (JSONsingle[s].album == JSONband[i].album[a]) {
-            //single belongs to band's albums
-            // console.log("single found: " + s);
-
-            if (!JSONsingle[s].releasedDate) {
-              //single not released yet
-              booReturnValue = true;
-            } else {
-              //single released
-
-              //check if released in the past 7 days
-              var date1 = new Date(GLOBALdatDateCurrent);
-              var date2 = new Date(JSONsingle[s].releasedDate);
-              var timeDiff = date1.getTime() - date2.getTime();
-              var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-              // console.log("diffDays: " + diffDays);
-
-              if(diffDays < 7) {
-                // console.log(JSONband[i].name + " released in the past week!");
-                booReturnValue = false;
-                return booReturnValue;
-              } //if
-
-            } //if
-
-          } //if
-
-        } //for
-
-      } //for
-
-  } //if
-
-  return booReturnValue;
-} //function
-
 function setReleasePlayer() {
   //set player's band attributes for appropiate action
   if (chkBandCanReleaseSingle(0)) {
@@ -58,7 +9,6 @@ function setReleasePlayer() {
       //false so CANNOT release
       alert("DONT HAVE ALBUM or NO MORE SINGLES TO RELEASE or ALREADY RELEASED THIS WEEK");
   } //if
-
 } //function
 
 function setRelease(i) {
@@ -69,9 +19,7 @@ function setRelease(i) {
 } //function
 
 function release(i) {
-  // GET ALBUMS, GET SINGLES, GET NOT RELEASED SINGLES
   var intSingle = 0;
-
   if (i==0) {
     //Player's Band
     intSingle = document.getElementById("selBandAlbumSingles").value;
@@ -79,12 +27,6 @@ function release(i) {
     //Other's band
     intSingle = singleChoose(i);
   } //if
-
-  // if (JSONband[i].album == false)
-  //   console.log(JSONband[i].name + " albums === false");
-
-// console.log(JSONband[i].name + " has the following albums " + JSONband[i].album.length);
-// console.log("intSingle: " + intSingle);
 
   JSONsingle[intSingle].releasedDate = GLOBALdatDateCurrent.getTime(); //RELEASE single by giving it a releasedDate
   updateBandMoneySubtract(i, JSONconfig[0].valueReleaseCost, "single release"); //update band money
@@ -96,6 +38,49 @@ function release(i) {
 //////////////////////////
 //// SUPPORTING LOGIC ////
 //////////////////////////
+
+function chkBandCanReleaseSingle(i) {
+  var booReturnValue = false;
+
+  if (JSONband[i].album.length > 0) {
+      //band has at least 1 album
+      for (a in JSONband[i].album) {
+        //for every album
+        for (s in JSONsingle) {
+          //for every single
+          if (JSONsingle[s].album == JSONband[i].album[a]) {
+            //single belongs to band's albums
+            if (!JSONsingle[s].releasedDate) {
+              //single not released yet
+              booReturnValue = true;
+            } else {
+              //single released
+
+              var diffDays = getDateDifference(GLOBALdatDateCurrent, JSONsingle[s].releasedDate);
+              if(diffDays < 7) {
+                // console.log(JSONband[i].name + " released in the past week!");
+                booReturnValue = false;
+                return booReturnValue;
+              } //if
+
+            } //if
+          } //if
+        } //for
+      } //for
+  } //if
+
+  return booReturnValue;
+} //function
+
+
+function getDateDifference(datCurrent, datDate) {
+  //check if released in the past 7 days
+  var date1 = new Date(datCurrent);
+  var date2 = new Date(datDate);
+  var timeDiff = date1.getTime() - date2.getTime();
+  var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  return diffDays;
+} //function
 
 function singleChoose(i) {
   var intAlbum = [];
@@ -111,39 +96,15 @@ function singleChoose(i) {
 
 function getSinglesOfAlbumYetToBeReleased(i) {
   var arrTemp = [];
-
-/*
-for all Singles
-  for all band Albums
-    if single.album = band[i].album
-      if single not released yet
-        PUSH
-*/
-
-for (y in JSONsingle) {
-  if (JSONsingle[y].releasedDate == false) {
-    for (a in JSONband[i].album) {
-      if (JSONsingle[y].album == JSONband[i].album[a]) {
-        arrTemp.push(y); //add single to temp array
-      } //if
-    } //for
-  } //if
-} //for
-
-
-  // console.log("JSONband[i].name: " + JSONband[i].name);
-  // console.log("JSONband[i].album: " + JSONband[i].album);
-  //
-  // for (a in JSONband[i].album) {
-  //   console.log("JSONband[i].album[a]: " + JSONband[i].album[a]);
-  //   for (y in JSONsingle) {
-  //     if (JSONsingle[y].album == JSONband[i].album[a]) {
-  //       if (JSONsingle[y].releasedDate === false) {
-  //         arrTemp.push(y); //add single to temp array
-  //       } //if
-  //     } //if
-  //   } //for
-  // } //for
+  for (y in JSONsingle) {
+    if (JSONsingle[y].releasedDate == false) {
+      for (a in JSONband[i].album) {
+        if (JSONsingle[y].album == JSONband[i].album[a]) {
+          arrTemp.push(y); //add single to temp array
+        } //if
+      } //for
+    } //if
+  } //for
   return arrTemp;
 } //function
 

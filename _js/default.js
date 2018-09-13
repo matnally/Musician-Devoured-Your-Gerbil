@@ -5,19 +5,6 @@ function updateDate(){
   updateElement("divCurrentDate", GLOBALdatDateCurrent);
 } //function
 
-
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    } //if
-  } //for
-} //function
-
-
-
 function getJSONIDfromName(strName, JSONtoUse) {
   var intTemp = 0;
   for (i in JSONtoUse) {
@@ -28,20 +15,25 @@ function getJSONIDfromName(strName, JSONtoUse) {
   return intTemp;
 } //function
 
-
-var GLOBALstrLogging = "";
+var GLOBALJSONlog = [];
 function loggingOutput(i, strAction, strTemp) {
-  // document.getElementById("loggingOutput").innerHTML += "["+strAction.toUpperCase()+"] " + strTemp;
-  //console.log("["+strAction.toUpperCase()+"] " + strTemp);
-if (i==0) {
-  GLOBALstrLogging += "["+strAction.toUpperCase()+"] " + strTemp;
-} //if
+
+  GLOBALJSONlog.push({'band':i, 'action':strAction, 'content':strTemp}); //add band JSON
 
 } //function
-function adminShowLog() {
-  document.getElementById("loggingOutput").innerHTML = GLOBALstrLogging;
-  $("#loggingOutput").toggle();
-}
+
+function adminShowLog(i) {
+
+  var strTemp = "";
+
+  for (l in GLOBALJSONlog) {
+    if (GLOBALJSONlog[l].band == i)
+      strTemp += "[" + GLOBALJSONlog[l].action.toUpperCase() + "] - " + GLOBALJSONlog[l].content;
+  } //for
+
+  document.getElementById("loggingOutput").innerHTML = strTemp;
+
+} //function
 
 function updateElement(elemName, strTemp) {
   //update the element with text
@@ -56,17 +48,13 @@ function createComboBoxfromJSONband(JSONtoConvert) {
   var intIndex = 0;
 
   strTemp = "<select class='rpgui-dropdown '>";
-  // strTemp += "<option value=''>Choose an option</option>";
   for (i in JSONtoConvert) {
-//    strName = JSONtoConvert[i]; //get musician
     intIndex = parseInt(JSONtoConvert[i]); //get JSONmusician index from name
-
     strTemp += "<option value='" + intIndex + "'>" + JSONmusician[intIndex].name + "</option>";
   }
   strTemp += "</select>";
   return strTemp;
 } //function
-
 
 function displayNumbersWithCommas(intNumber) {
   //puts commas in the 1,000's
@@ -76,10 +64,6 @@ function displayNumbersWithCommas(intNumber) {
 function formatDate(value) {
    return value.getDate() + "/" + value.getMonth()+1 + "/" + value.getFullYear();
  } //function
-
-
-
-
 
 function displayContainer(strDivID) {
  //Loop through all containers: remove Show class, add Hide class
@@ -92,11 +76,6 @@ function displayContainer(strDivID) {
  if (strDivID != "")
   document.getElementById(strDivID).classList.add("divContainerShow"); //Show passed in container
 } //function
-
-
-
-
-
 
 function getActionName(index) {
   var strTemp = "";

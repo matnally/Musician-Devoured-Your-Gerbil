@@ -13,14 +13,6 @@ function setPractice(i, intDays) {
 } //function
 
 function practice(i) {
-  /*
-    METHOD
-    ======
-    Subtract practice cost from Band's money
-    Update equipment bonuses
-    Update musician SKILL, HAPPINESS, REPUTATION
-  */
-
   updateBandMoneySubtract(i, JSONconfig[0].valuePracticeCost, "practice"); //update band money
   for (a in JSONband[i].musician) {
     //update musician attributes
@@ -29,7 +21,6 @@ function practice(i) {
     updateMusicianAttribute(i, a, "happiness", JSONconfig[0].valuePracticeHappiness);
     updateMusicianAttribute(i, a, "reputation", JSONconfig[0].valuePracticeReputation);
   }//for musician
-
 } //function
 
 
@@ -50,17 +41,9 @@ function updateMusicianAttribute(intBand, intMusician, strAttribute, intValue) {
 } //function
 
 function getEquipmentBonusMusician(i, a){
-  /*
-    METHOD
-    ======
-    If Band's equipment choice matches musician's equipment choice
-      Update musician SKILL
-  */
-
   if (JSONband[i].equipment == JSONmusician[JSONband[i].musician[a]].equipment) {
     var intEquipmentBonus = JSONconfig[0].sameEquipmentBonus;
     updateMusicianAttribute(i, a, "skill", intEquipmentBonus); // THE ACTION !!!!!!!!
-
     loggingOutput(i, "equipment bonus", JSONmusician[JSONband[i].musician[a]].name + " of band " + JSONband[i].name + " using same equipment +1 SKILL bonus<br>");
   } //if
 } //function

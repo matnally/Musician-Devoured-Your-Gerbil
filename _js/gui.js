@@ -25,50 +25,95 @@ function guiCreateElements() {
 } //function
 
 function guiApplyListeners() {
+  //passive: true so don't get error: [Violation] Added non-passive event listener
 
   document.getElementById("selMusicianComboBox").addEventListener("change",function(event){
     guiDisplayDetailsMusician(this.value);
-  });
+  }, {passive: true});
 
   //START MAIN MENU
   document.getElementById("divPracticeComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 0); //0 = Practice
-  });
+  }, {passive: true});
 
   //GIG
   document.getElementById("selVenueComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 1); //1 = Gig
-  });
+  }, {passive: true});
   document.getElementById("selTicketPriceComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 1); //1 = Gig
-  });
+  }, {passive: true});
   document.getElementById("divGigDays").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 1); //1 = Gig
-  });
+  }, {passive: true});
 
   document.getElementById("secPublicity").addEventListener("mousemove",function(event){
     guiDisplayActionCost(1, 2); //2 = Publicity
-  });
+  }, {passive: true});
   //END MAIN MENU
 
   document.getElementById("selGiftComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 3); //3 = Gifts
-  });
+  }, {passive: true});
 
   document.getElementById("selTracksComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 4); //4 = Record
-  });
+  }, {passive: true});
 
   //Release
   document.getElementById("selDirectorComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 5); //5 = Release
-  });
+  }, {passive: true});
   document.getElementById("selLocationComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 5); //5 = Release
-  });
+  }, {passive: true});
   document.getElementById("selFeatureComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 5); //5 = Release
-  });
+  }, {passive: true});
+
+} //function
+
+function guiDisplayDetailsBandMusicians(i) {
+
+  i = parseInt(i);
+
+  if (i < 0)
+    i = JSONband.length - 1;
+
+  if (i >= JSONband.length)
+    i=0;
+
+  GLOBALBandi = i;
+  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[i])));
+
+  var strTemp = "";
+  strTemp +="   <div class='divTable'>";
+  strTemp +="     <div class='divRow'>";
+  for (m in JSONband[i].musician) {
+    strTemp +="       <div class='divCell'>";
+    strTemp += guiDisplayDetailsCreateHTMLmusician(guiDisplayDetailsReturnArray(JSONmusician[JSONband[i].musician[m]]));
+    strTemp +="       </div> <!-- divCell -->";
+  } //for
+  strTemp +="     </div> <!-- divRow -->";
+  strTemp +="   </div> <!-- divTable -->";
+  updateElement("divBandMusicianDetails", strTemp);
+
+  strTemp = "";
+  strTemp +="   <div class='divTable'>";
+  strTemp +="     <div class='divRow'>";
+  for (b in JSONband[i].album) {
+    strTemp +="       <div class='divCell'>";
+    strTemp += guiDisplayDetailsCreateHTMLalbum(JSONband[i].album[b]);
+    strTemp +="       </div> <!-- divCell -->";
+  } //for
+  strTemp +="     </div> <!-- divRow -->";
+  strTemp +="   </div> <!-- divTable -->";
+  updateElement("divBandAlbumsDetails", strTemp);
+
+
+  guiDisplayActionCurrent(i);
+
+  adminShowLog(i);
 
 } //function
 
@@ -135,14 +180,11 @@ function guiDisplayActionCost(i, index) {
     break;
   } //switch
 
-
   // intTotalCost = -intTotalCost; //turn into negative number
   guiDisplayMovementLabelBand("spnMovementBandmoney", (intDays * intDayCost));
   updateElement("divActionCost", "<br>" + strTemp); //updates element
 
-
 } //function
-
 
 function guiDisplayMovementLabelMusician(strID, intTotalCost) {
   //Updates how much will be taken for the property, applying the appropiate class
@@ -165,7 +207,6 @@ function guiDisplayMovementLabelMusician(strID, intTotalCost) {
 
 } //function
 
-
 function guiDisplayMovementLabelBand(strID, intTotalCost) {
   //Updates how much will be taken for the property, applying the appropiate class
   var elem = document.getElementById(strID);
@@ -181,8 +222,6 @@ function guiDisplayMovementLabelBand(strID, intTotalCost) {
   elem.innerHTML = strTemp + displayNumbersWithCommas(intTotalCost);
 } //function
 
-
-
 function guiDisplayActionCurrent(i) {
   var strTemp = "";
   strTemp = "<strong>" + JSONband[i].name + "</strong> is <strong>" + getActionName(JSONband[i].action) + "</strong> for <strong>" + JSONband[i].days + "</strong> day(s). They are due to finish on <strong>" + JSONband[i].dateActionFinish + "</strong>";
@@ -193,24 +232,6 @@ function guiDisplayActionCurrent(i) {
   updateElement("divBandActionCurrent", "<br>" + strTemp);
 
 } //function
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 var GLOBALBandi = 0;
@@ -244,7 +265,6 @@ function guiDisplayDetailsMusician(i) {
 
   updateElement("divMusicianDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONmusician[i])));
 } //function
-
 
 function guiDisplayDetailsReturnArray(JSONtoUse) {
   //Returns array of fully formed labeks and values to display
@@ -420,10 +440,6 @@ function guiDisplayDetailsCreateHTMLalbum(intBandAlbumID) {
   return strTemp;
 } //function
 
-
-
-
-
 function guiDisplayDetailsCreateHTMLsimple(arrTemp) {
   var strTemp = "";
   strTemp +="   <div class='divTable'>";
@@ -463,16 +479,6 @@ function guiDisplayDetailsCreateHTMLcomboBox(arrTemp, strID) {
   return strTemp;
 } //function
 
-
-
-
-
-
-
-
-
-
-
 function guiDisplayDetailsCreateHTMLcomboBoxAlbums(strID) {
   var strTemp = "";
   strTemp += "<select id='"+strID+"' onChange='showAlbumSingles(this.value)'>";
@@ -496,26 +502,6 @@ function guiDisplayDetailsCreateHTMLcomboBoxSingles(i, strID) {
   return strTemp;
 } //function
 
-
-
-
 function showAlbumSingles(i) {
   updateElement("divBandAlbumSingles", guiDisplayDetailsCreateHTMLcomboBoxSingles(i, "selBandAlbumSingles"));
-} //function
-
-
-
-
-function displayJSON() {
-
-  console.log("************** START OF BAND JSON************************");
-  console.log(JSON.stringify(JSONband));
-  console.log("************** END OF BAND JSON************************");
-  console.log("************** START OF ALBUM JSON************************");
-  console.log(JSON.stringify(JSONalbum));
-  console.log("************** END OF ALBUM JSON************************");
-  console.log("************** START OF SINGLES JSON************************");
-  console.log(JSON.stringify(JSONsingle));
-  console.log("************** END OF SINGLES JSON************************");
-
 } //function

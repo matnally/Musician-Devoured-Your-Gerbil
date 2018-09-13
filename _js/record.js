@@ -1,8 +1,13 @@
 
 function setRecordPlayer(intTracks) {
   //set player's band attributes for appropiate action
-  setRecord(0, intTracks);
-  turnBegin();
+  if (JSONband[0].contract == false) {
+    alert("Not signed yet!");
+  } else {
+    setRecord(0, intTracks);
+    turnBegin();
+  } //if
+
 } //function
 
 function setRecord(i, intTracks) {

@@ -1,16 +1,6 @@
-///////////////////////
-//GAME FUNCTIONS
-///////////////////////
 
 function gameInit() {
   //Initialisation of turn / Start of game!
-  /*
-    METHOD
-    ======
-    Create elements needed for game
-    Apply any listeners to elements
-    Show Gane Start section
-  */
   guiCreateElements(); //Create everything needed
   guiApplyListeners();
 
@@ -22,11 +12,7 @@ function gameInit() {
 } //function
 
 function gameStart() {
-  /*
-    METHOD
-    ======
 
-  */
   createBandPlayer(JSONband[0]); //create band from player's chosen musicians
   createBandOther(); //creates bands from the remaining musicians
   actionChooseBandAll(); //sets an action to each band
@@ -39,66 +25,6 @@ function gameStart() {
   navShowSingle("#secBandDetails");
 } //function
 
-
-function guiDisplayDetailsBandMusicians(i) {
-
-  i = parseInt(i);
-
-  if (i < 0)
-    i = JSONband.length - 1;
-
-  if (i >= JSONband.length)
-    i=0;
-
-  GLOBALBandi = i;
-  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[i])));
-
-  var strTemp = "";
-  strTemp +="   <div class='divTable'>";
-  strTemp +="     <div class='divRow'>";
-  for (m in JSONband[i].musician) {
-    strTemp +="       <div class='divCell'>";
-    strTemp += guiDisplayDetailsCreateHTMLmusician(guiDisplayDetailsReturnArray(JSONmusician[JSONband[i].musician[m]]));
-    strTemp +="       </div> <!-- divCell -->";
-  } //for
-  strTemp +="     </div> <!-- divRow -->";
-  strTemp +="   </div> <!-- divTable -->";
-  updateElement("divBandMusicianDetails", strTemp);
-
-  strTemp = "";
-  strTemp +="   <div class='divTable'>";
-  strTemp +="     <div class='divRow'>";
-  for (b in JSONband[i].album) {
-    strTemp +="       <div class='divCell'>";
-    strTemp += guiDisplayDetailsCreateHTMLalbum(JSONband[i].album[b]);
-    strTemp +="       </div> <!-- divCell -->";
-  } //for
-  strTemp +="     </div> <!-- divRow -->";
-  strTemp +="   </div> <!-- divTable -->";
-  updateElement("divBandAlbumsDetails", strTemp);
-
-
-  guiDisplayActionCurrent(i);
-
-
-} //function
-
-
-//////////////////////////
-//// SUPPORTING LOGIC ////
-//////////////////////////
-
-/*
-Order of syntax:
-  INIT
-  BEGIN
-  START
-  END
-  FINISH
-*/
-
-var GLOBALintervalRunning = false; //GLOBAL
-
 function turnBegin() {
   navShowSingle("#secBandDetails");
   guiDisplayDetailsBandMusicians(0);
@@ -108,12 +34,12 @@ function turnBegin() {
   } //for
   turnFinish();
 } //function
+
 function turnStart() {
   //Start of turn
   updateDate();
   actionExecuteBandAll(); //do actions for bands
   // updateBandReputation();  //WRITES and CALS single band reps
-  // eventContract(); //see if they are eligible for a record contract, if not already
   eventDOWaction(); //choose action corressponding to day of week
   //WAIT???
 
@@ -123,22 +49,22 @@ function turnStart() {
   guiDisplayDetailsBandMusicians(0);
 
 } //function
+
 function turnEnd() {
 } //function
+
 function turnFinish() {
+
+  eventContract(0); //see if they are eligible for a record contract, if not already
+
   navShow("#secMainMenu");
-
   navShowSingle("#secBandDetails");
-  document.getElementById("loggingOutput").innerHTML = GLOBALstrLogging;
-
-  // updateBandReputation();  //WRITES and CALS single band reps
-
-
-// displayJSON();
-
 } //function
 
 
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
 
 function eventDOWaction() {
   //choose action corressponding to day of week
@@ -171,7 +97,6 @@ function eventDOWaction() {
   } //switch
 
 } //function
-
 
 function takewageAway() {
   //takes away wage from the band's money

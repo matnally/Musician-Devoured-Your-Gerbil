@@ -111,7 +111,6 @@ if (i=0) {
 
   } //for
 
-  loggingOutput(0, "TURN END", "<br><br>"); // 0 ???
 
 } //function
 

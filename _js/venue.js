@@ -32,6 +32,9 @@ function getTicketsSold(i) {
 } //function
 
 
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
 
 function getBandTotalAttributeFromMusicians(i, strAttribute) {
   var intTemp = 0;
@@ -41,15 +44,12 @@ function getBandTotalAttributeFromMusicians(i, strAttribute) {
   return intTemp;
 } //function
 
-
-
 // The GETS
 function getVenue() {
   return Math.floor(Math.random() * JSONvenue.length);
 } //function
 
 function getTicketPrice() {
-  //  return Math.floor(Math.random() * JSONtickets.length);
-  //TODO: properly!
-  return 5;
+  var intTemp = Math.floor(Math.random() * JSONtickets.length);
+  return JSONtickets[intTemp].tickets;
 } //function

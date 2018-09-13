@@ -1,6 +1,4 @@
 
-//BAND CREATION FUNCTIONS
-
 function createBandPlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;
   JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
@@ -45,11 +43,14 @@ function createBandOther() {
 //// SUPPORTING LOGIC ////
 //////////////////////////
 
-
 function updateBandReputation(i) {
   //WRITES and CALS single band reps
   var bob = 0;
   bob = calcBandReputation(JSONband[i].musician);
+
+if (i==0)
+    bob = 5000 //TODO: CHEAT!!!
+
   JSONband[i].reputation = bob;
 } //function
 
@@ -64,24 +65,9 @@ function calcBandReputation(JSONtoUse) {
     intTemp = intTemp + parseInt(intReputation);
   } //for
 
-// intTemp = 5000;//TODO: CHEATING FOR TESTING PURPOSES
-
   return intTemp;
 } //function
 
-function getBandMusicianJSONindex(strName) {
-  //returns the JSON index of the corressponding name
-  var intIndex = 0;
-  for (i in JSONmusician) {
-    if (JSONmusician[i].name == strName) {
-        //found musician
-        intIndex = i;
-    } //if
-  } //for
-  return intIndex;
-} //function
-
-///////The GETS!//////
 var GLOBALdatDateCurrent = new Date("01/01/1989"); // GLOBAL!!!!!  mm/dd/yyyy
 function getDateCurrent() {
   //returns the in-game current date
@@ -101,22 +87,6 @@ function getDays(intMax) {
 } //function
 function getBandEquipment() {
   return Math.floor(Math.random() * JSONequipment.length);
-} //function
-function getBandName(arrTemp) {
-  //returns a random band name string
-  var strTemp = "";
-  switch (arrTemp.length) {
-    case 1:
-      strTemp = JSONmusician[arrTemp[0]].name; //only one member of band so just call band their name
-    break;
-    // case 2:
-    //   //choose either make up band name using surnames or just band name
-    //   strTemp = Math.random().toString(36).substring(7);
-    // break;
-    default:
-      strTemp = getRandomName();
-  } //switch
-  return strTemp;
 } //function
 
 function getMusiciansRemaining() {

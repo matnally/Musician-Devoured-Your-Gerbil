@@ -1,4 +1,3 @@
-//PLAYER'S BAND functions
 
 function bandAddMusician(index) {
   //Add musician index to band musician array

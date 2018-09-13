@@ -13,13 +13,6 @@ function setPublicity(i) {
 } //function
 
 function publicity(i) {
-  /*
-    METHOD
-    ======
-    Get band's reputation
-    ?????
-  */
-
   var intPublicity = getPublicityBandBonusReputation(i); // for the band??? in real time (musicians stats are changing)
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
@@ -27,9 +20,6 @@ function publicity(i) {
     updateMusicianAttribute(i, a, "reputation", intPublicity);
     loggingOutput(i, "musician publicity", JSONmusician[JSONband[i].musician[a]].name + "got "+intPublicity+" reputation<br>");
   } //for
-
-  // updateBandReputation(i); // Need to do?
-
 } //function
 
 
@@ -40,7 +30,6 @@ function publicity(i) {
 function getPublicityBandBonusReputation(i) {
   //WORK OUT Publicity for BAND?????
   var intBonus=0;
-
   var intBandCurrentReputation = parseInt(getBandAGGattributeFromMusiciansSingle(i, "reputation"));
   var intSUMreputation = parseInt(getBandAGGattributeFromMusicians("reputation"));
   var intAVGreputation = (intSUMreputation / JSONband.length).toFixed(0);
@@ -61,7 +50,6 @@ function getPublicityBandBonusReputation(i) {
       alert("SUM band rep: " + intSUMreputation);
       alert("AVG band rep: " + intAVGreputation);
   } //switch
-
   return intBonus;
 } //function
 

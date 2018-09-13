@@ -1,35 +1,56 @@
 
-function eventContract() {
+function eventContract(i) {
   //see if they are eligible for a record contract, if not already
 
-  for (i in JSONband) {
-    //for each band
-    if (chkAlreadyHaveContract(i) == false) {
-
-      if (calChanceContract(i) == true) {
-        //band DOES NOT have a record contract and has a change of a contract
-        if (i == 0) { //Check to see if its the player's band?
-          //Player's band
-
-          if (chkAlreadyHaveContract(0) == false)
-            askSignContract();
-
-//TODO: BUG?!?!?!?!? WHy is this being called twice!
-
-        } else {
-          //other bands
-          JSONband[i].contract = getContract();
-        } //if
-        loggingOutput(i, "RECORD CONTRACT", JSONband[i].name + " has just signed a record contract with "+JSONcontract[JSONband[i].contract].name+"<br>");
-      } //if calChanceContract
-    } //if chkAlreadyHaveContract
-  } //for
+  if (JSONband[i].contract === false) {
+    //Hasn't got a contract yet
+    if (calChanceContract(i) === true) {
+      //have enough reputation for a contract offer
+      askSignContract(i);
+    } //if
+  } //if
 
 } //function
 
-function askSignContract() {
-  var intContract = getContract();
-  JSONband[0].contract = intContract;
+function askSignContract(i) {
+
+  //TODO: Ask the player!
+
+  //Determines how many choices of contracts
+  var returnValue = 0;
+  var intTemp = parseInt(JSONband[i].reputation); //get the band's reputation
+  switch (true) {
+    case (intTemp > 500):
+      returnValue = 5;
+    break;
+    case (intTemp > 400):
+      returnValue = 4;
+    break;
+    case (intTemp > 300):
+      returnValue = 3;
+    break;
+    case (intTemp > 100):
+      returnValue = 2;
+    break;
+    default:
+      returnValue = 1;
+  } //switch
+
+  var intContract = getContract(returnValue);
+
+  alert("You are signed to " + JSONcontract[intContract].name);
+  JSONband[i].contract = intContract;
+
+  loggingOutput(i, "RECORD CONTRACT", JSONband[i].name + " has just signed a record contract with "+JSONcontract[JSONband[i].contract].name+"<br>");
+
+  // updateBandMoneySubtract(i, JSONcontract[JSONband[i].contract].money, "contract"); //COST
+  updateBandMoneyAdd(i, JSONcontract[JSONband[i].contract].money, "record contract signing bonus"); //COST
+  JSONband[i].reputation = JSONband[i].reputation + JSONcontract[JSONband[i].contract].reputation;
+
+  loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " have received "+JSONconfig[0].currency+JSONcontract[JSONband[i].contract].money+" signing bonus<br>");
+  loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " have received "+JSONcontract[JSONband[i].contract].reputation+" reputation points by signing with "+JSONcontract[JSONband[i].contract].name+"<br>");
+  loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " will receive "+JSONcontract[JSONband[i].contract].percent+"% from all Single releases<br>");
+
 } //function
 
 
@@ -75,6 +96,6 @@ function calChanceContract(i) {
 
 } //function
 
-function getContract() {
-  return Math.floor(Math.random() * JSONcontract.length);
+function getContract(intTemp) {
+  return Math.floor(Math.random() * intTemp);
 } //function
