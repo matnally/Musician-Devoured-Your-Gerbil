@@ -50,6 +50,12 @@ function calcChartTimeSingleQualityRating(arrItemSingle) {
 
   */
 
+  console.log("q:" + q);
+  console.log("r:" + r);
+  console.log("d:" + d);
+  console.log("f:" + f);
+  console.log("***********");
+
   intTemp = Math.round((q + r) - (d * f));
 
   return intTemp;

@@ -14,7 +14,7 @@ function gameInit() {
 function gameStart() {
 
   createBandPlayer(JSONband[0]); //create band from player's chosen musicians
-  createBandOther(); //creates bands from the remaining musicians
+  // createBandOther(); //creates bands from the remaining musicians
   actionChooseBandAll(); //sets an action to each band
 
   updateElement("divCurrentDate", GLOBALdatDateCurrent);
