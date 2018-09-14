@@ -34,6 +34,10 @@ function updateMusicianAttribute(intBand, intMusician, strAttribute, intValue) {
       strTemp = (JSONmusician[JSONband[intBand].musician[intMusician]].name + " had " + JSONmusician[JSONband[intBand].musician[intMusician]][strAttribute] + " change is " + intValue);
 
   var intTotal = parseInt(JSONmusician[JSONband[intBand].musician[intMusician]][strAttribute]) + intValue; // CALC
+
+if (intTotal < 0)
+  intTotal = 0; //so no minus numbers
+
   JSONmusician[JSONband[intBand].musician[intMusician]][strAttribute] = intTotal; // THE ACTION !!!!!!!!
 
   strTemp += (" now has " + JSONmusician[JSONband[intBand].musician[intMusician]][strAttribute] + "<br>");

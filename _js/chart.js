@@ -19,7 +19,7 @@ function chartTime() {
   console.log("CHART TIME!!!");
   var intChartPosition = 1; //charts start from one! duh
   for (i in arrTemp) {
-    console.log(intChartPosition + ": " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name);
+    console.log(intChartPosition + ": " + arrTemp[i].qualityRating + " - " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name);
     if (intChartPosition >= 20)
       break;
     else
@@ -32,30 +32,25 @@ function chartTime() {
 function calcChartTimeSingleQualityRating(arrItemSingle) {
   //Work out final value of single, adding dynamic rpoperties
   var intTemp = 0;
+
   var i = getBandFromAlbum(arrItemSingle.album);
 
   var q = arrItemSingle.qualityRating;
-  var d = getDateDifference(GLOBALdatDateCurrent, arrItemSingle.releasedDate);
   var r = JSONband[i].reputation;
-  var f = 1
+  var d = getDateDifference(GLOBALdatDateCurrent, arrItemSingle.releasedDate);
+  var f = 2;
 
   /*
-    q = Single quality rating
+    q = quality rating
     r = Band's reputation
     d = days difference from Single's release date to current date
     f = factor for difference
-    RESULT = (q + r) - (d * f)
-  */
-  intTemp = ((q + r) - (d * f));
 
-  console.log("**************");
-  console.log(JSONband[i].name);
-  console.log("q: " + q);
-  console.log("d: " + d);
-  console.log("r: " + r);
-  console.log("f: " + f);
-  console.log("total: " + intTemp);
-  console.log("**************");
+    RESULT = (q + r) - (d * f)
+
+  */
+
+  intTemp = Math.round((q + r) - (d * f));
 
   return intTemp;
 } //function
