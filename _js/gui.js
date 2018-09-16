@@ -1,11 +1,13 @@
 
+var GLOBALBandi = 0;
+var GLOBALMusiciani = 0;
+
 function guiCreateElements() {
   //Creates and displays all elements needed for the game
 
   //COMBO BOXES
   //Game Start
   updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
-  updateElement("divMusicianComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONmusician, "selMusicianComboBox"));
   updateElement("divEquipmentComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONequipment, "selEquipmentComboBox"));
   //Practice
   //DAYS?
@@ -26,10 +28,6 @@ function guiCreateElements() {
 
 function guiApplyListeners() {
   //passive: true so don't get error: [Violation] Added non-passive event listener
-
-  document.getElementById("selMusicianComboBox").addEventListener("change",function(event){
-    guiDisplayDetailsMusician(this.value);
-  }, {passive: true});
 
   //START MAIN MENU
   document.getElementById("divPracticeComboBox").addEventListener("change",function(event){
@@ -73,7 +71,10 @@ function guiApplyListeners() {
 
 } //function
 
-function guiDisplayDetailsBandMusicians(i) {
+function guiDisplayDetailsBand(i) {
+
+  var intTemp = 1;
+  var strTemp = "";
 
   i = parseInt(i);
 
@@ -84,36 +85,18 @@ function guiDisplayDetailsBandMusicians(i) {
     i=0;
 
   GLOBALBandi = i;
-  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[i])));
 
-  var strTemp = "";
-  strTemp +="   <div class='divTable'>";
-  strTemp +="     <div class='divRow'>";
-  for (m in JSONband[i].musician) {
-    strTemp +="       <div class='divCell'>";
-    strTemp += guiDisplayDetailsCreateHTMLmusician(guiDisplayDetailsReturnArray(JSONmusician[JSONband[i].musician[m]]));
-    strTemp +="       </div> <!-- divCell -->";
-  } //for
-  strTemp +="     </div> <!-- divRow -->";
-  strTemp +="   </div> <!-- divTable -->";
-  updateElement("divBandMusicianDetails", strTemp);
+  strTemp = getMarkUpBand(i);
+    updateElement("divBandDetails", strTemp);
 
-  strTemp = "";
-  strTemp +="   <div class='divTable'>";
-  strTemp +="     <div class='divRow'>";
-  for (b in JSONband[i].album) {
-    strTemp +="       <div class='divCell'>";
-    strTemp += guiDisplayDetailsCreateHTMLalbum(JSONband[i].album[b]);
-    strTemp +="       </div> <!-- divCell -->";
-  } //for
-  strTemp +="     </div> <!-- divRow -->";
-  strTemp +="   </div> <!-- divTable -->";
-  updateElement("divBandAlbumsDetails", strTemp);
+  strTemp = getMarkUpMusician(i);
+    updateElement("divBandMusicianDetails", strTemp);
 
+  strTemp = getMarkUpAlbum(i);
+    updateElement("divBandAlbumsDetails", strTemp);
 
   guiDisplayActionCurrent(i);
-
-  adminShowLog(i);
+  adminShowLog(i); //display
 
 } //function
 
@@ -202,11 +185,9 @@ function guiDisplayMovementLabelMusician(strID, intTotalCost) {
     } //if
     elems[m].innerHTML = strTemp + displayNumbersWithCommas(intTotalCost);
 
-
   } //for
 
 } //function
-
 function guiDisplayMovementLabelBand(strID, intTotalCost) {
   //Updates how much will be taken for the property, applying the appropiate class
   var elem = document.getElementById(strID);
@@ -227,236 +208,18 @@ function guiDisplayActionCurrent(i) {
   strTemp = "<strong>" + JSONband[i].name + "</strong> is <strong>" + getActionName(JSONband[i].action) + "</strong> for <strong>" + JSONband[i].days + "</strong> day(s). They are due to finish on <strong>" + JSONband[i].dateActionFinish + "</strong>";
 
   if (i==0)
-    strTemp = ""; //dont want to show Player's current action
+    strTemp = "Choose an action"; //dont want to show Player's current action
 
   updateElement("divBandActionCurrent", "<br>" + strTemp);
 
 } //function
 
 
-var GLOBALBandi = 0;
-function guiDisplayDetailsBand(i) {
 
-  i = parseInt(i);
 
-  if (i < 0)
-    i = JSONband.length - 1;
-
-  if (i >= JSONband.length)
-    i=0;
-
-  GLOBALBandi = i;
-
-  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[i])));
-
-} //function
-var GLOBALMusiciani = 0;
-function guiDisplayDetailsMusician(i) {
-
-  i = parseInt(i);
-
-  if (i < 0)
-    i = JSONmusician.length - 1;
-
-  if (i >= JSONmusician.length)
-    i=0;
-
-  GLOBALMusiciani = i;
-
-  updateElement("divMusicianDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONmusician[i])));
-} //function
-
-function guiDisplayDetailsReturnArray(JSONtoUse) {
-  //Returns array of fully formed labeks and values to display
-  /*
-    METHOD
-    ======
-    Get the labels to display from JSON
-    Get the alternative value, if any, for the values
-    Get the alternative names, if any, for the labels
-  */
-  var arrTemp = [];
-      arrTemp = guiDisplayDetailsLabelsReturnArray(JSONtoUse); //Get what to show
-      arrTemp = guiDisplayDetailsLabelsGetAlternativeValues(arrTemp); //Get alternative value | Value first as labels may change and using that for comparison
-//      arrTemp = guiDisplayDetailsLabelsGetAlternativeLabels(arrTemp); //Get alternative labels
-  return arrTemp;
-} //function
-
-function guiDisplayDetailsLabelsReturnArray(JSONtoUse) {
-  //Iterates through JSONtoUse for output
-  var strTemp = "";
-  var arrTemp = [];
-  var strLabel = "";
-  var strLabelValue = "";
-
-  if (JSONtoUse.length > 0) {
-    //MULTIPLE
-    for (i in JSONtoUse) {
-      //for every band
-      for (k in JSONtoUse[i]) {
-        //for every key value in band
-        if (JSONtoUse[i].hasOwnProperty(k)) {
-          strLabel = k;
-          strLabelValue = JSONtoUse[i][k];
-
-          if (guiDisplayDetailsLabelsCheckToShow(strLabel))
-            arrTemp.push([strLabel,strLabelValue]);
-
-        } //if
-      } //for every key value in band
-    } //for every band
-
-  } else {
-    //SINGLE
-    for (k in JSONtoUse) {
-      //for every key value in band
-      if (JSONtoUse.hasOwnProperty(k)) {
-        strLabel = k;
-        strLabelValue = JSONtoUse[k];
-
-        if (guiDisplayDetailsLabelsCheckToShow(strLabel))
-          arrTemp.push([strLabel,strLabelValue]);
-
-      } //if
-    } //for every key value in band
-
-  } //if
-
-  return arrTemp;
-
-} //function
-function guiDisplayDetailsLabelsCheckToShow(strLabel) {
-  //Check to see if label exists in JSONgui, if so then show!
-  var boolTemp = false;
-  for (l in JSONgui[0]) {
-    if (strLabel == l)
-      boolTemp = true;
-  } //for
-  return boolTemp;
-} //function
-
-function guiDisplayDetailsLabelsGetAlternativeLabels(arrTemp) {
-  //Get alternative labels
-  for (a in arrTemp) {
-  //for every label
-    for (b in JSONgui[0]) {
-      if (arrTemp[a][0] == b) {
-        //Found label
-        arrTemp[a][0] = JSONgui[0][b].label;
-      } //if
-    } //for
-  } //for
-  return arrTemp;
-} //function
-function guiDisplayDetailsLabelsGetAlternativeValues(arrTemp) {
-  //Get alternative value
-  for (a in arrTemp) {
-  //for every label
-      switch(arrTemp[a][0]) {
-        case "money":
-          //money
-        break;
-        case "gift":
-          //gift
-          arrTemp[a][1] = JSONgift[arrTemp[a][1]].name;
-        break;
-        default:
-      } //switch
-  } //for
-  return arrTemp;
-} //function
-
-function guiDisplayDetailsCreateHTMLband(arrTemp) {
-  var strTemp = "";
-
-  for (l in arrTemp) {
-    //for every label
-
-    strTemp += "<p>";
-    strTemp += "<span>";
-    strTemp += "<img src='_images/";
-    strTemp += arrTemp[l][0];
-    // strTemp += "_images/gui32x32";
-    strTemp += ".png";
-    strTemp += "' alt='";
-    strTemp += arrTemp[l][0];
-    strTemp += "'>";
-    strTemp += "</span>";
-    strTemp += "&nbsp;";
-    strTemp += displayNumbersWithCommas(arrTemp[l][1]);
-    strTemp += "<span id='spnMovementBand"+arrTemp[l][0]+"'>";
-    strTemp += "</span>";
-    strTemp += "</p>";
-
-  } //for band
-
-  return strTemp;
-} //function
-function guiDisplayDetailsCreateHTMLmusician(arrTemp) {
-  var strTemp = "";
-
-  for (l in arrTemp) {
-    //for every label
-
-    strTemp += "<p>";
-    strTemp += "<span>";
-    strTemp += "<img src='_images/";
-    strTemp += arrTemp[l][0];
-    // strTemp += "_images/gui32x32";
-    strTemp += ".png";
-    strTemp += "' alt='";
-    strTemp += arrTemp[l][0];
-    strTemp += "'>";
-    strTemp += "</span>";
-    strTemp += "&nbsp;";
-    strTemp += displayNumbersWithCommas(arrTemp[l][1]);
-    strTemp += "<span name='spnMovementMusician"+arrTemp[l][0]+"'>";
-    strTemp += "</span>";
-    strTemp += "</p>";
-
-  } //for musician
-
-  return strTemp;
-} //function
-
-function guiDisplayDetailsCreateHTMLalbum(intBandAlbumID) {
-  var strTemp = "";
-  strTemp += "<p>";
-  strTemp += JSONalbum[intBandAlbumID].name + " - " + JSONalbum[intBandAlbumID].tracks + " track album";
-  strTemp += "</p>";
-  for (t in JSONsingle) {
-    if (JSONsingle[t].album == intBandAlbumID) {
-      //SAME album so track belongs to album
-      strTemp += "<p>";
-
-      if (JSONsingle[t].releasedDate === false)
-        strTemp += JSONsingle[t].name;
-      else
-        strTemp += JSONsingle[t].name + " - released";
-
-      strTemp += "</p>";
-    } //if
-  } //for
-  return strTemp;
-} //function
-
-function guiDisplayDetailsCreateHTMLsimple(arrTemp) {
-  var strTemp = "";
-  strTemp +="   <div class='divTable'>";
-  for (l in arrTemp) {
-    //for every label
-    strTemp +="     <div class='divRow'>";
-    strTemp +="       <div class='divCell divRight divRowLabel'>";
-    strTemp +=            arrTemp[l][0];
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="       <div class='divCell'>";
-    strTemp +=            arrTemp[l][1];
-    strTemp +="       </div> <!-- divCell -->";
-    strTemp +="     </div> <!-- divRow -->";
-  } //for musician
-  strTemp +="   </div> <!-- divTable -->";
-  return strTemp;
-} //function
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
 
 function guiDisplayDetailsCreateHTMLcomboBoxTopLevel(arrTemp, strID) {
   var strTemp = "";

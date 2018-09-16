@@ -36,7 +36,7 @@ function askSignContract(i) {
       returnValue = 1;
   } //switch
 
-  var intContract = getContract(returnValue);
+  var intContract = getContract();
 
   alert("You are signed to " + JSONcontract[intContract].name);
   JSONband[i].contract = intContract;
@@ -96,6 +96,6 @@ function calChanceContract(i) {
 
 } //function
 
-function getContract(intTemp) {
-  return Math.floor(Math.random() * intTemp);
+function getContract() {
+  return Math.floor(Math.random() * JSONcontract.length);
 } //function

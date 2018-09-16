@@ -83,14 +83,10 @@ function getDateDifference(datCurrent, datDate) {
 } //function
 
 function singleChoose(i) {
-  var intAlbum = [];
-      intAlbum = JSONband[i].album;
   var arrTemp = [];
       arrTemp = getSinglesOfAlbumYetToBeReleased(i);
   var intSingle = 0;
       intSingle = getSingle(arrTemp);
-      // intSingle = arrTemp[intSingle];
-      // intSingle = arrTemp[0];
   return intSingle;
 } //function
 

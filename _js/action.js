@@ -28,7 +28,17 @@ function actionChoose(i) {
     break;
     case 4:
       //record
-      setRecord(i, getTracks()); //default action just record album
+
+if (getSinglesOfAlbumYetToBeReleased(i).length > 0) {
+
+  if (getSinglesOfAlbumYetToBeReleased(i).length > 10)
+    setRelease(i);
+  else
+    setRecord(i, getTracks()); //default action just record album
+
+} else
+  setRecord(i, getTracks()); //default action just record album
+
     break;
     case 5:
       //release

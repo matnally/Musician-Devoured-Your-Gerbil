@@ -42,7 +42,7 @@ section {
 
 .divTable {
   display: table;
-  width: 100%;
+  /* width: 100%; */
 }
 .divRow {
   display: table-row;
@@ -64,15 +64,46 @@ section {
   width: 25%;
 }
 .divGameLeft {
-  width: 25%;
+  width: 15%;
+}
+.divGameMiddle {
+  width: 50%;
 }
 .divGameRight {
-  width: 75%;
+  width: 35%;
 }
 
-
-
+.div {
+}
 
 .errorMessage {
   color: red;
 }
+
+#guiImageAlbum {
+  width: 32px;
+  height: 32px;
+}
+#guiImageMusician {
+  width: 64px;
+  height: 64px;
+}
+#guiImageBand {
+  width: 128px;
+  height: 128px;
+}
+
+
+
+p {
+  text-align: left;
+}
+
+.guiImage {
+  width: 32px;
+  height: 32px;
+}
+/* img {
+  width: 32px;
+  height: 32px;
+} */

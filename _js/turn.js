@@ -7,27 +7,30 @@ function gameInit() {
   navHideAll();
   navShowSingle("#secStartGame");
 
-  guiDisplayDetailsMusician(GLOBALMusiciani);
+getMarkUpGameStartMusician(GLOBALMusiciani);
+  // updateElement("divMusicianDetails", strTemp);
+
+  // guiDisplayDetailsMusician(GLOBALMusiciani);
   navShowSingle("#secStartGameDetails");
 } //function
 
 function gameStart() {
 
   createBandPlayer(JSONband[0]); //create band from player's chosen musicians
-  // createBandOther(); //creates bands from the remaining musicians
+  createBandOther(); //creates bands from the remaining musicians
   actionChooseBandAll(); //sets an action to each band
 
   updateElement("divCurrentDate", GLOBALdatDateCurrent);
 
   navShow("#secMainMenu");
 
-  guiDisplayDetailsBandMusicians(0);
+  guiDisplayDetailsBand(0);
   navShowSingle("#secBandDetails");
 } //function
 
 function turnBegin() {
   navShowSingle("#secBandDetails");
-  guiDisplayDetailsBandMusicians(0);
+  guiDisplayDetailsBand(0);
   for (var i=0;i<JSONband[0].days;i++) {
     // setTimeout(turnStart, 1000);
     turnStart();
@@ -39,15 +42,8 @@ function turnStart() {
   //Start of turn
   updateDate();
   actionExecuteBandAll(); //do actions for bands
-  // updateBandReputation();  //WRITES and CALS single band reps
   eventDOWaction(); //choose action corressponding to day of week
   //WAIT???
-
-  updateElement("divBandDetails", guiDisplayDetailsCreateHTMLband(guiDisplayDetailsReturnArray(JSONband[0]))); //GUI
-  updateElement("divBandAlbums", guiDisplayDetailsCreateHTMLcomboBoxAlbums("selBandAlbums")); //TODO: Needs to be here?
-  showAlbumSingles(document.getElementById("selBandAlbums").value);
-  guiDisplayDetailsBandMusicians(0);
-
 } //function
 
 function turnEnd() {

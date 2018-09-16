@@ -78,6 +78,7 @@
           <div id="divBandComboBox"></div>
           <br>
           <p>Equipment</p>
+          <p>For bonus</p>
           <div id="divEquipmentComboBox"></div>
           <br>
           <p>Money</p>
@@ -92,8 +93,10 @@
         </section><!-- section -->
 
         <section id="secMainMenu">
-          <p>Main menu</p>
-          <p>What shall we do tomorrow?</p>
+          <p>What shall we do tomorrow, chief?</p>
+          <img src="_images/cecilFront.png" alt="">
+          <img src="_images/cliveFront.png" alt="">
+          <br>
           <button class="butMainMenu" onClick="navShow('#secPractice')">Practice</button><br>
           <button class="butMainMenu" onClick="navShow('#secGig')">Gig</button><br>
           <button class="butMainMenu" onClick="navShow('#secPublicity')">Publicity</button><br>
@@ -105,6 +108,7 @@
 
         <section id="secPractice">
           <p>Practice</p>
+          <p>Practicing, or "Jamming" as it is know in the business, improves a musican's SKILL but recduces their HAPPINESS and REPUTATION.</p>
           <select id="divPracticeComboBox">
             <option value="1">1 day</option>
             <option value="2">2 days</option>
@@ -123,6 +127,7 @@
 
         <section id="secGig">
           <p>Gig</p>
+          <p>Gigging improves a musican's SKILL, HAPPINESS and REPUTATION.</p>
           <div id="divVenueComboBox"></div>
           <div id="divTicketPriceComboBox"></div>
           <select id="divGigDays">
@@ -143,6 +148,7 @@
 
         <section id="secPublicity">
           <p>Publicity</p>
+          <p>All publicity is good publicity but its can reduce or increase each musician's REPUTATION.</p>
           <button onClick="setPublicityPlayer()">Get Publicity</button>
           <br>
           <br>
@@ -151,6 +157,7 @@
 
         <section id="secGifts">
           <p>Gifts</p>
+          <p>Giving a gift improves a musician's HAPPINESS.</p>
           <div id="divGiftComboBox"></div>
           <button onClick="setGiftPlayer(document.getElementById('selGiftComboBox').value)">Give Gifts</button>
           <br>
@@ -160,6 +167,7 @@
 
         <section id="secRecord">
           <p>Record</p>
+          <p>Record an album so you can release a single.</p>
           <div id="divTracksComboBox"></div>
           <button onClick="setRecordPlayer(document.getElementById('selTracksComboBox').value)">Record an album</button>
           <br>
@@ -169,6 +177,7 @@
 
         <section id="secRelease">
           <p>Release</p>
+          <p>Release one of your band's singles.</p>
           <div id="divDirectorComboBox"></div>
           <div id="divLocationComboBox"></div>
           <div id="divFeatureComboBox"></div>
@@ -197,7 +206,7 @@
           <button onClick="guiAdminShowJSON(GLOBALJSONchart);">Show current Top 20</button>
           <br>
           <br>
-          <button onClick="adminShowLog(0);">Show Logs</button>
+          <button onClick="adminAdminTurn();">Admin Turn</button>
           <br>
           <br>
           <button onClick="navShow('#secMainMenu')">< Back</button>
@@ -206,33 +215,48 @@
         <div id="divActionCost"></div>
 
       </div> <!-- divCell -->
-      <div class="divCell divGameRight">
+      <div class="divCell divGameMiddle">
 
         <section id="secStartGameDetails">
           <p>Add a Musician</p>
-          <div id="divMusicianComboBox"></div>
+          <!-- <div id="divMusicianComboBox"></div> -->
           <div id="divMusicianDetails"></div>
-          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani-1);">< Prev Musician</button>
-          <button onClick="guiDisplayDetailsMusician(GLOBALMusiciani+1);">Next Musician ></button>
+          <button onClick="getMarkUpGameStartMusician(GLOBALMusiciani-1);">< Prev Musician</button>
+          <button onClick="getMarkUpGameStartMusician(GLOBALMusiciani+1);">Next Musician ></button>
           <br>
           <button onClick="bandAddMusician(GLOBALMusiciani)">+ Add Musician</button>
         </section><!-- section -->
 
         <section id="secBandDetails">
-          <button onClick="guiDisplayDetailsBandMusicians(GLOBALBandi-1);">< Prev Band</button>
-          <button onClick="guiDisplayDetailsBandMusicians(GLOBALBandi+1);">Next Band ></button>
           <div id="divBandDetails"></div><!-- div divBandDetails -->
+          <button onClick="guiDisplayDetailsBand(GLOBALBandi-1);">< Prev Band</button>
+          <button onClick="guiDisplayDetailsBand(GLOBALBandi+1);">Next Band ></button>
           <div id="divBandMusicianDetails"></div>
           <div id="divBandAlbumsDetails"></div>
-          <div id="divBandActionCurrent"></div>
         </section><!-- section -->
 
       </div> <!-- divCell -->
+
+
+      <div class="divCell divGameRight">
+        <h2>Current Top 20</h2>
+        <div id="divChart"></div>
+        <h2>Current Action</h2>
+        <div id="divBandActionCurrent"></div>
+        <h2>Log</h2>
+        <div id="loggingOutput"></div>
+
+      </div> <!-- divCell -->
+
+
+
     </div> <!-- divRow -->
+
+
+
 
   </div> <!-- divTable -->
 
-  <div id="loggingOutput"></div>
 
   <script>
     $(document).ready(function() {

@@ -6,27 +6,84 @@ function chartTime() {
   var arrTemp = [];
       arrTemp = getReleasedSinglesAll();
 
+      if (arrTemp.length > 20) {
+
+
+
   //Do this in temp so doesn't affect the original
   for (a in arrTemp) {
-    arrTemp[a].qualityRating = calcChartTimeSingleQualityRating(arrTemp[a]);
+    arrTemp[a].qualityRatingChart = calcChartTimeSingleQualityRating(arrTemp[a]); //TODO: never used qualityRatingChart until now!
   } //for
 
-  GLOBALJSONchart = arrTemp;
+  arrTemp = sortArrayByKey(arrTemp, 'qualityRatingChart'); //reorder by qualityRating IMPORTANT
 
-  arrTemp = sortArrayByKey(arrTemp, 'qualityRating'); //reorder by qualityRating IMPORTANT
-
-  //TODO: Display better!
-  console.log("CHART TIME!!!");
+  //TODO: arrTemp is actual JSONtrack !!!!!!!
+  var strTemp = "";
   var intChartPosition = 1; //charts start from one! duh
   for (i in arrTemp) {
-    console.log(intChartPosition + ": " + arrTemp[i].qualityRating + " - " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name);
-    if (intChartPosition >= 20)
-      break;
-    else
-      intChartPosition++;
-  } //for
-  console.log("********************");
 
+    if (intChartPosition < arrTemp[i].chartPositionBest) {
+      arrTemp[i].chartPositionBest = intChartPosition; //save best position
+    } //if
+
+    if (intChartPosition > 20) {
+      // break;
+    } else {
+      strTemp += (intChartPosition + ": " + getChartSingleMovement(arrTemp[i], intChartPosition) + " - " + arrTemp[i].qualityRatingChart + " - " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name) +"<br>";
+    } //if
+
+    intChartPosition++;
+
+  } //for
+
+} // if > 20
+
+if (arrTemp.length > 20)
+  updateElement("divChart", strTemp);
+else
+  updateElement("divChart", "NOT GOT 20 SINGLES YET!");
+
+
+} //function
+
+function getChartSingleMovement(arrSingle, intChartPosition) {
+  var strTemp = "";
+
+  switch (true) {
+    case (arrSingle.chartPosition==0):
+      strTemp = "NEW";
+    break;
+    case (intChartPosition < arrSingle.chartPosition):
+      strTemp = "UP from " + arrSingle.chartPosition;
+    break;
+    case (intChartPosition > arrSingle.chartPosition):
+      strTemp = "DOWN from " + arrSingle.chartPosition;
+    break;
+    case (intChartPosition == arrSingle.chartPosition):
+      strTemp = "SAME";
+    break;
+    default:
+  } //switch
+
+
+  for (z in JSONsingle) {
+    if (arrSingle.name == JSONsingle[z].name)
+      JSONsingle[z].chartPosition = intChartPosition;
+  } //for
+
+// if (arrSingle.chartPosition == 0)
+//   strTemp = "NEW";
+
+  // if (arrSingle.qualityRatingChart > arrSingle.qualityRatingChartPrevious)
+  //   strTemp = "UP";
+  //
+  // if (parseInt(arrSingle.qualityRatingChart) < parseInt(arrSingle.qualityRatingChartPrevious))
+  //   strTemp = "DOWN";
+  //
+  // if (arrSingle.qualityRatingChart == arrSingle.qualityRatingChartPrevious)
+  //    strTemp = "SAME";
+
+  return strTemp;
 } //function
 
 function calcChartTimeSingleQualityRating(arrItemSingle) {
@@ -45,16 +102,14 @@ function calcChartTimeSingleQualityRating(arrItemSingle) {
     r = Band's reputation
     d = days difference from Single's release date to current date
     f = factor for difference
-
     RESULT = (q + r) - (d * f)
-
   */
 
-  console.log("q:" + q);
-  console.log("r:" + r);
-  console.log("d:" + d);
-  console.log("f:" + f);
-  console.log("***********");
+  // console.log("q:" + q);
+  // console.log("r:" + r);
+  // console.log("d:" + d);
+  // console.log("f:" + f);
+  // console.log("***********");
 
   intTemp = Math.round((q + r) - (d * f));
 
@@ -93,6 +148,7 @@ function getReleasedSinglesAll() {
     //get ALL singles
     if (JSONsingle[y].releasedDate !== false) {
       //single not released yet
+      // arrTemp.push(JSONsingle[y]); //add single to temp array
       arrTemp.push(JSONsingle[y]); //add single to temp array
     } //if
   } //for
