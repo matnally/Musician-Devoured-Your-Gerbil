@@ -218,6 +218,15 @@
       <div class="divCell divGameMiddle">
 
         <section id="secStartGameDetails">
+
+          <select id="selNameSet" onChange="">
+            <option value="JSONmusicianNamesRockstar">Rockstar Ate My Hamster</option>
+            <option value="JSONmusicianNamesMorris">Chris Morris</option>
+            <option value="JSONmusicianNamesSimple">20 Simple</option>
+          </select>
+          <br>
+          <button onClick="gameCreateMusicians(document.getElementById('selNameSet').value)">Create Musician Name Set</button>
+
           <p>Add a Musician</p>
           <!-- <div id="divMusicianComboBox"></div> -->
           <div id="divMusicianDetails"></div>

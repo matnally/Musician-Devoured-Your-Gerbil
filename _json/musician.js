@@ -1,5 +1,7 @@
 //store of musician's settings
-var JSONmusician = [
+var JSONmusician = [];
+
+var JSONmusician2 = [
   {
     "name": "Jason Donner-Kebab",
     "reputation": 50,

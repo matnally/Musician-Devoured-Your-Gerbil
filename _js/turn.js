@@ -6,11 +6,6 @@ function gameInit() {
 
   navHideAll();
   navShowSingle("#secStartGame");
-
-getMarkUpGameStartMusician(GLOBALMusiciani);
-  // updateElement("divMusicianDetails", strTemp);
-
-  // guiDisplayDetailsMusician(GLOBALMusiciani);
   navShowSingle("#secStartGameDetails");
 } //function
 

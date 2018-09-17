@@ -74,6 +74,7 @@ function getMarkUpGameStartMusician(i) {
 
   strTemp += "<div class='divCell divRight'>";
   strTemp += "<img class='guiImage' src='_images/reputation.png' alt='"+displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].reputation)+"'>";
+  strTemp += "REP";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
   strTemp += "<p>";
@@ -83,6 +84,7 @@ function getMarkUpGameStartMusician(i) {
 
   strTemp += "<div class='divCell divRight'>";
   strTemp += "<img class='guiImage' src='_images/skill.png' alt='"+displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].skill)+"'>";
+  strTemp += "SKL";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
   strTemp += "<p>";
@@ -92,6 +94,7 @@ function getMarkUpGameStartMusician(i) {
 
   strTemp += "<div class='divCell divRight'>";
   strTemp += "<img class='guiImage' src='_images/happiness.png' alt='"+displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].happiness)+"'>";
+  strTemp += "HAP";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
   strTemp += "<p>";
@@ -111,6 +114,7 @@ function getMarkUpGameStartMusician(i) {
 
   strTemp += "<div class='divCell'>";
   strTemp += "<img class='guiImage' src='_images/wage.png' alt='"+JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].wage)+"'>";
+  strTemp += "WAGE";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
   strTemp += "<p>";
@@ -120,6 +124,7 @@ function getMarkUpGameStartMusician(i) {
 
   strTemp += "<div class='divCell'>";
   strTemp += "<img class='guiImage' src='_images/fee.png' alt='"+JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].fee)+"'>";
+  strTemp += "FEE";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
   strTemp += "<p>";
@@ -313,7 +318,7 @@ function getMarkUpAlbum(i) {
 
         if (!JSONsingle[s].releasedDate === false) {
           strTemp += "<strong> - Released</strong>";
-          strTemp += " best Chart Position <strong>"+JSONsingle[s].chartPositionBest+"</strong>";                    
+          strTemp += " best Chart Position <strong>"+JSONsingle[s].chartPositionBest+"</strong>";
         } //if
 
         strTemp += "</p>";

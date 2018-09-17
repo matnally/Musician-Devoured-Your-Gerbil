@@ -31,7 +31,7 @@ function createBandOther() {
     //build up attributes to push
     var strName = getBandName(arrTemp); //random band name
     var intReputation = calcBandReputation(arrTemp); //calculate band total reputation
-    var intRandomEquipment = getBandEquipment(); //get random equipment
+    var intRandomEquipment = getEquipment(); //get random equipment
     //CREATES band - GLOBALdatDateCurrent used for dateActionFinish so triggers actionChoose
     JSONband.push({'name':strName, 'money':JSONconfig[0]["moneyNormal"], 'contract':getContract(), 'reputation':intReputation, 'musician':arrTemp, 'equipment':intRandomEquipment, 'days':0, 'dateActionFinish':GLOBALdatDateCurrent, 'album':[], 'tracks':0}); //add band JSON
   } while (arrMusiciansRemaining.length > 0); //do  // SHOULD BE 1??????????? ABOVE IN THE DO WHILE
@@ -83,7 +83,7 @@ function getActionDateFinish(i) {
 function getDays(intMax) {
   return Math.floor(Math.random() * intMax) + 1;
 } //function
-function getBandEquipment() {
+function getEquipment() {
   return Math.floor(Math.random() * JSONequipment.length);
 } //function
 
