@@ -141,6 +141,17 @@ function getBandFromAlbum(intAlbum) {
   return intBandi;
 } //function
 
+function getBandFromMusician(intMusician) {
+  var intBandi = 0;
+  for (i in JSONband) { //band
+    for (m in JSONband[i].musician) { // band albums
+      if (intMusician == JSONband[i].musician[m])
+        intBandi = i;
+    } //for
+  } //for
+  return intBandi;
+} //function
+
 function getReleasedSinglesAll() {
   // get all released singles
   var arrTemp = [];

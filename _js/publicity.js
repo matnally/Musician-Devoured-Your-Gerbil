@@ -65,6 +65,15 @@ function getBandAGGattributeFromMusicians(strAttribute) {
   return intTemp;
 } //function
 
+function getAGGattributeFromMusicians(strAttribute) {
+  var intTemp = 0;
+  for (m in JSONmusician) {
+    //for every musician
+    intTemp += JSONmusician[m][strAttribute];
+  } //for band
+  return intTemp;
+} //function
+
 function getBandAGGattributeFromMusiciansSingle(i, strAttribute) {
   var intTemp = 0;
   for (a in JSONband[i].musician) {

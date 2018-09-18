@@ -38,9 +38,9 @@ function gameCreateMusicians(strJSONtoUse) {
 
     strName = JSONnameSet[m];
 
-    intSkill      = Math.round((Math.random() * (501 - 100) + 100) / 10) * 10; //Returns a random number between min (inclusive) and max (exclusive)
-    intHappiness  = Math.round((Math.random() * (501 - 100) + 100) / 10) * 10;
-    intReputation = Math.round((Math.random() * (501 - 100) + 100) / 10) * 10;
+    intSkill      = Math.round((Math.random() * (JSONconfig[0].MusicianSkill - 100) + 100) / 10) * 10; //Returns a random number between min (inclusive) and max (exclusive)
+    intHappiness  = Math.round((Math.random() * (JSONconfig[0].MusicianHappiness - 100) + 100) / 10) * 10;
+    intReputation = Math.round((Math.random() * (JSONconfig[0].MusicianReputation - 100) + 100) / 10) * 10;
 
     intTotal = intSkill + intHappiness + intReputation;
 

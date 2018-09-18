@@ -8,6 +8,12 @@
  }
 
 
+.valueGood {
+  color: green;
+}
+.valueBad {
+  color: red;
+}
 
 
 .valuePositive {
@@ -60,17 +66,15 @@ section {
   text-align: right;
 }
 
-.divRowLabel {
-  width: 25%;
-}
+
 .divGameLeft {
-  width: 15%;
+  width: 5%;
 }
 .divGameMiddle {
-  width: 50%;
+  width: 55%;
 }
 .divGameRight {
-  width: 35%;
+  width: 40%;
 }
 
 .div {
@@ -84,9 +88,9 @@ section {
   width: 32px;
   height: 32px;
 }
-#guiImageMusician {
-  width: 64px;
-  height: 64px;
+.guiImageMusician {
+  width: 100px;
+  height: 100px;
 }
 #guiImageBand {
   width: 128px;

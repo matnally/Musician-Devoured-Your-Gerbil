@@ -75,7 +75,7 @@
           <br>
           <br>
           <p>Band musicians</p>
-          <div id="divBandComboBox"></div>
+          <div id="divBandMusicians"></div>
           <br>
           <p>Equipment</p>
           <p>For bonus</p>
@@ -86,7 +86,7 @@
         </section><!-- section -->
 
         <section id="secMainMenu">
-          <p>What shall we do tomorrow, chief?</p>
+          <h3>What shall we do tomorrow, chief?</h3>
           <img src="_images/cecilFront.png" alt="">
           <img src="_images/cliveFront.png" alt="">
           <br>
@@ -233,7 +233,6 @@
           <br>
 
           <p>Add a Musician</p>
-          <!-- <div id="divMusicianComboBox"></div> -->
           <div id="divMusicianDetails"></div>
           <button onClick="getMarkUpGameStartMusician(GLOBALMusiciani-1);">< Prev Musician</button>
           <button onClick="getMarkUpGameStartMusician(GLOBALMusiciani+1);">Next Musician ></button>
@@ -243,8 +242,17 @@
 
         <section id="secBandDetails">
           <div id="divBandDetails"></div><!-- div divBandDetails -->
-          <button onClick="guiDisplayDetailsBand(GLOBALBandi-1);">< Prev Band</button>
-          <button onClick="guiDisplayDetailsBand(GLOBALBandi+1);">Next Band ></button>
+          <button onClick="guiDisplayDetailsBand(GLOBALBandi-1);">&nbsp;&nbsp;<&nbsp;&nbsp;</button>
+          <button onClick="guiDisplayDetailsBand(0);">My Band</button>
+          <button onClick="guiDisplayDetailsBand(GLOBALBandi+1);">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
+          <br>
+
+<p>Bands</p>
+<div id="divBandComboBox"></div>
+<p>Musicians</p>
+<div id="divMusicianComboBox"></div>
+
+          <br>
           <div id="divBandMusicianDetails"></div>
           <div id="divBandAlbumsDetails"></div>
         </section><!-- section -->

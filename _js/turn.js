@@ -17,16 +17,28 @@ function gameStart() {
   calBandMusicianCost();
   // updateBandMoneySubtract(0, calBandMusicianCost(0), "musicians signing fees"); //VENUE COST
 
-
-
-
   actionChooseBandAll(); //sets an action to each band
 
-  updateElement("divCurrentDate", GLOBALdatDateCurrent);
 
-  navShow("#secMainMenu");
+guiDisplayDate();
+
 
   guiDisplayDetailsBand(0);
+
+
+  updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
+  document.getElementById("selBandComboBox").addEventListener("change",function(event){
+    guiDisplayDetailsBand(this.value);
+  }, {passive: true});
+
+  updateElement("divMusicianComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONmusician, "selMusicianComboBox"));
+  document.getElementById("selMusicianComboBox").addEventListener("change",function(event){
+    guiDisplayDetailsBand(getBandFromMusician(this.value));
+  }, {passive: true});
+
+
+
+  navShow("#secMainMenu");
   navShowSingle("#secBandDetails");
 } //function
 
@@ -54,6 +66,8 @@ function turnEnd() {
 function turnFinish() {
 
   eventContract(0); //see if they are eligible for a record contract, if not already
+
+  adminShowLog(0);
 
   navShow("#secMainMenu");
   navShowSingle("#secBandDetails");

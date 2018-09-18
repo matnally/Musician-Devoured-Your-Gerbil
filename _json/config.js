@@ -33,4 +33,9 @@ var JSONconfig = [{
   ,"valueReleaseDaysDuration"     : 1 //in days
 
 
+//Musician Creation
+,"MusicianReputation" : 501
+,"MusicianSkill" : 501
+,"MusicianHappiness" : 501
+
 }];

@@ -7,7 +7,7 @@ function guiCreateElements() {
 
   //COMBO BOXES
   //Game Start
-  updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
+  // updateElement("divBandMusicians", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
   updateElement("divEquipmentComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONequipment, "selEquipmentComboBox"));
   //Practice
   //DAYS?
@@ -68,6 +68,7 @@ function guiApplyListeners() {
   document.getElementById("selFeatureComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 5); //5 = Release
   }, {passive: true});
+
 
 } //function
 
@@ -215,6 +216,38 @@ function guiDisplayActionCurrent(i) {
 } //function
 
 
+
+function guiDisplayDate() {
+
+    var strTemp = "";
+    var strMonth = "";
+    var strDay = "";
+
+    var arrDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    strDay = arrDays[GLOBALdatDateCurrent.getDay()];
+
+    var arrMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    strMonth = arrMonths[GLOBALdatDateCurrent.getMonth()];
+
+    strTemp = strDay + " " + GLOBALdatDateCurrent.getDate() + " " + strMonth + " " + GLOBALdatDateCurrent.getFullYear();
+    updateElement("divCurrentDate", strTemp);
+
+} //function
+
+
+function getGameStatClass(inValue, strKeyName) {
+  var strClassName = "";
+
+  var intMusicianAGG = parseInt(getAGGattributeFromMusicians(strKeyName));
+  var intMusicianAVG = (intMusicianAGG / JSONmusician.length).toFixed(0);
+
+if (inValue > intMusicianAVG)
+strClassName = "valueGood"
+else
+strClassName = "valueBad"
+
+  return strClassName
+} //function
 
 
 //////////////////////////
