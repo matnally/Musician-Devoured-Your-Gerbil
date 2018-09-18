@@ -1,9 +1,25 @@
 
+function calBandMusicianCost() {
+  var intTotal = 0;
+
+  for (i in JSONband) {
+    intTotal = 0;
+    for (m in JSONband[i].musician) {
+      intTotal += JSONmusician[JSONband[i].musician[m]].fee;
+    } //for
+    updateBandMoneySubtract(i, intTotal, "musicians signing fees"); //VENUE COST
+
+  } //for
+
+  return intTotal;
+} //function
+
+
+
 function createBandPlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;
   JSONtoUse.reputation = calcBandReputation(JSONtoUse.musician);
   JSONtoUse.equipment = document.getElementById("selEquipmentComboBox").value;
-  JSONtoUse.money = JSONconfig[0][document.getElementById('divMoney').value];
 } //function
 
 function createBandOther() {

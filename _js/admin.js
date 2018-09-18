@@ -23,10 +23,12 @@ function gameCreateMusicians(strJSONtoUse) {
   var intGift = 0;
   var intEquipment = 0;
 
+  var intTotal = 0
+
   var JSONtoUse = [];
   var JSONnameSet = [];
 
-  JSONtoUse = eval(strJSONtoUse);
+  JSONtoUse = eval(strJSONtoUse); //get array from name
   JSONnameSet = JSONtoUse; //TODO
 
   JSONmusician = []; //reset!!! Make sure it doesn't affect anything else!
@@ -36,14 +38,16 @@ function gameCreateMusicians(strJSONtoUse) {
 
     strName = JSONnameSet[m];
 
-    intSkill      = Math.round((Math.random() * (501 - 100) + 100) /10)*10; //Returns a random number between min (inclusive) and max (exclusive)
-    intHappiness  = Math.round((Math.random() * (501 - 100) + 100) /10)*10;
+    intSkill      = Math.round((Math.random() * (501 - 100) + 100) / 10) * 10; //Returns a random number between min (inclusive) and max (exclusive)
+    intHappiness  = Math.round((Math.random() * (501 - 100) + 100) / 10) * 10;
+    intReputation = Math.round((Math.random() * (501 - 100) + 100) / 10) * 10;
 
-    intFee        = Math.round(((intSkill + intHappiness) * 100) /10000)*10000;
-    intWage       = Math.round(((intSkill + intHappiness) * 10) /1000)*1000;
-    intReputation = Math.round(((intSkill + intHappiness) * 1) /2);
+    intTotal = intSkill + intHappiness + intReputation;
 
-    intGift = getGift();
+    intFee  = Math.round(((intTotal * 100) / 1000) * 1000);
+    intWage = Math.round(((intTotal * 10) / 100) * 100);
+
+    intGift      = getGift();
     intEquipment = getEquipment();
 
     JSONmusician.push({

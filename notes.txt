@@ -25,7 +25,7 @@ BAND
 
 
 -the more nights you gig the more you might get unhappy / sell less tickets
--musicans can die in publicity!! +reputation
+-musicians can die in publicity!! +reputation
 
 ====================================================
 -While gigging, Musician ask for gifts

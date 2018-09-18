@@ -81,13 +81,6 @@
           <p>For bonus</p>
           <div id="divEquipmentComboBox"></div>
           <br>
-          <p>Money</p>
-          <select id="divMoney">
-            <option value="moneyEasy">Easy £100,000</option>
-            <option value="moneyNormal">Normal £50,000</option>
-            <option value="moneyHard">Hard £10,000</option>
-          </select>
-          <br>
           <br>
           <button onClick="gameStart()">Create Band</button>
         </section><!-- section -->
@@ -108,7 +101,7 @@
 
         <section id="secPractice">
           <p>Practice</p>
-          <p>Practicing, or "Jamming" as it is know in the business, improves a musican's SKILL but recduces their HAPPINESS and REPUTATION.</p>
+          <p>Practicing, or "Jamming" as it is know in the business, improves a musician's SKILL but recduces their HAPPINESS and REPUTATION.</p>
           <select id="divPracticeComboBox">
             <option value="1">1 day</option>
             <option value="2">2 days</option>
@@ -127,7 +120,7 @@
 
         <section id="secGig">
           <p>Gig</p>
-          <p>Gigging improves a musican's SKILL, HAPPINESS and REPUTATION.</p>
+          <p>Gigging improves a musician's SKILL, HAPPINESS and REPUTATION.</p>
           <div id="divVenueComboBox"></div>
           <div id="divTicketPriceComboBox"></div>
           <select id="divGigDays">
@@ -219,13 +212,25 @@
 
         <section id="secStartGameDetails">
 
+          <p>Choose a nameset</p>
           <select id="selNameSet" onChange="">
             <option value="JSONmusicianNamesRockstar">Rockstar Ate My Hamster</option>
             <option value="JSONmusicianNamesMorris">Chris Morris</option>
             <option value="JSONmusicianNamesSimple">20 Simple</option>
           </select>
           <br>
-          <button onClick="gameCreateMusicians(document.getElementById('selNameSet').value)">Create Musician Name Set</button>
+          <p>Money</p>
+          <select id="selBandMoney">
+            <option value="moneyEasy">Easy £100,000</option>
+            <option value="moneyNormal">Normal £50,000</option>
+            <option value="moneyHard">Hard £10,000</option>
+          </select>
+          <br>
+          <br>
+          <button onClick="gameSetSettings()">Create Game</button>
+          <br>
+          <br>
+          <br>
 
           <p>Add a Musician</p>
           <!-- <div id="divMusicianComboBox"></div> -->
@@ -258,14 +263,8 @@
       </div> <!-- divCell -->
 
 
-
     </div> <!-- divRow -->
-
-
-
-
   </div> <!-- divTable -->
-
 
   <script>
     $(document).ready(function() {

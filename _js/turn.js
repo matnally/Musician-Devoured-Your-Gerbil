@@ -13,6 +13,13 @@ function gameStart() {
 
   createBandPlayer(JSONband[0]); //create band from player's chosen musicians
   createBandOther(); //creates bands from the remaining musicians
+
+  calBandMusicianCost();
+  // updateBandMoneySubtract(0, calBandMusicianCost(0), "musicians signing fees"); //VENUE COST
+
+
+
+
   actionChooseBandAll(); //sets an action to each band
 
   updateElement("divCurrentDate", GLOBALdatDateCurrent);
