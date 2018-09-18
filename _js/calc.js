@@ -284,19 +284,19 @@ function getMarkUpMusician(i) {
     strTemp += "<img class='guiImage' src='_images/reputation.png' alt='"+displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].reputation)+"'>";
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell'>";
-    // strTemp += "<p>";
-    // strTemp += "<p class='"+getGameStatClass(JSONmusician[JSONband[i].musician[m]].reputation, 'reputation')+"' >";
+    strTemp += "<p>";
+
     //
     // alert(JSONmusician[JSONband[i].musician[m]].reputation);
-    var mat = "reputation";
-    var bob = JSONmusician[JSONband[i].musician[m]].reputation;
-    console.log("mat: " + mat);
-    console.log("bob: " + bob);
-    alert(getGameStatClass(bob, mat));
-    strTemp += "<p class='"+getGameStatClass(bob, mat)+"' >";
+    // var mat = "reputation";
+    // var bob = JSONmusician[JSONband[i].musician[m]].reputation;
+    // console.log("mat: " + mat);
+    // console.log("bob: " + bob);
+    // alert(getGameStatClass(bob, mat));
+    // strTemp += "<p class='"+getGameStatClass(bob, mat)+"' >";
 
 
-    strTemp += displayNumbersWithCommas(bob);
+    strTemp += displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].reputation);
 
     strTemp += "</p>";
     strTemp += "</div> <!-- divCell -->";
