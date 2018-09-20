@@ -58,6 +58,7 @@ function createComboBoxfromJSONband(JSONtoConvert) {
 
 function displayNumbersWithCommas(intNumber) {
   //puts commas in the 1,000's
+  intNumber = parseInt(intNumber);
   return intNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 } //function
 

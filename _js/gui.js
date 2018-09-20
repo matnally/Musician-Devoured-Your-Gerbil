@@ -241,12 +241,12 @@ function getGameStatClass(inValue, strKeyName) {
   var intMusicianAGG = parseInt(getAGGattributeFromMusicians(strKeyName));
   var intMusicianAVG = (intMusicianAGG / JSONmusician.length).toFixed(0);
 
-if (inValue > intMusicianAVG)
-strClassName = "valueGood"
-else
-strClassName = "valueBad"
+  if (inValue > intMusicianAVG)
+    strClassName = "valueGood";
+  else
+    strClassName = "valueBad";
 
-  return strClassName
+  return strClassName;
 } //function
 
 

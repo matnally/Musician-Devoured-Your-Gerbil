@@ -6,42 +6,43 @@ function chartTime() {
   var arrTemp = [];
       arrTemp = getReleasedSinglesAll();
 
-      if (arrTemp.length > 20) {
+  if (arrTemp.length > 20) {
 
+    //Do this in temp so doesn't affect the original
+    for (a in arrTemp) {
+      arrTemp[a].qualityRatingChart = calcChartTimeSingleQualityRating(arrTemp[a]); //TODO: never used qualityRatingChart until now!
+    } //for
 
+    arrTemp = sortArrayByKey(arrTemp, 'qualityRatingChart'); //reorder by qualityRating IMPORTANT
 
-  //Do this in temp so doesn't affect the original
-  for (a in arrTemp) {
-    arrTemp[a].qualityRatingChart = calcChartTimeSingleQualityRating(arrTemp[a]); //TODO: never used qualityRatingChart until now!
-  } //for
+    //TODO: arrTemp is actual JSONtrack !!!!!!!
+    var strTemp = "";
+    var intChartPosition = 1; //charts start from one! duh
+    for (i in arrTemp) {
 
-  arrTemp = sortArrayByKey(arrTemp, 'qualityRatingChart'); //reorder by qualityRating IMPORTANT
+      arrTemp[i].chartHistory = (arrTemp[i].chartHistory + intChartPosition + ","); //for graph
+      // arrTemp[i].chartHistory = "WORKED";
 
-  //TODO: arrTemp is actual JSONtrack !!!!!!!
-  var strTemp = "";
-  var intChartPosition = 1; //charts start from one! duh
-  for (i in arrTemp) {
+      if (intChartPosition < arrTemp[i].chartPositionBest) {
+        arrTemp[i].chartPositionBest = intChartPosition; //save best position
+      } //if
 
-    if (intChartPosition < arrTemp[i].chartPositionBest) {
-      arrTemp[i].chartPositionBest = intChartPosition; //save best position
-    } //if
+      if (intChartPosition > 20) {
+        // break;
+      } else {
+        strTemp += (intChartPosition + ": " + getChartSingleMovement(arrTemp[i], intChartPosition) + " - " + arrTemp[i].qualityRatingChart + " - " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name) +"<br>";
+      } //if
 
-    if (intChartPosition > 20) {
-      // break;
-    } else {
-      strTemp += (intChartPosition + ": " + getChartSingleMovement(arrTemp[i], intChartPosition) + " - " + arrTemp[i].qualityRatingChart + " - " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name) +"<br>";
-    } //if
+      intChartPosition++;
 
-    intChartPosition++;
+    } //for
 
-  } //for
+  } // if > 20
 
-} // if > 20
-
-if (arrTemp.length > 20)
-  updateElement("divChart", strTemp);
-else
-  updateElement("divChart", "NOT GOT 20 SINGLES YET!");
+  if (arrTemp.length > 20)
+    updateElement("divChart", strTemp);
+  else
+    updateElement("divChart", "NOT GOT 20 SINGLES YET!");
 
 
 } //function
@@ -65,23 +66,13 @@ function getChartSingleMovement(arrSingle, intChartPosition) {
     default:
   } //switch
 
-
   for (z in JSONsingle) {
-    if (arrSingle.name == JSONsingle[z].name)
+    if (arrSingle.name == JSONsingle[z].name) {
       JSONsingle[z].chartPosition = intChartPosition;
+      // JSONsingle[z].chartHistory = arrSingle.chartHistory + "," + intChartPosition; //for graph
+    } //if
+
   } //for
-
-// if (arrSingle.chartPosition == 0)
-//   strTemp = "NEW";
-
-  // if (arrSingle.qualityRatingChart > arrSingle.qualityRatingChartPrevious)
-  //   strTemp = "UP";
-  //
-  // if (parseInt(arrSingle.qualityRatingChart) < parseInt(arrSingle.qualityRatingChartPrevious))
-  //   strTemp = "DOWN";
-  //
-  // if (arrSingle.qualityRatingChart == arrSingle.qualityRatingChartPrevious)
-  //    strTemp = "SAME";
 
   return strTemp;
 } //function

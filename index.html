@@ -10,6 +10,12 @@
   <script src="_js/default.js"></script>
   <script src="_js/jquery.min.js"></script>
 
+  <!-- Charts -->
+	<link rel="stylesheet" href="_css/graph.css">
+	<script src="_js/raphael.min.js"></script>
+	<script src="_js/elycharts.min.js"></script>
+	<script src="_js/graph.js"></script>
+
   <!-- LOGIC -->
   <script src="_js/action.js"></script>
   <script src="_js/admin.js"></script>
@@ -246,12 +252,10 @@
           <button onClick="guiDisplayDetailsBand(0);">My Band</button>
           <button onClick="guiDisplayDetailsBand(GLOBALBandi+1);">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
           <br>
-
-<p>Bands</p>
-<div id="divBandComboBox"></div>
-<p>Musicians</p>
-<div id="divMusicianComboBox"></div>
-
+          <p>Bands</p>
+          <div id="divBandComboBox"></div>
+          <p>Musicians</p>
+          <div id="divMusicianComboBox"></div>
           <br>
           <div id="divBandMusicianDetails"></div>
           <div id="divBandAlbumsDetails"></div>
@@ -267,6 +271,8 @@
         <div id="divBandActionCurrent"></div>
         <h2>Log</h2>
         <div id="loggingOutput"></div>
+        <h2>Graph</h2>
+        <div id="divGraph"></div>
 
       </div> <!-- divCell -->
 

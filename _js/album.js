@@ -27,7 +27,7 @@ function createTrack(i, intAlbum) {
   //Writes Track details to JSON file
   var strTrackName = getRandomName();
   var intQualityRating = getQualityRatingTrack(i);
-  JSONsingle.push({'name':strTrackName,'album':intAlbum, 'releasedDate':false, 'qualityRating':intQualityRating, 'recordedDate':GLOBALdatDateCurrent.getTime(), 'chartPosition':0, 'chartPositionBest':99});
+  JSONsingle.push({'name':strTrackName,'album':intAlbum, 'releasedDate':false, 'qualityRating':intQualityRating, 'recordedDate':GLOBALdatDateCurrent.getTime(), 'chartPosition':0, 'chartPositionBest':99, 'chartHistory':''});
   loggingOutput(i, "TRACK RECORDED", "The track "+strTrackName+" for the album " + JSONalbum[intAlbum].name  + " has been recorded by " + JSONband[i].name + "<br>");
 } //function
 

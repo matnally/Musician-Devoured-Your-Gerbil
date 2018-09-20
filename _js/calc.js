@@ -17,12 +17,12 @@ function getMarkUpBand(i) {
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
 
-  strTemp += "<p>";
+  strTemp += "<p class='"+getGameStatClass(JSONband[i].reputation, 'reputation')+"' >";
   strTemp += "<img class='guiImage' src='_images/reputation.png' alt='Reputation'>";
   strTemp += "&nbsp;";
   strTemp += displayNumbersWithCommas(JSONband[i].reputation);
   strTemp += "</p>";
-  strTemp += "<p>";
+  strTemp += "<p class='"+getGameStatClass(JSONband[i].money, 'reputation')+"' >";
   strTemp += "<img class='guiImage' src='_images/money.png' alt='Money'>";
   strTemp += "&nbsp;";
   strTemp += JSONconfig[0].currency + displayNumbersWithCommas(JSONband[i].money);
@@ -81,13 +81,10 @@ function getMarkUpGameStartMusician(i) {
   strTemp +="     <div class='divRow'>";
 
 
-
   strTemp += "<div class='divCell'>";
 
   strTemp += "<img id='guiImageMusician"+GLOBALMusiciani+"' class='guiImageMusician' src='_images/name.png' alt='"+JSONmusician[GLOBALMusiciani].name+"'>";
-
   strTemp += "<br>";
-
   strTemp += "<img class='guiImage' src='_images/gift"+JSONmusician[GLOBALMusiciani].gift+".png' alt='"+JSONgift[JSONmusician[GLOBALMusiciani].gift].name+"'>";
   // strTemp += "<p>";
   // strTemp += "Fav gift: " + JSONgift[JSONmusician[GLOBALMusiciani].gift].name;
@@ -101,8 +98,6 @@ function getMarkUpGameStartMusician(i) {
   strTemp += "<h3>";
   strTemp += JSONmusician[GLOBALMusiciani].name;
   strTemp += "</h3>";
-
-
 
 
   strTemp += "</div> <!-- divCell -->";
@@ -217,7 +212,10 @@ function getMarkUpGameStartMusician(i) {
   // strTemp += "</div> <!-- divCell -->";
   // strTemp += "<div class='divCell'>";
   // strTemp += "<p>";
-  // strTemp += JSONgift[JSONmusician[GLOBALMusiciani].gift].name;
+  // strTemp += JSONgift[JSONmusician[GLOBALMusiciani].gift].name;  // strTemp += "<p>";
+  // strTemp += "Fav gift: " + JSONgift[JSONmusician[GLOBALMusiciani].gift].name;
+  // strTemp += "</p>";
+
   // strTemp += "</p>";
   // strTemp += "</div> <!-- divCell -->";
 
@@ -243,12 +241,33 @@ function getMarkUpGameStartMusician(i) {
 
 function getMarkUpMusician(i) {
 
+  var intReputation = 0;
+  var intSkill = 0;
+  var intHappiness = 0;
+  var intWage = 0;
+  var intEquipment = 0;
+  var intGift = 0;
+
+  var intMusician = 0
+
   var strTemp = "";
+  var intHappiness = 0
 
 
   strTemp +="   <div class='divTable'>";
   strTemp +="     <div class='divRow'>";
+
   for (m in JSONband[i].musician) {
+
+
+    intReputation = JSONmusician[JSONband[i].musician[m]].reputation;
+    intSkill = JSONmusician[JSONband[i].musician[m]].skill;
+    intHappiness = JSONmusician[JSONband[i].musician[m]].happiness;
+    intWage = JSONmusician[JSONband[i].musician[m]].wage;
+    intEquipment = JSONmusician[JSONband[i].musician[m]].equipment;
+    intGift = JSONmusician[JSONband[i].musician[m]].gift;
+
+
     strTemp += "<div class='divCell'>";
 
     strTemp += "<img id='guiImageMusician"+JSONband[i].musician[m]+"' class='guiImageMusician' src='_images/name.png' alt='"+JSONmusician[JSONband[i].musician[m]].name+"'>";
@@ -281,22 +300,19 @@ function getMarkUpMusician(i) {
     strTemp +="     <div class='divRow'>";
 
     strTemp += "<div class='divCell divRight'>";
-    strTemp += "<img class='guiImage' src='_images/reputation.png' alt='"+displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].reputation)+"'>";
+    strTemp += "<img class='guiImage' src='_images/reputation.png' alt='"+displayNumbersWithCommas(intReputation)+"'>";
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell'>";
     strTemp += "<p>";
 
-    //
     // alert(JSONmusician[JSONband[i].musician[m]].reputation);
-    // var mat = "reputation";
-    // var bob = JSONmusician[JSONband[i].musician[m]].reputation;
+    var mat = "reputation";
+    var bob = intReputation;
     // console.log("mat: " + mat);
     // console.log("bob: " + bob);
     // alert(getGameStatClass(bob, mat));
-    // strTemp += "<p class='"+getGameStatClass(bob, mat)+"' >";
-
-
-    strTemp += displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].reputation);
+    strTemp += "<p class='" + getGameStatClass(intReputation, "reputation") + "' >";
+    strTemp += displayNumbersWithCommas(intReputation);
 
     strTemp += "</p>";
     strTemp += "</div> <!-- divCell -->";
@@ -305,11 +321,11 @@ function getMarkUpMusician(i) {
     strTemp +="<div class='divRow'>";
 
     strTemp += "<div class='divCell divRight'>";
-    strTemp += "<img class='guiImage' src='_images/skill.png' alt='"+displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].skill)+"'>";
+    strTemp += "<img class='guiImage' src='_images/skill.png' alt='"+displayNumbersWithCommas(intSkill)+"'>";
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell'>";
-    strTemp += "<p>";
-    strTemp += displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].skill);
+    strTemp += "<p class='" + getGameStatClass(intSkill, "skill") + "' >";
+    strTemp += displayNumbersWithCommas(intSkill);
     strTemp += "</p>";
     strTemp += "</div> <!-- divCell -->";
 
@@ -317,88 +333,54 @@ function getMarkUpMusician(i) {
     strTemp +="<div class='divRow'>";
 
     strTemp += "<div class='divCell divRight'>";
-    strTemp += "<img class='guiImage' src='_images/happiness.png' alt='"+displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].happiness)+"'>";
+    strTemp += "<img class='guiImage' src='_images/happiness.png' alt='"+displayNumbersWithCommas(intHappiness)+"'>";
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell'>";
-    strTemp += "<p>";
-    strTemp += displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].happiness);
+    strTemp += "<p class='" + getGameStatClass(intHappiness, "happiness") + "' >";
+    strTemp += displayNumbersWithCommas(intHappiness);
     strTemp += "</p>";
     strTemp += "</div> <!-- divCell -->";
 
     strTemp += "</div> <!-- divRow -->";
     strTemp +="<div class='divRow'>";
 
-        strTemp += "<div class='divCell'>";
-        strTemp += "<img class='guiImage' src='_images/wage.png' alt='"+JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].wage)+"'>";
-        strTemp += "</div> <!-- divCell -->";
-        strTemp += "<div class='divCell'>";
-        strTemp += "<p>";
-        strTemp += JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].wage);
-        strTemp += "</p>";
-        strTemp += "</div> <!-- divCell -->";
+    strTemp += "<div class='divCell'>";
+    strTemp += "<img class='guiImage' src='_images/wage.png' alt='"+JSONconfig[0].currency + displayNumbersWithCommas(intWage)+"'>";
+    strTemp += "</div> <!-- divCell -->";
+    strTemp += "<div class='divCell'>";
+    strTemp += "<p class='" + getGameStatClass(intWage, "wage") + "' >";
+    strTemp += JSONconfig[0].currency + displayNumbersWithCommas(intWage);
+    strTemp += "</p>";
+    strTemp += "</div> <!-- divCell -->";
 
-        strTemp += "</div> <!-- divRow -->";
-        strTemp +="<div class='divRow'>";
-
-
-        strTemp += "<div class='divCell'>";
-        strTemp += "<img class='guiImage' src='_images/equipment"+JSONmusician[JSONband[i].musician[m]].equipment+".png' alt='"+JSONequipment[JSONmusician[JSONband[i].musician[m]].equipment].name+"'>";
-        strTemp += "</div> <!-- divCell -->";
-        strTemp += "<div class='divCell'>";
-        strTemp += "<p>";
-        strTemp += JSONequipment[JSONmusician[JSONband[i].musician[m]].equipment].name;
-        strTemp += "</p>";
-        strTemp += "</div> <!-- divCell -->";
-
-        strTemp += "</div> <!-- divRow -->";
-        strTemp +="<div class='divRow'>";
+    strTemp += "</div> <!-- divRow -->";
+    strTemp +="<div class='divRow'>";
 
 
-        strTemp += "<div class='divCell'>";
-        strTemp += "<img class='guiImage' src='_images/gift"+JSONmusician[JSONband[i].musician[m]].gift+".png' alt='"+JSONgift[JSONmusician[JSONband[i].musician[m]].gift].name+"'>";
-        strTemp += "</div> <!-- divCell -->";
-        strTemp += "<div class='divCell'>";
-        strTemp += "<p>";
-        strTemp += JSONgift[JSONmusician[JSONband[i].musician[m]].gift].name;
-        strTemp += "</p>";
-        strTemp += "</div> <!-- divCell -->";
+    strTemp += "<div class='divCell'>";
+    strTemp += "<img class='guiImage' src='_images/equipment"+intEquipment+".png' alt='"+JSONequipment[intEquipment].name+"'>";
+    strTemp += "</div> <!-- divCell -->";
+    strTemp += "<div class='divCell'>";
+    strTemp += "<p>";
+    strTemp += JSONequipment[intEquipment].name;
+    strTemp += "</p>";
+    strTemp += "</div> <!-- divCell -->";
 
-        strTemp += "</div> <!-- divRow -->";
-        strTemp +="<div class='divRow'>";
+    strTemp += "</div> <!-- divRow -->";
+    strTemp +="<div class='divRow'>";
 
-    //
-    // // strTemp += "<div class='divCell'>";
-    // // strTemp += "<img class='guiImage' src='_images/fee.png' alt='"+JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].fee)+"'>";
-    // // strTemp += "</div> <!-- divCell -->";
-    // // strTemp += "<div class='divCell'>";
-    // // strTemp += "<p>";
-    // // strTemp += JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[JSONband[i].musician[m]].fee);
-    // // strTemp += "</p>";
-    // // strTemp += "</div> <!-- divCell -->";
-    // //
-    // // strTemp += "</div> <!-- divRow -->";
-    // // strTemp +="<div class='divRow'>";
-    // //
-    // strTemp += "<div class='divCell'>";
-    // strTemp += "<img class='guiImage' src='_images/equipment"+JSONmusician[JSONband[i].musician[m]].equipment+".png' alt='"+JSONequipment[JSONmusician[JSONband[i].musician[m]].equipment].name+"'>";
-    // strTemp += "</div> <!-- divCell -->";
-    // strTemp += "<div class='divCell'>";
-    // strTemp += "<p>";
-    // strTemp += JSONequipment[JSONmusician[JSONband[i].musician[m]].equipment].name;
-    // strTemp += "</p>";
-    // strTemp += "</div> <!-- divCell -->";
-    //
-    // strTemp += "</div> <!-- divRow -->";
-    // strTemp +="<div class='divRow'>";
-    //
-    // strTemp += "<div class='divCell'>";
-    // strTemp += "<img class='guiImage' src='_images/gift"+JSONmusician[JSONband[i].musician[m]].gift+".png' alt='"+JSONgift[JSONmusician[JSONband[i].musician[m]].gift].name+"'>";
-    // strTemp += "</div> <!-- divCell -->";
-    // strTemp += "<div class='divCell'>";
-    // strTemp += "<p>";
-    // strTemp += JSONgift[JSONmusician[JSONband[i].musician[m]].gift].name;
-    // strTemp += "</p>";
-    // strTemp += "</div> <!-- divCell -->";
+
+    strTemp += "<div class='divCell'>";
+    strTemp += "<img class='guiImage' src='_images/gift"+intGift+".png' alt='"+JSONgift[intGift].name+"'>";
+    strTemp += "</div> <!-- divCell -->";
+    strTemp += "<div class='divCell'>";
+    strTemp += "<p>";
+    strTemp += JSONgift[intGift].name;
+    strTemp += "</p>";
+    strTemp += "</div> <!-- divCell -->";
+
+    strTemp += "</div> <!-- divRow -->";
+    strTemp +="<div class='divRow'>";
 
     strTemp +="     </div> <!-- divRow -->";
     strTemp +="   </div> <!-- divTable -->";
