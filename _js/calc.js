@@ -18,7 +18,10 @@ function getMarkUpBand(i) {
   strTemp += "<div class='divCell'>";
 
   strTemp += "<p class='"+getGameStatClass(JSONband[i].reputation, 'reputation')+"' >";
+  // strTemp += "<p>";
+  // strTemp += "<span class='"+getGameStatClass(JSONband[i].reputation, 'reputation')+"' >";
   strTemp += "<img class='guiImage' src='_images/reputation.png' alt='Reputation'>";
+  // strTemp += "</span>";
   strTemp += "&nbsp;";
   strTemp += displayNumbersWithCommas(JSONband[i].reputation);
   strTemp += "</p>";
@@ -31,6 +34,9 @@ function getMarkUpBand(i) {
   strTemp += "</span>";
 
   strTemp += "</p>";
+
+
+
   strTemp += "<p>";
 
   strTemp += "<img class='guiImage' src='_images/equipment"+JSONband[i].equipment+".png' alt='"+JSONequipment[JSONband[i].equipment].name+"'>";
@@ -299,7 +305,8 @@ function getMarkUpMusician(i) {
     strTemp +="   <div class='divTable'>";
     strTemp +="     <div class='divRow'>";
 
-    strTemp += "<div class='divCell divRight'>";
+    strTemp += "<div class='divCell divRight "+getGameStatClass(intReputation, "reputation")+"'>";
+    // strTemp += "<div class='divCell divRight'>";
     strTemp += "<img class='guiImage' src='_images/reputation.png' alt='"+displayNumbersWithCommas(intReputation)+"'>";
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell'>";
@@ -311,7 +318,7 @@ function getMarkUpMusician(i) {
     // console.log("mat: " + mat);
     // console.log("bob: " + bob);
     // alert(getGameStatClass(bob, mat));
-    strTemp += "<p class='" + getGameStatClass(intReputation, "reputation") + "' >";
+    // strTemp += "<p class='" + getGameStatClass(intReputation, "reputation") + "' >";
     strTemp += displayNumbersWithCommas(intReputation);
 
     strTemp += "</p>";
@@ -320,11 +327,12 @@ function getMarkUpMusician(i) {
     strTemp += "</div> <!-- divRow -->";
     strTemp +="<div class='divRow'>";
 
-    strTemp += "<div class='divCell divRight'>";
+    strTemp += "<div class='divCell divRight "+getGameStatClass(intSkill, "skill")+"'>";
     strTemp += "<img class='guiImage' src='_images/skill.png' alt='"+displayNumbersWithCommas(intSkill)+"'>";
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell'>";
-    strTemp += "<p class='" + getGameStatClass(intSkill, "skill") + "' >";
+    strTemp += "<p>";
+    // strTemp += "<p class='" + getGameStatClass(intSkill, "skill") + "' >";
     strTemp += displayNumbersWithCommas(intSkill);
     strTemp += "</p>";
     strTemp += "</div> <!-- divCell -->";
@@ -332,11 +340,12 @@ function getMarkUpMusician(i) {
     strTemp += "</div> <!-- divRow -->";
     strTemp +="<div class='divRow'>";
 
-    strTemp += "<div class='divCell divRight'>";
+    strTemp += "<div class='divCell divRight "+getGameStatClass(intHappiness, "happiness")+"'>";
     strTemp += "<img class='guiImage' src='_images/happiness.png' alt='"+displayNumbersWithCommas(intHappiness)+"'>";
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell'>";
-    strTemp += "<p class='" + getGameStatClass(intHappiness, "happiness") + "' >";
+    strTemp += "<p>";
+    // strTemp += "<p class='" + getGameStatClass(intHappiness, "happiness") + "' >";
     strTemp += displayNumbersWithCommas(intHappiness);
     strTemp += "</p>";
     strTemp += "</div> <!-- divCell -->";
@@ -344,11 +353,12 @@ function getMarkUpMusician(i) {
     strTemp += "</div> <!-- divRow -->";
     strTemp +="<div class='divRow'>";
 
-    strTemp += "<div class='divCell'>";
+    strTemp += "<div class='divCell divRight "+getGameStatClass(intWage, "wage")+"'>";
     strTemp += "<img class='guiImage' src='_images/wage.png' alt='"+JSONconfig[0].currency + displayNumbersWithCommas(intWage)+"'>";
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell'>";
-    strTemp += "<p class='" + getGameStatClass(intWage, "wage") + "' >";
+    strTemp += "<p>";
+    // strTemp += "<p class='" + getGameStatClass(intWage, "wage") + "' >";
     strTemp += JSONconfig[0].currency + displayNumbersWithCommas(intWage);
     strTemp += "</p>";
     strTemp += "</div> <!-- divCell -->";

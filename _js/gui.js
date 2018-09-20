@@ -241,10 +241,51 @@ function getGameStatClass(inValue, strKeyName) {
   var intMusicianAGG = parseInt(getAGGattributeFromMusicians(strKeyName));
   var intMusicianAVG = (intMusicianAGG / JSONmusician.length).toFixed(0);
 
-  if (inValue > intMusicianAVG)
-    strClassName = "valueGood";
-  else
-    strClassName = "valueBad";
+var intTotal = 0;
+    intTotal = inValue - intMusicianAVG;
+
+    console.log("intTotal: " + intTotal);
+  switch (true) {
+    case (intTotal > 400):
+      strClassName = "valueGood400";
+    break;
+    case (intTotal > 300):
+      strClassName = "valueGood300";
+    break;
+    case (intTotal > 200):
+      strClassName = "valueGood200";
+    break;
+    case (intTotal > 100):
+      strClassName = "valueGood100";
+    break;
+    case (intTotal > 50):
+      strClassName = "valueGood50";
+    break;
+
+    // case (intTotal < -400):
+    //   strClassName = "valueBad400";
+    // break;
+    // case (intTotal < -300):
+    //   strClassName = "valueBad300";
+    // break;
+    // case (intTotal < -200):
+    //   strClassName = "valueBad200";
+    // break;
+    // case (intTotal < -100):
+    //   strClassName = "valueBad100";
+    // break;
+    // case (intTotal < -50):
+    //   strClassName = "valueBad50";
+    // break;
+
+    default:
+  } //switch
+
+
+  // if (inValue > intMusicianAVG)
+  //   strClassName = "valueGood";
+  // else
+  //   strClassName = "valueBad";
 
   return strClassName;
 } //function

@@ -8,14 +8,47 @@
  }
 
 
-.valueGood {
-  color: green;
-}
-.valueBad {
+ .valueGood400 {
+   background-color: #2dc937;
+ }
+ .valueGood300 {
+    background-color: #99c140;
+ }
+ .valueGood200 {
+    background-color: #e7b416;
+ }
+ .valueGood100 {
+  background-color: #db7b2b;
+ }
+ .valueGood50 {
+    background-color: #cc3232;
+ }
+
+ .valueBad400 {
+    background-color: #450000;
+ }
+ .valueBad300 {
+    background-color: #720000;
+ }
+ .valueBad200 {
+    background-color: #a70000;
+ }
+ .valueBad100 {
+    background-color: #ce0000;
+ }
+ .valueBad50 {
+    background-color: #ff0000;
+ }
+
+/* .valueBad {
   color: red;
-}
+} */
 
 
+
+
+
+/* Labels? */
 .valuePositive {
   color: green;
 }
@@ -58,7 +91,7 @@ section {
 }
 .divCell {
   vertical-align: top;
-  border: 1px #CCC solid;
+  border: 1px #000 solid;
   display: table-cell;
   /* padding: 5px; */
 }
