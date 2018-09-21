@@ -1,20 +1,16 @@
 
 function createChart(thevalues) {
 
- var thevalues2 = thevalues.split(',').map(Number);
-
-
+  var thevalues2 = thevalues.split(',').map(Number);
 
 	$("#divGraph").chart('clear'); //IMPORTANT in order to not chache sorta
 
 	// let's loop to build tooltips and x labels.
 	var thetooltips = new Array(thevalues2.length);
-	var thelabels   = new Array(thevalues2.length);
 
 	for (var i = 0; i < thevalues2.length; i++) {
-		thetooltips[i] = "<div class='label'><p class='charlab'>Price " + thevalues2[i] + "</p><p class='date'>Turn " + (i + 1) + "</p></div>";
-		thelabels[i] = i + 1;
-		//alert(thevalues2[i]);
+    console.log("thevalues2[i]: " + thevalues2[i]);
+		thetooltips[i] = "<div class='label'><p class='charlab'>Chart position " + thevalues2[i] + "</p></div>";
 	}
 
 	// build the chart
@@ -37,8 +33,6 @@ function createChart(thevalues) {
 	}
 
 } // END function
-
-
 
 
 // this is a reausable template definition. scroll down for the real chart call.

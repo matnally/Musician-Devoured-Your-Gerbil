@@ -26,6 +26,10 @@ guiDisplayDate();
   guiDisplayDetailsBand(0);
 
 
+
+
+
+
   updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
   document.getElementById("selBandComboBox").addEventListener("change",function(event){
     guiDisplayDetailsBand(this.value);
@@ -45,6 +49,7 @@ guiDisplayDate();
 function turnBegin() {
   navShowSingle("#secBandDetails");
   guiDisplayDetailsBand(0);
+
   for (var i=0;i<JSONband[0].days;i++) {
     // setTimeout(turnStart, 1000);
     turnStart();
@@ -68,6 +73,13 @@ function turnFinish() {
   eventContract(0); //see if they are eligible for a record contract, if not already
 
   adminShowLog(0);
+
+
+  updateElement("divSinglesComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONsingle, "selSingleComboBox"));
+  document.getElementById("selSingleComboBox").addEventListener("change",function(event){
+    guiDisplayDetailsSingle(this.value);
+  }, {passive: true});
+
 
   navShow("#secMainMenu");
   navShowSingle("#secBandDetails");

@@ -244,7 +244,6 @@ function getGameStatClass(inValue, strKeyName) {
 var intTotal = 0;
     intTotal = inValue - intMusicianAVG;
 
-    console.log("intTotal: " + intTotal);
   switch (true) {
     case (intTotal > 400):
       strClassName = "valueGood400";
