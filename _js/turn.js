@@ -20,9 +20,7 @@ function gameStart() {
   actionChooseBandAll(); //sets an action to each band
 
 
-guiDisplayDate();
-
-
+  guiDisplayDate();
   guiDisplayDetailsBand(0);
 
 
@@ -74,15 +72,20 @@ function turnFinish() {
 
   adminShowLog(0);
 
-
-  updateElement("divSinglesComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONsingle, "selSingleComboBox"));
+  // updateElement("divSinglesComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONsingle, "selSingleComboBox"));
+  updateElement("divSinglesComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(getReleasedSinglesAll(), "selSingleComboBox"));
   document.getElementById("selSingleComboBox").addEventListener("change",function(event){
     guiDisplayDetailsSingle(this.value);
   }, {passive: true});
 
+  guiDisplayDate();
+  guiDisplayDetailsBand(0);
+
+createGrid();
 
   navShow("#secMainMenu");
   navShowSingle("#secBandDetails");
+
 } //function
 
 

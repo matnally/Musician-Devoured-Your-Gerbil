@@ -45,9 +45,9 @@ function guiApplyListeners() {
     guiDisplayActionCost(this.value, 1); //1 = Gig
   }, {passive: true});
 
-  document.getElementById("secPublicity").addEventListener("mousemove",function(event){
-    guiDisplayActionCost(1, 2); //2 = Publicity
-  }, {passive: true});
+  // document.getElementById("secPublicity").addEventListener("mousemove",function(event){
+  //   guiDisplayActionCost(1, 2); //2 = Publicity
+  // }, {passive: true});
   //END MAIN MENU
 
   document.getElementById("selGiftComboBox").addEventListener("change",function(event){
@@ -130,6 +130,11 @@ function guiDisplayActionCost(i, index) {
       intDayCost = JSONvenue[document.getElementById("selVenueComboBox").value].money;
       intTotalCost = (document.getElementById("divGigDays").value * JSONvenue[document.getElementById("selVenueComboBox").value].money);
       strTemp = "To <strong>Gig</strong> for <strong>" + document.getElementById("divGigDays").value + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+
+      guiDisplayMovementLabelMusician("spnMovementMusicianskill", (i * JSONconfig[0].valueGigSkill));
+      guiDisplayMovementLabelMusician("spnMovementMusicianhappiness", (i * JSONconfig[0].valueGigHappiness));
+      guiDisplayMovementLabelMusician("spnMovementMusicianreputation", (i * JSONconfig[0].valueGigReputation));
+
     break;
     case 2:
       //publicity
@@ -137,6 +142,11 @@ function guiDisplayActionCost(i, index) {
       intDayCost = (JSONconfig[0].valuePublicityCost);
       intTotalCost = (JSONconfig[0].valuePublicityCost);
       strTemp = "To gain <strong>Publicity</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+
+      // updateElement("spnMovementMusicianskill", "");
+      // updateElement("spnMovementMusicianhappiness", "");
+      // updateElement("spnMovementMusicianreputation", " Maybe get +/- " + JSONconfig[0].valueGigReputation);
+
     break;
     case 3:
       //gifts
@@ -146,26 +156,46 @@ function guiDisplayActionCost(i, index) {
       strTemp = "Buying <strong>Gifts</strong> for <strong>" + JSONband[0].musician.length + "</strong> musician(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per musician, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
       strTemp += "<br>";
       strTemp += "For each of the "+JSONband[0].musician.length+" musician(s) in <strong>" + JSONband[0].name + "</strong> they will recieve <strong>" + JSONgift[i].happiness + "</strong> Happiness";
+      intDayCost = intTotalCost;
+
+      // updateElement("spnMovementMusicianskill", "");
+      guiDisplayMovementLabelMusician("spnMovementMusicianhappiness", JSONgift[i].happiness);
+      // updateElement("spnMovementMusicianreputation", "");
+
     break;
     case 4:
       //record
       intDays = JSONtracks[i].days;
       intDayCost = (JSONtracks[i].money);
-      intTotalCost = (JSONtracks[i].money);
-      strTemp = "To <strong>Record</strong> a <strong>" + JSONtracks[i].tracks + "</strong>-track album will take <strong>"+JSONtracks[i].days+"</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intDayCost + "</strong>";
+      intTotalCost = (JSONtracks[i].money * intDays);
+      strTemp = "To <strong>Record</strong> a <strong>" + JSONtracks[i].tracks + "</strong>-track album will take <strong>"+JSONtracks[i].days+"</strong> day(s) at <strong>"+JSONconfig[0].currency + intDayCost+"</strong> per day and cost a total of <strong>"+JSONconfig[0].currency + intTotalCost + "</strong>";
+
+      // updateElement("spnMovementMusicianskill", "");
+      // updateElement("spnMovementMusicianhappiness", "");
+      // updateElement("spnMovementMusicianreputation", "");
+
     break;
     case 5:
       //release
       intDays = JSONconfig[0].valueReleaseDaysDuration;
       intDayCost = (JSONconfig[0].valueReleaseCost);
       intTotalCost = (JSONdirector[document.getElementById("selDirectorComboBox").value].money + JSONlocation[document.getElementById("selLocationComboBox").value].money + JSONfeature[document.getElementById("selFeatureComboBox").value].money);
-      strTemp = "To <strong>Release</strong> a <strong>Single</strong> it will take <strong>"+1+"</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intTotalCost + "</strong>";
+
+      strTemp = "To <strong>Release</strong> a <strong>Single</strong> it will take <strong>"+1+"</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intDayCost + "</strong>";
       strTemp += "To create a music video directed by <strong>"+JSONdirector[document.getElementById("selDirectorComboBox").value].name+"</strong> in <strong>"+JSONlocation[document.getElementById("selLocationComboBox").value].name+"</strong> featuring <strong>"+JSONfeature[document.getElementById("selFeatureComboBox").value].name+"</strong>, will take <strong>1</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intTotalCost + "</strong>";
+
+      intDayCost = intDayCost + intTotalCost;
+      strTemp += "Thats a grand total of " + JSONconfig[0].currency + intDayCost;
+
+      // updateElement("spnMovementMusicianskill", "");
+      // updateElement("spnMovementMusicianhappiness", "");
+      // updateElement("spnMovementMusicianreputation", "");
+
     break;
   } //switch
 
   // intTotalCost = -intTotalCost; //turn into negative number
-  guiDisplayMovementLabelBand("spnMovementBandmoney", (intDays * intDayCost));
+  guiDisplayMovementLabelBand("spnMovementBandmoney", -Math.abs((intDays * intDayCost)));
   updateElement("divActionCost", "<br>" + strTemp); //updates element
 
 } //function
@@ -177,14 +207,16 @@ function guiDisplayMovementLabelMusician(strID, intTotalCost) {
 
   for (var m = 0; m < elems.length; m++) {
 
-    if (intTotalCost < 0) {
-      elems[m].setAttribute("class", "valueNegative");
-      strTemp = "&nbsp;";
-    } else {
+    if (intTotalCost > 0) {
       elems[m].setAttribute("class", "valuePositive");
       strTemp = "&nbsp; +";
+    } else {
+      elems[m].setAttribute("class", "valueNegative");
+      strTemp = "&nbsp;";
     } //if
+
     elems[m].innerHTML = strTemp + displayNumbersWithCommas(intTotalCost);
+    // document.getElementById(strID).innerHTML = strTemp + displayNumbersWithCommas(intTotalCost);
 
   } //for
 
@@ -229,7 +261,7 @@ function guiDisplayDate() {
     var arrMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     strMonth = arrMonths[GLOBALdatDateCurrent.getMonth()];
 
-    strTemp = strDay + " " + GLOBALdatDateCurrent.getDate() + " " + strMonth + " " + GLOBALdatDateCurrent.getFullYear();
+    strTemp = "<h2>" + strDay + " " + GLOBALdatDateCurrent.getDate() + " " + strMonth + " " + GLOBALdatDateCurrent.getFullYear() + "</h2>";
     updateElement("divCurrentDate", strTemp);
 
 } //function
@@ -244,42 +276,106 @@ function getGameStatClass(inValue, strKeyName) {
 var intTotal = 0;
     intTotal = inValue - intMusicianAVG;
 
-  switch (true) {
-    case (intTotal > 400):
-      strClassName = "valueGood400";
-    break;
-    case (intTotal > 300):
-      strClassName = "valueGood300";
-    break;
-    case (intTotal > 200):
-      strClassName = "valueGood200";
-    break;
-    case (intTotal > 100):
-      strClassName = "valueGood100";
-    break;
-    case (intTotal > 50):
-      strClassName = "valueGood50";
-    break;
+    strClassName = "";
 
-    // case (intTotal < -400):
-    //   strClassName = "valueBad400";
-    // break;
-    // case (intTotal < -300):
-    //   strClassName = "valueBad300";
-    // break;
-    // case (intTotal < -200):
-    //   strClassName = "valueBad200";
-    // break;
-    // case (intTotal < -100):
-    //   strClassName = "valueBad100";
-    // break;
-    // case (intTotal < -50):
-    //   strClassName = "valueBad50";
-    // break;
+    if (intTotal >= 200) {
+      strClassName = "gradient_0";
+    } else if (intTotal >= 190) {
+      strClassName = "gradient_5";
+    } else if (intTotal >= 180) {
+      strClassName = "gradient_10";
+    } else if (intTotal >= 170) {
+      strClassName = "gradient_15";
+    } else if (intTotal >= 160) {
+      strClassName = "gradient_20";
+    } else if (intTotal >= 150) {
+      strClassName = "gradient_25";
+    } else if (intTotal >= 140) {
+      strClassName = "gradient_30";
+    } else if (intTotal >= 130) {
+      strClassName = "gradient_35";
+    } else if (intTotal >= 120) {
+      strClassName = "gradient_40";
+    } else if (intTotal >= 110) {
+      strClassName = "gradient_45";
+    } else if (intTotal >= 100) {
+      strClassName = "gradient_50";
+    } else if (intTotal >= 90) {
+      strClassName = "gradient_55";
+    } else if (intTotal >= 80) {
+      strClassName = "gradient_60";
+    } else if (intTotal >= 70) {
+      strClassName = "gradient_65";
+    } else if (intTotal >= 60) {
+      strClassName = "gradient_70";
+    } else if (intTotal >= 50) {
+      strClassName = "gradient_75";
+    } else if (intTotal >= 40) {
+      strClassName = "gradient_80";
+    } else if (intTotal >= 30) {
+      strClassName = "gradient_85";
+    } else if (intTotal >= 20) {
+      strClassName = "gradient_90";
+    } else if (intTotal >= 10) {
+      strClassName = "gradient_95";
+    } else if (intTotal >= 0) {
+      strClassName = "gradient_100";
+    // } else if (intTotal < 0) {
+    //   strClassName = "valueBad";
 
-    default:
-  } //switch
+    //
+    //
+  } else if (intTotal <= -120) {
+      strClassName = "valueBad400";
+    } else if (intTotal <= -90) {
+      strClassName = "valueBad300";
+    } else if (intTotal <= -60) {
+      strClassName = "valueBad200";
+    } else if (intTotal <= -30) {
+      strClassName = "valueBad100";
+    } else if (intTotal < 0) {
+      strClassName = "valueBad50";
+    } // else ifs
 
+  // switch (true) {
+  //   case (intTotal > 400):
+  //     strClassName = "valueGood400";
+  //   break;
+  //   case (intTotal > 300):
+  //     strClassName = "valueGood300";
+  //   break;
+  //   case (intTotal > 200):
+  //     strClassName = "valueGood200";
+  //   break;
+  //   case (intTotal > 100):
+  //     strClassName = "valueGood100";
+  //   break;
+  //   case (intTotal > 50):
+  //     strClassName = "valueGood50";
+  //   break;
+  //
+  //   case (intTotal < -100):
+  //     strClassName = "valueBad100";
+  //   break;
+  //   case (intTotal < -50):
+  //     strClassName = "valueBad50";
+  //   break;
+  //
+  //   // case (intTotal < -400):
+  //   //   strClassName = "valueBad400";
+  //   // break;
+  //   // case (intTotal < -300):
+  //   //   strClassName = "valueBad300";
+  //   // break;
+  //   // case (intTotal < -200):
+  //   //   strClassName = "valueBad200";
+  //   // break;
+  //
+  //   default:
+  // } //switch
+
+  // console.log("intTotal: " + intTotal);
+  // console.log("strClassName: " + strClassName);
 
   // if (inValue > intMusicianAVG)
   //   strClassName = "valueGood";
@@ -289,6 +385,28 @@ var intTotal = 0;
   return strClassName;
 } //function
 
+
+function guiClearLabels() {
+
+  var elems = document.getElementsByName("spnMovementMusicianskill");
+  for (var m = 0; m < elems.length; m++) {
+    elems[m].innerHTML = "";
+    // updateElement(elems[m], "");
+  } // for
+  elems = document.getElementsByName("spnMovementMusicianhappiness");
+  for (var m = 0; m < elems.length; m++) {
+    elems[m].innerHTML = "";
+    // updateElement(elems[m], "");
+  } // for
+  elems = document.getElementsByName("spnMovementMusicianreputation");
+  for (var m = 0; m < elems.length; m++) {
+    elems[m].innerHTML = "";
+    // updateElement(elems[m], "");
+  } // for
+  updateElement("spnMovementBandmoney", "");
+  updateElement("divActionCost", ""); //updates element
+
+} //function
 
 //////////////////////////
 //// SUPPORTING LOGIC ////

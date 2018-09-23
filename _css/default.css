@@ -40,9 +40,49 @@
     background-color: #ff0000;
  }
 
-/* .valueBad {
-  color: red;
-} */
+
+  /* Green - Yellow - Red */
+ .gradient_0    {background: #10FF00;}
+ .gradient_5    {background: #20FF00;}
+ .gradient_10   {background: #30FF00;}
+ .gradient_15   {background: #40FF00;}
+ .gradient_20   {background: #50FF00;}
+ .gradient_25   {background: #60FF00;}
+ .gradient_30   {background: #70FF00;}
+ .gradient_35   {background: #80FF00;}
+ .gradient_40   {background: #90FF00;}
+ .gradient_45   {background: #A0FF00;}
+ .gradient_50   {background: #B0FF00;}
+ .gradient_55   {background: #C0FF00;}
+ .gradient_60   {background: #D0FF00;}
+ .gradient_65   {background: #E0FF00;}
+ .gradient_70   {background: #F0FF00;}
+ .gradient_75   {background: #FFFF00;}
+ .gradient_80   {background: #FFF000;}
+ .gradient_85   {background: #FFE000;}
+ .gradient_90   {background: #FFD000;}
+ .gradient_95   {background: #FFC000;}
+ .gradient_100  {background: #FFB000;}
+
+/*
+ FF0000
+ FF1000
+ FF2000
+ FF3000
+ FF4000
+ FF5000
+ FF6000
+ FF7000
+ FF8000
+ FF9000
+ FFA000
+  */
+
+
+
+.valueBad {
+  background: red;
+}
 
 
 
@@ -66,7 +106,7 @@ section {
 }
 
 .butMainMenu {
-  width: 100px;
+  width: 100%;
 }
 
 .divContainerHide {
@@ -91,14 +131,26 @@ section {
 }
 .divCell {
   vertical-align: top;
-  border: 1px #000 solid;
+  /* border: 1px #000 solid; */
   display: table-cell;
-  /* padding: 5px; */
+}
+.divCellValue {
+  vertical-align: middle;
 }
 .divRight {
-  text-align: right;
 }
 
+.guiImageMusician {
+  /* float: right; */
+}
+
+.divMusicianTable {
+  border: 1px #000 solid;
+}
+
+img {
+  display: block; /* so no space at bottom of div */
+}
 
 .divGameLeft {
   width: 5%;

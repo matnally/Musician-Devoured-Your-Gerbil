@@ -1,26 +1,8 @@
 //store of director's settings
 var JSONdirector = [
   {
-    "name"        : "Steven Cheeseburger"
-    ,"money"      : 3000000
-    ,"skill"      : 0
-    ,"reputation" : 0
-  }
-  ,{
-    "name"        : "Cecil Bidet-Mills"
-    ,"money"      : 1000000
-    ,"skill"      : 0
-    ,"reputation" : 0
-  }
-  ,{
-    "name"        : "Busby Berserkely"
-    ,"money"      : 50000
-    ,"skill"      : 0
-    ,"reputation" : 0
-  }
-  ,{
-    "name"        : "Wrigley Scott"
-    ,"money"      : 10000
+    "name"        : "Clive"
+    ,"money"      : 5
     ,"skill"      : 0
     ,"reputation" : 0
   }
@@ -31,8 +13,26 @@ var JSONdirector = [
     ,"reputation" : 0
   }
   ,{
-    "name"        : "Clive"
-    ,"money"      : 5
+    "name"        : "Wrigley Scott"
+    ,"money"      : 10000
+    ,"skill"      : 0
+    ,"reputation" : 0
+  }
+  ,{
+    "name"        : "Busby Berserkely"
+    ,"money"      : 50000
+    ,"skill"      : 0
+    ,"reputation" : 0
+  }
+  ,{
+    "name"        : "Cecil Bidet-Mills"
+    ,"money"      : 1000000
+    ,"skill"      : 0
+    ,"reputation" : 0
+  }
+  ,{
+    "name"        : "Steven Cheeseburger"
+    ,"money"      : 3000000
     ,"skill"      : 0
     ,"reputation" : 0
   }

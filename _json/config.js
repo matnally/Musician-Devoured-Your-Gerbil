@@ -5,18 +5,18 @@ var JSONconfig = [{
 
   ,"date"                         : "01-01-1989" //DD-MM-YYYY
 
-  ,"moneyEasy"                    : 100000
-  ,"moneyNormal"                  : 50000 //Normal
-  ,"moneyHard"                    : 10000
+  ,"moneyEasy"                    : 150000
+  ,"moneyNormal"                  : 100000 //Normal
+  ,"moneyHard"                    : 50000
 
-  ,"valuePracticeCost"                 : 200 //cost per day of practice room
+  ,"valuePracticeCost"            : 200 //cost per day of practice room
   ,"valuePracticeSkill"           : 1 //practice
   ,"valuePracticeHappiness"       : -1 //practice
   ,"valuePracticeReputation"      : -1 //practice
 
-  ,"valueGigSkill"                : 1 //gig
+  ,"valueGigSkill"                : 2 //gig
   ,"valueGigHappiness"            : 1 //gig
-  ,"valueGigReputation"           : 1 //gig
+  ,"valueGigReputation"           : 3 //gig
 
   ,"sameEquipmentBonus"           : 1 //bonus to SKILL(change?) for same equipment in Practice or Gig
 
@@ -32,6 +32,7 @@ var JSONconfig = [{
   ,"valueReleaseCost"             : 20000
   ,"valueReleaseDaysDuration"     : 1 //in days
 
+  ,"contractThreshold"            : 300 //no of points to reach until ask band to sign
 
 //Musician Creation
 ,"MusicianReputation" : 501

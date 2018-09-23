@@ -1,23 +1,23 @@
 //store of ticket prices
 var JSONtickets = [
   {
-    "name"    : "2 tickets"
+    "name"    : JSONconfig[0].currency + "2 per ticket"
     ,"tickets"  : 2
   }
   ,{
-    "name"    : "5 tickets"
+    "name"    : JSONconfig[0].currency + "5 per ticket"
     ,"tickets"  : 5
   }
   ,{
-    "name"    : "10 tickets"
+    "name"    : JSONconfig[0].currency + "10 per ticket"
     ,"tickets"  : 10
   }
   ,{
-    "name"    : "15 tickets"
+    "name"    : JSONconfig[0].currency + "15 per ticket"
     ,"tickets"  : 15
   }
   ,{
-    "name"    : "20 tickets"
+    "name"    : JSONconfig[0].currency + "20 per ticket"
     ,"tickets"  : 20
   }
 ];

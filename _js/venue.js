@@ -11,7 +11,6 @@ function getTicketsSold(i) {
 
   /*
     vs = venue seats
-
     r  = reputation
     s  = skill
     h  = happiness
@@ -19,7 +18,15 @@ function getTicketsSold(i) {
     tp = ticket price
   */
 
-  intTicketsSold = ((r+s+h+vr) / (tp/vr)).toFixed(0); // LOGIC
+  intTicketsSold = (JSONband[i].reputation / tp).toFixed(0);
+  // intTicketsSold = ((r+s+h+vr) / (tp/vr)).toFixed(0); // LOGIC
+
+  // console.log("intTicketsSold: " + intTicketsSold);
+
+  if (intTicketsSold < 0) {
+    intTicketsSold = 0;
+    loggingOutput(i, "gig fail", JSONband[i].name + " didn't sell a single ticket at " + JSONvenue[JSONband[i].venue].name+"<br>");
+  } //if
 
   if (intTicketsSold >= vs) {
     intTicketsSold = vs;

@@ -77,19 +77,9 @@ function calChanceContract(i) {
 
   var returnValue = false; //boolean to return
   switch (true) {
-    case (intTemp > 500):
+    case (intTemp > JSONconfig[0].contractThreshold):
       returnValue = true;
     break;
-    case (intTemp > 400):
-      returnValue = true;
-    break;
-    case (intTemp > 300):
-      returnValue = false;
-    break;
-    case (intTemp > 100):
-      returnValue = false;
-    break;
-      returnValue = false;
   } //switch
 
   return returnValue;

@@ -9,7 +9,7 @@ function createChart(thevalues) {
 	var thetooltips = new Array(thevalues2.length);
 
 	for (var i = 0; i < thevalues2.length; i++) {
-    console.log("thevalues2[i]: " + thevalues2[i]);
+    // console.log("thevalues2[i]: " + thevalues2[i]);
 		thetooltips[i] = "<div class='label'><p class='charlab'>Chart position " + thevalues2[i] + "</p></div>";
 	}
 
@@ -29,7 +29,7 @@ function createChart(thevalues) {
 
 	//Less than 2 character so therefopre has to be forst go!!!!
 	if (thevalues.length<=3) {
-		document.getElementById("chart").innerHTML = "<p class='cost'>First go so not historical data.</p>";
+		// document.getElementById("graph").innerHTML = "<p class='cost'>First go so not historical data.</p>";
 	}
 
 } // END function

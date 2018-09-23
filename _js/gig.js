@@ -29,8 +29,8 @@ function gig(i) {
   var intTicketsSold = getTicketsSold(i); // CALC somewhere
   var intTicketsProfit = parseInt(JSONband[i].ticketPrice) * intTicketsSold; //ticket profits CALC
 
-  updateBandMoneySubtract(i, JSONvenue[JSONband[i].venue].money, "gig"); //VENUE COST
-  updateBandMoneyAdd(i, intTicketsProfit, "gig"); //update band money ticket sales
+  updateBandMoneySubtract(i, JSONvenue[JSONband[i].venue].money, "gig venue cost"); //VENUE COST
+  updateBandMoneyAdd(i, intTicketsProfit, "gig ticket profits"); //update band money ticket sales
 
   loggingOutput(i, "gig cost", JSONband[i].name + " paid "+JSONvenue[JSONband[i].venue].money+" to play "+JSONvenue[JSONband[i].venue].name+" selling "+intTicketsSold+" tickets<br>");
   loggingOutput(i, "gig profit", JSONband[i].name + " made " + JSONconfig[0].currency + intTicketsProfit + " from ticket sales<br>");

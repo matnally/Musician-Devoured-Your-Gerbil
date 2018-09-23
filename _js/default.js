@@ -26,7 +26,8 @@ function adminShowLog(i) {
 
   var strTemp = "";
 
-  for (l in GLOBALJSONlog) {
+  // for (l in GLOBALJSONlog) {
+  for (var l = (GLOBALJSONlog.length-1); l >= 0; l--) { //REVERSES log order
     if (GLOBALJSONlog[l].band == i)
       strTemp += "[" + GLOBALJSONlog[l].action.toUpperCase() + "] - " + GLOBALJSONlog[l].content;
   } //for

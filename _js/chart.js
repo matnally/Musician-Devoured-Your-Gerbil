@@ -44,7 +44,6 @@ function chartTime() {
   else
     updateElement("divChart", "NOT GOT 20 SINGLES YET!");
 
-
 } //function
 
 function getChartSingleMovement(arrSingle, intChartPosition) {
@@ -52,19 +51,28 @@ function getChartSingleMovement(arrSingle, intChartPosition) {
 
   switch (true) {
     case (arrSingle.chartPosition==0):
-      strTemp = "NEW";
+      strTemp = "imgChartNew";
     break;
     case (intChartPosition < arrSingle.chartPosition):
-      strTemp = "UP from " + arrSingle.chartPosition;
+    strTemp = "imgChartUp";
     break;
     case (intChartPosition > arrSingle.chartPosition):
-      strTemp = "DOWN from " + arrSingle.chartPosition;
+    strTemp = "imgChartDown";
     break;
     case (intChartPosition == arrSingle.chartPosition):
-      strTemp = "SAME";
+    strTemp = "imgChartSame";
     break;
     default:
   } //switch
+
+  strTemp = "<img src='_images/"+strTemp+".png' alt='"+strTemp+"'>";
+
+  if (arrSingle.chartPosition == 0)
+    strTemp += "";
+  else if (arrSingle.chartPosition == intChartPosition) //get the wording right
+    strTemp += "";
+  else if (intChartPosition != 0)
+    strTemp += " from " + arrSingle.chartPosition;
 
   for (z in JSONsingle) {
     if (arrSingle.name == JSONsingle[z].name) {
