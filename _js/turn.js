@@ -19,8 +19,7 @@ function gameStart() {
 
   actionChooseBandAll(); //sets an action to each band
 
-
-  guiDisplayDate();
+  updateElement("divCurrentDate", guiDisplayDate());
   guiDisplayDetailsBand(0);
 
 
@@ -78,7 +77,7 @@ function turnFinish() {
     guiDisplayDetailsSingle(this.value);
   }, {passive: true});
 
-  guiDisplayDate();
+  updateElement("divCurrentDate", guiDisplayDate());
   guiDisplayDetailsBand(0);
 
 createGrid();
@@ -98,7 +97,6 @@ function eventDOWaction() {
   switch(GLOBALdatDateCurrent.getDay()) {
     case 0:
       //Sunday
-      //TODO: CHART TIME!!!
       chartTime();
     break;
     case 1:

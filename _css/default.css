@@ -78,15 +78,9 @@
  FFA000
   */
 
-
-
 .valueBad {
   background: red;
 }
-
-
-
-
 
 /* Labels? */
 .valuePositive {
@@ -103,6 +97,7 @@
 
 section {
   height: 100%;
+  /* width: 100%; */
 }
 
 .butMainMenu {
@@ -118,6 +113,13 @@ section {
 }
 
 
+
+#selBandComboBox {
+  width: 120px;
+}
+#selMusicianComboBox {
+  width: 120px;
+}
 
 .divTable {
   display: table;
@@ -138,6 +140,8 @@ section {
   vertical-align: middle;
 }
 .divRight {
+  align: right;
+  text-align: right;
 }
 
 .guiImageMusician {

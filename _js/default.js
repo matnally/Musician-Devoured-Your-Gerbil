@@ -2,7 +2,9 @@
 
 function updateDate() {
   GLOBALdatDateCurrent.setDate(GLOBALdatDateCurrent.getDate() + 1); //increase GLOBAL current date
-  guiDisplayDate();
+
+  updateElement("divCurrentDate", guiDisplayDate());
+
 } //function
 
 function getJSONIDfromName(strName, JSONtoUse) {

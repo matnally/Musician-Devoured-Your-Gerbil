@@ -70,7 +70,7 @@
   <link rel="stylesheet" href="_css/qunit.css" />
   <script src="https://code.jquery.com/qunit/qunit-2.6.2.js" integrity="sha256-72OhbBvECs6Z5vG0GfPqiyYvTf8vhdEVHKQcacIcIeM=" crossorigin="anonymous"></script>
   <script src="_js/tests.js"></script>
-  
+
 
 </head>
 <body>
@@ -119,6 +119,13 @@
           <button class="butMainMenu" onClick="navShow('#secRecord')">Record</button><br>
           <button class="butMainMenu" onClick="navShow('#secRelease')">Release</button><br><br>
           <button class="butMainMenu" onClick="navShow('#secAdmin')">Admin</button>
+          <br>
+          <br>
+          <p>Bands</p>
+          <div id="divBandComboBox"></div>
+          <p>Musicians</p>
+          <div id="divMusicianComboBox"></div>
+
         </section>
 
         <section id="secPractice">
@@ -268,11 +275,6 @@
           <button onClick="guiDisplayDetailsBand(GLOBALBandi-1);">&nbsp;&nbsp;<&nbsp;&nbsp;</button>
           <button onClick="guiDisplayDetailsBand(0);">My Band</button>
           <button onClick="guiDisplayDetailsBand(GLOBALBandi+1);">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
-          <br>
-          <p>Bands</p>
-          <div id="divBandComboBox"></div>
-          <p>Musicians</p>
-          <div id="divMusicianComboBox"></div>
           <br>
           <div id="divBandMusicianDetails"></div>
           <div id="divBandAlbumsDetails"></div>

@@ -17,24 +17,48 @@ function getMarkUpBand(i) {
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
 
-  strTemp += "<p class='"+getGameStatClass(JSONband[i].reputation, 'reputation')+"' >";
-  // strTemp += "<p>";
-  // strTemp += "<span class='"+getGameStatClass(JSONband[i].reputation, 'reputation')+"' >";
+
+
+  strTemp +="   <div class='divTable'>";
+
+
+  strTemp +="     <div class='divRow'>";
+  strTemp += "<div class='divCell divRight "+getGameStatClass(JSONband[i].reputation, 'reputation')+"'>";
   strTemp += "<img class='guiImage' src='_images/reputation.png' alt='Reputation'>";
-  // strTemp += "</span>";
-  strTemp += "&nbsp;";
+  strTemp += "</div> <!-- divCell -->";
+  strTemp += "<div class='divCell divCellValue'>";
+  strTemp += "<p class=''>";
   strTemp += displayNumbersWithCommas(JSONband[i].reputation);
   strTemp += "</p>";
-  strTemp += "<p>";
-  // strTemp += "<p class='"+getGameStatClass(JSONband[i].money, 'money')+"' >";
-  strTemp += "<img class='guiImage' src='_images/money.png' alt='Money'>";
-  strTemp += "&nbsp;";
-  strTemp += JSONconfig[0].currency + displayNumbersWithCommas(JSONband[i].money);
+  strTemp += "</div> <!-- divCell -->";
+  strTemp +="     </div> <!-- divRow -->";
 
+  strTemp +="     <div class='divRow'>";
+  strTemp += "<div class='divCell divRight'>";
+  strTemp += "<img class='guiImage' src='_images/money.png' alt='Money'>";
+  strTemp += "</div> <!-- divCell -->";
+  strTemp += "<div class='divCell divCellValue'>";
+  strTemp += "<p>";
+  strTemp += JSONconfig[0].currency + displayNumbersWithCommas(JSONband[i].money);
   strTemp += "<span id='spnMovementBandmoney'>";
   strTemp += "</span>";
-
   strTemp += "</p>";
+  strTemp += "</div> <!-- divCell -->";
+  strTemp +="     </div> <!-- divRow -->";
+
+  strTemp +="     <div class='divRow'>";
+  strTemp += "<div class='divCell divRight'>";
+  strTemp += "<img class='guiImage' src='_images/wage.png' alt='Band total wages'>";
+  strTemp += "</div> <!-- divCell -->";
+  strTemp += "<div class='divCell divCellValue'>";
+  strTemp += "<p>";
+  strTemp += JSONconfig[0].currency + displayNumbersWithCommas(getBandAGGattributeFromMusiciansSingle(i, 'wage'));
+  strTemp += "</p>";
+  strTemp += "</div> <!-- divCell -->";
+  strTemp +="     </div> <!-- divRow -->";
+
+
+  strTemp +="   </div> <!-- divTable -->";
 
 
 
@@ -292,7 +316,7 @@ function getMarkUpMusician(i) {
 
     strTemp +="     <div class='divRow'>";
 
-    strTemp += "<div class='divCell'>";
+    strTemp += "<div class='divCell divRight'>";
     strTemp += "<img class='guiImage' src='_images/equipment"+JSONmusician[JSONband[i].musician[m]].equipment+".png' alt='"+JSONequipment[JSONmusician[JSONband[i].musician[m]].equipment].name+"'>";
     strTemp +="</div> <!-- divCell -->";
 

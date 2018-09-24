@@ -262,8 +262,8 @@ function guiDisplayDate() {
     strMonth = arrMonths[GLOBALdatDateCurrent.getMonth()];
 
     strTemp = "<h2>" + strDay + " " + GLOBALdatDateCurrent.getDate() + " " + strMonth + " " + GLOBALdatDateCurrent.getFullYear() + "</h2>";
-    updateElement("divCurrentDate", strTemp);
 
+    return strTemp;
 } //function
 
 
