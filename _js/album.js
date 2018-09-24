@@ -48,6 +48,12 @@ function chkAlreadyHaveAlbum(i) {
   } else {
     boolReturnValue = true;
   }
+
+if (JSONband[i].album.length > 0)
+  boolReturnValue = true;
+else
+  boolReturnValue = false;
+
   return boolReturnValue;
 } //function
 
