@@ -37,22 +37,22 @@ function createTrack(i, intAlbum) {
 //////////////////////////
 
 function chkAlreadyHaveAlbum(i) {
-  var boolReturnValue = false;
-  if (JSONband[i].album == false) {
+  // var boolReturnValue = false;
+  // if (JSONband[i].album == false) {
+  //
+  //   if (JSONband[i].album === false)
+  //     boolReturnValue = false;
+  //   else
+  //     boolReturnValue = true;
+  //
+  // } else {
+  //   boolReturnValue = true;
+  // }
 
-    if (JSONband[i].album === false)
-      boolReturnValue = false;
-    else
-      boolReturnValue = true;
-
-  } else {
+  if (JSONband[i].album.length > 0)
     boolReturnValue = true;
-  }
-
-if (JSONband[i].album.length > 0)
-  boolReturnValue = true;
-else
-  boolReturnValue = false;
+  else
+    boolReturnValue = false;
 
   return boolReturnValue;
 } //function
