@@ -4,14 +4,14 @@
 
 var JSONcontract = [
   {
-    "name"        : "Wiener Music Group"
-    ,"percent"    : 5
+    "name"        : "Floppy Discs"
+    ,"percent"    : 3
     ,"money"      : 5000
     ,"reputation" : 10
   }
   ,{
-    "name"        : "EMU"
-    ,"percent"    : 10
+    "name"        : "Rough Records"
+    ,"percent"    : 5
     ,"money"      : 10000
     ,"reputation" : 50
   }
