@@ -10,12 +10,6 @@
   <script src="_js/default.js"></script>
   <script src="_js/jquery.min.js"></script>
 
-  <!-- Charts -->
-	<link rel="stylesheet" href="_css/graph.css">
-	<script src="_js/raphael.min.js"></script>
-	<script src="_js/elycharts.min.js"></script>
-	<script src="_js/graph.js"></script>
-
   <!-- LOGIC -->
   <script src="_js/action.js"></script>
   <script src="_js/admin.js"></script>
@@ -61,6 +55,12 @@
   <script src="_json/tracks.js"></script>
   <script src="_json/venue.js"></script>
 
+  <!-- CHARTS -->
+	<link rel="stylesheet" href="_css/graph.css">
+	<script src="_js/raphael.min.js"></script>
+	<script src="_js/elycharts.min.js"></script>
+	<script src="_js/graph.js"></script>
+
   <!-- DATA GRID -->
   <link rel="stylesheet" href="_css/jsgrid.min.css" />
   <link rel="stylesheet" href="_css/jsgrid-theme.min.css" />
@@ -68,23 +68,18 @@
 
   <!-- UNIT TESTS -->
   <link rel="stylesheet" href="_css/qunit.css" />
-  <script src="https://code.jquery.com/qunit/qunit-2.6.2.js" integrity="sha256-72OhbBvECs6Z5vG0GfPqiyYvTf8vhdEVHKQcacIcIeM=" crossorigin="anonymous"></script>
+  <script src="_js/qunit-2.6.2.js"></script>
   <script src="_js/tests.js"></script>
-
 
 </head>
 <body>
 
-  <div id="qunit"></div>
-
-
   <div id="divCurrentDate"></div>
 
   <div class="divTable">
-
     <div class="divRow divGameLeft">
-      <div class="divCell">
 
+      <div class="divCell">
 
         <section id="secStartGame">
           <p>Band name</p>
@@ -284,9 +279,8 @@
         </section><!-- section -->
 
       </div> <!-- divCell -->
-
-
       <div class="divCell divGameRight">
+
         <h2>Current Top 20</h2>
         <div id="divChart"></div>
         <h2>Current Action</h2>
@@ -297,14 +291,15 @@
         <div id="divGraph"></div>
         <div id="divSinglesComboBox"></div>
         <button onClick="guiDisplayDetailsSingle( document.getElementById('selSingleComboBox').value );">Singles</button>
-      </div> <!-- divCell -->
 
+      </div> <!-- divCell -->
 
     </div> <!-- divRow -->
   </div> <!-- divTable -->
 
 
   <div id="jsGrid"></div>
+  <div id="qunit"></div>
 
 
   <script>
@@ -312,9 +307,6 @@
       gameInit(); //Initialisation of turn / Start of game!
     });
   </script>
-
-
-
 
 </body>
 </html>
