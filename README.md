@@ -87,9 +87,9 @@ Create a BAND made up of MUSICIANS who like the same type of GIFTS and like play
 
 Cheats
 ======
-??????????? - Increase Money by 10,000
-??????????? - Instant Record Contract
-??????????? - Gives all musicians in the band maximum statistics
+GiveMeSomeMore    - Increase Money by 10,000
+FreedomOfMovement - Instant Record Contract
+INeedSomeHelp     - Gives all musicians in the band maximum statistics
 
 Credits
 =======

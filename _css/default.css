@@ -133,7 +133,7 @@ section {
 }
 .divCell {
   vertical-align: top;
-  /* border: 1px #000 solid; */
+  border: 1px #CCC solid;
   display: table-cell;
 }
 .divCellValue {
@@ -196,7 +196,3 @@ p {
   width: 32px;
   height: 32px;
 }
-/* img {
-  width: 32px;
-  height: 32px;
-} */

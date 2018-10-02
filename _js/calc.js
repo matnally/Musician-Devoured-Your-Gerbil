@@ -1,4 +1,23 @@
 
+function getGameText(i, strTemp) {
+
+  switch (true) { //NO break; so goes through all cases
+    case (strTemp.includes("<nameMusician>")):
+      strTemp = strTemp.replace("<nameMusician>", "<strong>" + JSONmusician[i].name + "</strong>");
+    case (strTemp.includes("<wage>")):
+      strTemp = strTemp.replace("<wage>", "<strong>" + JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[i].wage) + "</strong>");
+
+    default:
+  } //switch
+
+  return strTemp;
+
+} //function
+
+
+
+
+
 function getMarkUpBand(i) {
 
   var strTemp = "";
@@ -96,6 +115,18 @@ function getMarkUpBand(i) {
 
 function getMarkUpGameStartMusician(i) {
 
+  var intReputation = 0;
+  var intSkill = 0;
+  var intHappiness = 0;
+  var intWage = 0;
+  var intEquipment = 0;
+  var intGift = 0;
+
+  var intMusician = 0
+
+  var strTemp = "";
+  var intHappiness = 0
+
   i = parseInt(i);
 
   if (i < 0)
@@ -106,103 +137,93 @@ function getMarkUpGameStartMusician(i) {
 
   GLOBALMusiciani = i;
 
+  //set variables
+  intReputation = JSONmusician[GLOBALMusiciani].reputation;
+  intSkill = JSONmusician[GLOBALMusiciani].skill;
+  intHappiness = JSONmusician[GLOBALMusiciani].happiness;
+  intWage = JSONmusician[GLOBALMusiciani].wage;
+  intEquipment = JSONmusician[GLOBALMusiciani].equipment;
+  intGift = JSONmusician[GLOBALMusiciani].gift;
+  intFee = JSONmusician[GLOBALMusiciani].fee;
+
   var strTemp = "";
+
+  strTemp += "<p>" + getGameText(GLOBALMusiciani, JSONconfig[0].musicianAdd) +  "</p>"
 
   strTemp +="   <div class='divTable'>";
   strTemp +="     <div class='divRow'>";
-
 
   strTemp += "<div class='divCell'>";
 
   strTemp += "<img id='guiImageMusician"+GLOBALMusiciani+"' class='guiImageMusician' src='_images/name.png' alt='"+JSONmusician[GLOBALMusiciani].name+"'>";
   strTemp += "<br>";
-  strTemp += "<img class='guiImage' src='_images/gift"+JSONmusician[GLOBALMusiciani].gift+".png' alt='"+JSONgift[JSONmusician[GLOBALMusiciani].gift].name+"'>";
-  // strTemp += "<p>";
-  // strTemp += "Fav gift: " + JSONgift[JSONmusician[GLOBALMusiciani].gift].name;
-  // strTemp += "</p>";
+  strTemp += "<img class='guiImage' src='_images/gift"+intGift+".png' alt='"+JSONgift[intGift].name+"'>";
   strTemp += "&nbsp;&nbsp;";
-  //
-  strTemp += "<img class='guiImage' src='_images/equipment"+JSONmusician[GLOBALMusiciani].equipment+".png' alt='"+JSONequipment[JSONmusician[GLOBALMusiciani].equipment].name+"'>";
-  // strTemp += "<p>";
-  // strTemp += "Plays: " + JSONequipment[JSONmusician[GLOBALMusiciani].equipment].name;
-  // strTemp += "</p>";
+  strTemp += "<img class='guiImage' src='_images/equipment"+intEquipment+".png' alt='"+JSONequipment[intEquipment].name+"'>";
   strTemp += "<h3>";
   strTemp += JSONmusician[GLOBALMusiciani].name;
   strTemp += "</h3>";
-
-
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
-
-
-
   strTemp +="   <div class='divTable'>";
   strTemp +="     <div class='divRow'>";
-
-  // strTemp += "<div class='divCell divRight'>";
-  strTemp += "<div class='divCell divRight "+getGameStatClass(JSONmusician[GLOBALMusiciani].reputation, 'reputation')+"'>";
-  strTemp += "<img class='guiImage' src='_images/reputation.png' alt='"+displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].reputation)+"'>";
+  strTemp += "<div class='divCell divRight "+getGameStatClass(intReputation, 'reputation')+"'>";
+  strTemp += "<img class='guiImage' src='_images/reputation.png' alt='"+displayNumbersWithCommas(intReputation)+"'>";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
   strTemp += "<p>";
-  // strTemp += "<p class='"+getGameStatClass(JSONmusician[GLOBALMusiciani].reputation, 'reputation')+"' >";
-  strTemp += displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].reputation);
+  strTemp += displayNumbersWithCommas(intReputation);
   strTemp += "</p>";
   strTemp += "</div> <!-- divCell -->";
 
   strTemp += "</div> <!-- divRow -->";
   strTemp +="<div class='divRow'>";
 
-  // strTemp += "<div class='divCell divRight'>";
-  strTemp += "<div class='divCell divRight "+getGameStatClass(JSONmusician[GLOBALMusiciani].skill, 'skill')+"'>";
-  strTemp += "<img class='guiImage' src='_images/skill.png' alt='"+displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].skill)+"'>";
+  strTemp += "<div class='divCell divRight "+getGameStatClass(intSkill, 'skill')+"'>";
+  strTemp += "<img class='guiImage' src='_images/skill.png' alt='"+displayNumbersWithCommas(intSkill)+"'>";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
-  // strTemp += "<p class='"+getGameStatClass(JSONmusician[GLOBALMusiciani].skill, 'skill')+"' >";
   strTemp += "<p>";
-  strTemp += displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].skill);
+  strTemp += displayNumbersWithCommas(intSkill);
   strTemp += "</p>";
   strTemp += "</div> <!-- divCell -->";
 
   strTemp += "</div> <!-- divRow -->";
   strTemp +="<div class='divRow'>";
 
-  // strTemp += "<div class='divCell divRight'>";
-  strTemp += "<div class='divCell divRight "+getGameStatClass(JSONmusician[GLOBALMusiciani].happiness, 'happiness')+"'>";
-  strTemp += "<img class='guiImage' src='_images/happiness.png' alt='"+displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].happiness)+"'>";
+  strTemp += "<div class='divCell divRight "+getGameStatClass(intHappiness, 'happiness')+"'>";
+  strTemp += "<img class='guiImage' src='_images/happiness.png' alt='"+displayNumbersWithCommas(intHappiness)+"'>";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
-  // strTemp += "<p class='"+getGameStatClass(JSONmusician[GLOBALMusiciani].happiness, 'happiness')+"' >";
+
   strTemp += "<p>";
-  strTemp += displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].happiness);
+  strTemp += displayNumbersWithCommas(intHappiness);
   strTemp += "</p>";
   strTemp += "</div> <!-- divCell -->";
 
   strTemp += "</div> <!-- divRow -->";
   strTemp +="<div class='divRow'>";
 
-  // strTemp += "<div class='divCell'>";
-  strTemp += "<div class='divCell divRight "+getGameStatClass(JSONmusician[GLOBALMusiciani].wage, 'wage')+"'>";
-  strTemp += "<img class='guiImage' src='_images/wage.png' alt='"+JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].wage)+"'>";
+  strTemp += "<div class='divCell divRight "+getGameStatClass(intWage, 'wage')+"'>";
+  strTemp += "<img class='guiImage' src='_images/wage.png' alt='"+JSONconfig[0].currency + displayNumbersWithCommas(intWage)+"'>";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
-  // strTemp += "<p class='"+getGameStatClass(JSONmusician[GLOBALMusiciani].wage, 'wage')+"' >";
+
   strTemp += "<p>";
-  strTemp += JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].wage);
+  strTemp += JSONconfig[0].currency + displayNumbersWithCommas(intWage);
   strTemp += "</p>";
   strTemp += "</div> <!-- divCell -->";
 
   strTemp += "</div> <!-- divRow -->";
   strTemp +="<div class='divRow'>";
 
-  // strTemp += "<div class='divCell'>";
-  strTemp += "<div class='divCell divRight "+getGameStatClass(JSONmusician[GLOBALMusiciani].fee, 'fee')+"'>";
-  strTemp += "<img class='guiImage' src='_images/fee.png' alt='"+JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].fee)+"'>";
+  strTemp += "<div class='divCell divRight "+getGameStatClass(intFee, 'fee')+"'>";
+  strTemp += "<img class='guiImage' src='_images/fee.png' alt='"+JSONconfig[0].currency + displayNumbersWithCommas(intFee)+"'>";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
-  // strTemp += "<p class='"+getGameStatClass(JSONmusician[GLOBALMusiciani].fee, 'fee')+"' >";
+
   strTemp += "<p>";
-  strTemp += JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].fee);
+  strTemp += JSONconfig[0].currency + displayNumbersWithCommas(intFee);
   strTemp += "</p>";
   strTemp += "</div> <!-- divCell -->";
 
@@ -210,63 +231,33 @@ function getMarkUpGameStartMusician(i) {
   strTemp +="<div class='divRow'>";
 
   strTemp += "<div class='divCell'>";
-  strTemp += "<img class='guiImage' src='_images/equipment"+JSONmusician[GLOBALMusiciani].equipment+".png' alt='"+JSONequipment[JSONmusician[GLOBALMusiciani].equipment].name+"'>";
+  strTemp += "<img class='guiImage' src='_images/equipment"+intEquipment+".png' alt='"+JSONequipment[intEquipment].name+"'>";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
   strTemp += "<p>";
-  strTemp += JSONequipment[JSONmusician[GLOBALMusiciani].equipment].name;
+  strTemp += JSONequipment[intEquipment].name;
   strTemp += "</p>";
   strTemp += "</div> <!-- divCell -->";
 
   strTemp += "</div> <!-- divRow -->";
   strTemp +="<div class='divRow'>";
 
-
   strTemp += "<div class='divCell'>";
-  strTemp += "<img class='guiImage' src='_images/gift"+JSONmusician[GLOBALMusiciani].gift+".png' alt='"+JSONgift[JSONmusician[GLOBALMusiciani].gift].name+"'>";
+  strTemp += "<img class='guiImage' src='_images/gift"+intGift+".png' alt='"+JSONgift[intGift].name+"'>";
   strTemp += "</div> <!-- divCell -->";
   strTemp += "<div class='divCell'>";
   strTemp += "<p>";
-  strTemp += JSONgift[JSONmusician[GLOBALMusiciani].gift].name;
+  strTemp += JSONgift[intGift].name;
   strTemp += "</p>";
   strTemp += "</div> <!-- divCell -->";
 
   strTemp += "</div> <!-- divRow -->";
   strTemp +="<div class='divRow'>";
-
-  // strTemp += "<div class='divCell'>";
-  // strTemp += "<img class='guiImage' src='_images/equipment"+JSONmusician[GLOBALMusiciani].equipment+".png' alt='"+JSONequipment[JSONmusician[GLOBALMusiciani].equipment].name+"'>";
-  // strTemp += "</div> <!-- divCell -->";
-  // strTemp += "<div class='divCell'>";
-  // strTemp += "<p>";
-  // strTemp += JSONequipment[JSONmusician[GLOBALMusiciani].equipment].name;
-  // strTemp += "</p>";
-  // strTemp += "</div> <!-- divCell -->";
-  //
-  // strTemp += "</div> <!-- divRow -->";
-  // strTemp +="<div class='divRow'>";
-  //
-  // strTemp += "<div class='divCell'>";
-  // strTemp += "<img class='guiImage' src='_images/gift"+JSONmusician[GLOBALMusiciani].gift+".png' alt='"+JSONgift[JSONmusician[GLOBALMusiciani].gift].name+"'>";
-  // strTemp += "</div> <!-- divCell -->";
-  // strTemp += "<div class='divCell'>";
-  // strTemp += "<p>";
-  // strTemp += JSONgift[JSONmusician[GLOBALMusiciani].gift].name;  // strTemp += "<p>";
-  // strTemp += "Fav gift: " + JSONgift[JSONmusician[GLOBALMusiciani].gift].name;
-  // strTemp += "</p>";
-
-  // strTemp += "</p>";
-  // strTemp += "</div> <!-- divCell -->";
 
   strTemp +="     </div> <!-- divRow -->";
   strTemp +="   </div> <!-- divTable -->";
 
-
   strTemp +="       </div> <!-- divCell -->";
-
-
-
-
 
   strTemp +="     </div> <!-- divRow -->";
   strTemp +="   </div> <!-- divTable -->";
@@ -274,7 +265,6 @@ function getMarkUpGameStartMusician(i) {
   strTemp += "<p>" + (GLOBALMusiciani+1) + " of " + JSONmusician.length + "</p>";
 
   updateElement("divMusicianDetails", strTemp);
-  // return strTemp;
 
 } //function
 
@@ -292,7 +282,6 @@ function getMarkUpMusician(i) {
   var strTemp = "";
   var intHappiness = 0
 
-
   strTemp +="   <div class='divTable'>";
   strTemp +="     <div class='divRow'>";
 
@@ -308,20 +297,18 @@ function getMarkUpMusician(i) {
 
     strTemp += "<div class='divCell'>";
 
-
     strTemp += "<img id='guiImageMusician"+JSONband[i].musician[m]+"' class='guiImageMusician' src='_images/name.png' alt='"+JSONmusician[JSONband[i].musician[m]].name+"'>";
 
     strTemp +="   <div class='divTable'>";
 
-
     strTemp +="     <div class='divRow'>";
 
     strTemp += "<div class='divCell divRight'>";
-    strTemp += "<img class='guiImage' src='_images/equipment"+JSONmusician[JSONband[i].musician[m]].equipment+".png' alt='"+JSONequipment[JSONmusician[JSONband[i].musician[m]].equipment].name+"'>";
+    strTemp += "<img class='guiImage' src='_images/equipment"+intEquipment+".png' alt='"+JSONequipment[intEquipment].name+"'>";
     strTemp +="</div> <!-- divCell -->";
 
     strTemp += "<div class='divCell'>";
-    strTemp += "<img class='guiImage' src='_images/gift"+JSONmusician[JSONband[i].musician[m]].gift+".png' alt='"+JSONgift[JSONmusician[JSONband[i].musician[m]].gift].name+"'>";
+    strTemp += "<img class='guiImage' src='_images/gift"+intGift+".png' alt='"+JSONgift[intGift].name+"'>";
     strTemp +="</div> <!-- divCell -->";
 
     strTemp +="     </div> <!-- divRow -->";
@@ -331,33 +318,18 @@ function getMarkUpMusician(i) {
     strTemp += JSONmusician[JSONband[i].musician[m]].name;
     strTemp += "</h3>";
 
-
-
-
-
-
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell'>";
-
-
 
     strTemp +="   <div class='divTable'>";
     strTemp +="     <div class='divRow'>";
 
     strTemp += "<div class='divCell divRight "+getGameStatClass(intReputation, "reputation")+"'>";
-    // strTemp += "<div class='divCell divRight'>";
     strTemp += "<img class='guiImage' src='_images/reputation.png' alt='"+displayNumbersWithCommas(intReputation)+"'>";
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell divCellValue'>";
     strTemp += "<p>";
 
-    // alert(JSONmusician[JSONband[i].musician[m]].reputation);
-    var mat = "reputation";
-    var bob = intReputation;
-    // console.log("mat: " + mat);
-    // console.log("bob: " + bob);
-    // alert(getGameStatClass(bob, mat));
-    // strTemp += "<p class='" + getGameStatClass(intReputation, "reputation") + "' >";
     strTemp += displayNumbersWithCommas(intReputation);
 
     strTemp += "<span name='spnMovementMusicianreputation'>";
@@ -374,12 +346,9 @@ function getMarkUpMusician(i) {
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell divCellValue'>";
     strTemp += "<p>";
-    // strTemp += "<p class='" + getGameStatClass(intSkill, "skill") + "' >";
     strTemp += displayNumbersWithCommas(intSkill);
-
     strTemp += "<span name='spnMovementMusicianskill'>";
     strTemp += "</span>";
-
     strTemp += "</p>";
     strTemp += "</div> <!-- divCell -->";
 
@@ -391,12 +360,9 @@ function getMarkUpMusician(i) {
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell divCellValue'>";
     strTemp += "<p>";
-    // strTemp += "<p class='" + getGameStatClass(intHappiness, "happiness") + "' >";
     strTemp += displayNumbersWithCommas(intHappiness);
-
     strTemp += "<span name='spnMovementMusicianhappiness'>";
     strTemp += "</span>";
-
     strTemp += "</p>";
     strTemp += "</div> <!-- divCell -->";
 
@@ -408,7 +374,6 @@ function getMarkUpMusician(i) {
     strTemp += "</div> <!-- divCell -->";
     strTemp += "<div class='divCell divCellValue'>";
     strTemp += "<p>";
-    // strTemp += "<p class='" + getGameStatClass(intWage, "wage") + "' >";
     strTemp += JSONconfig[0].currency + displayNumbersWithCommas(intWage);
     strTemp += "</p>";
     strTemp += "</div> <!-- divCell -->";
@@ -416,40 +381,12 @@ function getMarkUpMusician(i) {
     strTemp += "</div> <!-- divRow -->";
     strTemp +="<div class='divRow'>";
 
-
-    // strTemp += "<div class='divCell'>";
-    // strTemp += "<img class='guiImage' src='_images/equipment"+intEquipment+".png' alt='"+JSONequipment[intEquipment].name+"'>";
-    // strTemp += "</div> <!-- divCell -->";
-    // strTemp += "<div class='divCell'>";
-    // strTemp += "<p>";
-    // strTemp += JSONequipment[intEquipment].name;
-    // strTemp += "</p>";
-    // strTemp += "</div> <!-- divCell -->";
-    //
-    // strTemp += "</div> <!-- divRow -->";
-    // strTemp +="<div class='divRow'>";
-    //
-    //
-    // strTemp += "<div class='divCell'>";
-    // strTemp += "<img class='guiImage' src='_images/gift"+intGift+".png' alt='"+JSONgift[intGift].name+"'>";
-    // strTemp += "</div> <!-- divCell -->";
-    // strTemp += "<div class='divCell'>";
-    // strTemp += "<p>";
-    // strTemp += JSONgift[intGift].name;
-    // strTemp += "</p>";
-    // strTemp += "</div> <!-- divCell -->";
-    //
-    // strTemp += "</div> <!-- divRow -->";
-    // strTemp +="<div class='divRow'>";
-
     strTemp +="     </div> <!-- divRow -->";
     strTemp +="   </div> <!-- divTable -->";
 
-
-
-
     strTemp +="       </div> <!-- divCell -->";
   } //for
+
   strTemp +="     </div> <!-- divRow -->";
   strTemp +="   </div> <!-- divTable -->";
 
@@ -498,11 +435,9 @@ function getMarkUpAlbum(i) {
         strTemp +="     </div class='divRow'>";
         intTemp ++;
       } //if
-
     } //for
 
     strTemp +="   </div> <!-- divTable -->";
-
     strTemp += "</div class='divCell'>";
   } //for
 
