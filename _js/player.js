@@ -5,7 +5,7 @@ function bandAddMusician(index) {
   if ((JSONband[0].money - JSONmusician[index].fee) >= 0) {
       //can afford
       JSONband[0].musician.push(index);
-      updateElement("divBandMusicians", createComboBoxfromJSONband(JSONband[0].musician)); //Update and display the comboBox
+      updateElement("divBandMusicians", createComboBoxMusicianfromBand(JSONband[0].musician)); //Update and display the comboBox
   } else {
     alert("Can't afford this Musician's Signing Fee");
   } //if

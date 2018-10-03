@@ -7,16 +7,6 @@ function updateDate() {
 
 } //function
 
-function getJSONIDfromName(strName, JSONtoUse) {
-  var intTemp = 0;
-  for (i in JSONtoUse) {
-    if (JSONtoUse[i].name == strName) {
-      intTemp = i;
-    } //if
-  } //for
-  return intTemp;
-} //function
-
 var GLOBALJSONlog = [];
 function loggingOutput(i, strAction, strTemp) {
 
@@ -43,14 +33,14 @@ function updateElement(elemName, strTemp) {
   document.getElementById(elemName).innerHTML = strTemp;
 } //function
 
-function createComboBoxfromJSONband(JSONtoConvert) {
+function createComboBoxMusicianfromBand(JSONtoConvert) {
   //create and string return complete html combo box
 
   var strTemp = "";
   var strName = "";
   var intIndex = 0;
 
-  strTemp = "<select class='rpgui-dropdown '>";
+  strTemp = "<select>";
   for (i in JSONtoConvert) {
     intIndex = parseInt(JSONtoConvert[i]); //get JSONmusician index from name
     strTemp += "<option value='" + intIndex + "'>" + JSONmusician[intIndex].name + "</option>";
