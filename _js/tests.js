@@ -6,6 +6,7 @@ NOT TESTED
 */
 QUnit.module( "action.js" );
   QUnit.test( "getAction()", function(assert) {
+    QUnit.reset();
     var result = getAction();
     assert.ok (result >= 0 && result < 6, "Action is between 0-5. Result = " + result);
   });
@@ -21,7 +22,7 @@ NOT TESTED
   adminAdminTurn
 */
 QUnit.module( "admin.js" );
-QUnit.test( "  gameCreateMusicians(document.getElementById('selNameSet').value)", function(assert) {
+QUnit.test( "gameCreateMusicians(document.getElementById('selNameSet').value)", function(assert) {
   var resultBefore = JSONmusician.length;
   gameCreateMusicians("JSONmusicianNamesRockstar");
   var resultAfter = JSONmusician.length;
