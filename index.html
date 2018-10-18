@@ -66,11 +66,6 @@
   <link rel="stylesheet" href="_css/jsgrid-theme.min.css" />
   <script src="_js/jsgrid.min.js"></script>
 
-  <!-- UNIT TESTS -->
-  <link rel="stylesheet" href="_css/qunit.css" />
-  <script src="_js/qunit-2.6.2.js"></script>
-  <script src="_js/tests.js"></script>
-
 </head>
 <body>
 
@@ -254,7 +249,7 @@
           </select>
           <br>
           <br>
-          <button onClick="gameSetSettings()">Create Game</button>
+          <button id="butCreateGame" onClick="gameSetSettings()">Create Game</button>
           <br>
           <br>
           <br>
@@ -299,8 +294,6 @@
 
 
   <div id="jsGrid"></div>
-  <div id="qunit"></div>
-
 
   <script>
     $(document).ready(function() {
