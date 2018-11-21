@@ -1,38 +1,50 @@
 
+function createGrid(JSONtoUse) {
 
-// function createJSONmusician() {
-//
-//   var intTotal = 0;
-//
-//   for (intTotal) {
-//
-//   } //for
-//
-// }
+  var strType = "";
+  var intPropertyValue = 0;
+  var objTemp = [];
 
+  //create array of property names and types for fields to display in grid
+  for (var strProperty in this[JSONtoUse][0]) {
 
-function createGrid() {
+    intPropertyValue = this[JSONtoUse][0][strProperty];
 
-      $("#jsGrid").jsGrid({
-          width: "100%",
-          height: "400px",
+    //check the TYPE of the value
+    if (isNaN(intPropertyValue)) {
+      //string
+      strType = "text";
+    } else {
+      //integer
+      strType = "number";
+    }
+    objTemp.push({ name: strProperty, type: strType });
 
-          inserting: false,
-          editing: false,
-          sorting: true,
-          paging: true,
+  } //for
 
-          data: JSONmusician,
+  $("#jsGrid").jsGrid({
 
-          fields: [
-            { name: "name", type: "text" }
-            ,{ name: "reputation", type: "number" }
-            ,{ name: "skill", type: "number" }
-            ,{ name: "happiness", type: "number" }
-            ,{ name: "wage", type: "number" }
-            ,{ name: "fee", type: "number" }
-            // ,{ type: "control" }
-          ]
-      });
+    width      : "100%"
+    ,height    : "400px"
+
+    ,filtering : false
+    ,inserting : false
+    ,editing   : false
+    ,selecting : true
+    ,sorting   : true
+    ,paging    : true
+
+    ,data      : this[JSONtoUse]
+    ,fields    : objTemp
+
+    ,pagerFormat           : "{first} {prev} {pages} {next} {last}  Page {pageIndex} of {pageCount}"
+    ,pagePrevText          : "<"
+    ,pageNextText          : ">"
+    ,pageFirstText         : "<<"
+    ,pageLastText          : ">>"
+    ,pageNavigatorNextText : "..."
+    ,pageNavigatorPrevText : "..."
+
+  });
 
 } //function

@@ -293,7 +293,13 @@
   </div> <!-- divTable -->
 
 
+  <select id="selGridDisplay" onChange="createGrid(this.value);">
+    <option value="JSONband">Bands</option>
+    <option value="JSONmusician">Musicians</option>
+    <option value="JSONalbum">Albums</option>
+  </select>
   <div id="jsGrid"></div>
+
 
   <script>
     $(document).ready(function() {

@@ -17,6 +17,4 @@ function gameSetSettings() {
   JSONband[0].money = JSONconfig[0][document.getElementById('selBandMoney').value];
   gameCreateMusicians(document.getElementById('selNameSet').value);
 
-  createGrid();
-
 } //function
