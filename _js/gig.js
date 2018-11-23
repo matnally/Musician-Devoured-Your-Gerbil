@@ -56,9 +56,16 @@ function updateBandMoneySubtract(intBand, intCost, strAction) {
       strTemp = (JSONband[intBand].name + " had " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + " costs are " + JSONconfig[0].currency + displayNumbersWithCommas(intCost));
 
   var intTemp = parseInt(JSONband[intBand].money) - parseInt(intCost); // CALC
+
   JSONband[intBand].money = intTemp; // THE ACTION !!!!!!!!
 
   loggingOutput(intBand, strAction + " cost", (strTemp + " now has " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + "<br>"));
+
+  if ((intBand == 0) && (intTemp < 0)) {
+    //Player's band AND no money
+    gameEnd(); //end the game
+  } //if
+
 } //function
 
 function updateBandMoneyAdd(intBand, intCost, strAction) {

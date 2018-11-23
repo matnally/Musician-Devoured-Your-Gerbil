@@ -15,17 +15,11 @@ function gameStart() {
   createBandOther(); //creates bands from the remaining musicians
 
   calBandMusicianCost();
-  // updateBandMoneySubtract(0, calBandMusicianCost(0), "musicians signing fees"); //VENUE COST
 
   actionChooseBandAll(); //sets an action to each band
 
   updateElement("divCurrentDate", guiDisplayDate());
   guiDisplayDetailsBand(0);
-
-
-
-
-
 
   updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
   document.getElementById("selBandComboBox").addEventListener("change",function(event){
@@ -37,10 +31,13 @@ function gameStart() {
     guiDisplayDetailsBand(getBandFromMusician(this.value));
   }, {passive: true});
 
-
-
   navShow("#secMainMenu");
   navShowSingle("#secBandDetails");
+
+} //function
+
+function gameEnd() {
+//  alert(JSONconfig[0].gameOver); //TODO
 } //function
 
 function turnBegin() {
@@ -79,8 +76,6 @@ function turnFinish() {
 
   updateElement("divCurrentDate", guiDisplayDate());
   guiDisplayDetailsBand(0);
-
-createGrid();
 
   navShow("#secMainMenu");
   navShowSingle("#secBandDetails");

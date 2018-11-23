@@ -48,8 +48,9 @@ function createBandOther() {
     var strName = getBandName(arrTemp); //random band name
     var intReputation = calcBandReputation(arrTemp); //calculate band total reputation
     var intRandomEquipment = getEquipment(); //get random equipment
+    var intGift = getGift(); //DO I NEED?! Maybe for jsGrid but don't really need to init it here
     //CREATES band - GLOBALdatDateCurrent used for dateActionFinish so triggers actionChoose
-    JSONband.push({'name':strName, 'money':JSONconfig[0]["moneyNormal"], 'contract':getContract(), 'reputation':intReputation, 'musician':arrTemp, 'equipment':intRandomEquipment, 'days':0, 'dateActionFinish':GLOBALdatDateCurrent, 'album':[], 'tracks':0}); //add band JSON
+    JSONband.push({'name':strName, 'money':JSONconfig[0]["moneyNormal"], 'contract':getContract(), 'reputation':intReputation, 'musician':arrTemp, 'equipment':intRandomEquipment, 'gift':intGift, 'days':0, 'dateActionFinish':GLOBALdatDateCurrent, 'album':[], 'tracks':0}); //add band JSON
   } while (arrMusiciansRemaining.length > 0); //do  // SHOULD BE 1??????????? ABOVE IN THE DO WHILE
 
 } //function
@@ -62,10 +63,6 @@ function createBandOther() {
 function updateBandReputation(i) {
   //WRITES and CALS single band reps
   JSONband[i].reputation = calcBandReputation(JSONband[i].musician);
-
-// if (i==0)
-//     JSONband[i].reputation = 5000 //TODO: CHEAT!!!
-
 } //function
 
 function calcBandReputation(JSONtoUse) {

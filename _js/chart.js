@@ -13,15 +13,16 @@ function chartTime() {
       arrTemp[a].qualityRatingChart = calcChartTimeSingleQualityRating(arrTemp[a]); //TODO: never used qualityRatingChart until now!
     } //for
 
-    arrTemp = sortArrayByKey(arrTemp, 'qualityRatingChart'); //reorder by qualityRating IMPORTANT
+    arrTemp = sortArrayByKey(arrTemp, 'qualityRatingChart'); //reorder by qualityRating IMPORTANT!!!!
 
     //TODO: arrTemp is actual JSONtrack !!!!!!!
     var strTemp = "";
     var intChartPosition = 1; //charts start from one! duh
     for (i in arrTemp) {
 
+      arrTemp[i].chartPosition = intChartPosition;
+//      alert(arrTemp[i].qualityRatingChart);
       arrTemp[i].chartHistory = (arrTemp[i].chartHistory + intChartPosition + ","); //for graph
-      // arrTemp[i].chartHistory = "WORKED";
 
       if (intChartPosition < arrTemp[i].chartPositionBest) {
         arrTemp[i].chartPositionBest = intChartPosition; //save best position
@@ -30,6 +31,8 @@ function chartTime() {
       if (intChartPosition > 20) {
         // break;
       } else {
+
+
         strTemp += (intChartPosition + ": " + getChartSingleMovement(arrTemp[i], intChartPosition) + " - " + arrTemp[i].qualityRatingChart + " - " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name) +"<br>";
       } //if
 
@@ -37,12 +40,15 @@ function chartTime() {
 
     } //for
 
+    console.log(arrTemp);
+
   } // if > 20
 
-  if (arrTemp.length > 20)
+  if (arrTemp.length > 20) {
     updateElement("divChart", strTemp);
-  else
-    updateElement("divChart", "NOT GOT 20 SINGLES YET!");
+    alert(arrTemp[0].name + " by " + JSONband[getBandFromAlbum(arrTemp[0].album)].name + " is number 1");
+  } else
+    updateElement("divChart", "NOT GOT 20 SINGLES YET!"); //TODO: Put fake ones?
 
 } //function
 
@@ -123,8 +129,8 @@ function calcChartTimeSingleQualityRating(arrItemSingle) {
 function sortArrayByKey(array, key) {
   //Sorts an array by a key in DECENDING order. For asending, change to "function(a, b)"
   return array.sort(function(b, a) {
-      var x = a[key];
-      var y = b[key];
+      var x = parseInt(a[key]);
+      var y = parseInt(b[key]);
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
   });
 } //function

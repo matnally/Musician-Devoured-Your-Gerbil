@@ -4,6 +4,12 @@
 
 var JSONcontract = [
   {
+    "name"        : "Frilly Pink Records"
+    ,"percent"    : 1
+    ,"money"      : 1000
+    ,"reputation" : 5
+  }
+  ,{
     "name"        : "Floppy Discs"
     ,"percent"    : 3
     ,"money"      : 5000
