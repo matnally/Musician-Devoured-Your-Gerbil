@@ -21,7 +21,6 @@ function chartTime() {
     for (i in arrTemp) {
 
       arrTemp[i].chartPosition = intChartPosition;
-//      alert(arrTemp[i].qualityRatingChart);
       arrTemp[i].chartHistory = (arrTemp[i].chartHistory + intChartPosition + ","); //for graph
 
       if (intChartPosition < arrTemp[i].chartPositionBest) {
@@ -32,21 +31,23 @@ function chartTime() {
         // break;
       } else {
 
+        if (JSONband[getBandFromAlbum(arrTemp[i].album)].name == JSONband[0].name) strTemp += "<strong>"; //for player's band
 
         strTemp += (intChartPosition + ": " + getChartSingleMovement(arrTemp[i], intChartPosition) + " - " + arrTemp[i].qualityRatingChart + " - " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name) +"<br>";
+
+        if (JSONband[getBandFromAlbum(arrTemp[i].album)].name == JSONband[0].name) strTemp += "</strong>"; //for player's band
+
       } //if
 
       intChartPosition++;
 
     } //for
 
-    console.log(arrTemp);
-
   } // if > 20
 
   if (arrTemp.length > 20) {
     updateElement("divChart", strTemp);
-    alert(arrTemp[0].name + " by " + JSONband[getBandFromAlbum(arrTemp[0].album)].name + " is number 1");
+//    alert(arrTemp[0].name + " by " + JSONband[getBandFromAlbum(arrTemp[0].album)].name + " is number 1");
   } else
     updateElement("divChart", "NOT GOT 20 SINGLES YET!"); //TODO: Put fake ones?
 
@@ -109,12 +110,6 @@ function calcChartTimeSingleQualityRating(arrItemSingle) {
     f = factor for difference
     RESULT = (q + r) - (d * f)
   */
-
-  // console.log("q:" + q);
-  // console.log("r:" + r);
-  // console.log("d:" + d);
-  // console.log("f:" + f);
-  // console.log("***********");
 
   intTemp = Math.round((q + r) - (d * f));
 

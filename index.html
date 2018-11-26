@@ -69,6 +69,16 @@
 </head>
 <body>
 
+
+  <select id="selGridDisplay" onChange="createGrid(this.value);">
+    <option value="JSONband">Bands</option>
+    <option value="JSONmusician">Musicians</option>
+    <option value="JSONalbum">Albums</option>
+    <option value="JSONsingle">Tracks</option>
+  </select>
+  <div id="jsGrid"></div>
+
+
   <div id="divCurrentDate"></div>
 
   <div class="divTable">
@@ -251,6 +261,8 @@
           <br>
           <button id="butCreateGame" onClick="gameSetSettings()">Create Game</button>
           <br>
+          <button onClick="gameQuickStart()">Quick Start</button>
+          <br>
           <br>
           <br>
 
@@ -291,15 +303,6 @@
 
     </div> <!-- divRow -->
   </div> <!-- divTable -->
-
-
-  <select id="selGridDisplay" onChange="createGrid(this.value);">
-    <option value="JSONband">Bands</option>
-    <option value="JSONmusician">Musicians</option>
-    <option value="JSONalbum">Albums</option>
-  </select>
-  <div id="jsGrid"></div>
-
 
   <script>
     $(document).ready(function() {

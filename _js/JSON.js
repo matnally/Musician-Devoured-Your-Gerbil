@@ -24,7 +24,7 @@ function createGrid(JSONtoUse) {
     //look up values and changes
     switch (true) {
       //SHARED PROPERTIES
-      case (strProperty == "name"):
+      case ((strProperty == "name") && (JSONtoUse == "JSONband")):
         objTemp.push({ name: strProperty, type: "text",
             itemTemplate: function(value) {
               intName = value; //store to use as a sort of index
@@ -32,40 +32,94 @@ function createGrid(JSONtoUse) {
             }
         });
       break;
-      case (strProperty == "gift"):
-        objTemp.push({ name: strProperty, type: "text",
-            itemTemplate: function(value) {
-              return JSONgift[value].name;
-            }
-        });
-      break;
       case (strProperty == "equipment"):
         objTemp.push({ name: strProperty, type: "text",
             itemTemplate: function(value) {
-              return JSONequipment[value].name;
+              return JSONequipment[parseInt(value)].name;
             }
         });
       break;
 
       //BAND
+      case (strProperty == "money"):
+        objTemp.push({ name: strProperty, type: "number",
+            itemTemplate: function(value) {
+              return JSONconfig[0].currency + displayNumbersWithCommas(value);
+            }
+        });
+      break;
       case (strProperty == "musician"):
         objTemp.push({ name: strProperty, type: "text",
             itemTemplate: function(value) {
               //Returns a list of musician names rather than an array of numbers
               strTemp = "";
               for (m in JSONband[getJSONIDfromName(intName, JSONband)].musician) {
-                strTemp += JSONmusician[JSONband[getJSONIDfromName(intName, JSONband)].musician[m]].name + "<br>";
+                strTemp += " - " + JSONmusician[JSONband[getJSONIDfromName(intName, JSONband)].musician[m]].name + "<br>";
               } //for
               return strTemp;
             }
         });
       break;
-
-      //ALBUM
-      case (strProperty == "album"):
+      case (strProperty == "action"):
+        objTemp.push({ name: strProperty, type: "text", visible: false });
+      break;
+      case (strProperty == "days"):
+        objTemp.push({ name: strProperty, type: "text", visible: false });
+      break;
+      case (strProperty == "gift") && (JSONtoUse == "JSONband"):
+        objTemp.push({ name: strProperty, type: "text", visible: false });
+      break;
+      case (strProperty == "dateActionFinish"):
+        objTemp.push({ name: strProperty, type: "text", visible: false });
+      break;
+      case (strProperty == "venue"):
+        objTemp.push({ name: strProperty, type: "text", visible: false });
+      break;
+      case (strProperty == "ticketPrice"):
+        objTemp.push({ name: strProperty, type: "text", visible: false });
+      break;
+      case (strProperty == "contract"):
         objTemp.push({ name: strProperty, type: "text",
             itemTemplate: function(value) {
-              strTemp = "";
+              return JSONcontract[parseInt(value)].name;
+              // return value;
+            }
+        });
+      break;
+      case ((strProperty == "tracks") && (JSONtoUse == "JSONband")):
+        objTemp.push({ name: strProperty, type: "text", visible: false });
+      break;
+
+      //MUSICIAN
+      case (strProperty == "wage"):
+        objTemp.push({ name: strProperty, type: "number",
+            itemTemplate: function(value) {
+              return JSONconfig[0].currency + displayNumbersWithCommas(value);
+            }
+        });
+      break;
+      case (strProperty == "fee"):
+        objTemp.push({ name: strProperty, type: "number",
+            itemTemplate: function(value) {
+              return JSONconfig[0].currency + displayNumbersWithCommas(value);
+            }
+        });
+      break;
+      case ((strProperty == "gift") && (JSONtoUse == "JSONmusician")):
+        objTemp.push({ name: strProperty, type: "text",
+            itemTemplate: function(value) {
+              return JSONgift[parseInt(value)].name;
+            }
+        });
+      break;
+
+
+
+      //ALBUM
+      case (strProperty == "album") && (JSONtoUse == "JSONalbum"):
+        objTemp.push({ name: strProperty, type: "text",
+            itemTemplate: function(value) {
+              strTemp = " - ";
               for (a in JSONband[getJSONIDfromName(intName, JSONband)].album) {
                 strTemp += JSONalbum[JSONband[getJSONIDfromName(intName, JSONband)].album[a]].name + "<br>";
               } //for
@@ -79,6 +133,43 @@ function createGrid(JSONtoUse) {
               return JSONband[value].name;
             }
         });
+      break;
+      case ((strProperty == "recordedDate") && (JSONtoUse == "JSONalbum")):
+        objTemp.push({ name: strProperty, type: "text",
+            itemTemplate: function(value) {
+              return guiDisplayDate(new Date(value));
+            }
+        });
+      break;
+      case ((strProperty == "releasedDate") && (JSONtoUse == "JSONalbum")):
+        objTemp.push({ name: strProperty, type: "text", visible: false });
+      break;
+
+
+      //TRACK
+      case ((strProperty == "recordedDate") && (JSONtoUse == "JSONsingle")):
+        objTemp.push({ name: strProperty, type: "text",
+            itemTemplate: function(value) {
+              return guiDisplayDate(new Date(value));
+            }
+        });
+      break;
+      case ((strProperty == "releasedDate") && (JSONtoUse == "JSONsingle")):
+        objTemp.push({ name: strProperty, type: "text",
+            itemTemplate: function(value) {
+              return guiDisplayDate(new Date(value));
+            }
+        });
+      break;
+      case ((strProperty == "album") && (JSONtoUse == "JSONsingle")):
+        objTemp.push({ name: strProperty, type: "text",
+            itemTemplate: function(value) {
+              return JSONalbum[parseInt(value)].name + " BY ??????";
+            }
+        });
+      break;
+      case (strProperty == "chartHistory"):
+        objTemp.push({ name: strProperty, type: "text", visible: false });
       break;
 
       default:
@@ -97,7 +188,7 @@ function createGrid(JSONtoUse) {
     ,editing   : false
     ,selecting : true
     ,sorting   : true
-    ,paging    : true
+    ,paging    : false
 
     ,data      : this[JSONtoUse]
     ,fields    : objTemp
@@ -112,26 +203,4 @@ function createGrid(JSONtoUse) {
 
   });
 
-} //function
-
-
-
-
-
-
-
-
-
-
-
-
-
-function getJSONIDfromName(strName, JSONtoUse) {
-  var intTemp = 0;
-  for (i in JSONtoUse) {
-    if (JSONtoUse[i].name == strName) {
-      intTemp = i;
-    } //if
-  } //for
-  return intTemp;
 } //function

@@ -18,7 +18,7 @@ function gameStart() {
 
   actionChooseBandAll(); //sets an action to each band
 
-  updateElement("divCurrentDate", guiDisplayDate());
+  updateElement("divCurrentDate", guiDisplayDate(GLOBALdatDateCurrent));
   guiDisplayDetailsBand(0);
 
   updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
@@ -74,7 +74,7 @@ function turnFinish() {
     guiDisplayDetailsSingle(this.value);
   }, {passive: true});
 
-  updateElement("divCurrentDate", guiDisplayDate());
+  updateElement("divCurrentDate", guiDisplayDate(GLOBALdatDateCurrent));
   guiDisplayDetailsBand(0);
 
   navShow("#secMainMenu");

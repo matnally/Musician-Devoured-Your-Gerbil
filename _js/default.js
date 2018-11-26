@@ -3,7 +3,7 @@
 function updateDate() {
   GLOBALdatDateCurrent.setDate(GLOBALdatDateCurrent.getDate() + 1); //increase GLOBAL current date
 
-  updateElement("divCurrentDate", guiDisplayDate());
+  updateElement("divCurrentDate", guiDisplayDate(GLOBALdatDateCurrent));
 
 } //function
 
@@ -100,4 +100,14 @@ function getActionName(index) {
     break;
   } //switch
   return strTemp;
+} //function
+
+function getJSONIDfromName(strName, JSONtoUse) {
+  var intTemp = 0;
+  for (i in JSONtoUse) {
+    if (JSONtoUse[i].name == strName) {
+      intTemp = i;
+    } //if
+  } //for
+  return intTemp;
 } //function

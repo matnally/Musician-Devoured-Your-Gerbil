@@ -66,3 +66,13 @@ function gameCreateMusicians(strJSONtoUse) {
   getMarkUpGameStartMusician(GLOBALMusiciani);
 
 } //function
+
+
+function gameQuickStart() {
+
+  gameSetSettings();
+  bandAddMusician(GLOBALMusiciani);
+  gameStart();
+  adminAdminTurn();
+
+} //function

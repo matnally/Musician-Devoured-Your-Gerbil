@@ -249,19 +249,19 @@ function guiDisplayActionCurrent(i) {
 
 
 
-function guiDisplayDate() {
+function guiDisplayDate(datDate) {
 
     var strTemp = "";
     var strMonth = "";
     var strDay = "";
 
     var arrDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    strDay = arrDays[GLOBALdatDateCurrent.getDay()];
+    strDay = arrDays[datDate.getDay()];
 
     var arrMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    strMonth = arrMonths[GLOBALdatDateCurrent.getMonth()];
+    strMonth = arrMonths[datDate.getMonth()];
 
-    strTemp = "<h2>" + strDay + " " + GLOBALdatDateCurrent.getDate() + " " + strMonth + " " + GLOBALdatDateCurrent.getFullYear() + "</h2>";
+    strTemp = strDay + " " + datDate.getDate() + " " + strMonth + " " + datDate.getFullYear();
 
     return strTemp;
 } //function

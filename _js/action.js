@@ -60,7 +60,7 @@ function actionExecuteBandAll() {
 
   for (i in JSONband) { //looping through all the bands
 
-    loggingOutput(i, "DAY", guiDisplayDate() + "<br>");
+    loggingOutput(i, "DAY", guiDisplayDate(GLOBALdatDateCurrent) + "<br>");
 
     var datDateActionFinish = new Date(JSONband[i].dateActionFinish);
     //AT START OR END?????
