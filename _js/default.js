@@ -111,3 +111,16 @@ function getJSONIDfromName(strName, JSONtoUse) {
   } //for
   return intTemp;
 } //function
+
+function getBandIDfromAlbum(intValue) {
+  //get the Band name of the album
+  for (b in JSONband) {
+    //for every band
+    for (a in JSONband[b].album) {
+      //for every album in band
+      if (intValue == JSONband[b].album[a]) {
+        return b;
+      } //if
+    } //for
+  } //for
+} //function

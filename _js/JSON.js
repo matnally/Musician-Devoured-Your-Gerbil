@@ -24,14 +24,6 @@ function createGrid(JSONtoUse) {
     //look up values and changes
     switch (true) {
       //SHARED PROPERTIES
-      case ((strProperty == "name") && (JSONtoUse == "JSONband")):
-        objTemp.push({ name: strProperty, type: "text",
-            itemTemplate: function(value) {
-              intName = value; //store to use as a sort of index
-              return value;
-            }
-        });
-      break;
       case (strProperty == "equipment"):
         objTemp.push({ name: strProperty, type: "text",
             itemTemplate: function(value) {
@@ -40,7 +32,17 @@ function createGrid(JSONtoUse) {
         });
       break;
 
+
+
       //BAND
+      case ((strProperty == "name") && (JSONtoUse == "JSONband")):
+        objTemp.push({ name: strProperty, type: "text",
+            itemTemplate: function(value) {
+              intName = value; //store to use as a sort of index
+              return value;
+            }
+        });
+      break;
       case (strProperty == "money"):
         objTemp.push({ name: strProperty, type: "number",
             itemTemplate: function(value) {
@@ -90,6 +92,8 @@ function createGrid(JSONtoUse) {
         objTemp.push({ name: strProperty, type: "text", visible: false });
       break;
 
+
+
       //MUSICIAN
       case (strProperty == "wage"):
         objTemp.push({ name: strProperty, type: "number",
@@ -127,7 +131,7 @@ function createGrid(JSONtoUse) {
             }
         });
       break;
-      case (strProperty == "band"):
+      case ((strProperty == "band") && (JSONtoUse == "JSONalbum")):
         objTemp.push({ name: strProperty, type: "text",
             itemTemplate: function(value) {
               return JSONband[value].name;
@@ -162,9 +166,16 @@ function createGrid(JSONtoUse) {
         });
       break;
       case ((strProperty == "album") && (JSONtoUse == "JSONsingle")):
+        var intValue = 0;
         objTemp.push({ name: strProperty, type: "text",
             itemTemplate: function(value) {
-              return JSONalbum[parseInt(value)].name + " BY ??????";
+              intValue = value;
+              return JSONalbum[parseInt(value)].name;
+            }
+        });
+        objTemp.push({ name: "band", type: "text",
+            itemTemplate: function() {
+              return JSONband[getBandIDfromAlbum(parseInt(intValue))].name;
             }
         });
       break;
@@ -182,6 +193,9 @@ function createGrid(JSONtoUse) {
 
     width      : "100%"
     ,height    : "400px"
+
+
+,datatype : 'local'
 
     ,filtering : false
     ,inserting : false

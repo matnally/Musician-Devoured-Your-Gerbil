@@ -64,6 +64,6 @@ function getQualityRatingTrack(i) {
     //for every musician in the passed in band
     intQualityRating = intQualityRating + parseInt(JSONmusician[a].skill);
   }//for
-  intQualityRating = intQualityRating / JSONband[i].musician.length; //IMPORTANT gets average
+  intQualityRating = Math.round(intQualityRating / JSONband[i].musician.length); //IMPORTANT gets average
   return intQualityRating;
 } //function
