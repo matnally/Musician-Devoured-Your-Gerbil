@@ -56,7 +56,20 @@ function createGrid(JSONtoUse) {
               //Returns a list of musician names rather than an array of numbers
               strTemp = "";
               for (m in JSONband[getJSONIDfromName(intName, JSONband)].musician) {
-                strTemp += " - " + JSONmusician[JSONband[getJSONIDfromName(intName, JSONband)].musician[m]].name + "<br>";
+                strTemp += " - ";
+                strTemp += JSONmusician[JSONband[getJSONIDfromName(intName, JSONband)].musician[m]].name + "<br>";
+              } //for
+              return strTemp;
+            }
+        });
+      break;
+      case (strProperty == "album") && (JSONtoUse == "JSONband"):
+        objTemp.push({ name: strProperty, type: "text",
+            itemTemplate: function(value, item) {
+              strTemp = "";
+              for (a in JSONband[getJSONIDfromName(intName, JSONband)].album) {
+                strTemp += " - ";
+                strTemp += JSONalbum[JSONband[getJSONIDfromName(intName, JSONband)].album[a]].name + "<br>";
               } //for
               return strTemp;
             }
@@ -83,7 +96,10 @@ function createGrid(JSONtoUse) {
       case (strProperty == "contract"):
         objTemp.push({ name: strProperty, type: "text",
             itemTemplate: function(value) {
-              return JSONcontract[parseInt(value)].name;
+              if (value == "")
+                return "";
+              else
+                return JSONcontract[parseInt(value)].name;
               // return value;
             }
         });
@@ -120,17 +136,6 @@ function createGrid(JSONtoUse) {
 
 
       //ALBUM
-      case (strProperty == "album") && (JSONtoUse == "JSONalbum"):
-        objTemp.push({ name: strProperty, type: "text",
-            itemTemplate: function(value) {
-              strTemp = " - ";
-              for (a in JSONband[getJSONIDfromName(intName, JSONband)].album) {
-                strTemp += JSONalbum[JSONband[getJSONIDfromName(intName, JSONband)].album[a]].name + "<br>";
-              } //for
-              return strTemp;
-            }
-        });
-      break;
       case ((strProperty == "band") && (JSONtoUse == "JSONalbum")):
         objTemp.push({ name: strProperty, type: "text",
             itemTemplate: function(value) {
@@ -170,12 +175,18 @@ function createGrid(JSONtoUse) {
         objTemp.push({ name: strProperty, type: "text",
             itemTemplate: function(value) {
               intValue = value;
+              return JSONalbum[parseInt(value)].name + " (" + value + ")";
+            }
+
+            ,valueField: function(value) {
+              intValue = value;
               return JSONalbum[parseInt(value)].name;
             }
+
         });
         objTemp.push({ name: "band", type: "text",
             itemTemplate: function() {
-              return JSONband[getBandIDfromAlbum(parseInt(intValue))].name;
+              return JSONband[getBandIDfromAlbum(parseInt(intValue))].name + " (" + intValue + ")";
             }
         });
       break;
@@ -194,9 +205,6 @@ function createGrid(JSONtoUse) {
     width      : "100%"
     ,height    : "400px"
 
-
-,datatype : 'local'
-
     ,filtering : false
     ,inserting : false
     ,editing   : false
@@ -214,6 +222,11 @@ function createGrid(JSONtoUse) {
     ,pageLastText          : ">>"
     ,pageNavigatorNextText : "..."
     ,pageNavigatorPrevText : "..."
+
+
+    ,rowClick: function(args) {
+      // alert(args.item.name);
+    } //rowClick
 
   });
 

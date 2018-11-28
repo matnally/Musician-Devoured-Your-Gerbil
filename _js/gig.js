@@ -53,7 +53,7 @@ function gig(i) {
 function updateBandMoneySubtract(intBand, intCost, strAction) {
   //update band money
   var strTemp = "";
-      strTemp = (JSONband[intBand].name + " had " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + " costs are " + JSONconfig[0].currency + displayNumbersWithCommas(intCost));
+      strTemp = (JSONband[intBand].name + " had " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + ". Costs are " + JSONconfig[0].currency + displayNumbersWithCommas(intCost));
 
   var intTemp = parseInt(JSONband[intBand].money) - parseInt(intCost); // CALC
 

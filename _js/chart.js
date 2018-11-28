@@ -30,13 +30,7 @@ function chartTime() {
       if (intChartPosition > 20) {
         // break;
       } else {
-
-        if (JSONband[getBandFromAlbum(arrTemp[i].album)].name == JSONband[0].name) strTemp += "<strong>"; //for player's band
-
         strTemp += (intChartPosition + ": " + getChartSingleMovement(arrTemp[i], intChartPosition) + " - " + arrTemp[i].qualityRatingChart + " - " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name) +"<br>";
-
-        if (JSONband[getBandFromAlbum(arrTemp[i].album)].name == JSONband[0].name) strTemp += "</strong>"; //for player's band
-
       } //if
 
       intChartPosition++;
@@ -101,7 +95,7 @@ function calcChartTimeSingleQualityRating(arrItemSingle) {
   var q = arrItemSingle.qualityRating;
   var r = JSONband[i].reputation;
   var d = getDateDifference(GLOBALdatDateCurrent, arrItemSingle.releasedDate);
-  var f = 2;
+  var f = 5;
 
   /*
     q = quality rating
