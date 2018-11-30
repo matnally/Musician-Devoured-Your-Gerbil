@@ -30,7 +30,7 @@ function guiApplyListeners() {
   //passive: true so don't get error: [Violation] Added non-passive event listener
 
   //START MAIN MENU
-  document.getElementById("divPracticeComboBox").addEventListener("change",function(event){
+  document.getElementById("selPracticeComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 0); //0 = Practice
   }, {passive: true});
 
@@ -41,7 +41,7 @@ function guiApplyListeners() {
   document.getElementById("selTicketPriceComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 1); //1 = Gig
   }, {passive: true});
-  document.getElementById("divGigDays").addEventListener("change",function(event){
+  document.getElementById("selGigDays").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 1); //1 = Gig
   }, {passive: true});
 
@@ -112,12 +112,10 @@ function guiDisplayActionCost(i, index) {
   switch(index) {
     case 0:
       //practice
-      intDays = document.getElementById("divPracticeComboBox").value;
+      intDays = document.getElementById("selPracticeComboBox").value;
       intDayCost = (JSONconfig[0].valuePracticeCost);
-      intTotalCost = (i * JSONconfig[0].valuePracticeCost);
-      strTemp = "To <strong>Practice</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
-      strTemp += "<br>";
-      strTemp += "For each of the "+JSONband[0].musician.length+" musician(s) in <strong>" + JSONband[0].name + "</strong> they will recieve <strong>" + JSONconfig[0].valuePracticeSkill + "</strong> Skill, <strong>" + JSONconfig[0].valuePracticeHappiness + "</strong> Happiness and <strong>" + JSONconfig[0].valuePracticeReputation + "</strong> Reputation for each day's practice, not included any extra bonuses for using the musician's favourite equipment.";
+
+      strTemp = getGameText(JSONconfig[0].practiceEstimate);
 
       guiDisplayMovementLabelMusician("spnMovementMusicianskill", (i * JSONconfig[0].valuePracticeSkill));
       guiDisplayMovementLabelMusician("spnMovementMusicianhappiness", (i * JSONconfig[0].valuePracticeHappiness));
@@ -126,10 +124,10 @@ function guiDisplayActionCost(i, index) {
     break;
     case 1:
       //gig
-      intDays = document.getElementById("divGigDays").value;
+      intDays = document.getElementById("selGigDays").value;
       intDayCost = JSONvenue[document.getElementById("selVenueComboBox").value].money;
-      intTotalCost = (document.getElementById("divGigDays").value * JSONvenue[document.getElementById("selVenueComboBox").value].money);
-      strTemp = "To <strong>Gig</strong> for <strong>" + document.getElementById("divGigDays").value + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+
+      strTemp = getGameText(JSONconfig[0].gigEstimate);
 
       guiDisplayMovementLabelMusician("spnMovementMusicianskill", (i * JSONconfig[0].valueGigSkill));
       guiDisplayMovementLabelMusician("spnMovementMusicianhappiness", (i * JSONconfig[0].valueGigHappiness));
@@ -140,27 +138,28 @@ function guiDisplayActionCost(i, index) {
       //publicity
       intDays = JSONconfig[0].valuePublicityDaysDuration;
       intDayCost = (JSONconfig[0].valuePublicityCost);
-      intTotalCost = (JSONconfig[0].valuePublicityCost);
-      strTemp = "To gain <strong>Publicity</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
 
-      // updateElement("spnMovementMusicianskill", "");
-      // updateElement("spnMovementMusicianhappiness", "");
-      // updateElement("spnMovementMusicianreputation", " Maybe get +/- " + JSONconfig[0].valueGigReputation);
+      // strTemp = "To gain <strong>Publicity</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+
+      //No need to display anything as its chance!
 
     break;
     case 3:
       //gifts
       intDays = JSONconfig[0].valueGiftDaysDuration;
-      intDayCost = (JSONgift[i].money);
-      intTotalCost = (JSONgift[i].money * JSONband[0].musician.length);
-      strTemp = "Buying <strong>Gifts</strong> for <strong>" + JSONband[0].musician.length + "</strong> musician(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per musician, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
-      strTemp += "<br>";
-      strTemp += "For each of the "+JSONband[0].musician.length+" musician(s) in <strong>" + JSONband[0].name + "</strong> they will recieve <strong>" + JSONgift[i].happiness + "</strong> Happiness";
-      intDayCost = intTotalCost;
+      intDayCost = (JSONgift[i].money * JSONband[0].musician.length);
 
-      // updateElement("spnMovementMusicianskill", "");
+      strTemp = getGameText(JSONconfig[0].giftEstimate);
+
+      // intTotalCost = (JSONgift[i].money * JSONband[0].musician.length);
+
+      // strTemp = "Buying <strong>Gifts</strong> for <strong>" + JSONband[0].musician.length + "</strong> musician(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per musician, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
+      // strTemp += "<br>";
+      // strTemp += "For each of the "+JSONband[0].musician.length+" musician(s) in <strong>" + JSONband[0].name + "</strong> they will recieve <strong>" + JSONgift[i].happiness + "</strong> Happiness";
+      //
+      // intDayCost = intTotalCost;
+
       guiDisplayMovementLabelMusician("spnMovementMusicianhappiness", JSONgift[i].happiness);
-      // updateElement("spnMovementMusicianreputation", "");
 
     break;
     case 4:

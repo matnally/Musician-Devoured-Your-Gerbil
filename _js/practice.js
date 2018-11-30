@@ -35,8 +35,8 @@ function updateMusicianAttribute(intBand, intMusician, strAttribute, intValue) {
 
   var intTotal = parseInt(JSONmusician[JSONband[intBand].musician[intMusician]][strAttribute]) + intValue; // CALC
 
-if (intTotal < 0)
-  intTotal = 0; //so no minus numbers
+  if (intTotal < 0)
+    intTotal = 0; //so no minus numbers
 
   JSONmusician[JSONband[intBand].musician[intMusician]][strAttribute] = intTotal; // THE ACTION !!!!!!!!
 

@@ -68,7 +68,16 @@ function gameCreateMusicians(strJSONtoUse) {
 } //function
 
 
+
 function gameQuickStart() {
+
+  gameSetSettings();
+  bandAddMusician(GLOBALMusiciani);
+  gameStart();
+
+} //function
+
+function gameQuickStartFullYear() {
 
   gameSetSettings();
   bandAddMusician(GLOBALMusiciani);

@@ -42,9 +42,8 @@ function gift(i) {
     } //if
 
     //update happiness
-    var intTemp = parseInt(JSONmusician[JSONband[i].musician[a]].happiness) + intBonus;
+    var intTemp = parseInt(JSONmusician[JSONband[i].musician[a]].happiness) + JSONgift[JSONband[i].gift].happiness + intBonus; //existing + gift happiness + bonus
     JSONmusician[JSONband[i].musician[a]].happiness = intTemp; // THE ACTION !!!!!!!!
-
 
   }//for
 

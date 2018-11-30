@@ -1,22 +1,133 @@
 
-function getGameText(i, strTemp) {
+function getGameText(strTemp) {
 
-  switch (true) { //NO break; so goes through all cases
-    case (strTemp.includes("<nameMusician>")):
-      strTemp = strTemp.replace("<nameMusician>", "<strong>" + JSONmusician[i].name + "</strong>");
-    case (strTemp.includes("<wage>")):
-      strTemp = strTemp.replace("<wage>", "<strong>" + JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[i].wage) + "</strong>");
+  var strReturn = "";
+  var mapObj = [];
 
-    default:
-  } //switch
+  //TODO: duplication of map object! Bad
 
-  return strTemp;
+  if (JSONband[0].musician.length > 0) {
 
+    mapObj = {
+      "<bandName>"                      : "<strong>" + JSONband[0].name + "</strong>"
+      ,"<bandMusicians>"                : "<strong>" + JSONband[0].musician.length + "</strong>"
+      ,"<musicianBand>"                 : "<strong>" + JSONmusician[GLOBALMusiciani].name + "</strong>"
+      ,"<wage>"                         : "<strong>" + JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].wage) + "</strong>"
+
+      //Practice
+      ,"<valuePracticeSkill>"           : "<strong>" + JSONconfig[0].valuePracticeSkill + "</strong>"
+      ,"<valuePracticeHappiness>"       : "<strong>" + JSONconfig[0].valuePracticeHappiness + "</strong>"
+      ,"<valuePracticeReputation>"      : "<strong>" + JSONconfig[0].valuePracticeReputation + "</strong>"
+      ,"<practiceEstimateDays>"         : "<strong>" + document.getElementById("selPracticeComboBox").value + "</strong>"
+      ,"<practiceEstimateCost>"         : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(JSONconfig[0].valuePracticeCost) + "</strong>"
+      ,"<practiceEstimateTotal>"        : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(document.getElementById("selPracticeComboBox").value * JSONconfig[0].valuePracticeCost) + "</strong>"
+      ,"<practiceEstimateMusicians>"    : "<strong>" + JSONband[0].musician.length + "</strong>"
+
+      //Gig
+      ,"<valueGigSkill>"                : "<strong>" + JSONconfig[0].valueGigSkill + "</strong>"
+      ,"<valueGigHappiness>"            : "<strong>" + JSONconfig[0].valueGigHappiness + "</strong>"
+      ,"<valueGigReputation>"           : "<strong>" + JSONconfig[0].valueGigReputation + "</strong>"
+      ,"<gigEstimateDays>"              : "<strong>" + document.getElementById("selGigDays").value + "</strong>"
+      ,"<gigEstimateVenue>"             : "<strong>" + JSONvenue[document.getElementById("selVenueComboBox").value].name + "</strong>"
+      ,"<gigEstimateCost>"              : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(JSONvenue[document.getElementById("selVenueComboBox").value].money) + "</strong>"
+      ,"<gigEstimateTotal>"             : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(document.getElementById("selGigDays").value * JSONvenue[document.getElementById("selVenueComboBox").value].money) + "</strong>"
+
+      //Publicity
+      ,"<valuePublicityCost>"           : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(JSONconfig[0].valuePublicityCost) + "</strong>"
+      ,"<valuePublicityDaysDuration>"   : "<strong>" + JSONconfig[0].valuePublicityDaysDuration + "</strong>"
+      ,"<valuePublicityReputationGood>" : "<strong>" + JSONconfig[0].valuePublicityReputationGood + "</strong>"
+      ,"<valuePublicityReputationBad>"  : "<strong>" + JSONconfig[0].valuePublicityReputationBad + "</strong>"
+
+      //Gift
+      ,"<giftName>"                     : "<strong>" + JSONgift[document.getElementById("selGiftComboBox").value].name + "</strong>"
+      ,"<giftEstimateCost>"             : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(JSONgift[document.getElementById("selGiftComboBox").value].money) + "</strong>"
+      ,"<giftEstimateTotal>"            : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(JSONconfig[0].valueGiftDaysDuration * JSONgift[document.getElementById("selGiftComboBox").value].money) + "</strong>"
+      ,"<giftHappiness>"                : "<strong>" + JSONgift[document.getElementById("selGiftComboBox").value].happiness + "</strong>"
+
+
+
+
+
+
+      //Other
+      ,"<gameCliveSuffix>"              : getRandomWordFromString("<gameCliveSuffix>", JSONconfig[0].gameCliveSuffix)
+
+    };
+
+  } else {
+
+    //Probably the start of the game
+    //Can't reference certain elements so commented out
+
+    mapObj = {
+      //Band
+      "<bandName>"                      : "<strong>" + JSONband[0].name + "</strong>"
+      ,"<bandMusicians>"                : "<strong>" + JSONband[0].musician.length + "</strong>"
+      // ,"<musicianBand>"                 : "<strong>" + JSONmusician[GLOBALMusiciani].name + "</strong>"
+      // ,"<wage>"                         : "<strong>" + JSONconfig[0].currency + displayNumbersWithCommas(JSONmusician[GLOBALMusiciani].wage) + "</strong>"
+
+      //Practice
+      ,"<valuePracticeSkill>"           : "<strong>" + JSONconfig[0].valuePracticeSkill + "</strong>"
+      ,"<valuePracticeHappiness>"       : "<strong>" + JSONconfig[0].valuePracticeHappiness + "</strong>"
+      ,"<valuePracticeReputation>"      : "<strong>" + JSONconfig[0].valuePracticeReputation + "</strong>"
+      // ,"<practiceEstimateDays>"         : "<strong>" + document.getElementById("selPracticeComboBox").value + "</strong>"
+      ,"<practiceEstimateCost>"         : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(JSONconfig[0].valuePracticeCost) + "</strong>"
+      // ,"<practiceEstimateTotal>"        : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(document.getElementById("selPracticeComboBox").value * JSONconfig[0].valuePracticeCost) + "</strong>"
+      ,"<practiceEstimateMusicians>"    : "<strong>" + JSONband[0].musician.length + "</strong>"
+      //Gig
+      ,"<valueGigSkill>"                : "<strong>" + JSONconfig[0].valueGigSkill + "</strong>"
+      ,"<valueGigHappiness>"            : "<strong>" + JSONconfig[0].valueGigHappiness + "</strong>"
+      ,"<valueGigReputation>"           : "<strong>" + JSONconfig[0].valueGigReputation + "</strong>"
+
+      // ,"<gigEstimateDays>"         : "<strong>" + document.getElementById("selGigDays").value + "</strong>"
+      // ,"<gigEstimateVenue>"        : "<strong>" + JSONvenue[document.getElementById("selVenueComboBox").value].name + "</strong>"
+      // ,"<gigEstimateCost>"         : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(JSONvenue[document.getElementById("selVenueComboBox").value].money) + "</strong>"
+      // ,"<gigEstimateTotal>"        : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(document.getElementById("selGigDays").value * JSONvenue[document.getElementById("selVenueComboBox").value].money) + "</strong>"
+
+      //Publicity
+      ,"<valuePublicityCost>"           : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(JSONconfig[0].valuePublicityCost) + "</strong>"
+      ,"<valuePublicityDaysDuration>"   : "<strong>" + JSONconfig[0].valuePublicityDaysDuration + "</strong>"
+      ,"<valuePublicityReputationGood>" : "<strong>" + JSONconfig[0].valuePublicityReputationGood + "</strong>"
+      ,"<valuePublicityReputationBad>"  : "<strong>" + JSONconfig[0].valuePublicityReputationBad + "</strong>"
+      //Record
+
+      //Other
+      ,"<gameCliveSuffix>"              : getRandomWordFromString("<gameCliveSuffix>", JSONconfig[0].gameCliveSuffix)
+
+    };
+
+  } //if
+
+  return mapReplaceWords(strTemp, mapObj);
+
+} //function
+
+function mapReplaceWords(str, map){
+    for(key in map){
+        str = str.mapReplaceWords(key, map[key]);
+    }
+    return str;
+} //function
+
+String.prototype.mapReplaceWords = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+} //String.prototype
+
+function getRandomWordFromString(strReplace, strString) {
+  var arrTemp = [];
+      arrTemp = strString.split(',');
+  return arrTemp[Math.floor(Math.random() * arrTemp.length)];
 } //function
 
 
 
 
+
+
+/////////////////////////////////
+// HTML MARK UP
+/////////////////////////////////
 
 function getMarkUpBand(i) {
 
@@ -148,7 +259,7 @@ function getMarkUpGameStartMusician(i) {
 
   var strTemp = "";
 
-  strTemp += "<p>" + getGameText(GLOBALMusiciani, JSONconfig[0].musicianAdd) +  "</p>"
+  strTemp += "<p>" + getGameText(JSONconfig[0].musicianAdd) +  "</p>"
 
   strTemp +="   <div class='divTable'>";
   strTemp +="     <div class='divRow'>";
