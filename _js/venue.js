@@ -18,8 +18,8 @@ function getTicketsSold(i) {
     tp = ticket price
   */
 
-  intTicketsSold = (JSONband[i].reputation / tp).toFixed(0);
-  // intTicketsSold = ((r+s+h+vr) / (tp/vr)).toFixed(0); // LOGIC
+//  intTicketsSold = (JSONband[i].reputation / tp).toFixed(0);
+  intTicketsSold = ((r+s+h+vr) / (tp/vr)).toFixed(0); // LOGIC
 
   // console.log("intTicketsSold: " + intTicketsSold);
 

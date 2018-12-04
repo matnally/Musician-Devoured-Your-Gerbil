@@ -29,15 +29,15 @@ function actionChoose(i) {
     case 4:
       //record
 
-if (getSinglesOfAlbumYetToBeReleased(i).length > 0) {
+      if (getSinglesOfAlbumYetToBeReleased(i).length > 0) {
 
-  if (getSinglesOfAlbumYetToBeReleased(i).length > 10)
-    setRelease(i);
-  else
-    setRecord(i, getTracks()); //default action just record album
+        if (getSinglesOfAlbumYetToBeReleased(i).length > 10)
+          setRelease(i);
+        else
+          setRecord(i, getTracks()); //default action just record album
 
-} else
-  setRecord(i, getTracks()); //default action just record album
+      } else
+        setRecord(i, getTracks()); //default action just record album
 
     break;
     case 5:
@@ -99,11 +99,11 @@ function actionExecuteBandAll() {
         if (GLOBALdatDateCurrent.getTime() == datDateActionFinish.getTime()) {//Check if last day of action. If so, do action as can't do it every day!
           createAlbum(i); //creates the album!
 
-if (i=0) {
-  //PLAYER
-  updateElement("divBandAlbums", guiDisplayDetailsCreateHTMLcomboBoxAlbums("selBandAlbums")); //TODO: Needs to be here?
-  showAlbumSingles(document.getElementById("selBandAlbums").value);
-} //if
+          if (i==0) {
+            //PLAYER
+            updateElement("divBandAlbums", guiDisplayDetailsCreateHTMLcomboBoxAlbums("selBandAlbums")); //TODO: Needs to be here?
+            showAlbumSingles(document.getElementById("selBandAlbums").value);
+          } //if
 
         } //if
       break;

@@ -91,7 +91,6 @@
 }
 
 
-
 /************ END OF DEFAULT STYLES ************/
 
 
@@ -111,8 +110,6 @@ section {
   display: block;
   background-color: #ccc;
 }
-
-
 
 #selBandComboBox {
   width: 120px;
@@ -185,8 +182,6 @@ img {
   width: 128px;
   height: 128px;
 }
-
-
 
 p {
   text-align: left;

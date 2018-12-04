@@ -11,7 +11,7 @@ function adminAdminTurn() {
   JSONband[0].days = 365;
   turnBegin();
 } //function
-``
+
 function gameCreateMusicians(strJSONtoUse) {
 
   var strName = "";
@@ -67,8 +67,6 @@ function gameCreateMusicians(strJSONtoUse) {
 
 } //function
 
-
-
 function gameQuickStart() {
 
   gameSetSettings();
@@ -83,5 +81,11 @@ function gameQuickStartFullYear() {
   bandAddMusician(GLOBALMusiciani);
   gameStart();
   adminAdminTurn();
+
+} //function
+
+function changeTheme(strTheme) {
+
+    JSONconfig[0].imagesFolder = JSONconfig[0][strTheme];
 
 } //function

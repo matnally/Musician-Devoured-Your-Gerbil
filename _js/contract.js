@@ -43,11 +43,10 @@ function askSignContract(i) {
 
   loggingOutput(i, "RECORD CONTRACT", JSONband[i].name + " has just signed a record contract with "+JSONcontract[JSONband[i].contract].name+"<br>");
 
-  // updateBandMoneySubtract(i, JSONcontract[JSONband[i].contract].money, "contract"); //COST
-  updateBandMoneyAdd(i, JSONcontract[JSONband[i].contract].money, "record contract signing bonus"); //COST
-  JSONband[i].reputation = JSONband[i].reputation + JSONcontract[JSONband[i].contract].reputation;
+  updateBandMoneyAdd(i, JSONconfig[0].currency  + displayNumbersWithCommas(JSONcontract[JSONband[i].contract].money), "record contract signing bonus"); //COST
+  JSONband[i].reputation = JSONband[i].reputation + JSONcontract[JSONband[i].contract].reputation; //TODO: difference between band & musician rep?
 
-  loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " have received "+JSONconfig[0].currency+JSONcontract[JSONband[i].contract].money+" signing bonus<br>");
+  loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " have received "+JSONconfig[0].currency+displayNumbersWithCommas(JSONcontract[JSONband[i].contract].money)+" signing bonus<br>");
   loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " have received "+JSONcontract[JSONband[i].contract].reputation+" reputation points by signing with "+JSONcontract[JSONband[i].contract].name+"<br>");
   loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " will receive "+JSONcontract[JSONband[i].contract].percent+"% from all Single releases<br>");
 

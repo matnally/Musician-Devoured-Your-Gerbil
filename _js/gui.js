@@ -7,12 +7,8 @@ function guiCreateElements() {
 
   //COMBO BOXES
   //Game Start
-  // updateElement("divBandMusicians", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
   updateElement("divEquipmentComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONequipment, "selEquipmentComboBox"));
-  //Practice
-  //DAYS?
   //Gig
-  //DAYS?
   updateElement("divVenueComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONvenue, "selVenueComboBox"));
   updateElement("divTicketPriceComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONtickets, "selTicketPriceComboBox"));
   //Gifts
@@ -22,7 +18,7 @@ function guiCreateElements() {
   //Release
   updateElement("divDirectorComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONdirector, "selDirectorComboBox"));
   updateElement("divFeatureComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONfeature, "selFeatureComboBox"));
-  updateElement("divLocationComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONlocation, "selLocationComboBox"));
+  updateElement("divLocationComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONstudio, "selStudioComboBox"));
 
 } //function
 
@@ -45,11 +41,6 @@ function guiApplyListeners() {
     guiDisplayActionCost(this.value, 1); //1 = Gig
   }, {passive: true});
 
-  // document.getElementById("secPublicity").addEventListener("mousemove",function(event){
-  //   guiDisplayActionCost(1, 2); //2 = Publicity
-  // }, {passive: true});
-  //END MAIN MENU
-
   document.getElementById("selGiftComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 3); //3 = Gifts
   }, {passive: true});
@@ -62,13 +53,12 @@ function guiApplyListeners() {
   document.getElementById("selDirectorComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 5); //5 = Release
   }, {passive: true});
-  document.getElementById("selLocationComboBox").addEventListener("change",function(event){
+  document.getElementById("selStudioComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 5); //5 = Release
   }, {passive: true});
   document.getElementById("selFeatureComboBox").addEventListener("change",function(event){
     guiDisplayActionCost(this.value, 5); //5 = Release
   }, {passive: true});
-
 
 } //function
 
@@ -79,22 +69,19 @@ function guiDisplayDetailsBand(i) {
 
   i = parseInt(i);
 
-  if (i < 0)
-    i = JSONband.length - 1;
-
-  if (i >= JSONband.length)
-    i=0;
+  if (i < 0) i = JSONband.length - 1; //ensur
+  if (i >= JSONband.length) i=0; //at the end so reset
 
   GLOBALBandi = i;
 
   strTemp = getMarkUpBand(i);
-    updateElement("divBandDetails", strTemp);
+  updateElement("divBandDetails", strTemp);
 
   strTemp = getMarkUpMusician(i);
-    updateElement("divBandMusicianDetails", strTemp);
+  updateElement("divBandMusicianDetails", strTemp);
 
   strTemp = getMarkUpAlbum(i);
-    updateElement("divBandAlbumsDetails", strTemp);
+  updateElement("divBandAlbumsDetails", strTemp);
 
   guiDisplayActionCurrent(i);
   adminShowLog(i); //display
@@ -139,8 +126,6 @@ function guiDisplayActionCost(i, index) {
       intDays = JSONconfig[0].valuePublicityDaysDuration;
       intDayCost = (JSONconfig[0].valuePublicityCost);
 
-      // strTemp = "To gain <strong>Publicity</strong> for <strong>" + i + "</strong> day(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per day, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
-
       //No need to display anything as its chance!
 
     break;
@@ -151,14 +136,6 @@ function guiDisplayActionCost(i, index) {
 
       strTemp = getGameText(JSONconfig[0].giftEstimate);
 
-      // intTotalCost = (JSONgift[i].money * JSONband[0].musician.length);
-
-      // strTemp = "Buying <strong>Gifts</strong> for <strong>" + JSONband[0].musician.length + "</strong> musician(s), at <strong>"+JSONconfig[0].currency + intDayCost + "</strong> per musician, will cost a total of <strong>" + JSONconfig[0].currency + intTotalCost + "</strong>";
-      // strTemp += "<br>";
-      // strTemp += "For each of the "+JSONband[0].musician.length+" musician(s) in <strong>" + JSONband[0].name + "</strong> they will recieve <strong>" + JSONgift[i].happiness + "</strong> Happiness";
-      //
-      // intDayCost = intTotalCost;
-
       guiDisplayMovementLabelMusician("spnMovementMusicianhappiness", JSONgift[i].happiness);
 
     break;
@@ -166,35 +143,21 @@ function guiDisplayActionCost(i, index) {
       //record
       intDays = JSONtracks[i].days;
       intDayCost = (JSONtracks[i].money);
-      intTotalCost = (JSONtracks[i].money * intDays);
-      strTemp = "To <strong>Record</strong> a <strong>" + JSONtracks[i].tracks + "</strong>-track album will take <strong>"+JSONtracks[i].days+"</strong> day(s) at <strong>"+JSONconfig[0].currency + intDayCost+"</strong> per day and cost a total of <strong>"+JSONconfig[0].currency + intTotalCost + "</strong>";
 
-      // updateElement("spnMovementMusicianskill", "");
-      // updateElement("spnMovementMusicianhappiness", "");
-      // updateElement("spnMovementMusicianreputation", "");
+      strTemp = getGameText(JSONconfig[0].recordEstimate);
 
     break;
     case 5:
       //release
       intDays = JSONconfig[0].valueReleaseDaysDuration;
-      intDayCost = (JSONconfig[0].valueReleaseCost);
-      intTotalCost = (JSONdirector[document.getElementById("selDirectorComboBox").value].money + JSONlocation[document.getElementById("selLocationComboBox").value].money + JSONfeature[document.getElementById("selFeatureComboBox").value].money);
+      intDayCost = JSONconfig[0].valueReleaseCost + JSONfeature[document.getElementById("selFeatureComboBox").value].money + JSONdirector[document.getElementById("selDirectorComboBox").value].money + JSONstudio[document.getElementById("selStudioComboBox").value].money;
 
-      strTemp = "To <strong>Release</strong> a <strong>Single</strong> it will take <strong>"+1+"</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intDayCost + "</strong>";
-      strTemp += "To create a music video directed by <strong>"+JSONdirector[document.getElementById("selDirectorComboBox").value].name+"</strong> in <strong>"+JSONlocation[document.getElementById("selLocationComboBox").value].name+"</strong> featuring <strong>"+JSONfeature[document.getElementById("selFeatureComboBox").value].name+"</strong>, will take <strong>1</strong> day(s) and cost a total of <strong>"+JSONconfig[0].currency + intTotalCost + "</strong>";
-
-      intDayCost = intDayCost + intTotalCost;
-      strTemp += "Thats a grand total of " + JSONconfig[0].currency + intDayCost;
-
-      // updateElement("spnMovementMusicianskill", "");
-      // updateElement("spnMovementMusicianhappiness", "");
-      // updateElement("spnMovementMusicianreputation", "");
+      strTemp = getGameText(JSONconfig[0].releaseEstimate);
 
     break;
   } //switch
 
-  // intTotalCost = -intTotalCost; //turn into negative number
-  guiDisplayMovementLabelBand("spnMovementBandmoney", -Math.abs((intDays * intDayCost)));
+  guiDisplayMovementLabelBand("spnMovementBandmoney", -Math.abs((intDays * intDayCost))); //turn into negative number
   updateElement("divActionCost", "<br>" + strTemp); //updates element
 
 } //function
@@ -230,8 +193,13 @@ function guiDisplayMovementLabelBand(strID, intTotalCost) {
     strTemp = "&nbsp;";
   } else {
     elem.setAttribute("class", "valuePositive");
-    strTemp = "&nbsp; +";
+    strTemp = "&nbsp;+";
   } //if
+
+  if (strID.includes("money")) {
+    strTemp += JSONconfig[0].currency;
+  } //if
+
   elem.innerHTML = strTemp + displayNumbersWithCommas(intTotalCost);
 } //function
 
@@ -245,8 +213,6 @@ function guiDisplayActionCurrent(i) {
   updateElement("divBandActionCurrent", "<br>" + strTemp);
 
 } //function
-
-
 
 function guiDisplayDate(datDate) {
 
@@ -336,51 +302,6 @@ var intTotal = 0;
       strClassName = "valueBad50";
     } // else ifs
 
-  // switch (true) {
-  //   case (intTotal > 400):
-  //     strClassName = "valueGood400";
-  //   break;
-  //   case (intTotal > 300):
-  //     strClassName = "valueGood300";
-  //   break;
-  //   case (intTotal > 200):
-  //     strClassName = "valueGood200";
-  //   break;
-  //   case (intTotal > 100):
-  //     strClassName = "valueGood100";
-  //   break;
-  //   case (intTotal > 50):
-  //     strClassName = "valueGood50";
-  //   break;
-  //
-  //   case (intTotal < -100):
-  //     strClassName = "valueBad100";
-  //   break;
-  //   case (intTotal < -50):
-  //     strClassName = "valueBad50";
-  //   break;
-  //
-  //   // case (intTotal < -400):
-  //   //   strClassName = "valueBad400";
-  //   // break;
-  //   // case (intTotal < -300):
-  //   //   strClassName = "valueBad300";
-  //   // break;
-  //   // case (intTotal < -200):
-  //   //   strClassName = "valueBad200";
-  //   // break;
-  //
-  //   default:
-  // } //switch
-
-  // console.log("intTotal: " + intTotal);
-  // console.log("strClassName: " + strClassName);
-
-  // if (inValue > intMusicianAVG)
-  //   strClassName = "valueGood";
-  // else
-  //   strClassName = "valueBad";
-
   return strClassName;
 } //function
 
@@ -406,6 +327,8 @@ function guiClearLabels() {
   updateElement("divActionCost", ""); //updates element
 
 } //function
+
+
 
 //////////////////////////
 //// SUPPORTING LOGIC ////

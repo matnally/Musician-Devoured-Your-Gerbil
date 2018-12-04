@@ -66,7 +66,7 @@ function getChartSingleMovement(arrSingle, intChartPosition) {
     default:
   } //switch
 
-  strTemp = "<img src='_images/"+strTemp+".png' alt='"+strTemp+"'>";
+  strTemp = "<img src='"+JSONconfig[0].imagesFolder+strTemp+".png' alt='"+strTemp+"'>";
 
   if (arrSingle.chartPosition == 0)
     strTemp += "";

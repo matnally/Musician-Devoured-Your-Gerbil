@@ -32,8 +32,8 @@ function gig(i) {
   updateBandMoneySubtract(i, JSONvenue[JSONband[i].venue].money, "gig venue cost"); //VENUE COST
   updateBandMoneyAdd(i, intTicketsProfit, "gig ticket profits"); //update band money ticket sales
 
-  loggingOutput(i, "gig cost", JSONband[i].name + " paid "+JSONvenue[JSONband[i].venue].money+" to play "+JSONvenue[JSONband[i].venue].name+" selling "+intTicketsSold+" tickets<br>");
-  loggingOutput(i, "gig profit", JSONband[i].name + " made " + JSONconfig[0].currency + intTicketsProfit + " from ticket sales<br>");
+  loggingOutput(i, "gig cost", JSONband[i].name + " paid "+ JSONconfig[0].currency + displayNumbersWithCommas(JSONvenue[JSONband[i].venue].money) + " to play " + JSONvenue[JSONband[i].venue].name+" selling "+ displayNumbersWithCommas(intTicketsSold) + " tickets<br>");
+  loggingOutput(i, "gig profit", JSONband[i].name + " made " + JSONconfig[0].currency + displayNumbersWithCommas(intTicketsProfit) + " from ticket sales<br>");
 
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
