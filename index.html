@@ -29,6 +29,7 @@
   <script src="_js/publicity.js"></script>
   <script src="_js/record.js"></script>
   <script src="_js/release.js"></script>
+  <script src="_js/sounds.js"></script>
   <script src="_js/tracks.js"></script>
   <script src="_js/turn.js"></script>
   <script src="_js/venue.js"></script>
@@ -54,6 +55,9 @@
   <script src="_json/tracks.js"></script>
   <script src="_json/venue.js"></script>
 
+  <!-- SOUNDS -->
+  <script src="_js/tone.js"></script>
+
   <!-- CHARTS -->
 	<link rel="stylesheet" href="_css/graph.css">
 	<script src="_js/raphael.min.js"></script>
@@ -67,6 +71,39 @@
 
 </head>
 <body>
+
+
+  <button onclick="playSound();">Play Sound</button>
+
+<!--
+
+  GUI DESIGN
+  ==========
+
+  Band
+    Stats
+    Log
+    Musicians
+      Stats
+    Albums
+      Singles
+
+  Action
+    Desc
+    Options / Choice
+      Estimated cost
+
+ -->
+
+
+  <div class="divTable">
+    <div class="divRow">
+      <div class="divCell">
+      </div> <!-- divCell -->
+    </div> <!-- divRow -->
+  </div> <!-- divTable -->
+
+
 
   <div id="divCurrentDate"></div>
 
@@ -92,7 +129,7 @@
         </section><!-- section -->
 
         <section id="secMainMenu">
-          <h3><script>document.write(getGameText(JSONconfig[0].action));</script></h3>
+          <div id="divGameTextAction"></div>
           <br>
           <button class="butMainMenu" onClick="navShow('#secPractice')">Practice</button><br>
           <button class="butMainMenu" onClick="navShow('#secGig')">Gig</button><br>
@@ -104,7 +141,7 @@
         </section>
 
         <section id="secPractice">
-          <p><script>document.write(getGameText(JSONconfig[0].practiceDescription));</script></p>
+          <div id="divGameTextPracticeDescription"></div>
           <select id="selPracticeComboBox">
             <option value="1">1 day</option>
             <option value="2">2 days</option>
@@ -122,7 +159,7 @@
         </section><!-- section -->
 
         <section id="secGig">
-          <p><script>document.write(getGameText(JSONconfig[0].gigDescription));</script></p>
+          <div id="divGameTextGigDescription"></div>
           <div id="divVenueComboBox"></div>
           <div id="divTicketPriceComboBox"></div>
           <select id="selGigDays">
@@ -142,7 +179,7 @@
         </section><!-- section -->
 
         <section id="secPublicity">
-          <p><script>document.write(getGameText(JSONconfig[0].publicityDescription));</script></p>
+          <div id="divGameTextPublicityDescription"></div>
           <button onClick="setPublicityPlayer()">Get Publicity</button>
           <br>
           <br>
@@ -150,7 +187,7 @@
         </section><!-- section -->
 
         <section id="secGifts">
-          <p><script>document.write(getGameText(JSONconfig[0].giftDescription));</script></p>
+          <div id="divGameTextGiftDescription"></div>
           <div id="divGiftComboBox"></div>
           <button onClick="setGiftPlayer(document.getElementById('selGiftComboBox').value)">Give Gifts</button>
           <br>
@@ -159,7 +196,7 @@
         </section><!-- section -->
 
         <section id="secRecord">
-          <p><script>document.write(getGameText(JSONconfig[0].recordDescription));</script></p>
+          <div id="divGameTextRecordDescription"></div>
           <div id="divTracksComboBox"></div>
           <button onClick="setRecordPlayer(document.getElementById('selTracksComboBox').value)">Record an album</button>
           <br>
@@ -168,7 +205,7 @@
         </section><!-- section -->
 
         <section id="secRelease">
-          <p><script>document.write(getGameText(JSONconfig[0].releaseDescription));</script></p>
+          <div id="divGameTextReleaseDescription"></div>
           <div id="divDirectorComboBox"></div>
           <div id="divLocationComboBox"></div>
           <div id="divFeatureComboBox"></div>
@@ -224,9 +261,9 @@
           <br>
           <p>Choose a Theme</p>
           <select id="selTheme" onChange="changeTheme(this.value)">
-            <option value="imagesFolder">Normal</option>
             <option value="theme0">theme0</option>
             <option value="theme1">theme1</option>
+            <option value="imagesFolder">Normal</option>
           </select>
           <br>
           <p>Money</p>
@@ -276,7 +313,7 @@
         <h2>Graph</h2>
         <div id="divGraph"></div>
         <div id="divSinglesComboBox"></div>
-        <button onClick="guiDisplayDetailsSingle( document.getElementById('selSingleComboBox').value );">Singles</button>
+        <button onClick="guiDisplayDetailsSingle(document.getElementById('selSingleComboBox').value);">Singles</button>
 
       </div> <!-- divCell -->
 

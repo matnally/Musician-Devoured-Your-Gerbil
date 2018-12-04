@@ -14,7 +14,15 @@ function bandAddMusician(index) {
 
 function gameSetSettings() {
 
+  /*
+    SETS DEFAULTS FOR
+      Money
+      Image theme
+      Musician namesets
+  */
+
   JSONband[0].money = JSONconfig[0][document.getElementById('selBandMoney').value];
+  changeTheme(document.getElementById('selTheme').value);
   gameCreateMusicians(document.getElementById('selNameSet').value);
 
 } //function

@@ -62,6 +62,19 @@ function guiApplyListeners() {
 
 } //function
 
+function guiApplyGameText() {
+
+  //When the game starts, apply the text from the config file
+  updateElement("divGameTextAction", getGameText(JSONconfig[0].action));
+  updateElement("divGameTextPracticeDescription", getGameText(JSONconfig[0].practiceDescription));
+  updateElement("divGameTextGigDescription", getGameText(JSONconfig[0].gigDescription));
+  updateElement("divGameTextPublicityDescription", getGameText(JSONconfig[0].publicityDescription));
+  updateElement("divGameTextGiftDescription", getGameText(JSONconfig[0].giftDescription));
+  updateElement("divGameTextRecordDescription", getGameText(JSONconfig[0].recordDescription));
+  updateElement("divGameTextRecordDescription", getGameText(JSONconfig[0].releaseDescription));
+
+} //function
+
 function guiDisplayDetailsBand(i) {
 
   var intTemp = 1;
@@ -183,6 +196,7 @@ function guiDisplayMovementLabelMusician(strID, intTotalCost) {
   } //for
 
 } //function
+
 function guiDisplayMovementLabelBand(strID, intTotalCost) {
   //Updates how much will be taken for the property, applying the appropiate class
   var elem = document.getElementById(strID);
@@ -197,7 +211,7 @@ function guiDisplayMovementLabelBand(strID, intTotalCost) {
   } //if
 
   if (strID.includes("money")) {
-    strTemp += JSONconfig[0].currency;
+    strTemp += JSONconfig[0].currency; //concatenate currency symbol if ID is to do with money
   } //if
 
   elem.innerHTML = strTemp + displayNumbersWithCommas(intTotalCost);

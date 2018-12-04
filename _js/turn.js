@@ -3,6 +3,7 @@ function gameInit() {
   //Initialisation of turn / Start of game!
   guiCreateElements(); //Create everything needed
   guiApplyListeners();
+  guiApplyGameText();
 
   navHideAll();
   navShowSingle("#secStartGame");
@@ -45,9 +46,9 @@ function turnBegin() {
   guiDisplayDetailsBand(0);
 
   for (var i=0;i<JSONband[0].days;i++) {
-    // setTimeout(turnStart, 1000);
     turnStart();
   } //for
+
   turnFinish();
 } //function
 
@@ -55,8 +56,8 @@ function turnStart() {
   //Start of turn
   updateDate();
   actionExecuteBandAll(); //do actions for bands
-  eventDOWaction(); //choose action corressponding to day of week
-  //WAIT???
+  eventDOWAction(); //choose action corressponding to day of week
+
 } //function
 
 function turnEnd() {
@@ -65,6 +66,7 @@ function turnEnd() {
 function turnFinish() {
 
   eventContract(0); //see if they are eligible for a record contract, if not already
+  eventRandom(0);
 
   adminShowLog(0);
 
@@ -87,7 +89,7 @@ function turnFinish() {
 //// SUPPORTING LOGIC ////
 //////////////////////////
 
-function eventDOWaction() {
+function eventDOWAction() {
   //choose action corressponding to day of week
   switch(GLOBALdatDateCurrent.getDay()) {
     case 0:
@@ -115,6 +117,19 @@ function eventDOWaction() {
     break;
     default:
   } //switch
+
+} //function
+
+function eventRandom(i) {
+
+    //TODO: Random event to add a bit of excitment
+    /*
+      Charity gigs - no money just publicity
+      STOLEN EQUIPMENT? What to do: rough em upm, etc...
+      musicians can die in publicity!! +reputation
+      Musician ask for gifts if HAPPINESS TOO LOW - threats to quit bad if not get a gift (chance they might)
+      Musician thinks a psychedelic firework show would really improve the show. costs money
+    */
 
 } //function
 

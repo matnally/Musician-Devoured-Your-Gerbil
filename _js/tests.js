@@ -441,7 +441,7 @@ NOT TESTED
   turnStart
   turnEnd
   turnFinish
-  eventDOWaction
+  eventDOWAction
   takewageAway
 */
 QUnit.module( "turn.js" );

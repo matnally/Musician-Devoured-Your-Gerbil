@@ -85,9 +85,9 @@ var JSONconfig = [{
   ,"publicityEndCecil"    : "Shut up Clive!"
   //*************************************
   ,"giftDescription" : "<gameCliveSuffix> Got to keep <bandName> happy, eh? What shall we give our amazing rock stars?"
-  ,"giftEstimate" : "Buying <giftName> for <bandMusicians> musician(s), costing <giftEstimateCost> per musician, will cost a total of <giftEstimateTotal>. Each musician in <bandName> will recieve <giftHappiness> HAPPINESS"
-  ,"gift1" : "The costs per star are <cost>!"
-  ,"gift2" : "The bill's <money>!"
+  ,"giftEstimate"    : "Buying <giftName> for <bandMusicians> musician(s), costing <giftEstimateCost> per musician, will cost a total of <giftEstimateTotal>. Each musician in <bandName> will recieve <giftHappiness> HAPPINESS"
+  ,"gift1"           : "The costs per star are <cost>!"
+  ,"gift2"           : "The bill's <money>!"
   //*************************************
   ,"wages" : "Heavy vibes boss. It's wages time!"
   //*************************************
