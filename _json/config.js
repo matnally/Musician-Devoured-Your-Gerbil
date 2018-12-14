@@ -35,7 +35,8 @@ var JSONconfig = [{
   ,"valueReleaseCost"             : 20000
   ,"valueReleaseDaysDuration"     : 1 //bonus for same gift
   //*************************************
-  ,"contractThreshold"            : 300 //no of points to reach until ask band to sign
+  ,"contractThreshold"            : 300 //no of REPUTATION points to reach until ask band to sign
+  ,"contractThresholdDate"        : 90  //no of days to reach until ask band to sign (90 = roughly 3 months)
   //*************************************
   //Musician Creation
   ,"MusicianReputation"           : 501

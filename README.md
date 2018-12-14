@@ -27,3 +27,7 @@ And the rest is rock and roll history... or is it?
 Credits
 =======
 Based on, and plagiarised from, the great original Sinclair Spectrum 48k game Rockstar Ate My Hamster by Colin Bradshaw-Jones.
+
+
+Gold      = 500,000
+Platinum  = 1,000,000

@@ -70,7 +70,10 @@ function gameCreateMusicians(strJSONtoUse) {
 function gameQuickStart() {
 
   gameSetSettings();
-  bandAddMusician(GLOBALMusiciani);
+  bandAddMusician(0);
+  bandAddMusician(1);
+  bandAddMusician(2);
+  bandAddMusician(3);
   gameStart();
 
 } //function

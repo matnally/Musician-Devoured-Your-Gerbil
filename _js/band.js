@@ -79,7 +79,7 @@ function calcBandReputation(JSONtoUse) {
   return intTemp;
 } //function
 
-var GLOBALdatDateCurrent = new Date("01/01/1989"); // GLOBAL!!!!!  mm/dd/yyyy
+var GLOBALdatDateCurrent = new Date("01/01/1989"); // GLOBAL!!!!!  mm/dd/yyyy TODO: hmmm?
 function getDateCurrent() {
   //returns the in-game current date
   var datCurrent = GLOBALdatDateCurrent;

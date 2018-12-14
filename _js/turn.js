@@ -19,8 +19,11 @@ function gameStart() {
 
   actionChooseBandAll(); //sets an action to each band
 
+  // GUI
   updateElement("divCurrentDate", guiDisplayDate(GLOBALdatDateCurrent));
   guiDisplayDetailsBand(0);
+  updateElement('templateMusicians', guiCreateMusicianHTML(0)); // New GUI
+
 
   updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
   document.getElementById("selBandComboBox").addEventListener("change",function(event){

@@ -166,7 +166,12 @@ function createGrid(JSONtoUse) {
       case ((strProperty == "releasedDate") && (JSONtoUse == "JSONsingle")):
         objTemp.push({ name: strProperty, type: "text",
             itemTemplate: function(value) {
-              return guiDisplayDate(new Date(value));
+
+              if (!value)
+                return "Not released";
+              else
+                return guiDisplayDate(new Date(value));
+
             }
         });
       break;

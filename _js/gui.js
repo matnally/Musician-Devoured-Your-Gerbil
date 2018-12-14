@@ -1,4 +1,84 @@
 
+function guiCreateMusicianHTML(i) {
+
+  var elemTemplateNode = "";
+  var elemTemplateItem = "";
+  var strTemp = ""; // To hold the HTML
+  var strClass = ""; // Class to add
+
+  var elemTemplate = document.querySelector("template.templateMusician"); //Get template
+
+  for (m in JSONband[i].musician) {
+
+    elemTemplateNode = document.importNode(elemTemplate, true); // Create new node, based on the template
+
+    // ID
+    elemTemplateItem = elemTemplateNode.content.querySelector("div.divTableWrapperGUI");
+    elemTemplateItem.setAttribute("id", "musician" + m); //give it a unquie ID based on musican ID
+
+    // Choose correct class for the table from https://www.w3schools.com/w3css/w3css_responsive.asp
+    switch (true) {
+      case (JSONband[i].musician.length == 2):
+        strClass = "w3-half";
+      break;
+      case (JSONband[i].musician.length == 3):
+        strClass = "w3-third";
+      break;
+      case (JSONband[i].musician.length == 4):
+        strClass = "w3-quarter";
+      break;
+    } //switch
+    elemTemplateItem.classList.add(strClass);
+
+    // Name
+    elemTemplateItem = elemTemplateNode.content.querySelector("div.musicianName");
+    elemTemplateItem.textContent = JSONmusician[JSONband[i].musician[m]].name; //change name
+    // Musician Image
+    elemTemplateItem = elemTemplateNode.content.querySelector("img.musicianImage");
+    elemTemplateItem.setAttribute("src", JSONconfig[0].imagesFolder + "gui32x32.png"); //give it a unquie ID based on musican ID
+    elemTemplateItem.setAttribute("alt", JSONmusician[JSONband[i].musician[m]].name); //give it a unquie ID based on musican ID
+    // Skill
+    elemTemplateItem = elemTemplateNode.content.querySelector("div.musicianSkill");
+    elemTemplateItem.textContent = JSONmusician[JSONband[i].musician[m]].skill;
+    // Happiness
+    elemTemplateItem = elemTemplateNode.content.querySelector("div.musicianHappiness");
+    elemTemplateItem.textContent = JSONmusician[JSONband[i].musician[m]].happiness;
+    // Reputation
+    elemTemplateItem = elemTemplateNode.content.querySelector("div.musicianReputation");
+    elemTemplateItem.textContent = JSONmusician[JSONband[i].musician[m]].reputation;
+    // Gift
+    elemTemplateItem = elemTemplateNode.content.querySelector("img.musicianGift");
+    elemTemplateItem.setAttribute("src", JSONconfig[0].imagesFolder + "gui32x32.png"); //give it a unquie ID based on musican ID
+    elemTemplateItem.setAttribute("alt", JSONgift[JSONmusician[JSONband[i].musician[m]].gift].name); //give it a unquie ID based on musican ID
+    // Equipment
+    elemTemplateItem = elemTemplateNode.content.querySelector("img.musicianEquipment");
+    elemTemplateItem.setAttribute("src", JSONconfig[0].imagesFolder + "gui32x32.png"); //give it a unquie ID based on musican ID
+    elemTemplateItem.setAttribute("alt", JSONequipment[JSONmusician[JSONband[i].musician[m]].equipment].name); //give it a unquie ID based on musican ID
+
+    strTemp += elemTemplateNode.innerHTML; //get innerHTML so does get the template tags. If get the TEMPLATE tags it won't show by default
+
+  } //for
+
+  return strTemp;
+
+} //function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// END OF NEW GUI
+
 var GLOBALBandi = 0;
 var GLOBALMusiciani = 0;
 
@@ -341,6 +421,49 @@ function guiClearLabels() {
   updateElement("divActionCost", ""); //updates element
 
 } //function
+
+
+
+
+
+// START - FUNKY STUFF
+
+function guiTypewrite() {
+
+  $('#typewriteText').typewrite({
+      actions: [
+          {type: 'Hello. '},
+          {type: '<br>'},
+          {type: 'Weclome '},
+          {delay: 1500},
+          {remove: {num: 1, type: 'stepped'}},
+          {select: {from: 11, to: 16}},
+          {delay: 2000},
+          {remove: {num: 5, type: 'whole'}},
+          {delay: 300},
+          {type: 'lcome to typewrite. '},
+          {type: '<br>'},
+          {type: 'It\'s just so easy to setup and use.'}
+      ]
+  });
+
+} //function
+
+function guiAnimateNumber(elem, intNumber) {
+  setTimeout(function(){
+    // $(elem).innerHTML = 456;
+    elem.innerHTML = intNumber;
+      // odometer.innerHTML = 456;
+  }, 100);
+} //function
+
+function guiCelebrate(elem) {
+
+  $(elem).celebrate({unicode: '\u2B50', color: 'gold'});
+
+} //function
+
+// END - FUNKY STUFF
 
 
 

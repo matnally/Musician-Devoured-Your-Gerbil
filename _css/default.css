@@ -1,11 +1,71 @@
+/* START CORE ELEMENTS */
 * {
-     font-family: "Inconsolata", monospace;
-     margin:0;
-     padding: 0;
- }
- body {
-   background-color: #fff;
- }
+  font-family : "Inconsolata", monospace;
+  /* margin      : 0;
+  padding     : 0; */
+}
+body {
+  background-color: #fff;
+}
+/* END CORE ELEMENTS */
+
+/* START MAIN ELEMENTS */
+img {
+  display: block; /* so no space at bottom of div */
+}
+/* END MAIN ELEMENTS */
+
+/* START TABLES */
+#templateMusicians {
+  width : 50%;
+}
+.divTableWrapperGUI {
+  border: 1px #CCC solid;
+}
+.divTableGUI {
+  width  : 100%;
+  display: table;
+}
+.divRowGUI {
+  display: table-row;
+}
+.divCellGUI {
+  display       : table-cell;
+  text-align    : center;
+  vertical-align: middle;
+
+  white-space: nowrap; /* for overflows */
+  overflow: hidden; /* for overflows */
+}
+.divCellGUI img {
+  margin-left : auto; /* Center image */
+  margin-right: auto; /* Center image */
+}
+/* END TABLES */
+
+/* W3.CSS OVER RIDES */
+.w3-row { display: flex; } /* makes all DIVS equal height */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CLEAN UP!!! */
 
 
  .valueGood400 {
@@ -149,9 +209,6 @@ section {
   border: 1px #000 solid;
 }
 
-img {
-  display: block; /* so no space at bottom of div */
-}
 
 .divGameLeft {
   width: 5%;

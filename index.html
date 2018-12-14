@@ -5,6 +5,8 @@
   <title>Musician Devoured Your Gerbil</title>
   <meta charset="utf-8">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <!-- DEFAULTS -->
   <link rel="stylesheet" href="_css/default.css">
   <script src="_js/default.js"></script>
@@ -56,24 +58,33 @@
   <script src="_json/venue.js"></script>
 
   <!-- SOUNDS -->
-  <script src="_js/tone.js"></script>
+  <script src="_js/plugins/tone.js"></script>
 
   <!-- CHARTS -->
-	<link rel="stylesheet" href="_css/graph.css">
-	<script src="_js/raphael.min.js"></script>
-	<script src="_js/elycharts.min.js"></script>
-	<script src="_js/graph.js"></script>
+	<link rel="stylesheet" href="_css/plugins/graph.css">
+	<script src="_js/plugins/raphael.min.js"></script>
+	<script src="_js/plugins/elycharts.min.js"></script>
+	<script src="_js/plugins/graph.js"></script>
 
   <!-- DATA GRID -->
-  <link rel="stylesheet" href="_css/jsgrid.min.css" />
-  <link rel="stylesheet" href="_css/jsgrid-theme.min.css" />
-  <script src="_js/jsgrid.min.js"></script>
+  <link rel="stylesheet" href="_css/plugins/jsgrid.min.css" />
+  <link rel="stylesheet" href="_css/plugins/jsgrid-theme.min.css" />
+  <script src="_js/plugins/jsgrid.min.js"></script>
+
+  <!-- PLUGINS -->
+  <script src="_js/plugins/celebrate.js"></script>
+  <!-- <script src="_js/plugins/jquery.animateNumber.min.js"></script> -->
+  <script src="_js/plugins/typewrite.min.js"></script>
+
+  <link rel="stylesheet" href="_css/plugins/odometer-theme-default.css">
+  <script src="_js/plugins/odometer.js"></script>
+
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
 </head>
 <body>
-
-
-  <button onclick="playSound();">Play Sound</button>
 
 <!--
 
@@ -95,6 +106,53 @@
 
  -->
 
+  <div id="templateMusicians" class="w3-row"></div>
+
+  <template class="templateMusician">
+    <div class="divTableWrapperGUI">
+
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI"><img class="musicianImage" src="_images/gui32x32.png" alt="Musician image"></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI"><div class="musicianName">Name</div></div> <!-- divCell -->
+       </div> <!-- divRow -->
+     </div> <!-- divTable -->
+
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI"><img src="_images/gui32x32.png" alt="Skill"></div> <!-- divCell -->
+         <div class="divCellGUI"><img src="_images/gui32x32.png" alt="Happiness"></div> <!-- divCell -->
+         <div class="divCellGUI"><img src="_images/gui32x32.png" alt="Reputation"></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI"><div class="musicianSkill">Skill</div></div> <!-- divCell -->
+         <div class="divCellGUI"><div class="musicianHappiness">Happiness</div></div> <!-- divCell -->
+         <div class="divCellGUI"><div class="musicianReputation">Reputation</div></div> <!-- divCell -->
+       </div> <!-- divRow -->
+     </div> <!-- divTable -->
+
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI">Fav gift</div> <!-- divCell -->
+         <div class="divCellGUI"><img class="musicianGift" src="_images/gui32x32.png" alt=""></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI">Plays</div> <!-- divCell -->
+         <div class="divCellGUI"><img class="musicianEquipment" src="_images/gui32x32.png" alt=""></div> <!-- divCell -->
+       </div> <!-- divRow -->
+     </div> <!-- divTable -->
+
+    </div> <!-- divTableWrapper -->
+  </template>
+
+
+
+
+
+
+
 
   <div class="divTable">
     <div class="divRow">
@@ -104,6 +162,9 @@
   </div> <!-- divTable -->
 
 
+  <hr>
+
+  <button onclick="playSound();">Play Sound</button>
 
   <div id="divCurrentDate"></div>
 
@@ -327,6 +388,27 @@
     <option value="JSONsingle">Tracks</option>
   </select>
   <div id="jsGrid"></div>
+
+
+
+
+
+<!-- typewrite -->
+<div id="typewriteText"></div>
+<button onClick="guiTypewrite();">Type write</button>
+
+<!-- celebrate -->
+<button onclick="guiCelebrate(this);">Click me for gold stars</button>
+<br><br>
+<button onclick="$(this).celebrate({unicode: '\u2605', color: 'gold', particles:3}).celebrate({unicode: '\u2618', color: 'green', particles: 3}).celebrate({unicode: '\u2665', color: 'purple', particles: 3});">Click me for lucky charms</button>
+
+<!-- odometer -->
+<div id="odometer" class="odometer">123</div>
+<button onclick="guiAnimateNumber(document.getElementById('odometer'), 456);">Count</button>
+
+
+
+
 
   <script>
     $(document).ready(function() {

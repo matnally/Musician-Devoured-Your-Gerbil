@@ -7,6 +7,13 @@ function eventContract(i) {
     if (calChanceContract(i) === true) {
       //have enough reputation for a contract offer
       askSignContract(i);
+    } else {
+
+      if (getDateDifference(GLOBALdatDateCurrent, JSONconfig[0].date) >= JSONconfig[0].contractThresholdDate){
+        //Sympathy as band has gone for long time without getting signed, so give 'em it
+        askSignContract(i);
+      } //if
+
     } //if
   } //if
 
