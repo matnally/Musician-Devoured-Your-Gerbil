@@ -79,34 +79,13 @@
   <link rel="stylesheet" href="_css/plugins/odometer-theme-default.css">
   <script src="_js/plugins/odometer.js"></script>
 
-
+  <!-- RESPONSIVE DESIGN -->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
 
 </head>
 <body>
 
-<!--
-
-  GUI DESIGN
-  ==========
-
-  Band
-    Stats
-    Log
-    Musicians
-      Stats
-    Albums
-      Singles
-
-  Action
-    Desc
-    Options / Choice
-      Estimated cost
-
- -->
-
-  <div id="templateMusicians" class="w3-row"></div>
+  <!-- START OF TEMPLATES -->
 
   <template class="templateMusician">
     <div class="divTableWrapperGUI">
@@ -127,9 +106,9 @@
          <div class="divCellGUI"><img src="_images/gui32x32.png" alt="Reputation"></div> <!-- divCell -->
        </div> <!-- divRow -->
        <div class="divRowGUI">
-         <div class="divCellGUI"><div class="musicianSkill">Skill</div></div> <!-- divCell -->
-         <div class="divCellGUI"><div class="musicianHappiness">Happiness</div></div> <!-- divCell -->
-         <div class="divCellGUI"><div class="musicianReputation">Reputation</div></div> <!-- divCell -->
+         <div class="divCellGUI"><div class="odometer musicianSkill">Skill</div><span name='spnMovementMusicianskill'></div> <!-- divCell -->
+         <div class="divCellGUI"><div class="odometer musicianHappiness">Happiness</div><span name='spnMovementMusicianhappiness'></div> <!-- divCell -->
+         <div class="divCellGUI"><div class="odometer musicianReputation">Reputation</div><span name='spnMovementMusicianreputation'></div> <!-- divCell -->
        </div> <!-- divRow -->
      </div> <!-- divTable -->
 
@@ -147,6 +126,7 @@
     </div> <!-- divTableWrapper -->
   </template>
 
+  <!-- END OF TEMPLATES -->
 
 
 
@@ -353,6 +333,11 @@
         </section><!-- section -->
 
         <section id="secBandDetails">
+
+          <div id="templateMusicians" class="w3-row"></div>
+
+
+
           <div id="divBandDetails"></div><!-- div divBandDetails -->
           <button onClick="guiDisplayDetailsBand(GLOBALBandi-1);">&nbsp;&nbsp;<&nbsp;&nbsp;</button>
           <button onClick="guiDisplayDetailsBand(0);">My Band</button>
@@ -403,8 +388,9 @@
 <button onclick="$(this).celebrate({unicode: '\u2605', color: 'gold', particles:3}).celebrate({unicode: '\u2618', color: 'green', particles: 3}).celebrate({unicode: '\u2665', color: 'purple', particles: 3});">Click me for lucky charms</button>
 
 <!-- odometer -->
-<div id="odometer" class="odometer">123</div>
-<button onclick="guiAnimateNumber(document.getElementById('odometer'), 456);">Count</button>
+<div id="odometer" class="odometer whywork">123</div>
+<button onclick="guiAnimateNumber(document.getElementsByClassName('whywork')[0], 130);">Count CLASSNAME</button>
+<button onclick="guiAnimateNumber(document.getElementById('odometer'), 130);">Count ID </button>
 
 
 

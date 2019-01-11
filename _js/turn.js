@@ -73,6 +73,21 @@ function turnFinish() {
 
   adminShowLog(0);
 
+
+
+// new gui
+guiDisplayMovementLabelMusicianClear("spnMovementMusicianskill");
+guiDisplayMovementLabelMusicianClear("spnMovementMusicianhappiness");
+guiDisplayMovementLabelMusicianClear("spnMovementMusicianreputation");
+//TODO: Animation does not work!
+for (m in JSONband[0].musician) {
+  guiAnimateNumber(document.getElementsByClassName('musicianSkill')[m], JSONmusician[JSONband[0].musician[m]].skill);
+  guiAnimateNumber(document.getElementsByClassName('musicianHappiness')[m], JSONmusician[JSONband[0].musician[m]].happiness);
+  guiAnimateNumber(document.getElementsByClassName('musicianReputation')[m], JSONmusician[JSONband[0].musician[m]].reputation);
+} //for
+
+
+
   // updateElement("divSinglesComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONsingle, "selSingleComboBox"));
   updateElement("divSinglesComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(getReleasedSinglesAll(), "selSingleComboBox"));
   document.getElementById("selSingleComboBox").addEventListener("change",function(event){

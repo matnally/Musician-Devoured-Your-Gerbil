@@ -264,10 +264,10 @@ function guiDisplayMovementLabelMusician(strID, intTotalCost) {
 
     if (intTotalCost > 0) {
       elems[m].setAttribute("class", "valuePositive");
-      strTemp = "&nbsp; +";
+      strTemp = "+";
     } else {
       elems[m].setAttribute("class", "valueNegative");
-      strTemp = "&nbsp;";
+      strTemp = "";
     } //if
 
     elems[m].innerHTML = strTemp + displayNumbersWithCommas(intTotalCost);
@@ -276,6 +276,19 @@ function guiDisplayMovementLabelMusician(strID, intTotalCost) {
   } //for
 
 } //function
+
+function guiDisplayMovementLabelMusicianClear(strID) {
+  var strTemp = "";
+  var elems = document.getElementsByName(strID);
+
+  for (var m = 0; m < elems.length; m++) {
+
+    elems[m].innerHTML = "";
+
+  } //for
+
+} //function
+
 
 function guiDisplayMovementLabelBand(strID, intTotalCost) {
   //Updates how much will be taken for the property, applying the appropiate class
@@ -450,11 +463,9 @@ function guiTypewrite() {
 } //function
 
 function guiAnimateNumber(elem, intNumber) {
-  setTimeout(function(){
-    // $(elem).innerHTML = 456;
+  // setTimeout(function(){
     elem.innerHTML = intNumber;
-      // odometer.innerHTML = 456;
-  }, 100);
+  // }, 100);
 } //function
 
 function guiCelebrate(elem) {
