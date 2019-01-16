@@ -126,8 +126,18 @@ function guiCreateHTMLAlbum(i) {
 
 } //function
 
+function guiCreateHTMLMusician(m) {
 
-function guiCreateHTMLMusician(i) {
+
+  m = parseInt(m);
+
+  if (m < 0)
+    m = JSONmusician.length - 1;
+
+  if (m >= JSONmusician.length)
+    m = 0;
+
+  GLOBALMusiciani = m;
 
   var elemTemplateNode = "";
   var elemTemplateItem = "";
@@ -136,7 +146,7 @@ function guiCreateHTMLMusician(i) {
 
   var elemTemplate = document.querySelector("template.templateMusician"); //Get template
 
-  for (m in JSONband[i].musician) {
+  // for (m in JSONband[i].musician) {
 
     elemTemplateNode = document.importNode(elemTemplate, true); // Create new node, based on the template
 
@@ -145,52 +155,53 @@ function guiCreateHTMLMusician(i) {
     elemTemplateItem.setAttribute("id", "musician" + m); //give it a unquie ID based on musican ID
 
     // Choose correct class for the table from https://www.w3schools.com/w3css/w3css_responsive.asp
-    switch (true) {
-      case (JSONband[i].musician.length == 2):
-        strClass = "w3-half";
-      break;
-      case (JSONband[i].musician.length == 3):
-        strClass = "w3-third";
-      break;
-      case (JSONband[i].musician.length == 4):
-        strClass = "w3-quarter";
-      break;
-      default:
-        strClass = "w3";
-    } //switch
-    elemTemplateItem.classList.add(strClass);
+    // switch (true) {
+    //   case (JSONband[i].musician.length == 2):
+    //     strClass = "w3-half";
+    //   break;
+    //   case (JSONband[i].musician.length == 3):
+    //     strClass = "w3-third";
+    //   break;
+    //   case (JSONband[i].musician.length == 4):
+    //     strClass = "w3-quarter";
+    //   break;
+    //   default:
+    //     strClass = "w3";
+    // } //switch
+    // elemTemplateItem.classList.add(strClass);
+    elemTemplateItem.classList.add("w3");
 
     // Name
     elemTemplateItem = elemTemplateNode.content.querySelector("div.musicianName");
-    elemTemplateItem.textContent = JSONmusician[JSONband[i].musician[m]].name; //change name
+    elemTemplateItem.textContent = JSONmusician[m].name; //change name
     // Musician Image
     elemTemplateItem = elemTemplateNode.content.querySelector("img.musicianImage");
     elemTemplateItem.setAttribute("src", JSONconfig[0].imagesFolder + "gui32x32.png"); //give it a unquie ID based on musican ID
-    elemTemplateItem.setAttribute("alt", JSONmusician[JSONband[i].musician[m]].name); //give it a unquie ID based on musican ID
+    elemTemplateItem.setAttribute("alt", JSONmusician[m].name); //give it a unquie ID based on musican ID
     // Skill
     elemTemplateItem = elemTemplateNode.content.querySelector("div.musicianSkill");
-    elemTemplateItem.textContent = JSONmusician[JSONband[i].musician[m]].skill;
+    elemTemplateItem.textContent = JSONmusician[m].skill;
     // Happiness
     elemTemplateItem = elemTemplateNode.content.querySelector("div.musicianHappiness");
-    elemTemplateItem.textContent = JSONmusician[JSONband[i].musician[m]].happiness;
+    elemTemplateItem.textContent = JSONmusician[m].happiness;
     // Reputation
     elemTemplateItem = elemTemplateNode.content.querySelector("div.musicianReputation");
-    elemTemplateItem.textContent = JSONmusician[JSONband[i].musician[m]].reputation;
+    elemTemplateItem.textContent = JSONmusician[m].reputation;
     // Gift
     elemTemplateItem = elemTemplateNode.content.querySelector("img.musicianGift");
     elemTemplateItem.setAttribute("src", JSONconfig[0].imagesFolder + "gui32x32.png"); //give it a unquie ID based on musican ID
-    elemTemplateItem.setAttribute("alt", JSONgift[JSONmusician[JSONband[i].musician[m]].gift].name); //give it a unquie ID based on musican ID
+    elemTemplateItem.setAttribute("alt", JSONgift[JSONmusician[m].gift].name); //give it a unquie ID based on musican ID
     // Equipment
     elemTemplateItem = elemTemplateNode.content.querySelector("img.musicianEquipment");
     elemTemplateItem.setAttribute("src", JSONconfig[0].imagesFolder + "gui32x32.png"); //give it a unquie ID based on musican ID
-    elemTemplateItem.setAttribute("alt", JSONequipment[JSONmusician[JSONband[i].musician[m]].equipment].name); //give it a unquie ID based on musican ID
+    elemTemplateItem.setAttribute("alt", JSONequipment[JSONmusician[m].equipment].name); //give it a unquie ID based on musican ID
     // Wage
     elemTemplateItem = elemTemplateNode.content.querySelector("div.musicianWage");
-    elemTemplateItem.textContent = JSONconfig[0].currency + displayNumbersWithCommas( JSONmusician[JSONband[i].musician[m]].wage);
+    elemTemplateItem.textContent = JSONconfig[0].currency + displayNumbersWithCommas( JSONmusician[m].wage);
 
     strTemp += elemTemplateNode.innerHTML; //get innerHTML so does get the template tags. If get the TEMPLATE tags it won't show by default
 
-  } //for
+  // } //for
 
   return strTemp;
 
@@ -288,31 +299,34 @@ function guiApplyGameText() {
 
 } //function
 
-function guiDisplayDetailsBand(i) {
-
-  var intTemp = 1;
-  var strTemp = "";
-
-  i = parseInt(i);
-
-  if (i < 0) i = JSONband.length - 1; //ensur
-  if (i >= JSONband.length) i=0; //at the end so reset
-
-  GLOBALBandi = i;
-
-  strTemp = getMarkUpBand(i);
-  updateElement("divBandDetails", strTemp);
-
-  strTemp = getMarkUpMusician(i);
-  updateElement("divBandMusicianDetails", strTemp);
-
-  strTemp = getMarkUpAlbum(i);
-  updateElement("divBandAlbumsDetails", strTemp);
-
-  guiDisplayActionCurrent(i);
-  adminShowLog(i); //display
-
-} //function
+// function guiDisplayDetailsBand(i) {
+//
+//   var intTemp = 1;
+//   var strTemp = "";
+//
+//   i = parseInt(i);
+//
+//   if (i < 0) i = JSONband.length - 1; //ensur
+//   if (i >= JSONband.length) i=0; //at the end so reset
+//
+//   GLOBALBandi = i;
+//
+//   // strTemp = getMarkUpBand(i);
+//   // updateElement("divBandDetails", strTemp);
+//   updateElement("divBandDetails", guiCreateHTMLBand(i));
+//
+//
+//   // strTemp = getMarkUpMusician(i);
+//   // updateElement("divBandMusicianDetails", strTemp);
+//   updateElement("divMusicianDetails", guiCreateHTMLMusician(i));
+//
+//   // strTemp = getMarkUpAlbum(i);
+//   // updateElement("divBandAlbumsDetails", strTemp);
+//
+//   guiDisplayActionCurrent(i);
+//   adminShowLog(i); //display
+//
+// } //function
 
 function guiDisplayActionCost(i, index) {
 
@@ -387,7 +401,7 @@ function guiDisplayActionCost(i, index) {
   guiDisplayMovementLabelBand("spnMovementBandMoney", -Math.abs((intDays * intDayCost))); //turn into negative number
 
 
-  guiDisplayMovementLabelBand("spnMovementBandmoney", -Math.abs((intDays * intDayCost))); //turn into negative number
+  // guiDisplayMovementLabelBand("spnMovementBandmoney", -Math.abs((intDays * intDayCost))); //turn into negative number
   updateElement("divActionCost", "<br>" + strTemp); //updates element
 
 } //function

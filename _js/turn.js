@@ -22,8 +22,15 @@ function gameStart() {
   // new GUI
   updateElement("divCurrentDate", guiDisplayDate(GLOBALdatDateCurrent));
   updateElement('templateBand', guiCreateHTMLBand(0)); // New GUI
-  updateElement('templateMusicians', guiCreateHTMLMusician(0)); // New GUI
-  guiDisplayDetailsBand(0);
+
+var strTemp = "";
+for (m in JSONband[0].musician) {
+  strTemp += guiCreateHTMLMusician(m);
+} //for
+updateElement('templateMusicians', strTemp); // New GUI
+
+  // guiDisplayDetailsBand(0);
+
 
 
   updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
@@ -47,7 +54,7 @@ function gameEnd() {
 
 function turnBegin() {
   navShowSingle("#secBandDetails");
-  guiDisplayDetailsBand(0);
+  // guiDisplayDetailsBand(0);
 
   for (var i=0;i<JSONband[0].days;i++) {
     turnStart();
@@ -101,7 +108,7 @@ updateElement('templateAlbum', guiCreateHTMLAlbum(0)); // New GUI
   }, {passive: true});
 
   updateElement("divCurrentDate", guiDisplayDate(GLOBALdatDateCurrent));
-  guiDisplayDetailsBand(0);
+  // guiDisplayDetailsBand(0);
 
   navShow("#secMainMenu");
   navShowSingle("#secBandDetails");

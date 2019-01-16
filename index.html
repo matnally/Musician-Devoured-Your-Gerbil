@@ -395,11 +395,11 @@
           <br>
 
           <p>Add a Musician</p>
-          <div id="divMusicianDetails"></div>
-          <button onClick="getMarkUpGameStartMusician(GLOBALMusiciani-1);">< Prev Musician</button>
-          <button onClick="getMarkUpGameStartMusician(GLOBALMusiciani+1);">Next Musician ></button>
+          <button onClick="updateElement('divMusicianDetails', guiCreateHTMLMusician(GLOBALMusiciani-1));">< Prev Musician</button>
+          <button onClick="updateElement('divMusicianDetails', guiCreateHTMLMusician(GLOBALMusiciani+1));">Next Musician ></button>
           <br>
           <button onClick="bandAddMusician(GLOBALMusiciani)">+ Add Musician</button>
+          <div id="divMusicianDetails"></div>
         </section><!-- section -->
 
         <section id="secBandDetails">

@@ -22,10 +22,13 @@ function gameSetSettings() {
   */
 
   JSONband[0].money = JSONconfig[0][document.getElementById('selBandMoney').value];
-
   GLOBALdatDateCurrent = new Date(JSONconfig[0].date); // GLOBAL!!!!!  mm/dd/yyyy
-
   changeTheme(document.getElementById('selTheme').value);
   gameCreateMusicians(document.getElementById('selNameSet').value);
+
+
+  updateElement("divMusicianDetails", guiCreateHTMLMusician(GLOBALMusiciani));
+  // updateElement("divMusicianDetails", getMarkUpGameStartMusician(GLOBALMusiciani));
+
 
 } //function
