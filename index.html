@@ -87,6 +87,54 @@
 
   <!-- START OF TEMPLATES -->
 
+  <template class="templateBand">
+    <div class="divTableWrapperGUI">
+
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI"><img class="bandImage" src="_images/gui32x32.png" alt="band image"></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI"><div class="bandName">Name</div></div> <!-- divCell -->
+       </div> <!-- divRow -->
+     </div> <!-- divTable -->
+
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI">Reputation</div> <!-- divCell -->
+         <div class="divCellGUI"><div class="odometer bandReputation">Reputation</div><span id='spnMovementBandReputation' class='spnMovement'></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI">Money</div> <!-- divCell -->
+         <div class="divCellGUI"><div class="odometer bandMoney">Money</div><span id='spnMovementBandMoney' class='spnMovement'></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI">Weekly Wages</div> <!-- divCell -->
+         <div class="divCellGUI"><div class="odometer bandWages">Wages</div><span id='spnMovementBandWages' class='spnMovement'></div> <!-- divCell -->
+       </div> <!-- divRow -->
+     </div> <!-- divTable -->
+
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI">Equipment</div> <!-- divCell -->
+         <div class="divCellGUI"><img class="bandEquipment" src="_images/gui32x32.png" alt=""></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI">Record Contract</div> <!-- divCell -->
+         <div class="divCellGUI"><img class="bandContract" src="_images/gui32x32.png" alt=""></div> <!-- divCell -->
+       </div> <!-- divRow -->
+     </div> <!-- divTable -->
+
+    </div> <!-- divTableWrapper -->
+  </template>
+
+
+
+
+
+
+
+
   <template class="templateMusician">
     <div class="divTableWrapperGUI">
 
@@ -106,9 +154,9 @@
          <div class="divCellGUI"><img src="_images/gui32x32.png" alt="Reputation"></div> <!-- divCell -->
        </div> <!-- divRow -->
        <div class="divRowGUI">
-         <div class="divCellGUI"><div class="odometer musicianSkill">Skill</div><span name='spnMovementMusicianskill'></div> <!-- divCell -->
-         <div class="divCellGUI"><div class="odometer musicianHappiness">Happiness</div><span name='spnMovementMusicianhappiness'></div> <!-- divCell -->
-         <div class="divCellGUI"><div class="odometer musicianReputation">Reputation</div><span name='spnMovementMusicianreputation'></div> <!-- divCell -->
+         <div class="divCellGUI"><div class="odometer musicianSkill">Skill</div><span name='spnMovementMusicianskill' class='spnMovement'></div> <!-- divCell -->
+         <div class="divCellGUI"><div class="odometer musicianHappiness">Happiness</div><span name='spnMovementMusicianhappiness' class='spnMovement'></div> <!-- divCell -->
+         <div class="divCellGUI"><div class="odometer musicianReputation">Reputation</div><span name='spnMovementMusicianreputation' class='spnMovement'></div> <!-- divCell -->
        </div> <!-- divRow -->
      </div> <!-- divTable -->
 
@@ -120,6 +168,10 @@
        <div class="divRowGUI">
          <div class="divCellGUI">Plays</div> <!-- divCell -->
          <div class="divCellGUI"><img class="musicianEquipment" src="_images/gui32x32.png" alt=""></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI">Wage</div> <!-- divCell -->
+         <div class="divCellGUI"><div class="musicianWage">Wage</div> <!-- divCell -->
        </div> <!-- divRow -->
      </div> <!-- divTable -->
 
@@ -134,17 +186,9 @@
 
 
 
-  <div class="divTable">
-    <div class="divRow">
-      <div class="divCell">
-      </div> <!-- divCell -->
-    </div> <!-- divRow -->
-  </div> <!-- divTable -->
-
 
   <hr>
 
-  <button onclick="playSound();">Play Sound</button>
 
   <div id="divCurrentDate"></div>
 
@@ -334,9 +378,8 @@
 
         <section id="secBandDetails">
 
-          <div id="templateMusicians" class="w3-row"></div>
-
-
+          <div id="templateBand"></div>
+          <div id="templateMusicians"></div>
 
           <div id="divBandDetails"></div><!-- div divBandDetails -->
           <button onClick="guiDisplayDetailsBand(GLOBALBandi-1);">&nbsp;&nbsp;<&nbsp;&nbsp;</button>
@@ -378,6 +421,8 @@
 
 
 
+<button onclick="playSound();">Play Sound</button>
+
 <!-- typewrite -->
 <div id="typewriteText"></div>
 <button onClick="guiTypewrite();">Type write</button>
@@ -386,14 +431,6 @@
 <button onclick="guiCelebrate(this);">Click me for gold stars</button>
 <br><br>
 <button onclick="$(this).celebrate({unicode: '\u2605', color: 'gold', particles:3}).celebrate({unicode: '\u2618', color: 'green', particles: 3}).celebrate({unicode: '\u2665', color: 'purple', particles: 3});">Click me for lucky charms</button>
-
-<!-- odometer -->
-<div id="odometer" class="odometer whywork">123</div>
-<button onclick="guiAnimateNumber(document.getElementsByClassName('whywork')[0], 130);">Count CLASSNAME</button>
-<button onclick="guiAnimateNumber(document.getElementById('odometer'), 130);">Count ID </button>
-
-
-
 
 
   <script>

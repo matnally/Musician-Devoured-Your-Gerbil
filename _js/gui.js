@@ -1,5 +1,60 @@
 
-function guiCreateMusicianHTML(i) {
+function guiCreateHTMLBand(i) {
+
+  var elemTemplateNode = "";
+  var elemTemplateItem = "";
+  var strTemp = ""; // To hold the HTML
+  var strClass = ""; // Class to add
+
+  var elemTemplate = document.querySelector("template.templateBand"); //Get template
+
+  elemTemplateNode = document.importNode(elemTemplate, true); // Create new node, based on the template
+
+  // ID
+  elemTemplateItem = elemTemplateNode.content.querySelector("div.divTableWrapperGUI");
+  elemTemplateItem.setAttribute("id", "band" + i); //give it a unquie ID based on musican ID
+  elemTemplateItem.classList.add("w3");
+
+  // Name
+  elemTemplateItem = elemTemplateNode.content.querySelector("div.bandName");
+  elemTemplateItem.textContent = JSONband[i].name; //change name
+  // Band Image
+  elemTemplateItem = elemTemplateNode.content.querySelector("img.bandImage");
+  elemTemplateItem.setAttribute("src", JSONconfig[0].imagesFolder + "gui32x32.png"); //give it a unquie ID based on musican ID
+  elemTemplateItem.setAttribute("alt", JSONband[i].name); //give it a unquie ID based on musican ID
+  // Money
+  elemTemplateItem = elemTemplateNode.content.querySelector("div.bandMoney");
+  elemTemplateItem.textContent = JSONconfig[0].currency + displayNumbersWithCommas(JSONband[i].money);
+  // Wages
+  elemTemplateItem = elemTemplateNode.content.querySelector("div.bandWages");
+  elemTemplateItem.textContent = JSONconfig[0].currency + displayNumbersWithCommas(getBandAGGattributeFromMusiciansSingle(i, 'wage'));
+
+  // Reputation
+  elemTemplateItem = elemTemplateNode.content.querySelector("div.bandReputation");
+  elemTemplateItem.textContent = JSONband[i].reputation;
+
+  // Equipment
+  elemTemplateItem = elemTemplateNode.content.querySelector("img.bandEquipment");
+  elemTemplateItem.setAttribute("src", JSONconfig[0].imagesFolder + "gui32x32.png"); //give it a unquie ID based on musican ID
+  elemTemplateItem.setAttribute("alt", JSONequipment[JSONband[i].equipment].name); //give it a unquie ID based on musican ID
+
+  // Contract
+  elemTemplateItem = elemTemplateNode.content.querySelector("img.bandContract");
+  elemTemplateItem.setAttribute("src", JSONconfig[0].imagesFolder + "gui32x32.png"); //give it a unquie ID based on musican ID
+  if (JSONband[i].contract == false) {
+    elemTemplateItem.setAttribute("alt", "None"); //give it a unquie ID based on musican ID
+  } else {
+    elemTemplateItem.setAttribute("alt", JSONequipment[JSONband[i].contract].name); //give it a unquie ID based on musican ID
+  } //if
+
+  strTemp += elemTemplateNode.innerHTML; //get innerHTML so does get the template tags. If get the TEMPLATE tags it won't show by default
+
+  return strTemp;
+
+} //function
+
+
+function guiCreateHTMLMusician(i) {
 
   var elemTemplateNode = "";
   var elemTemplateItem = "";
@@ -27,6 +82,8 @@ function guiCreateMusicianHTML(i) {
       case (JSONband[i].musician.length == 4):
         strClass = "w3-quarter";
       break;
+      default:
+        strClass = "w3";
     } //switch
     elemTemplateItem.classList.add(strClass);
 
@@ -54,6 +111,9 @@ function guiCreateMusicianHTML(i) {
     elemTemplateItem = elemTemplateNode.content.querySelector("img.musicianEquipment");
     elemTemplateItem.setAttribute("src", JSONconfig[0].imagesFolder + "gui32x32.png"); //give it a unquie ID based on musican ID
     elemTemplateItem.setAttribute("alt", JSONequipment[JSONmusician[JSONband[i].musician[m]].equipment].name); //give it a unquie ID based on musican ID
+    // Wage
+    elemTemplateItem = elemTemplateNode.content.querySelector("div.musicianWage");
+    elemTemplateItem.textContent = JSONconfig[0].currency + displayNumbersWithCommas( JSONmusician[JSONband[i].musician[m]].wage);
 
     strTemp += elemTemplateNode.innerHTML; //get innerHTML so does get the template tags. If get the TEMPLATE tags it won't show by default
 
@@ -250,6 +310,10 @@ function guiDisplayActionCost(i, index) {
     break;
   } //switch
 
+
+  guiDisplayMovementLabelBand("spnMovementBandMoney", -Math.abs((intDays * intDayCost))); //turn into negative number
+
+
   guiDisplayMovementLabelBand("spnMovementBandmoney", -Math.abs((intDays * intDayCost))); //turn into negative number
   updateElement("divActionCost", "<br>" + strTemp); //updates element
 
@@ -263,10 +327,10 @@ function guiDisplayMovementLabelMusician(strID, intTotalCost) {
   for (var m = 0; m < elems.length; m++) {
 
     if (intTotalCost > 0) {
-      elems[m].setAttribute("class", "valuePositive");
+      elems[m].setAttribute("class", "spnMovement valuePositive");
       strTemp = "+";
     } else {
-      elems[m].setAttribute("class", "valueNegative");
+      elems[m].setAttribute("class", "spnMovement valueNegative");
       strTemp = "";
     } //if
 
@@ -282,11 +346,13 @@ function guiDisplayMovementLabelMusicianClear(strID) {
   var elems = document.getElementsByName(strID);
 
   for (var m = 0; m < elems.length; m++) {
-
     elems[m].innerHTML = "";
-
   } //for
 
+} //function
+function guiDisplayMovementLabelBandClear(strID) {
+  var elem = document.getElementById(strID);
+      elem.innerHTML = "";
 } //function
 
 
@@ -294,12 +360,12 @@ function guiDisplayMovementLabelBand(strID, intTotalCost) {
   //Updates how much will be taken for the property, applying the appropiate class
   var elem = document.getElementById(strID);
   var strTemp = "";
-  elem.setAttribute("class", "valueNegative");
+  elem.setAttribute("class", "spnMovement valueNegative");
   if (intTotalCost < 0) {
-    elem.setAttribute("class", "valueNegative");
+    elem.setAttribute("class", "spnMovement valueNegative");
     strTemp = "&nbsp;";
   } else {
-    elem.setAttribute("class", "valuePositive");
+    elem.setAttribute("class", "spnMovement valuePositive");
     strTemp = "&nbsp;+";
   } //if
 
@@ -463,9 +529,14 @@ function guiTypewrite() {
 } //function
 
 function guiAnimateNumber(elem, intNumber) {
-  // setTimeout(function(){
-    elem.innerHTML = intNumber;
-  // }, 100);
+
+  var od = new Odometer({
+    el: elem
+  });
+
+  // od.el.update(intNumber);
+  od.el.innerHTML = intNumber;
+
 } //function
 
 function guiCelebrate(elem) {

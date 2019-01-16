@@ -16,9 +16,6 @@ img {
 /* END MAIN ELEMENTS */
 
 /* START TABLES */
-#templateMusicians {
-  width : 100%;
-}
 .divTableWrapperGUI {
   border: 1px #CCC solid;
 }
@@ -48,14 +45,10 @@ img {
 
 
 
-
-
-
-
-
-
-
-
+.bandImage {
+  width: 100px;
+  height: 100px;
+}
 
 
 
@@ -143,6 +136,10 @@ img {
 }
 
 /* Labels? */
+
+.spnMovement {
+  display: block; /* For odometer so span is below not same line */
+}
 .valuePositive {
   color: green;
 }

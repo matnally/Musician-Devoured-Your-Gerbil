@@ -72,8 +72,8 @@ function gameQuickStart() {
   gameSetSettings();
   bandAddMusician(0);
   bandAddMusician(1);
-  bandAddMusician(2);
-  bandAddMusician(3);
+  // bandAddMusician(2);
+  // bandAddMusician(3);
   gameStart();
 
 } //function

@@ -19,10 +19,11 @@ function gameStart() {
 
   actionChooseBandAll(); //sets an action to each band
 
-  // GUI
+  // new GUI
   updateElement("divCurrentDate", guiDisplayDate(GLOBALdatDateCurrent));
+  updateElement('templateBand', guiCreateHTMLBand(0)); // New GUI
+  updateElement('templateMusicians', guiCreateHTMLMusician(0)); // New GUI
   guiDisplayDetailsBand(0);
-  updateElement('templateMusicians', guiCreateMusicianHTML(0)); // New GUI
 
 
   updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
@@ -75,16 +76,20 @@ function turnFinish() {
 
 
 
-// new gui
+// new gui CLEARS
 guiDisplayMovementLabelMusicianClear("spnMovementMusicianskill");
 guiDisplayMovementLabelMusicianClear("spnMovementMusicianhappiness");
 guiDisplayMovementLabelMusicianClear("spnMovementMusicianreputation");
-//TODO: Animation does not work!
+guiDisplayMovementLabelBandClear("spnMovementBandMoney");
+// new gui UPDATES
 for (m in JSONband[0].musician) {
   guiAnimateNumber(document.getElementsByClassName('musicianSkill')[m], JSONmusician[JSONband[0].musician[m]].skill);
   guiAnimateNumber(document.getElementsByClassName('musicianHappiness')[m], JSONmusician[JSONband[0].musician[m]].happiness);
   guiAnimateNumber(document.getElementsByClassName('musicianReputation')[m], JSONmusician[JSONband[0].musician[m]].reputation);
 } //for
+guiAnimateNumber(document.getElementsByClassName('bandReputation')[0], getBandAGGattributeFromMusiciansSingle(0, 'reputation'));
+guiAnimateNumber(document.getElementsByClassName('bandMoney')[0], JSONband[0].money);
+
 
 
 
