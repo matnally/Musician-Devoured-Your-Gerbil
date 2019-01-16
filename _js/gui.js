@@ -53,6 +53,79 @@ function guiCreateHTMLBand(i) {
 
 } //function
 
+function guiCreateHTMLAlbum(i) {
+
+  var elemTemplateNode = "";
+  var elemTemplateItem = "";
+  var strTemp = ""; // To hold the HTML
+  var strClass = ""; // Class to add
+  var elemTemplate = ""; //Get template
+
+  for (a in JSONband[i].album) {
+
+    elemTemplate = document.querySelector("template.templateAlbum"); //Get template
+    elemTemplateNode = document.importNode(elemTemplate, true); // Create new node, based on the template
+
+    // ID
+    elemTemplateItem = elemTemplateNode.content.querySelector("div.divTableWrapperGUI");
+    elemTemplateItem.setAttribute("id", "album" + a); //give it a unquie ID based on musican ID
+
+    elemTemplateItem.classList.add("wc");
+
+    // Name
+    elemTemplateItem = elemTemplateNode.content.querySelector("div.albumName");
+    elemTemplateItem.textContent = JSONalbum[JSONband[i].album[a]].name; //change name
+    // album Image
+    elemTemplateItem = elemTemplateNode.content.querySelector("img.albumImage");
+    elemTemplateItem.setAttribute("src", JSONconfig[0].imagesFolder + "gui32x32.png"); //give it a unquie ID based on musican ID
+    elemTemplateItem.setAttribute("alt", JSONalbum[JSONband[i].album[a]].name); //give it a unquie ID based on musican ID
+
+    strTemp += elemTemplateNode.innerHTML; //get innerHTML so does get the template tags. If get the TEMPLATE tags it won't show by default
+
+    elemTemplate = document.querySelector("template.templateSingle"); //Get template
+    elemTemplateNode = document.importNode(elemTemplate, true); // Create new node, based on the template
+    elemTemplateItem.classList.add("wc");
+
+    for (s in JSONsingle) {
+      if  (JSONsingle[s].album == JSONband[i].album[a]) {
+
+        // Name
+        elemTemplateItem = elemTemplateNode.content.querySelector("div.singleName");
+        elemTemplateItem.textContent = JSONsingle[s].name; //change name
+
+        if (!JSONsingle[s].releasedDate === false) {
+          // Released flag
+          elemTemplateItem = elemTemplateNode.content.querySelector("div.singleReleased");
+          elemTemplateItem.textContent = "Released";
+          // Current Chart Position
+          elemTemplateItem = elemTemplateNode.content.querySelector("div.singleChartPositionCurrent");
+          elemTemplateItem.textContent = JSONsingle[s].chartPosition;
+          // Best Chart Position
+          elemTemplateItem = elemTemplateNode.content.querySelector("div.singleChartPositionBest");
+          elemTemplateItem.textContent = JSONsingle[s].chartPositionBest;
+        } else {
+          // Released flag
+          elemTemplateItem = elemTemplateNode.content.querySelector("div.singleReleased");
+          elemTemplateItem.textContent = "Not Released";
+          // Current Chart Position
+          elemTemplateItem = elemTemplateNode.content.querySelector("div.singleChartPositionCurrent");
+          elemTemplateItem.textContent = "N/A";
+          // Best Chart Position
+          elemTemplateItem = elemTemplateNode.content.querySelector("div.singleChartPositionBest");
+          elemTemplateItem.textContent = "N/A";
+        } //if
+
+        strTemp += elemTemplateNode.innerHTML; //get innerHTML so does get the template tags. If get the TEMPLATE tags it won't show by default
+
+      } //if JSONsingle[s].album == JSONband[i].album[a]
+    } //for (s in JSONsingle)
+
+  } //for (a in JSONband[i].album)
+
+  return strTemp;
+
+} //function
+
 
 function guiCreateHTMLMusician(i) {
 

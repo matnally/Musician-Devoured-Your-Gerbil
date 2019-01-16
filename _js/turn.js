@@ -89,6 +89,7 @@ for (m in JSONband[0].musician) {
 } //for
 guiAnimateNumber(document.getElementsByClassName('bandReputation')[0], getBandAGGattributeFromMusiciansSingle(0, 'reputation'));
 guiAnimateNumber(document.getElementsByClassName('bandMoney')[0], JSONband[0].money);
+updateElement('templateAlbum', guiCreateHTMLAlbum(0)); // New GUI
 
 
 
