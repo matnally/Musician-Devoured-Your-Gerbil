@@ -155,21 +155,20 @@ function guiCreateHTMLMusician(m) {
     elemTemplateItem.setAttribute("id", "musician" + m); //give it a unquie ID based on musican ID
 
     // Choose correct class for the table from https://www.w3schools.com/w3css/w3css_responsive.asp
-    // switch (true) {
-    //   case (JSONband[i].musician.length == 2):
-    //     strClass = "w3-half";
-    //   break;
-    //   case (JSONband[i].musician.length == 3):
-    //     strClass = "w3-third";
-    //   break;
-    //   case (JSONband[i].musician.length == 4):
-    //     strClass = "w3-quarter";
-    //   break;
-    //   default:
-    //     strClass = "w3";
-    // } //switch
-    // elemTemplateItem.classList.add(strClass);
-    elemTemplateItem.classList.add("w3");
+    switch (true) {
+      case (JSONband[0].musician.length == 2):
+        strClass = "w3-half";
+      break;
+      case (JSONband[0].musician.length == 3):
+        strClass = "w3-third";
+      break;
+      case (JSONband[0].musician.length == 4):
+        strClass = "w3-quarter";
+      break;
+      default:
+        strClass = "w3";
+    } //switch
+    elemTemplateItem.classList.add(strClass);
 
     // Name
     elemTemplateItem = elemTemplateNode.content.querySelector("div.musicianName");

@@ -52,8 +52,15 @@ img {
 
 
 
-
-
+.textLeft {
+  text-align: left;
+}
+.textLeft img {
+  float: left;
+}
+.textRight {
+  text-align: right;
+}
 
 
 
