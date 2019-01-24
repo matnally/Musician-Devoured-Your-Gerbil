@@ -1,0 +1,254 @@
+/* START CORE ELEMENTS */
+* {
+  font-family : "Inconsolata", monospace;
+  /* margin      : 0;
+  padding     : 0; */
+}
+body {
+  background-color: #fff;
+}
+/* END CORE ELEMENTS */
+
+/* START MAIN ELEMENTS */
+img {
+  display: block; /* so no space at bottom of div */
+}
+/* END MAIN ELEMENTS */
+
+/* START TABLES */
+.divTableWrapperGUI {
+  border: 1px #CCC solid;
+}
+.divTableGUI {
+  width  : 100%;
+  display: table;
+}
+.divRowGUI {
+  display: table-row;
+}
+.divCellGUI {
+  display       : table-cell;
+  text-align    : center;
+  vertical-align: middle;
+
+  white-space: nowrap; /* for overflows */
+  overflow: hidden; /* for overflows */
+}
+.divCellGUI img {
+  margin-left : auto; /* Center image */
+  margin-right: auto; /* Center image */
+}
+/* END TABLES */
+
+/* W3.CSS OVER RIDES */
+.w3-row { display: flex; } /* makes all DIVS equal height */
+
+
+
+.bandImage {
+  width: 100px;
+  height: 100px;
+}
+
+
+
+.textLeft {
+  text-align: left;
+}
+.textLeft img {
+  float: left;
+}
+.textRight {
+  text-align: right;
+}
+
+
+
+
+/* CLEAN UP!!! */
+
+
+ .valueGood400 {
+   background-color: #2dc937;
+ }
+ .valueGood300 {
+    background-color: #99c140;
+ }
+ .valueGood200 {
+    background-color: #e7b416;
+ }
+ .valueGood100 {
+  background-color: #db7b2b;
+ }
+ .valueGood50 {
+    background-color: #cc3232;
+ }
+
+ .valueBad400 {
+    background-color: #450000;
+ }
+ .valueBad300 {
+    background-color: #720000;
+ }
+ .valueBad200 {
+    background-color: #a70000;
+ }
+ .valueBad100 {
+    background-color: #ce0000;
+ }
+ .valueBad50 {
+    background-color: #ff0000;
+ }
+
+
+  /* Green - Yellow - Red */
+ .gradient_0    {background: #10FF00;}
+ .gradient_5    {background: #20FF00;}
+ .gradient_10   {background: #30FF00;}
+ .gradient_15   {background: #40FF00;}
+ .gradient_20   {background: #50FF00;}
+ .gradient_25   {background: #60FF00;}
+ .gradient_30   {background: #70FF00;}
+ .gradient_35   {background: #80FF00;}
+ .gradient_40   {background: #90FF00;}
+ .gradient_45   {background: #A0FF00;}
+ .gradient_50   {background: #B0FF00;}
+ .gradient_55   {background: #C0FF00;}
+ .gradient_60   {background: #D0FF00;}
+ .gradient_65   {background: #E0FF00;}
+ .gradient_70   {background: #F0FF00;}
+ .gradient_75   {background: #FFFF00;}
+ .gradient_80   {background: #FFF000;}
+ .gradient_85   {background: #FFE000;}
+ .gradient_90   {background: #FFD000;}
+ .gradient_95   {background: #FFC000;}
+ .gradient_100  {background: #FFB000;}
+
+/*
+ FF0000
+ FF1000
+ FF2000
+ FF3000
+ FF4000
+ FF5000
+ FF6000
+ FF7000
+ FF8000
+ FF9000
+ FFA000
+  */
+
+.valueBad {
+  background: red;
+}
+
+/* Labels? */
+
+.spnMovement {
+  display: block; /* For odometer so span is below not same line */
+}
+.valuePositive {
+  color: green;
+}
+.valueNegative {
+  color: red;
+}
+
+
+/************ END OF DEFAULT STYLES ************/
+
+
+section {
+  height: 100%;
+  /* width: 100%; */
+}
+
+.butMainMenu {
+  width: 100%;
+}
+
+.divContainerHide {
+  display: none;
+}
+.divContainerShow {
+  display: block;
+  background-color: #ccc;
+}
+
+#selBandComboBox {
+  width: 120px;
+}
+#selMusicianComboBox {
+  width: 120px;
+}
+
+.divTable {
+  display: table;
+  /* width: 100%; */
+}
+.divRow {
+  display: table-row;
+}
+.divRight:nth-child(odd) { /*zebra stripes*/
+   /* background-color: #ccc; */
+}
+.divCell {
+  vertical-align: top;
+  border: 1px #CCC solid;
+  display: table-cell;
+}
+.divCellValue {
+  vertical-align: middle;
+}
+.divRight {
+  align: right;
+  text-align: right;
+}
+
+.guiImageMusician {
+  /* float: right; */
+}
+
+.divMusicianTable {
+  border: 1px #000 solid;
+}
+
+
+.divGameLeft {
+  width: 5%;
+}
+.divGameMiddle {
+  width: 55%;
+}
+.divGameRight {
+  width: 40%;
+}
+
+.div {
+}
+
+.errorMessage {
+  color: red;
+}
+
+#guiImageAlbum {
+  width: 32px;
+  height: 32px;
+}
+.guiImageMusician {
+  width: 100px;
+  height: 100px;
+}
+#guiImageBand {
+  width: 128px;
+  height: 128px;
+}
+
+p {
+  text-align: left;
+}
+
+.guiImage {
+  width: 32px;
+  height: 32px;
+}

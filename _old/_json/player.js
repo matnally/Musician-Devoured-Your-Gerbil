@@ -1,5 +1,5 @@
-
+//store of player's settings
 var JSONplayer = [{
   "name"        : "player one"
-  ,"difficulty" : 0
+  ,"money"       : 0
 }];
