@@ -1,55 +1,51 @@
 
 function gameInit() {
   //Initialisation of turn / Start of game!
-  guiCreateElements(); //Create everything needed
+  //Create everything needed
+  guiCreateElements();
   guiApplyListeners();
   guiApplyGameText();
-
+  //GUI
   navHideAll();
   navShowSingle("#secStartGame");
   navShowSingle("#secStartGameDetails");
 } //function
 
 function gameStart() {
-
+  //Create Bands
   createBandPlayer(JSONband[0]); //create band from player's chosen musicians
   createBandOther(); //creates bands from the remaining musicians
-
   calBandMusicianCost();
-
   actionChooseBandAll(); //sets an action to each band
-
-  // new GUI
+  // GUI
   updateElement("divCurrentDate", guiDisplayDate(GLOBALdatDateCurrent));
-  updateElement('templateBand', guiCreateHTMLBand(0)); // New GUI
+  updateElement('templateBand', guiCreateHTMLBand(0)); // GUI - Display Band
+  // GUI - Display Musicians
+  var strTemp = "";
+  for (m in JSONband[0].musician) {
+    strTemp += guiCreateHTMLMusician(JSONband[0].musician[m]);
+  } //for
+  updateElement('templateMusicians', strTemp); // New GUI
 
-var strTemp = "";
-for (m in JSONband[0].musician) {
-  strTemp += guiCreateHTMLMusician(m);
-} //for
-updateElement('templateMusicians', strTemp); // New GUI
+  //FOR ADMIN DROPDOWNS
+  // updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
+  // document.getElementById("selBandComboBox").addEventListener("change",function(event){
+  //   guiDisplayDetailsBand(this.value);
+  // }, {passive: true});
+  //
+  // updateElement("divMusicianComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONmusician, "selMusicianComboBox"));
+  // document.getElementById("selMusicianComboBox").addEventListener("change",function(event){
+  //   guiDisplayDetailsBand(getBandFromMusician(this.value));
+  // }, {passive: true});
 
-  // guiDisplayDetailsBand(0);
-
-
-
-  updateElement("divBandComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONband, "selBandComboBox"));
-  document.getElementById("selBandComboBox").addEventListener("change",function(event){
-    guiDisplayDetailsBand(this.value);
-  }, {passive: true});
-
-  updateElement("divMusicianComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONmusician, "selMusicianComboBox"));
-  document.getElementById("selMusicianComboBox").addEventListener("change",function(event){
-    guiDisplayDetailsBand(getBandFromMusician(this.value));
-  }, {passive: true});
-
+  //GUI
   navShow("#secMainMenu");
   navShowSingle("#secBandDetails");
-
 } //function
 
 function gameEnd() {
 //  alert(JSONconfig[0].gameOver); //TODO
+  console.log("Band has no money left!!!!");
 } //function
 
 function turnBegin() {
@@ -68,7 +64,6 @@ function turnStart() {
   updateDate();
   actionExecuteBandAll(); //do actions for bands
   eventDOWAction(); //choose action corressponding to day of week
-
 } //function
 
 function turnEnd() {
@@ -78,37 +73,38 @@ function turnFinish() {
 
   eventContract(0); //see if they are eligible for a record contract, if not already
   eventRandom(0);
-
   adminShowLog(0);
 
+  // Gui CLEARS
+  guiDisplayMovementLabelMusicianClear("spnMovementMusicianskill");
+  guiDisplayMovementLabelMusicianClear("spnMovementMusicianhappiness");
+  guiDisplayMovementLabelMusicianClear("spnMovementMusicianreputation");
+  guiDisplayMovementLabelBandClear("spnMovementBandMoney");
+  // GUI - Update Band and Musician details
+  for (m in JSONband[0].musician) {
+    guiAnimateNumber(document.getElementsByClassName('musicianSkill')[m], JSONmusician[JSONband[0].musician[m]].skill);
+    guiAnimateNumber(document.getElementsByClassName('musicianHappiness')[m], JSONmusician[JSONband[0].musician[m]].happiness);
+    guiAnimateNumber(document.getElementsByClassName('musicianReputation')[m], JSONmusician[JSONband[0].musician[m]].reputation);
+  } //for
+  guiAnimateNumber(document.getElementsByClassName('bandReputation')[0], getBandAGGattributeFromMusiciansSingle(0, 'reputation'));
+  guiAnimateNumber(document.getElementsByClassName('bandMoney')[0], JSONband[0].money);
+  updateElement('templateAlbum', guiCreateHTMLAlbum(0)); // New GUI
 
-
-// new gui CLEARS
-guiDisplayMovementLabelMusicianClear("spnMovementMusicianskill");
-guiDisplayMovementLabelMusicianClear("spnMovementMusicianhappiness");
-guiDisplayMovementLabelMusicianClear("spnMovementMusicianreputation");
-guiDisplayMovementLabelBandClear("spnMovementBandMoney");
-// new gui UPDATES
-for (m in JSONband[0].musician) {
-  guiAnimateNumber(document.getElementsByClassName('musicianSkill')[m], JSONmusician[JSONband[0].musician[m]].skill);
-  guiAnimateNumber(document.getElementsByClassName('musicianHappiness')[m], JSONmusician[JSONband[0].musician[m]].happiness);
-  guiAnimateNumber(document.getElementsByClassName('musicianReputation')[m], JSONmusician[JSONband[0].musician[m]].reputation);
-} //for
-guiAnimateNumber(document.getElementsByClassName('bandReputation')[0], getBandAGGattributeFromMusiciansSingle(0, 'reputation'));
-guiAnimateNumber(document.getElementsByClassName('bandMoney')[0], JSONband[0].money);
-updateElement('templateAlbum', guiCreateHTMLAlbum(0)); // New GUI
-
-
-
+  // GUI - Display Musicians
+  var strTemp = "";
+  for (m in JSONband[0].musician) {
+    strTemp += guiCreateHTMLMusician(JSONband[0].musician[m]);
+  } //for
+  updateElement('templateMusicians', strTemp); // New GUI
+  // guiDisplayDetailsBand(0);
 
   // updateElement("divSinglesComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(JSONsingle, "selSingleComboBox"));
-  updateElement("divSinglesComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(getReleasedSinglesAll(), "selSingleComboBox"));
-  document.getElementById("selSingleComboBox").addEventListener("change",function(event){
-    guiDisplayDetailsSingle(this.value);
-  }, {passive: true});
+  // updateElement("divSinglesComboBox", guiDisplayDetailsCreateHTMLcomboBoxTopLevel(getReleasedSinglesAll(), "selSingleComboBox"));
+  // document.getElementById("selSingleComboBox").addEventListener("change",function(event){
+  //   guiDisplayDetailsSingle(this.value);
+  // }, {passive: true});
 
   updateElement("divCurrentDate", guiDisplayDate(GLOBALdatDateCurrent));
-  // guiDisplayDetailsBand(0);
 
   navShow("#secMainMenu");
   navShowSingle("#secBandDetails");

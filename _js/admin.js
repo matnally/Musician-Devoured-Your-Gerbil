@@ -68,8 +68,8 @@ function gameCreateMusicians(strJSONtoUse) {
 function gameQuickStart() {
 
   gameSetSettings();
-  bandAddMusician(0);
-  bandAddMusician(1);
+  bandAddMusician(3);
+  bandAddMusician(8);
   // bandAddMusician(2);
   // bandAddMusician(3);
   gameStart();

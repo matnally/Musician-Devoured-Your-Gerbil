@@ -5,9 +5,7 @@
   <title>Musician Devoured Your Gerbil</title>
   <meta charset="utf-8">
 
-  <!-- RESPONSIVE DESIGN -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
   <!-- DEFAULTS -->
   <link rel="stylesheet" href="_css/default.css">
@@ -15,94 +13,454 @@
   <script src="_js/jquery.min.js"></script>
 
   <!-- LOGIC -->
+  <script src="_js/action.js"></script>
+  <script src="_js/admin.js"></script>
+  <script src="_js/album.js"></script>
   <script src="_js/band.js"></script>
-  <script src="_js/game.js"></script>
+  <script src="_js/calc.js"></script>
+  <script src="_js/chart.js"></script>
+  <script src="_js/contract.js"></script>
+  <script src="_js/gift.js"></script>
+  <script src="_js/gig.js"></script>
   <script src="_js/gui.js"></script>
+  <script src="_js/JSON.js"></script>
+  <script src="_js/names.js"></script>
+  <script src="_js/nav.js"></script>
+  <script src="_js/player.js"></script>
+  <script src="_js/practice.js"></script>
+  <script src="_js/publicity.js"></script>
+  <script src="_js/record.js"></script>
+  <script src="_js/release.js"></script>
+  <script src="_js/sounds.js"></script>
+  <script src="_js/tracks.js"></script>
+  <script src="_js/turn.js"></script>
+  <script src="_js/venue.js"></script>
 
   <!-- JSON -->
   <script src="_json/album.js"></script>
   <script src="_json/band.js"></script>
-  <script src="_json/game.js"></script>
+  <script src="_json/config.js"></script>
+  <script src="_json/contract.js"></script>
+  <script src="_json/director.js"></script>
+  <script src="_json/equipment.js"></script>
+  <script src="_json/feature.js"></script>
+  <script src="_json/gift.js"></script>
+  <script src="_json/gig.js"></script>
+  <script src="_json/gui.js"></script>
+  <script src="_json/studio.js"></script>
+  <script src="_json/names.js"></script>
   <script src="_json/musician.js"></script>
   <script src="_json/player.js"></script>
   <script src="_json/single.js"></script>
+  <script src="_json/sponsor.js"></script>
+  <script src="_json/tickets.js"></script>
+  <script src="_json/tracks.js"></script>
+  <script src="_json/venue.js"></script>
+
+  <!-- SOUNDS -->
+  <script src="_js/plugins/tone.js"></script>
+
+  <!-- CHARTS -->
+	<link rel="stylesheet" href="_css/plugins/graph.css">
+	<script src="_js/plugins/raphael.min.js"></script>
+	<script src="_js/plugins/elycharts.min.js"></script>
+	<script src="_js/plugins/graph.js"></script>
+
+  <!-- DATA GRID -->
+  <link rel="stylesheet" href="_css/plugins/jsgrid.min.css" />
+  <link rel="stylesheet" href="_css/plugins/jsgrid-theme.min.css" />
+  <script src="_js/plugins/jsgrid.min.js"></script>
+
+  <!-- PLUGINS -->
+  <script src="_js/plugins/celebrate.js"></script>
+  <!-- <script src="_js/plugins/jquery.animateNumber.min.js"></script> -->
+  <script src="_js/plugins/typewrite.min.js"></script>
+
+  <link rel="stylesheet" href="_css/plugins/odometer-theme-default.css">
+  <script src="_js/plugins/odometer.js"></script>
+
+  <!-- RESPONSIVE DESIGN -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>
 <body>
 
-
-  <section id="secGameSettings">
-    <p>Game Settings</p>
-    <button onClick="gameStart();">Start Game</button>
-  </section>
-
-  <section id="secBandCreate">
-    <p>Create Band</p>
-    <button onClick="bandCreate(0);">Create Band</button>
-  </section>
-
-  <section id="secBand">
-    <p>Band</p>
-    <div id="templateMusicians"></div>
-  </section>
-
-
-
-
-
-
   <!-- START OF TEMPLATES -->
+
+  <template class="templateBand">
+    <div class="divTableWrapperGUI">
+
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI"><img class="bandImage" src="_images/gui32x32.png" alt="band image"></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI"><div class="bandName">Name</div></div> <!-- divCell -->
+       </div> <!-- divRow -->
+     </div> <!-- divTable -->
+
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI w3-half textRight">Reputation</div> <!-- divCell -->
+         <div class="divCellGUI w3-half textLeft"><div class="odometer bandReputation">Reputation</div><span id='spnMovementBandReputation' class='spnMovement'></span></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI w3-half textRight">Money</div> <!-- divCell -->
+         <div class="divCellGUI w3-half textLeft"><div class="odometer bandMoney">Money</div><span id='spnMovementBandMoney' class='spnMovement'></span></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI w3-half textRight">Weekly Wages</div> <!-- divCell -->
+         <div class="divCellGUI w3-half textLeft"><div class="odometer bandWages">Wages</div><span id='spnMovementBandWages' class='spnMovement'></span></div> <!-- divCell -->
+       </div> <!-- divRow -->
+     </div> <!-- divTable -->
+
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI w3-half textRight">Equipment</div> <!-- divCell -->
+         <div class="divCellGUI w3-half textLeft"><img class="bandEquipment" src="_images/gui32x32.png" alt=""></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI w3-half textRight">Record Contract</div> <!-- divCell -->
+         <div class="divCellGUI w3-half textLeft"><img class="bandContract" src="_images/gui32x32.png" alt=""></div> <!-- divCell -->
+       </div> <!-- divRow -->
+     </div> <!-- divTable -->
+
+    </div> <!-- divTableWrapper -->
+  </template> <!-- templateBand -->
+
+
+  <template class="templateAlbum">
+    <div class="divTableWrapperGUI">
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI"><img class="albumImage" src="_images/gui32x32.png" alt="album image"></div> <!-- divCell -->
+       </div> <!-- divRow -->
+       <div class="divRowGUI">
+         <div class="divCellGUI"><div class="albumName">Name</div></div> <!-- divCell -->
+       </div> <!-- divRow -->
+     </div> <!-- divTable -->
+    </div> <!-- divTableWrapper -->
+  </template> <!-- templateAlbum -->
+
+
+  <template class="templateSingle">
+    <div class="divTableWrapperGUI">
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI w3-quarter textRight"><div class="singleName">Name</div></div> <!-- divCell -->
+         <div class="divCellGUI w3-quarter"><div class="singleReleased">Released</div></div> <!-- divCell -->
+         <div class="divCellGUI w3-quarter"><div class="singleChartPositionCurrent">Chart Position Current</div></div> <!-- divCell -->
+         <div class="divCellGUI w3-quarter"><div class="singleChartPositionBest">Chart Position Best</div></div> <!-- divCell -->
+       </div> <!-- divRow -->
+     </div> <!-- divTable -->
+    </div> <!-- divTableWrapper -->
+  </template> <!-- templateSingle -->
+
+
   <template class="templateMusician">
-    <div class="divTableWrapper">
+    <div class="divTableWrapperGUI">
 
-     <div class="divTable">
-       <div class="divRow">
-         <div class="divCell"><img class="musicianImage" src="_images/gui32x32.png" alt="Musician image"></div> <!-- divCell -->
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI"><img class="musicianImage" src="_images/gui32x32.png" alt="Musician image"></div> <!-- divCell -->
        </div> <!-- divRow -->
-       <div class="divRow">
-         <div class="divCell"><div class="musicianName">Name</div></div> <!-- divCell -->
+       <div class="divRowGUI">
+         <div class="divCellGUI"><div class="musicianName">Name</div></div> <!-- divCell -->
        </div> <!-- divRow -->
      </div> <!-- divTable -->
 
-     <div class="divTable">
-       <div class="divRow">
-         <div class="divCell w3-third"><img src="_images/gui32x32.png" alt="Skill"></div> <!-- divCell -->
-         <div class="divCell w3-third"><img src="_images/gui32x32.png" alt="Happiness"></div> <!-- divCell -->
-         <div class="divCell w3-third"><img src="_images/gui32x32.png" alt="Reputation"></div> <!-- divCell -->
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI"><img src="_images/gui32x32.png" alt="Skill"></div> <!-- divCell -->
+         <div class="divCellGUI"><img src="_images/gui32x32.png" alt="Happiness"></div> <!-- divCell -->
+         <div class="divCellGUI"><img src="_images/gui32x32.png" alt="Reputation"></div> <!-- divCell -->
        </div> <!-- divRow -->
-       <div class="divRow">
-         <div class="divCell w3-third"><div class="musicianSkill">Skill</div><span name='spnMovementMusicianskill' class='spnMovement'></span></div> <!-- divCell -->
-         <div class="divCell w3-third"><div class="musicianHappiness">Happiness</div><span name='spnMovementMusicianhappiness' class='spnMovement'></span></div> <!-- divCell -->
-         <div class="divCell w3-third"><div class="musicianReputation">Reputation</div><span name='spnMovementMusicianreputation' class='spnMovement'></span></div> <!-- divCell -->
+       <div class="divRowGUI">
+         <div class="divCellGUI"><div class="odometer musicianSkill">Skill</div><span name='spnMovementMusicianskill' class='spnMovement'></span></div> <!-- divCell -->
+         <div class="divCellGUI"><div class="odometer musicianHappiness">Happiness</div><span name='spnMovementMusicianhappiness' class='spnMovement'></span></div> <!-- divCell -->
+         <div class="divCellGUI"><div class="odometer musicianReputation">Reputation</div><span name='spnMovementMusicianreputation' class='spnMovement'></span></div> <!-- divCell -->
        </div> <!-- divRow -->
      </div> <!-- divTable -->
 
-     <div class="divTable">
-       <div class="divRow">
-         <div class="divCell w3-half">Fav gift</div> <!-- divCell -->
-         <div class="divCell w3-half"><img class="musicianGift" src="_images/gui32x32.png" alt=""></div> <!-- divCell -->
+     <div class="divTableGUI">
+       <div class="divRowGUI">
+         <div class="divCellGUI w3-half textRight">Fav gift</div> <!-- divCell -->
+         <div class="divCellGUI w3-half textLeft"><img class="musicianGift" src="_images/gui32x32.png" alt=""></div> <!-- divCell -->
        </div> <!-- divRow -->
-       <div class="divRow">
-         <div class="divCell w3-half">Plays</div> <!-- divCell -->
-         <div class="divCell w3-half"><img class="musicianEquipment" src="_images/gui32x32.png" alt=""></div> <!-- divCell -->
+       <div class="divRowGUI">
+         <div class="divCellGUI w3-half textRight">Plays</div> <!-- divCell -->
+         <div class="divCellGUI w3-half textLeft"><img class="musicianEquipment" src="_images/gui32x32.png" alt=""></div> <!-- divCell -->
        </div> <!-- divRow -->
-       <div class="divRow">
-         <div class="divCell w3-half">Wage</div> <!-- divCell -->
-         <div class="divCell w3-half"><div class="musicianWage">Wage</div> <!-- divCell -->
+       <div class="divRowGUI">
+         <div class="divCellGUI w3-half textRight">Wage</div> <!-- divCell -->
+         <div class="divCellGUI w3-half textLeft"><div class="musicianWage">Wage</div> <!-- divCell -->
        </div> <!-- divRow -->
      </div> <!-- divTable -->
 
     </div> <!-- divTableWrapper -->
   </template> <!-- templateMusician -->
+
   <!-- END OF TEMPLATES -->
+
+
+
+
+
+
+
+
+  <hr>
+
+
+  <div id="divCurrentDate"></div>
+
+  <div class="divTable">
+    <div class="divRow divGameLeft">
+
+      <div class="divCell">
+
+        <section id="secStartGame">
+          <p>Band name</p>
+          <input id="inpBandName" type="text" value="Profanity"></input>
+          <br>
+          <br>
+          <p>Band musicians</p>
+          <div id="divBandMusicians"></div>
+          <br>
+          <p>Equipment</p>
+          <p>For bonus</p>
+          <div id="divEquipmentComboBox"></div>
+          <br>
+          <br>
+          <button onClick="gameStart()">Create Band</button>
+        </section><!-- section -->
+
+        <section id="secMainMenu">
+          <div id="divGameTextAction"></div>
+          <br>
+          <button class="butMainMenu" onClick="navShow('#secPractice')">Practice</button><br>
+          <button class="butMainMenu" onClick="navShow('#secGig')">Gig</button><br>
+          <button class="butMainMenu" onClick="navShow('#secPublicity')">Publicity</button><br>
+          <button class="butMainMenu" onClick="navShow('#secGifts')">Gifts</button><br>
+          <button class="butMainMenu" onClick="navShow('#secRecord')">Record</button><br>
+          <button class="butMainMenu" onClick="navShow('#secRelease')">Release</button><br><br>
+          <button class="butMainMenu" onClick="navShow('#secAdmin')">Admin</button>
+        </section>
+
+        <section id="secPractice">
+          <div id="divGameTextPracticeDescription"></div>
+          <select id="selPracticeComboBox">
+            <option value="1">1 day</option>
+            <option value="2">2 days</option>
+            <option value="3">3 days</option>
+            <option value="4">4 days</option>
+            <option value="5">5 days</option>
+            <option value="6">6 days</option>
+            <option value="7">7 days</option>
+          </select>
+          <br>
+          <button onClick="setPracticePlayer(document.getElementById('selPracticeComboBox').value)">Band Practice</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu');guiClearLabels();">< Back</button>
+        </section><!-- section -->
+
+        <section id="secGig">
+          <div id="divGameTextGigDescription"></div>
+          <div id="divVenueComboBox"></div>
+          <div id="divTicketPriceComboBox"></div>
+          <select id="selGigDays">
+            <option value="1">1 night</option>
+            <option value="2">2 nights</option>
+            <option value="3">3 nights</option>
+            <option value="4">4 nights</option>
+            <option value="5">5 nights</option>
+            <option value="6">6 nights</option>
+            <option value="7">7 nights</option>
+          </select>
+          <br>
+          <button onClick="setGigPlayer(document.getElementById('selGigDays').value,document.getElementById('selVenueComboBox').value,document.getElementById('selTicketPriceComboBox').value)">Play Gig</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu');guiClearLabels();">< Back</button>
+        </section><!-- section -->
+
+        <section id="secPublicity">
+          <div id="divGameTextPublicityDescription"></div>
+          <button onClick="setPublicityPlayer()">Get Publicity</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu');guiClearLabels();">< Back</button>
+        </section><!-- section -->
+
+        <section id="secGifts">
+          <div id="divGameTextGiftDescription"></div>
+          <div id="divGiftComboBox"></div>
+          <button onClick="setGiftPlayer(document.getElementById('selGiftComboBox').value)">Give Gifts</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu');guiClearLabels();">< Back</button>
+        </section><!-- section -->
+
+        <section id="secRecord">
+          <div id="divGameTextRecordDescription"></div>
+          <div id="divTracksComboBox"></div>
+          <button onClick="setRecordPlayer(document.getElementById('selTracksComboBox').value)">Record an album</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu');guiClearLabels();">< Back</button>
+        </section><!-- section -->
+
+        <section id="secRelease">
+          <div id="divGameTextReleaseDescription"></div>
+          <div id="divDirectorComboBox"></div>
+          <div id="divLocationComboBox"></div>
+          <div id="divFeatureComboBox"></div>
+          <br>
+          <div id="divBandAlbums"></div>
+          <div id="divBandAlbumSingles"></div>
+          <br>
+          <button onClick="setReleasePlayer()">Release Single</button>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu');guiClearLabels();">< Back</button>
+        </section><!-- section -->
+
+        <section id="secAdmin">
+          <p>Admin</p>
+          <button onClick="guiAdminShowJSON(JSONband);">Show All Bands</button>
+          <br>
+          <button onClick="guiAdminShowJSON(JSONmusician);">Show All Musicians</button>
+          <br>
+          <br>
+          <button onClick="guiAdminShowJSON(JSONalbum);">Show All Albums</button>
+          <br>
+          <button onClick="guiAdminShowJSON(JSONsingle);">Show All Singles</button>
+          <br>
+          <button onClick="guiAdminShowJSON(GLOBALJSONchart);">Show current Top 20</button>
+          <br>
+          <br>
+          <button onClick="adminAdminTurn();">Admin Turn</button>
+          <br>
+          <br>
+          <p>Bands</p>
+          <div id="divBandComboBox"></div>
+          <p>Musicians</p>
+          <div id="divMusicianComboBox"></div>
+          <br>
+          <br>
+          <button onClick="navShow('#secMainMenu');guiClearLabels();">< Back</button>
+        </section>
+
+        <div id="divActionCost"></div>
+
+      </div> <!-- divCell -->
+      <div class="divCell divGameMiddle">
+
+        <section id="secStartGameDetails">
+
+          <p>Choose a Nameset</p>
+          <select id="selNameSet" onChange="">
+            <option value="JSONmusicianNamesRockstar">Rockstar Ate My Hamster</option>
+            <option value="JSONmusicianNamesMorris">Chris Morris</option>
+            <option value="JSONmusicianNamesSimple">20 Simple</option>
+          </select>
+          <br>
+          <p>Choose a Theme</p>
+          <select id="selTheme" onChange="changeTheme(this.value)">
+            <option value="theme0">theme0</option>
+            <option value="theme1">theme1</option>
+            <option value="imagesFolder">Normal</option>
+          </select>
+          <br>
+          <p>Money</p>
+          <select id="selBandMoney">
+            <option value="moneyEasy">Easy £100,000</option>
+            <option value="moneyNormal">Normal £50,000</option>
+            <option value="moneyHard">Hard £10,000</option>
+          </select>
+          <br>
+          <br>
+          <button id="butCreateGame" onClick="gameSetSettings()">Create Game</button>
+          <br>
+          <br>
+          <button onClick="gameQuickStart()">Quick Start</button>
+          <button onClick="gameQuickStartFullYear()">Quick Start - Full Year</button>
+          <br>
+          <br>
+          <br>
+
+          <p>Add a Musician</p>
+          <button onClick="updateElement('divMusicianDetails', guiCreateHTMLMusician(GLOBALMusiciani-1));">< Prev Musician</button>
+          <button onClick="updateElement('divMusicianDetails', guiCreateHTMLMusician(GLOBALMusiciani+1));">Next Musician ></button>
+          <br>
+          <button onClick="bandAddMusician(GLOBALMusiciani)">+ Add Musician</button>
+          <div id="divMusicianDetails"></div>
+        </section><!-- section -->
+
+        <section id="secBandDetails">
+
+<div id="templateBand"></div>
+<div id="templateAlbum"></div>
+<div id="templateMusicians"></div>
+
+          <div id="divBandDetails"></div><!-- div divBandDetails -->
+          <button onClick="guiDisplayDetailsBand(GLOBALBandi-1);">&nbsp;&nbsp;<&nbsp;&nbsp;</button>
+          <button onClick="guiDisplayDetailsBand(0);">My Band</button>
+          <button onClick="guiDisplayDetailsBand(GLOBALBandi+1);">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
+          <br>
+          <div id="divBandMusicianDetails"></div>
+          <div id="divBandAlbumsDetails"></div>
+        </section><!-- section -->
+
+      </div> <!-- divCell -->
+      <div class="divCell divGameRight">
+
+        <h2>Current Top 20</h2>
+        <div id="divChart"></div>
+        <h2>Current Action</h2>
+        <div id="divBandActionCurrent"></div>
+        <h2>Log</h2>
+        <div id="loggingOutput"></div>
+        <h2>Graph</h2>
+        <div id="divGraph"></div>
+        <div id="divSinglesComboBox"></div>
+        <button onClick="guiDisplayDetailsSingle(document.getElementById('selSingleComboBox').value);">Singles</button>
+
+      </div> <!-- divCell -->
+
+    </div> <!-- divRow -->
+  </div> <!-- divTable -->
+
+  <select id="selGridDisplay" onChange="createGrid(this.value);">
+    <option value="JSONband">Bands</option>
+    <option value="JSONmusician">Musicians</option>
+    <option value="JSONalbum">Albums</option>
+    <option value="JSONsingle">Tracks</option>
+  </select>
+  <div id="jsGrid"></div>
+
+
+
+
+
+<button onclick="playSound();">Play Sound</button>
+
+<!-- typewrite -->
+<div id="typewriteText"></div>
+<button onClick="guiTypewrite();">Type write</button>
+
+<!-- celebrate -->
+<button onclick="guiCelebrate(this);">Click me for gold stars</button>
+<br><br>
+<button onclick="$(this).celebrate({unicode: '\u2605', color: 'gold', particles:3}).celebrate({unicode: '\u2618', color: 'green', particles: 3}).celebrate({unicode: '\u2665', color: 'purple', particles: 3});">Click me for lucky charms</button>
 
 
   <script>
     $(document).ready(function() {
-      gameInit(); //Initialisation of game
+      gameInit(); //Initialisation of turn / Start of game!
     });
   </script>
-
 
 </body>
 </html>

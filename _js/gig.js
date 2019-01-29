@@ -37,10 +37,10 @@ function gig(i) {
 
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
-    getEquipmentBonusMusician(i, a); //applies any bonus if any
-    updateMusicianAttribute(i, a, "skill", JSONconfig[0].valueGigSkill);
-    updateMusicianAttribute(i, a, "happiness", JSONconfig[0].valueGigHappiness);
-    updateMusicianAttribute(i, a, "reputation", JSONconfig[0].valueGigReputation);
+    getEquipmentBonusMusician(i, JSONband[i].musician[a]); //applies any bonus if any
+    updateMusicianAttribute(i, JSONband[i].musician[a], "skill", JSONconfig[0].valueGigSkill);
+    updateMusicianAttribute(i, JSONband[i].musician[a], "happiness", JSONconfig[0].valueGigHappiness);
+    updateMusicianAttribute(i, JSONband[i].musician[a], "reputation", JSONconfig[0].valueGigReputation);
   }//for
 
 } //function
@@ -70,11 +70,15 @@ function updateBandMoneySubtract(intBand, intCost, strAction) {
 
 function updateBandMoneyAdd(intBand, intCost, strAction) {
   //update band money
-  var strTemp = "";
-      strTemp = (JSONband[intBand].name + " had " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + " profits are " + JSONconfig[0].currency + displayNumbersWithCommas(intCost));
 
-  var intTemp = parseInt(JSONband[intBand].money) + parseInt(intCost); // CALC
-  JSONband[intBand].money = intTemp; // THE ACTION !!!!!!!!
+  //TODO: Something wrong here! Investigate
 
-  loggingOutput(intBand, strAction + " profit", (strTemp + " now has " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + "<br>"));
+  // var strTemp = "";
+  //     strTemp = (JSONband[intBand].name + " had " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + " profits are " + JSONconfig[0].currency + displayNumbersWithCommas(intCost));
+  //
+  // var intTemp = parseInt(JSONband[intBand].money) + parseInt(intCost); // CALC
+  // JSONband[intBand].money = intTemp; // THE ACTION !!!!!!!!
+  //
+  // loggingOutput(intBand, strAction + " profit", (strTemp + " now has " + JSONconfig[0].currency + displayNumbersWithCommas(JSONband[intBand].money) + "<br>"));
+
 } //function
