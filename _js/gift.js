@@ -35,7 +35,8 @@ function gift(i) {
 
     if (parseInt(JSONmusician[JSONband[i].musician[a]].gift) == intGift) {
       //gift is musician's favourite
-      intBonus = JSONconfig[0].sameGiftBonus; //Bonus for favourite gift
+      //TODO: Turn off for now
+      // intBonus = JSONconfig[0].sameGiftBonus; //Bonus for favourite gift
       loggingOutput(i, "GIFT BONUS", JSONmusician[JSONband[i].musician[a]].name + " received their favorite gift of " +JSONgift[JSONmusician[JSONband[i].musician[a]].gift].name+ " and received "+JSONgift[intGift].happiness+" Happiness plus a "+intBonus+" Happiness bonus<br>");
     } else {
       loggingOutput(i, "GIFT RECEIVED", JSONmusician[JSONband[i].musician[a]].name + " received a gift of " +JSONgift[intGift].name+ " and received "+JSONgift[intGift].happiness+" Happiness<br>");

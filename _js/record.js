@@ -1,7 +1,7 @@
 
 function setRecordPlayer(intTracks) {
   //set player's band attributes for appropiate action
-  if (JSONband[0].contract == false) {
+  if (JSONband[0].contract === false) {
     alert("Not signed yet!");
   } else {
     setRecord(0, intTracks);

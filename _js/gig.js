@@ -37,7 +37,8 @@ function gig(i) {
 
   for (a in JSONband[i].musician) {
     //for every musician in the passed in band
-    getEquipmentBonusMusician(i, JSONband[i].musician[a]); //applies any bonus if any
+    //TODO: turn off for now
+    // getEquipmentBonusMusician(i, JSONband[i].musician[a]); //applies any bonus if any
     updateMusicianAttribute(i, JSONband[i].musician[a], "skill", JSONconfig[0].valueGigSkill);
     updateMusicianAttribute(i, JSONband[i].musician[a], "happiness", JSONconfig[0].valueGigHappiness);
     updateMusicianAttribute(i, JSONband[i].musician[a], "reputation", JSONconfig[0].valueGigReputation);

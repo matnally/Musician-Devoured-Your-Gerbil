@@ -398,8 +398,6 @@ function guiDisplayActionCost(i, index) {
 
   guiDisplayMovementLabelBand("spnMovementBandMoney", -Math.abs((intDays * intDayCost))); //turn into negative number
 
-
-  // guiDisplayMovementLabelBand("spnMovementBandmoney", -Math.abs((intDays * intDayCost))); //turn into negative number
   updateElement("divActionCost", "<br>" + strTemp); //updates element
 
 } //function
@@ -439,7 +437,6 @@ function guiDisplayMovementLabelBandClear(strID) {
   var elem = document.getElementById(strID);
       elem.innerHTML = "";
 } //function
-
 
 function guiDisplayMovementLabelBand(strID, intTotalCost) {
   //Updates how much will be taken for the property, applying the appropiate class
@@ -496,8 +493,8 @@ function getGameStatClass(inValue, strKeyName) {
   var intMusicianAGG = parseInt(getAGGattributeFromMusicians(strKeyName));
   var intMusicianAVG = (intMusicianAGG / JSONmusician.length).toFixed(0);
 
-var intTotal = 0;
-    intTotal = inValue - intMusicianAVG;
+  var intTotal = 0;
+      intTotal = inValue - intMusicianAVG;
 
     strClassName = "";
 
@@ -581,7 +578,6 @@ function guiClearLabels() {
     elems[m].innerHTML = "";
     // updateElement(elems[m], "");
   } // for
-  updateElement("spnMovementBandmoney", "");
   updateElement("divActionCost", ""); //updates element
 
 } //function

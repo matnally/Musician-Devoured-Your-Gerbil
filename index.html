@@ -328,27 +328,18 @@
 
         <section id="secAdmin">
           <p>Admin</p>
-          <button onClick="guiAdminShowJSON(JSONband);">Show All Bands</button>
-          <br>
-          <button onClick="guiAdminShowJSON(JSONmusician);">Show All Musicians</button>
-          <br>
-          <br>
-          <button onClick="guiAdminShowJSON(JSONalbum);">Show All Albums</button>
-          <br>
-          <button onClick="guiAdminShowJSON(JSONsingle);">Show All Singles</button>
-          <br>
-          <button onClick="guiAdminShowJSON(GLOBALJSONchart);">Show current Top 20</button>
-          <br>
-          <br>
-          <button onClick="adminAdminTurn();">Admin Turn</button>
-          <br>
-          <br>
-          <p>Bands</p>
-          <div id="divBandComboBox"></div>
-          <p>Musicians</p>
-          <div id="divMusicianComboBox"></div>
-          <br>
-          <br>
+
+          <button onclick="playSound();">Play Sound</button>
+
+          <!-- typewrite -->
+          <div id="typewriteText"></div>
+          <button onClick="guiTypewrite();">Type write</button>
+
+          <!-- celebrate -->
+          <button onclick="guiCelebrate(this);">Click me for gold stars</button>
+          <br><br>
+          <button onclick="$(this).celebrate({unicode: '\u2605', color: 'gold', particles:3}).celebrate({unicode: '\u2618', color: 'green', particles: 3}).celebrate({unicode: '\u2665', color: 'purple', particles: 3});">Click me for lucky charms</button>
+
           <button onClick="navShow('#secMainMenu');guiClearLabels();">< Back</button>
         </section>
 
@@ -399,18 +390,9 @@
         </section><!-- section -->
 
         <section id="secBandDetails">
-
-<div id="templateBand"></div>
-<div id="templateAlbum"></div>
-<div id="templateMusicians"></div>
-
-          <div id="divBandDetails"></div><!-- div divBandDetails -->
-          <button onClick="guiDisplayDetailsBand(GLOBALBandi-1);">&nbsp;&nbsp;<&nbsp;&nbsp;</button>
-          <button onClick="guiDisplayDetailsBand(0);">My Band</button>
-          <button onClick="guiDisplayDetailsBand(GLOBALBandi+1);">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
-          <br>
-          <div id="divBandMusicianDetails"></div>
-          <div id="divBandAlbumsDetails"></div>
+          <div id="templateBand"></div>
+          <div id="templateAlbum"></div>
+          <div id="templateMusicians"></div>
         </section><!-- section -->
 
       </div> <!-- divCell -->
@@ -418,8 +400,6 @@
 
         <h2>Current Top 20</h2>
         <div id="divChart"></div>
-        <h2>Current Action</h2>
-        <div id="divBandActionCurrent"></div>
         <h2>Log</h2>
         <div id="loggingOutput"></div>
         <h2>Graph</h2>
@@ -440,20 +420,6 @@
   </select>
   <div id="jsGrid"></div>
 
-
-
-
-
-<button onclick="playSound();">Play Sound</button>
-
-<!-- typewrite -->
-<div id="typewriteText"></div>
-<button onClick="guiTypewrite();">Type write</button>
-
-<!-- celebrate -->
-<button onclick="guiCelebrate(this);">Click me for gold stars</button>
-<br><br>
-<button onclick="$(this).celebrate({unicode: '\u2605', color: 'gold', particles:3}).celebrate({unicode: '\u2618', color: 'green', particles: 3}).celebrate({unicode: '\u2665', color: 'purple', particles: 3});">Click me for lucky charms</button>
 
 
   <script>

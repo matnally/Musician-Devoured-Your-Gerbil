@@ -8,13 +8,10 @@ function calBandMusicianCost() {
       intTotal += JSONmusician[JSONband[i].musician[m]].fee;
     } //for
     updateBandMoneySubtract(i, intTotal, "musicians signing fees"); //VENUE COST
-
   } //for
 
   return intTotal;
 } //function
-
-
 
 function createBandPlayer(JSONtoUse) {
   JSONtoUse.name = document.getElementById("inpBandName").value;
@@ -75,7 +72,7 @@ function calcBandReputation(JSONtoUse) {
     intReputation = JSONmusician[JSONtoUse[m]].reputation;
     intTemp = intTemp + parseInt(intReputation);
   } //for
-  intTemp = Math.round(intTemp / JSONtoUse.length); //musicians of band
+  // intTemp = Math.round(intTemp / JSONtoUse.length); //musicians of band
   return intTemp;
 } //function
 

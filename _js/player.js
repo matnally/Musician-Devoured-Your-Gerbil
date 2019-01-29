@@ -26,9 +26,7 @@ function gameSetSettings() {
   changeTheme(document.getElementById('selTheme').value);
   gameCreateMusicians(document.getElementById('selNameSet').value);
 
-
   updateElement("divMusicianDetails", guiCreateHTMLMusician(GLOBALMusiciani));
   // updateElement("divMusicianDetails", getMarkUpGameStartMusician(GLOBALMusiciani));
-
 
 } //function

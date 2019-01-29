@@ -3,8 +3,6 @@ function getTracks() {
   return Math.floor(Math.random() * JSONtracks.length);
 } //function
 
-
-
 function guiDisplayDetailsSingle(intSingle) {
 
   console.log("intSingle: " + intSingle);

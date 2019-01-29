@@ -2,16 +2,12 @@
 
 function updateDate() {
   GLOBALdatDateCurrent.setDate(GLOBALdatDateCurrent.getDate() + 1); //increase GLOBAL current date
-
   updateElement("divCurrentDate", guiDisplayDate(GLOBALdatDateCurrent));
-
 } //function
 
 var GLOBALJSONlog = [];
 function loggingOutput(i, strAction, strTemp) {
-
   GLOBALJSONlog.push({'band':i, 'action':strAction, 'content':strTemp}); //add band JSON
-
 } //function
 
 function adminShowLog(i) {

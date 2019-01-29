@@ -46,10 +46,8 @@ function updateMusicianAttribute(intBand, intMusician, strAttribute, intValue) {
 
 function getEquipmentBonusMusician(i, a){
 
-
-
   if (JSONband[i].equipment == JSONmusician[a].equipment) {
-    loggingOutput(i, "equipment bonus", "TODO: Wont do now as need to display additions/subtractions correctly<br>");
+    // loggingOutput(i, "equipment bonus", "TODO: Wont do now as need to display additions/subtractions correctly<br>");
   //   var intEquipmentBonus = JSONconfig[0].sameEquipmentBonus;
   //   updateMusicianAttribute(i, a, "skill", intEquipmentBonus); // THE ACTION !!!!!!!!
   //   loggingOutput(i, "equipment bonus", JSONmusician[a].name + " of band " + JSONband[i].name + " using same equipment +1 SKILL bonus<br>");
