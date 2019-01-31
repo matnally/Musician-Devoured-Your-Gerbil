@@ -45,14 +45,11 @@
   <script src="_json/equipment.js"></script>
   <script src="_json/feature.js"></script>
   <script src="_json/gift.js"></script>
-  <script src="_json/gig.js"></script>
-  <script src="_json/gui.js"></script>
-  <script src="_json/studio.js"></script>
   <script src="_json/names.js"></script>
   <script src="_json/musician.js"></script>
   <script src="_json/player.js"></script>
   <script src="_json/single.js"></script>
-  <script src="_json/sponsor.js"></script>
+  <script src="_json/studio.js"></script>
   <script src="_json/tickets.js"></script>
   <script src="_json/tracks.js"></script>
   <script src="_json/venue.js"></script>
@@ -328,6 +325,26 @@
 
         <section id="secAdmin">
           <p>Admin</p>
+
+          <select id="selJSON" onChange="">
+            <option value="JSONalbum">Albums</option>
+            <option value="JSONband">Bands</option>
+            <option value="JSONconfig">Config</option>
+            <option value="JSONcontract">Contracts</option>
+            <option value="JSONdirector">Director (Video)</option>
+            <option value="JSONequipment">Equipment</option>
+            <option value="JSONfeature">Features (Video)</option>
+            <option value="JSONgift">Gifts</option>
+            <option value="JSONmusician">Musicians</option>
+            <option value="JSONplayer">Player</option>
+            <option value="JSONsingle">Singles</option>
+            <option value="JSONstudio">Studio (Video)</option>
+            <option value="JSONtickets">Tickets (Gig)</option>
+            <option value="JSONtracks">Tracks</option>
+            <option value="JSONvenue">Venue (Gig)</option>
+          </select>
+          <button onclick="guiAdminShowJSON(document.getElementById('selJSON').value);">Display JSON</button>
+          <br><br>
 
           <button onclick="playSound();">Play Sound</button>
 

@@ -70,9 +70,15 @@ function gameQuickStartFullYear() {
   gameStart();
   JSONband[0].days = 365;
   turnBegin();
-  
+
 } //function
 
 function changeTheme(strTheme) {
   JSONconfig[0].imagesFolder = JSONconfig[0][strTheme];
+} //function
+
+function guiAdminShowJSON(JSONtoUse) {
+  console.log("***************** START *********************");
+  console.log(JSON.stringify(eval(JSONtoUse)));
+  console.log("****************** END **********************");
 } //function

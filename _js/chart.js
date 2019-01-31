@@ -20,6 +20,12 @@ function chartTime() {
     var intChartPosition = 1; //charts start from one! duh
     for (i in arrTemp) {
 
+      if (intChartPosition > 20) {
+        // break;
+      } else {
+        strTemp += (intChartPosition + ": " + getChartSingleMovement(arrTemp[i], intChartPosition) + " - " + arrTemp[i].qualityRatingChart + " - " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name) +"<br>";
+      } //if
+
       arrTemp[i].chartPosition = intChartPosition;
       arrTemp[i].chartHistory = (arrTemp[i].chartHistory + intChartPosition + ","); //for graph
 
@@ -27,11 +33,6 @@ function chartTime() {
         arrTemp[i].chartPositionBest = intChartPosition; //save best position
       } //if
 
-      if (intChartPosition > 20) {
-        // break;
-      } else {
-        strTemp += (intChartPosition + ": " + getChartSingleMovement(arrTemp[i], intChartPosition) + " - " + arrTemp[i].qualityRatingChart + " - " + arrTemp[i].name + " by " + JSONband[getBandFromAlbum(arrTemp[i].album)].name) +"<br>";
-      } //if
 
       intChartPosition++;
 
@@ -51,18 +52,16 @@ function getChartSingleMovement(arrSingle, intChartPosition) {
   var strTemp = "";
 
   switch (true) {
-    case (arrSingle.chartPosition==0):
-      strTemp = "imgChartNew";
-    break;
     case (intChartPosition < arrSingle.chartPosition):
-    strTemp = "imgChartUp";
+      strTemp = "imgChartUp";
     break;
     case (intChartPosition > arrSingle.chartPosition):
-    strTemp = "imgChartDown";
+      strTemp = "imgChartDown";
     break;
     case (intChartPosition == arrSingle.chartPosition):
-    strTemp = "imgChartSame";
+      strTemp = "imgChartNew";
     break;
+      strTemp = "imgChartSame";
     default:
   } //switch
 
