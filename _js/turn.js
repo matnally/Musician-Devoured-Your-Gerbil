@@ -166,6 +166,8 @@ function takewageAway() {
   var intTemp = 0;
   var intIndex = 0;
 
+console.log("Wages time");
+
   for (i in JSONband) {
     intTemp=0; //reset
     for (a in JSONband[i].musician) {

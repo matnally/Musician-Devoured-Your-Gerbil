@@ -118,7 +118,7 @@ function actionExecuteBandAll() {
     } //switch
 
     //to do after executing turn for single band
-    updateBandReputation(i);  //WRITES and CALS single band reps
+    // updateBandReputation(i);  //WRITES and CALS single band reps
 
   } //for
 

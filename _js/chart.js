@@ -33,7 +33,6 @@ function chartTime() {
         arrTemp[i].chartPositionBest = intChartPosition; //save best position
       } //if
 
-
       intChartPosition++;
 
     } //for
@@ -49,9 +48,13 @@ function chartTime() {
 } //function
 
 function getChartSingleMovement(arrSingle, intChartPosition) {
+
   var strTemp = "";
 
   switch (true) {
+    case (arrSingle.chartPosition == 99999):
+      strTemp = "imgChartNew";
+    break;
     case (intChartPosition < arrSingle.chartPosition):
       strTemp = "imgChartUp";
     break;
@@ -61,8 +64,8 @@ function getChartSingleMovement(arrSingle, intChartPosition) {
     case (intChartPosition == arrSingle.chartPosition):
       strTemp = "imgChartNew";
     break;
-      strTemp = "imgChartSame";
     default:
+      strTemp = "imgChartSame";
   } //switch
 
   strTemp = "<img src='"+JSONconfig[0].imagesFolder+strTemp+".png' alt='"+strTemp+"'>";
@@ -79,7 +82,6 @@ function getChartSingleMovement(arrSingle, intChartPosition) {
       JSONsingle[z].chartPosition = intChartPosition;
       // JSONsingle[z].chartHistory = arrSingle.chartHistory + "," + intChartPosition; //for graph
     } //if
-
   } //for
 
   return strTemp;

@@ -28,9 +28,14 @@ function release(i) {
     intSingle = singleChoose(i);
   } //if
 
-  JSONsingle[intSingle].releasedDate = GLOBALdatDateCurrent.getTime(); //RELEASE single by giving it a releasedDate
-  updateBandMoneySubtract(i, JSONconfig[0].valueReleaseCost, "single release"); //update band money
-  loggingOutput(i, "SINGLE RELEASE", JSONband[i].name + " released the single '" + JSONsingle[intSingle].name + "' from the album '" +JSONalbum[JSONsingle[intSingle].album].name+ "'<br>");
+  if (JSONsingle[intSingle].releasedDate == false) {
+    JSONsingle[intSingle].releasedDate = GLOBALdatDateCurrent.getTime(); //RELEASE single by giving it a releasedDate
+    updateBandMoneySubtract(i, JSONconfig[0].valueReleaseCost, "single release"); //update band money
+    loggingOutput(i, "SINGLE RELEASE", JSONband[i].name + " released the single '" + JSONsingle[intSingle].name + "' from the album '" +JSONalbum[JSONsingle[intSingle].album].name+ "'<br>");
+  } else {
+    alert("Single already released. Choose another.");
+  } //if
+
 
 } //function
 
