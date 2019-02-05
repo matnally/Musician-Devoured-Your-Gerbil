@@ -57,8 +57,6 @@ function gameQuickStart() {
   gameSetSettings();
   bandAddMusician(3);
   bandAddMusician(8);
-  // bandAddMusician(2);
-  // bandAddMusician(3);
   gameStart();
 
 } //function
@@ -66,9 +64,11 @@ function gameQuickStart() {
 function gameQuickStartFullYear() {
 
   gameSetSettings();
-  bandAddMusician(GLOBALMusiciani);
+  bandAddMusician(10);
+  bandAddMusician(11);
+  bandAddMusician(12);
   gameStart();
-  JSONband[0].days = 365;
+  setPractice(0, 365); //practice for a year
   turnBegin();
 
 } //function

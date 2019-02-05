@@ -52,8 +52,14 @@ function getChartSingleMovement(arrSingle, intChartPosition) {
   var strTemp = "";
 
   switch (true) {
+    case (intChartPosition == 0):
+      strTemp = "imgChartSame";
+    break;
     case (arrSingle.chartPosition == 99999):
       strTemp = "imgChartNew";
+    break;
+    case (intChartPosition == arrSingle.chartPosition):
+      strTemp = "imgChartSame";
     break;
     case (intChartPosition < arrSingle.chartPosition):
       strTemp = "imgChartUp";
@@ -61,21 +67,31 @@ function getChartSingleMovement(arrSingle, intChartPosition) {
     case (intChartPosition > arrSingle.chartPosition):
       strTemp = "imgChartDown";
     break;
-    case (intChartPosition == arrSingle.chartPosition):
-      strTemp = "imgChartNew";
-    break;
     default:
       strTemp = "imgChartSame";
   } //switch
 
   strTemp = "<img src='"+JSONconfig[0].imagesFolder+strTemp+".png' alt='"+strTemp+"'>";
 
-  if (arrSingle.chartPosition == 0)
-    strTemp += "";
-  else if (arrSingle.chartPosition == intChartPosition) //get the wording right
-    strTemp += "";
-  else if (intChartPosition != 0)
-    strTemp += " from " + arrSingle.chartPosition;
+  switch (true) {
+    case (intChartPosition == 0):
+      strTemp += "SAME ";
+    break;
+    case (arrSingle.chartPosition == 99999):
+    strTemp += "NEW ";
+    break;
+    case (intChartPosition == arrSingle.chartPosition):
+      strTemp += "SAME ";
+    break;
+    case (intChartPosition < arrSingle.chartPosition):
+      strTemp += "UP from " + arrSingle.chartPosition;
+    break;
+    case (intChartPosition > arrSingle.chartPosition):
+      strTemp += "DOWN from " + arrSingle.chartPosition;
+    break;
+    default:
+      strTemp += "SAME ";
+  } //switch
 
   for (z in JSONsingle) {
     if (arrSingle.name == JSONsingle[z].name) {
