@@ -4,6 +4,12 @@ function getGameText(strTemp) {
   var strReturn = "";
   var mapObj = [];
 
+  //Hack as Player's band should be FALSE first and that will cause an error
+  var temp = false;
+      temp = JSONband[0].contract;
+  if (JSONband[0].contract == false)
+    JSONband[0].contract = 0;
+
   mapObj = {
     "<bandName>"                      : "<strong>" + JSONband[0].name + "</strong>"
     ,"<bandMusicians>"                : "<strong>" + JSONband[0].musician.length + "</strong>"
@@ -55,10 +61,18 @@ function getGameText(strTemp) {
     ,"<releaseTotal>"                 : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(JSONfeature[document.getElementById("selFeatureComboBox").value].money + JSONdirector[document.getElementById("selDirectorComboBox").value].money + JSONstudio[document.getElementById("selStudioComboBox").value].money) + "</strong>"
     ,"<releaseGrandTotal>"            : "<strong>" + JSONconfig[0].currency  + displayNumbersWithCommas(JSONconfig[0].valueReleaseCost + JSONfeature[document.getElementById("selFeatureComboBox").value].money + JSONdirector[document.getElementById("selDirectorComboBox").value].money + JSONstudio[document.getElementById("selStudioComboBox").value].money) + "</strong>"
 
+    //Contract
+    ,"<nameContract>"                 : "<strong>" + JSONcontract[JSONband[0].contract].name + "</strong>"
+    ,"<money>"                        : "<strong>" + JSONconfig[0].currency + displayNumbersWithCommas(JSONcontract[JSONband[0].contract].money) + "</strong>"
+    ,"<percent>"                      : "<strong>" + JSONcontract[JSONband[0].contract].percent + "%</strong>"
+
     //Other
     ,"<gameCliveSuffix>"              : getRandomWordFromString("<gameCliveSuffix>", JSONconfig[0].gameCliveSuffix)
 
   };
+
+  //Hack as Player's band should be FALSE first and that will cause an error
+  JSONband[0].contract = temp; //revert
 
   return mapReplaceWords(strTemp, mapObj);
 

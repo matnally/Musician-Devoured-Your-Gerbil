@@ -44,18 +44,21 @@ function askSignContract(i) {
   } //switch
 
   var intContract = getContract();
+  JSONband[i].contract = intContract; //need this for the game text
 
-  alert("You are signed to " + JSONcontract[intContract].name);
-  JSONband[i].contract = intContract;
+  // var r = confirm("Do you want to sign with " + JSONcontract[intContract].name + "?");
+  var r = confirm(getGameText(JSONconfig[0].contract));
+  if (r == true) {
+    loggingOutput(i, "RECORD CONTRACT", JSONband[i].name + " has just signed a record contract with "+JSONcontract[JSONband[i].contract].name+"<br>");
+    // updateBandMoneyAdd(i, JSONconfig[0].currency  + displayNumbersWithCommas(JSONcontract[JSONband[i].contract].money), "record contract signing bonus"); //COST
+    // JSONband[i].reputation = JSONband[i].reputation + JSONcontract[JSONband[i].contract].reputation; //TODO: difference between band & musician rep?
+    loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " have received "+JSONconfig[0].currency+displayNumbersWithCommas(JSONcontract[JSONband[i].contract].money)+" signing bonus<br>");
+    loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " have received "+JSONcontract[JSONband[i].contract].reputation+" reputation points by signing with "+JSONcontract[JSONband[i].contract].name+"<br>");
+    loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " will receive "+JSONcontract[JSONband[i].contract].percent+"% from all Single releases<br>");
+  } else {
+    JSONband[i].contract = false;
+  } //if
 
-  loggingOutput(i, "RECORD CONTRACT", JSONband[i].name + " has just signed a record contract with "+JSONcontract[JSONband[i].contract].name+"<br>");
-
-  updateBandMoneyAdd(i, JSONconfig[0].currency  + displayNumbersWithCommas(JSONcontract[JSONband[i].contract].money), "record contract signing bonus"); //COST
-  // JSONband[i].reputation = JSONband[i].reputation + JSONcontract[JSONband[i].contract].reputation; //TODO: difference between band & musician rep?
-
-  loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " have received "+JSONconfig[0].currency+displayNumbersWithCommas(JSONcontract[JSONband[i].contract].money)+" signing bonus<br>");
-  loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " have received "+JSONcontract[JSONband[i].contract].reputation+" reputation points by signing with "+JSONcontract[JSONband[i].contract].name+"<br>");
-  loggingOutput(i, "RECORD CONTRACT DETAILS", JSONband[i].name + " will receive "+JSONcontract[JSONband[i].contract].percent+"% from all Single releases<br>");
 
 } //function
 
